@@ -228,7 +228,7 @@ const Academy: React.FC = () => {
     { 
       name: "Alchemy", 
       url: "https://www.alchemy.com/",
-      logoUrl: "https://avatars.githubusercontent.com/u/66799054?s=200&v=4"
+      logoUrl: "https://www.datocms-assets.com/105223/1700264554-brand-image.svg"
     },
     { 
       name: "AulaFacil", 
@@ -243,7 +243,7 @@ const Academy: React.FC = () => {
     { 
       name: "edX", 
       url: "https://www.edx.org/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/cd/EdX_logo.png"
+      logoUrl: "https://cdn.worldvectorlogo.com/logos/edx-1.svg"
     },
     { 
       name: "Explore", 
@@ -263,7 +263,7 @@ const Academy: React.FC = () => {
     { 
       name: "Hotmart", 
       url: "https://www.hotmart.com/",
-      logoUrl: "https://seeklogo.com/images/H/hotmart-logo-AE90F727A5-seeklogo.com.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Logo_hotmart.png"
     },
     { 
       name: "Khan Academy", 
@@ -273,7 +273,7 @@ const Academy: React.FC = () => {
     { 
       name: "MasterClass", 
       url: "https://www.masterclass.com/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8b/MasterClass_Logo.svg"
+      logoUrl: "https://static.skillshare.com/assets/images/logo-header-2020.svg"
     },
     { 
       name: "MOOC", 
@@ -288,17 +288,17 @@ const Academy: React.FC = () => {
     { 
       name: "OpenupEd", 
       url: "https://www.openuped.eu/",
-      logoUrl: "https://www.openuped.eu/images/openuped-logo.png"
+      logoUrl: "https://openeu.eu/img/LOGO_OpenEU.svg"
     },
     { 
       name: "Skillshare", 
       url: "https://www.skillshare.com/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Skillshare_logo_2020.svg"
+      logoUrl: "https://static.skillshare.com/assets/images/logo-header-2020.svg"
     },
     { 
       name: "Udacity", 
       url: "https://www.udacity.com/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Udacity_logo.png"
+      logoUrl: "https://auth.udacity.com/static/media/logo.a54dd8e1.svg"
     },
     { 
       name: "Udemy", 
