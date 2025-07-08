@@ -231,6 +231,11 @@ const Academy: React.FC = () => {
       logoUrl: "https://www.datocms-assets.com/105223/1700264554-brand-image.svg"
     },
     { 
+      name: "Bitcoin", 
+      url: "https://bitcoin.org",
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg"
+    },
+    { 
       name: "AulaFacil", 
       url: "https://www.aulafacil.com/",
       logoUrl: "https://www.aulafacil.com/favicon.ico"
