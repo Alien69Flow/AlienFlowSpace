@@ -228,7 +228,7 @@ const Academy: React.FC = () => {
     { 
       name: "Alchemy", 
       url: "https://www.alchemy.com/",
-      logoUrl: "https://www.datocms-assets.com/105223/1700264554-brand-image.svg"
+      logoUrl: "https://docs.alchemy.com/img/logo-light.svg"
     },
     { 
       name: "Bitcoin", 
@@ -241,6 +241,11 @@ const Academy: React.FC = () => {
       logoUrl: "https://www.aulafacil.com/favicon.ico"
     },
     { 
+      name: "Climate Reanalyzer", 
+      url: "https://climatereanalyzer.org/",
+      logoUrl: "https://climatereanalyzer.org/wx_frames/gfs/world-ced/t2anom/t2anom.latest.png"
+    },
+    { 
       name: "Coursera", 
       url: "https://www.coursera.org/",
       logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg"
@@ -248,12 +253,17 @@ const Academy: React.FC = () => {
     { 
       name: "edX", 
       url: "https://www.edx.org/",
-      logoUrl: "https://cdn.worldvectorlogo.com/logos/edx-1.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/cd/EdX_logo.svg"
+    },
+    { 
+      name: "ESA", 
+      url: "https://www.esa.int/",
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f8/ESA_logo.svg"
     },
     { 
       name: "Explore", 
-      url: "https://www.explore.org/",
-      logoUrl: "https://images.squarespace-cdn.com/content/v1/5c87be8689c17256b8b91495/1558550176068-ZKPRRBMGQXGZ6NWBMJW9/explore-logo-green.png"
+      url: "https://explore.org/",
+      logoUrl: "https://explore.org/assets/images/global/explore-logo.svg"
     },
     { 
       name: "FutureLearn", 
@@ -268,42 +278,52 @@ const Academy: React.FC = () => {
     { 
       name: "Hotmart", 
       url: "https://www.hotmart.com/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Logo_hotmart.png"
+      logoUrl: "https://static.hotmart.com/assets/img/hotmart_logo.svg"
     },
     { 
       name: "Khan Academy", 
-      url: "https://www.khanacademy.org/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Khan_Academy_logo_2018.svg"
+      url: "https://khanacademy.org/",
+      logoUrl: "https://cdn.kastatic.org/images/khan-logo-dark-background.png"
+    },
+    { 
+      name: "LSC-Canfranc", 
+      url: "https://lsc-canfranc.es/",
+      logoUrl: "https://lsc-canfranc.es/sites/default/files/logos/logo-lsc-canfranc-250.png"
     },
     { 
       name: "MasterClass", 
-      url: "https://www.masterclass.com/",
-      logoUrl: "https://static.skillshare.com/assets/images/logo-header-2020.svg"
+      url: "https://masterclass.com/",
+      logoUrl: "https://cdn.masterclass.com/assets/logo-masterclass-white.svg"
     },
     { 
       name: "MOOC", 
-      url: "https://www.mooc.org/",
-      logoUrl: "https://images.squarespace-cdn.com/content/v1/5dd3b9b78d1b9b0001d8b346/1574275257748-VXJF2RW6YMD4IGGDGZFB/MOOC+List+Logo.png"
+      url: "https://mooc.org/",
+      logoUrl: "https://www.mooc.org/hubfs/mooc-org-logo.svg"
+    },
+    { 
+      name: "NASA Eyes", 
+      url: "https://eyes.nasa.gov/apps/solar-system/#/home",
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
     },
     { 
       name: "OEGlobal", 
-      url: "https://www.oeglobal.org/",
-      logoUrl: "https://www.oeglobal.org/wp-content/uploads/2017/10/oeg-logo-200x200.png"
+      url: "https://oeglobal.org/",
+      logoUrl: "https://www.oeglobal.org/wp-content/uploads/2019/08/cropped-OEG_Logo_Full_Colour_Large-192x192.png"
     },
     { 
       name: "OpenupEd", 
-      url: "https://www.openuped.eu/",
-      logoUrl: "https://openeu.eu/img/LOGO_OpenEU.svg"
+      url: "https://openuped.eu/",
+      logoUrl: "https://www.openuped.eu/images/logo.png"
     },
     { 
       name: "Skillshare", 
       url: "https://www.skillshare.com/",
-      logoUrl: "https://static.skillshare.com/assets/images/logo-header-2020.svg"
+      logoUrl: "https://static.skillshare.com/uploads/brandAssets/logos/ss-logo.svg"
     },
     { 
       name: "Udacity", 
       url: "https://www.udacity.com/",
-      logoUrl: "https://auth.udacity.com/static/media/logo.a54dd8e1.svg"
+      logoUrl: "https://d20vrrgs8k4bvw.cloudfront.net/images/header/udacity-logo.svg"
     },
     { 
       name: "Udemy", 
@@ -311,9 +331,14 @@ const Academy: React.FC = () => {
       logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg"
     },
     { 
+      name: "UNESCO", 
+      url: "https://www.unesco.org/",
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/UNESCO_logo.svg"
+    },
+    { 
       name: "Unity Learn", 
       url: "https://learn.unity.com/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Unity_Technologies_logo.svg"
+      logoUrl: "https://unity.com/themes/unity/images/company/brand/logos/primary/k-h-Logo_Unity_Horiz_2020.svg"
     },
     { 
       name: "Unreal Engine", 
@@ -322,8 +347,13 @@ const Academy: React.FC = () => {
     },
     { 
       name: "UNSSC", 
-      url: "https://www.unssc.org/",
-      logoUrl: "https://www.unssc.org/sites/unssc/files/unssc_logo_blue_0.png"
+      url: "https://unssc.org/",
+      logoUrl: "https://www.unssc.org/sites/unssc/files/images/UNSSC%20logo.png"
+    },
+    { 
+      name: "Virgo-GW", 
+      url: "https://www.virgo-gw.eu/",
+      logoUrl: "https://www.virgo-gw.eu/images/logo-virgo.png"
     }
   ];
 

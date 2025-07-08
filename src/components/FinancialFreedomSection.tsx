@@ -191,7 +191,13 @@ const FinancialFreedomSection = () => {
           }} viewport={{
             once: true
           }} className="inline-flex items-center gap-3 bg-gradient-to-r from-alien-space-dark to-alien-space px-6 py-3 rounded-full border border-alien-green/30">
-              <Bitcoin className="h-5 w-5 text-alien-gold" />
+              <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" 
+                  alt="Bitcoin" 
+                  className="h-5 w-5"
+                />
+              </a>
               <span className="text-alien-green font-semibold font-[Exo]">₿itcoin backed</span>
               <span className="text-gray-400">•</span>
               <span className="text-alien-gold font-semibold font-[Exo]">Interoperable</span>

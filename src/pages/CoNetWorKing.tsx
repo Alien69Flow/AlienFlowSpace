@@ -133,6 +133,18 @@ const CoNetWorKing: React.FC = () => {
 
   const partners = [
     {
+      name: "Aragon",
+      logo: "https://aragon.org/images/brand/aragongov.svg",
+      description: "Decentralized governance platform",
+      url: "https://www.aragon.org/"
+    },
+    {
+      name: "DappRadar",
+      logo: "https://dappradar.com/hubfs/DappRadar%20Logo%20White.svg",
+      description: "DApp analytics and discovery platform",
+      url: "https://dappradar.com/"
+    },
+    {
       name: "TechCorp",
       logo: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=150&h=150&auto=format&fit=crop",
       description: "Leading blockchain infrastructure provider"
@@ -141,20 +153,38 @@ const CoNetWorKing: React.FC = () => {
       name: "CryptoVault",
       logo: "https://images.unsplash.com/photo-1614851099175-e5b30eb872c7?q=80&w=150&h=150&auto=format&fit=crop",
       description: "Secure digital asset management"
-    },
-    {
-      name: "DeFi Protocol",
-      logo: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=150&h=150&auto=format&fit=crop",
-      description: "Decentralized finance solutions"
-    },
-    {
-      name: "Neural AI",
-      logo: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=150&h=150&auto=format&fit=crop",
-      description: "Advanced AI trading algorithms"
     }
   ];
 
   const communityMembers = [
+    {
+      name: "Fiverr",
+      avatar: "https://npm-assets.s3.amazonaws.com/production/uploads/connect/uploads/logo/6d93e8e6-cf0c-4df0-8910-0bd9e7b7ecf5/fiverr.svg",
+      role: "Freelance Services",
+      location: "Global",
+      url: "https://fiverr.com/"
+    },
+    {
+      name: "Upwork",
+      avatar: "https://assets-global.website-files.com/603fea6471d9d8559d077f85/6092b7514135708162a4be92_Favicon%20256.png",
+      role: "Remote Work Platform",
+      location: "Global",
+      url: "https://upwork.com/"
+    },
+    {
+      name: "WeWork",
+      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/WeWork_logo.svg/1200px-WeWork_logo.svg.png",
+      role: "Shared Workspaces",
+      location: "Global",
+      url: "https://wework.com/"
+    },
+    {
+      name: "Workana",
+      avatar: "https://workana.com/static/wp-content/uploads/2020/01/logo_workana_light_bg.svg",
+      role: "Latin America Freelance",
+      location: "LATAM",
+      url: "https://workana.com/"
+    },
     {
       name: "Sophia Chen",
       avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&h=150&auto=format&fit=crop",
@@ -166,30 +196,6 @@ const CoNetWorKing: React.FC = () => {
       avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=150&h=150&auto=format&fit=crop",
       role: "Blockchain Developer",
       location: "Tokyo"
-    },
-    {
-      name: "Luna Rodriguez",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "NFT Artist",
-      location: "Barcelona"
-    },
-    {
-      name: "Zara Al-Rashid",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Crypto Analyst",
-      location: "Dubai"
-    },
-    {
-      name: "Isabella Kim",
-      avatar: "https://images.unsplash.com/photo-1488716820095-cbe80883c496?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "GameFi Designer",
-      location: "Seoul"
-    },
-    {
-      name: "Amara Singh",
-      avatar: "https://images.unsplash.com/photo-1506863530036-1efeddceb993?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "ReFi Advocate",
-      location: "Mumbai"
     }
   ];
 
@@ -309,14 +315,18 @@ const CoNetWorKing: React.FC = () => {
                 <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
                   <CardHeader className="text-center pb-4">
                     <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-alien-gold">
-                      <img 
-                        src={partner.logo} 
-                        alt={partner.name} 
-                        className="w-full h-full object-cover"
-                      />
+                      <a href={partner.url || '#'} target="_blank" rel="noopener noreferrer">
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name} 
+                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                        />
+                      </a>
                     </div>
                     <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
-                      {partner.name}
+                      <a href={partner.url || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
+                        {partner.name}
+                      </a>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
@@ -339,11 +349,26 @@ const CoNetWorKing: React.FC = () => {
                 <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
                   <CardHeader className="text-center">
                     <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
-                      <AvatarImage src={member.avatar} alt={member.name} />
-                      <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      {member.url ? (
+                        <a href={member.url} target="_blank" rel="noopener noreferrer">
+                          <AvatarImage src={member.avatar} alt={member.name} className="hover:scale-110 transition-transform duration-300" />
+                          <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                        </a>
+                      ) : (
+                        <>
+                          <AvatarImage src={member.avatar} alt={member.name} />
+                          <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                        </>
+                      )}
                     </Avatar>
                     <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
-                      {member.name}
+                      {member.url ? (
+                        <a href={member.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
+                          {member.name}
+                        </a>
+                      ) : (
+                        member.name
+                      )}
                     </CardTitle>
                     <CardDescription className="text-alien-green font-[Exo]">
                       {member.role}
