@@ -173,7 +173,7 @@ const FinancialFreedomSection = () => {
           }} viewport={{
             once: true
           }} className="text-lg text-gray-300 mb-6 font-[Exo] max-w-3xl mx-auto">
-              Aurum ₿itoin cryptoken serves as collateral and derivative of Bitcoin and gold, 
+              Aurum ₿itcoin cryptoken serves as collateral and derivative of Bitcoin and gold, 
               providing <span className="text-alien-green font-semibold">scalability</span>, 
               <span className="text-alien-gold font-semibold"> stability</span> and 
               <span className="text-alien-green font-semibold"> growth potential (Φπ)</span>...
