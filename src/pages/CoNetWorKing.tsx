@@ -133,10 +133,28 @@ const CoNetWorKing: React.FC = () => {
 
   const partners = [
     {
-      name: "Aragon",
+      name: "Aragon DAO",
       logo: "https://aragon.org/images/brand/aragongov.svg",
       description: "Decentralized governance platform",
       url: "https://www.aragon.org/"
+    },
+    {
+      name: "CoinGecko",
+      logo: "https://static.coingecko.com/s/coingecko-logo-8903d34ce19ca4be1c81f0db30e924154750d208683fad7ae6f2ce06c76d0a56.png",
+      description: "Cryptocurrency data platform",
+      url: "https://www.coingecko.com/"
+    },
+    {
+      name: "CoinGlass",
+      logo: "https://www.coinglass.com/static/logo/logo-text-white.png",
+      description: "Crypto derivatives data platform",
+      url: "https://www.coinglass.com/"
+    },
+    {
+      name: "CoinMarketCap",
+      logo: "https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg",
+      description: "Cryptocurrency market data",
+      url: "https://coinmarketcap.com/"
     },
     {
       name: "DappRadar",
@@ -156,7 +174,14 @@ const CoNetWorKing: React.FC = () => {
     }
   ];
 
-  const communityMembers = [
+  const officialPartners = [
+    {
+      name: "Behance",
+      avatar: "https://a5.behance.net/2acd763cb06c5a944ece7c3ca7946ab3e0417e25/img/site/apple-touch-icon.png",
+      role: "Creative Portfolio Platform",
+      location: "Global",
+      url: "https://www.behance.net/"
+    },
     {
       name: "Fiverr",
       avatar: "https://npm-assets.s3.amazonaws.com/production/uploads/connect/uploads/logo/6d93e8e6-cf0c-4df0-8910-0bd9e7b7ecf5/fiverr.svg",
@@ -184,6 +209,21 @@ const CoNetWorKing: React.FC = () => {
       role: "Latin America Freelance",
       location: "LATAM",
       url: "https://workana.com/"
+    }
+  ];
+
+  const communityMembers = [
+    {
+      name: "Alexandra Rodriguez",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Crypto Analyst",
+      location: "Barcelona"
+    },
+    {
+      name: "Marcus Thompson",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Blockchain Developer",
+      location: "London"
     },
     {
       name: "Sophia Chen",
@@ -196,6 +236,18 @@ const CoNetWorKing: React.FC = () => {
       avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=150&h=150&auto=format&fit=crop",
       role: "Blockchain Developer",
       location: "Tokyo"
+    },
+    {
+      name: "Diego Martinez",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Smart Contract Auditor",
+      location: "Mexico City"
+    },
+    {
+      name: "Emma Wilson",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "NFT Artist",
+      location: "New York"
     }
   ];
 
@@ -257,7 +309,7 @@ const CoNetWorKing: React.FC = () => {
             </h2>
             
             {/* Bitcoin Price Widget */}
-            <div className="mb-12 max-w-4xl mx-auto">
+            <div className="mb-8 max-w-4xl mx-auto">
               <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30">
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl flex items-center justify-center gap-3">
@@ -277,6 +329,25 @@ const CoNetWorKing: React.FC = () => {
                        data-statsticker="true" 
                        data-stats="USD">
                   </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Crypto Fear & Greed Index */}
+            <div className="mb-12 max-w-2xl mx-auto">
+              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30">
+                <CardHeader className="text-center pb-4">
+                  <CardTitle className="text-alien-gold font-[Atomic Age] text-xl flex items-center justify-center gap-3">
+                    <TrendingUp className="h-6 w-6" />
+                    Market Sentiment
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 text-center">
+                  <img 
+                    src="https://alternative.me/crypto/fear-and-greed-index.png" 
+                    alt="Latest Crypto Fear & Greed Index" 
+                    className="w-full max-w-md mx-auto rounded-lg"
+                  />
                 </CardContent>
               </Card>
             </div>
@@ -344,43 +415,69 @@ const CoNetWorKing: React.FC = () => {
             <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
               Global Community
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {communityMembers.map((member, index) => (
-                <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
-                  <CardHeader className="text-center">
-                    <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
-                      {member.url ? (
-                        <a href={member.url} target="_blank" rel="noopener noreferrer">
-                          <AvatarImage src={member.avatar} alt={member.name} className="hover:scale-110 transition-transform duration-300" />
-                          <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+            
+            {/* Official Partners */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-[Atomic Age]">
+                Official Partners
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {officialPartners.map((partner, index) => (
+                  <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center">
+                      <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <AvatarImage src={partner.avatar} alt={partner.name} className="hover:scale-110 transition-transform duration-300" />
+                          <AvatarFallback>{partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                         </a>
-                      ) : (
-                        <>
-                          <AvatarImage src={member.avatar} alt={member.name} />
-                          <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                        </>
-                      )}
-                    </Avatar>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
-                      {member.url ? (
-                        <a href={member.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
-                          {member.name}
+                      </Avatar>
+                      <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
+                          {partner.name}
                         </a>
-                      ) : (
-                        member.name
-                      )}
-                    </CardTitle>
-                    <CardDescription className="text-alien-green font-[Exo]">
-                      {member.role}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="text-center pt-0">
-                    <p className="text-gray-300 font-[Exo] text-sm">
-                      📍 {member.location}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+                      </CardTitle>
+                      <CardDescription className="text-alien-green font-[Exo]">
+                        {partner.role}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-center pt-0">
+                      <p className="text-gray-300 font-[Exo] text-sm">
+                        📍 {partner.location}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Community Members */}
+            <div>
+              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-[Atomic Age]">
+                Community Members
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {communityMembers.map((member, index) => (
+                  <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center">
+                      <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
+                        <AvatarImage src={member.avatar} alt={member.name} />
+                        <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      </Avatar>
+                      <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                        {member.name}
+                      </CardTitle>
+                      <CardDescription className="text-alien-green font-[Exo]">
+                        {member.role}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-center pt-0">
+                      <p className="text-gray-300 font-[Exo] text-sm">
+                        📍 {member.location}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
           
