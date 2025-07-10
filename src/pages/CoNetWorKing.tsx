@@ -171,6 +171,11 @@ const CoNetWorKing: React.FC = () => {
       name: "CryptoVault",
       logo: "https://images.unsplash.com/photo-1614851099175-e5b30eb872c7?q=80&w=150&h=150&auto=format&fit=crop",
       description: "Secure digital asset management"
+    },
+    {
+      name: "DefiLabs",
+      logo: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=150&h=150&auto=format&fit=crop",
+      description: "DeFi research and development"
     }
   ];
 
@@ -214,39 +219,39 @@ const CoNetWorKing: React.FC = () => {
 
   const communityMembers = [
     {
-      name: "Alexandra Rodriguez",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?q=80&w=150&h=150&auto=format&fit=crop",
+      name: "Isabella Rodriguez",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&h=150&auto=format&fit=crop",
       role: "Crypto Analyst",
       location: "Barcelona"
     },
     {
-      name: "Marcus Thompson",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&auto=format&fit=crop",
+      name: "Emma Chen",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&auto=format&fit=crop",
       role: "Blockchain Developer",
-      location: "London"
-    },
-    {
-      name: "Sophia Chen",
-      avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "DeFi Strategist",
       location: "Singapore"
     },
     {
+      name: "Sophia Williams",
+      avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "DeFi Strategist",
+      location: "London"
+    },
+    {
       name: "Aria Nakamura",
-      avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Blockchain Developer",
+      avatar: "https://images.unsplash.com/photo-1506863530036-1efeddceb993?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Smart Contract Developer",
       location: "Tokyo"
     },
     {
-      name: "Diego Martinez",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Smart Contract Auditor",
+      name: "Valentina Martinez",
+      avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "NFT Artist",
       location: "Mexico City"
     },
     {
-      name: "Emma Wilson",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "NFT Artist",
+      name: "Zoe Anderson",
+      avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Crypto Trader",
       location: "New York"
     }
   ];
@@ -421,27 +426,30 @@ const CoNetWorKing: React.FC = () => {
               <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-[Atomic Age]">
                 Official Partners
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {officialPartners.map((partner, index) => (
-                  <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center">
-                      <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
+                  <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-alien-gold/25">
+                    <CardHeader className="text-center pb-3">
+                      <div className="mx-auto mb-3 w-16 h-16 rounded-full overflow-hidden border-2 border-alien-gold bg-white/10">
                         <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <AvatarImage src={partner.avatar} alt={partner.name} className="hover:scale-110 transition-transform duration-300" />
-                          <AvatarFallback>{partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                          <img 
+                            src={partner.avatar} 
+                            alt={partner.name} 
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                          />
                         </a>
-                      </Avatar>
-                      <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                      </div>
+                      <CardTitle className="text-alien-gold font-[Atomic Age] text-base">
                         <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
                           {partner.name}
                         </a>
                       </CardTitle>
-                      <CardDescription className="text-alien-green font-[Exo]">
+                    </CardHeader>
+                    <CardContent className="text-center pt-0 pb-4">
+                      <CardDescription className="text-alien-green font-[Exo] text-xs mb-2">
                         {partner.role}
                       </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-center pt-0">
-                      <p className="text-gray-300 font-[Exo] text-sm">
+                      <p className="text-gray-300 font-[Exo] text-xs">
                         📍 {partner.location}
                       </p>
                     </CardContent>
