@@ -60,34 +60,85 @@ const FinancialFreedomSection = () => {
         }} viewport={{
           once: true
         }} className="card-border p-8 backdrop-blur-md text-center">
-            <p className="text-xl text-gray-300 font-[Exo] leading-relaxed mb-8 text-center">
-              Any individual or professional can understand the advantage of digital Money:
-            </p>
-            
-            <div className="space-y-6 text-center max-w-3xl mx-auto">
-              <div className="text-center">
-                <p className="text-lg text-gray-300 font-[Exo] leading-relaxed">
-                  <span className="text-alien-gold">·</span> <span className="text-alien-gold font-semibold">Impartial Money:</span> that does not discriminate.
-                </p>
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-alien-gold/40"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-alien-gold/40"></div>
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-alien-green/40"></div>
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-alien-green/40"></div>
+              
+              <p className="text-2xl text-gray-200 font-[Exo] leading-relaxed mb-10 text-center font-light">
+                Any individual or professional can understand the advantage of <span className="text-alien-gold font-semibold">digital Money</span>:
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 mb-10 max-w-4xl mx-auto">
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-gradient-to-br from-alien-gold/10 to-transparent p-6 rounded-xl border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-3 h-3 bg-alien-gold rounded-full animate-pulse"></div>
+                    <h4 className="text-xl text-alien-gold font-semibold font-nasalization">Impartial Money</h4>
+                  </div>
+                  <p className="text-gray-300 font-[Exo] leading-relaxed">
+                    Access rewards for saving, <span className="text-alien-gold">without giving up control</span>. 
+                    Money that does not discriminate based on geography, status, or background.
+                  </p>
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="bg-gradient-to-br from-alien-green/10 to-transparent p-6 rounded-xl border border-alien-green/20 hover:border-alien-green/40 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-3 h-3 bg-alien-green rounded-full animate-pulse"></div>
+                    <h4 className="text-xl text-alien-green font-semibold font-nasalization">Decentralized Currencies</h4>
+                  </div>
+                  <p className="text-gray-300 font-[Exo] leading-relaxed">
+                    <span className="text-alien-green">Scalable and Stable</span> with the Volatility for 
+                    Safe Reserves of Values. True financial sovereignty.
+                  </p>
+                </motion.div>
               </div>
               
-              <div className="text-center">
-                <p className="text-lg text-gray-300 font-[Exo] leading-relaxed">
-                  <span className="text-alien-gold">·</span> <span className="text-alien-green font-semibold">Decentralized Currencies:</span> Scalable and Stable with the Volatility for Safe Reserves of Values.
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-r from-alien-space-dark/50 to-alien-space/50 p-8 rounded-2xl border border-alien-gold/20"
+              >
+                <p className="text-xl text-gray-200 font-[Exo] leading-relaxed text-center mb-6">
+                  Allowing individuals to <span className="text-alien-gold font-semibold">secure their wealth</span> while 
+                  enjoying the benefits of a <span className="text-alien-green font-semibold">decentralized economy</span>.
                 </p>
-              </div>
-            </div>
-            
-            <div className="mt-8 space-y-4 text-center">
-              <p className="text-lg text-gray-300 font-[Exo] leading-relaxed text-center">
-                Allowing individuals to <span className="text-alien-gold font-semibold">secure their wealth</span> while 
-                enjoying the benefits of a <span className="text-alien-green font-semibold">decentralized economy</span>.
-              </p>
-              <p className="text-lg text-gray-300 font-[Exo] leading-relaxed text-center">
-                Access with <span className="text-alien-gold font-semibold">Cryptokens and NFTs</span> to Order & Generate 
-                All Types of Experiences, Products & Services According to your Demands 
-                <span className="text-alien-green font-semibold"> Instantly</span>...
-              </p>
+                
+                <div className="flex items-center justify-center gap-4 flex-wrap">
+                  <div className="flex items-center gap-2 bg-alien-space-dark/50 px-4 py-2 rounded-full border border-alien-gold/30">
+                    <Coins className="h-4 w-4 text-alien-gold" />
+                    <span className="text-alien-gold font-semibold text-sm">Cryptokens</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-alien-space-dark/50 px-4 py-2 rounded-full border border-alien-green/30">
+                    <Bitcoin className="h-4 w-4 text-alien-green" />
+                    <span className="text-alien-green font-semibold text-sm">NFTs</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-alien-space-dark/50 px-4 py-2 rounded-full border border-alien-gold/30">
+                    <Zap className="h-4 w-4 text-alien-gold" />
+                    <span className="text-alien-gold font-semibold text-sm">Instant Access</span>
+                  </div>
+                </div>
+                
+                <p className="text-lg text-gray-300 font-[Exo] leading-relaxed text-center mt-6">
+                  <span className="text-alien-green font-semibold">Order & Generate</span> All Types of Experiences, 
+                  Products & Services According to your Demands <span className="text-alien-gold font-semibold">Instantly</span>...
+                </p>
+              </motion.div>
             </div>
           </motion.div>
         </div>
