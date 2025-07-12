@@ -4,6 +4,7 @@ import { Network, TrendingUp, Shield, Coins, Sprout, Pickaxe, Layers, Dna, Flask
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import conetworkingLogo from '@/assets/conetworking-logo.png';
 
 type ServiceProps = {
   title: string;
@@ -286,7 +287,13 @@ const CoNetWorKing: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-20">
-            <Network className="h-20 w-20 text-alien-gold mx-auto mb-6 animate-pulse" />
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
+              <img 
+                src={conetworkingLogo} 
+                alt="CoNetWorKing Official Logo" 
+                className="h-16 w-16 object-contain"
+              />
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold text-alien-gold mb-8 font-[Atomic Age, Star Wars] text-glow">
               CoNetWorKing
             </h1>

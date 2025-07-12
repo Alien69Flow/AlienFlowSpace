@@ -4,6 +4,7 @@ import StarBackground from '@/components/StarBackground';
 import { GraduationCap, BookOpen, Video, Users, Award, Sparkles, Leaf, Brain, Coins, ShoppingCart, Heart, Lightbulb, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import academyLogo from '@/assets/academy-logo.png';
 
 const CourseCard = ({
   title,
@@ -377,9 +378,9 @@ const Academy: React.FC = () => {
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src="/lovable-uploads/bdb8277c-dc0f-4a67-8159-804f77ad3567.png" 
-                alt="Academy Logo" 
-                className="h-12 w-12 object-contain"
+                src={academyLogo} 
+                alt="Academy Official Logo" 
+                className="h-14 w-14 object-contain"
               />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-alien-gold mb-6 font-nasalization text-glow">

@@ -39,7 +39,7 @@ const PriceTicker = () => {
         widgetElement.setAttribute('outlined', 'true');
         widgetElement.setAttribute('coin-ids', 'bitcoin,tether-gold,ethereum,binancecoin,bitcoin-cash,bittensor,aave,solana,hyperliquid,avalanche-2,chainlink,injective-protocol,uniswap,internet-computer,aptos,cosmos,bitget-token,polkadot,sui,the-open-network,near,celestia,nexo,pi-network,tron,polygon-ecosystem-token,pancakeswap-token,osmosis,crypto-com-chain');
         widgetElement.setAttribute('initial-currency', 'usd');
-        widgetElement.setAttribute('speed', '50'); // Slower speed for better readability
+        widgetElement.setAttribute('speed', '30'); // Much slower speed for better readability
         
         containerRef.current.appendChild(widgetElement);
         
