@@ -37,7 +37,7 @@ const PriceTicker = () => {
         widgetElement.setAttribute('dark-mode', 'true');
         widgetElement.setAttribute('transparent-background', 'true');
         widgetElement.setAttribute('outlined', 'true');
-        widgetElement.setAttribute('coin-ids', 'bitcoin,tether-gold,ethereum,binancecoin,solana,cosmos');
+        widgetElement.setAttribute('coin-ids', 'bitcoin,tether-gold,ethereum,binancecoin,bitcoin-cash,bittensor,aave,solana,hyperliquid,avalanche-2,chainlink,injective-protocol,uniswap,internet-computer,aptos,cosmos,bitget-token,polkadot,sui,the-open-network,near,celestia,nexo,pi-network,tron,polygon-ecosystem-token,pancakeswap-token,osmosis,crypto-com-chain');
         widgetElement.setAttribute('initial-currency', 'usd');
         
         containerRef.current.appendChild(widgetElement);
