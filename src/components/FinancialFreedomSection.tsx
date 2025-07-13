@@ -25,11 +25,22 @@ const FinancialFreedomSection = () => {
             className="text-center mb-20"
           >
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-alien-gold/20 to-alien-green/20 rounded-full mb-8 border-2 border-alien-gold/30 backdrop-blur-md hover:scale-110 transition-transform duration-300">
-              <Coins className="h-10 w-10 text-alien-gold animate-pulse" />
+              <img 
+                src="/lovable-uploads/AW.png" 
+                alt="Alien Wallet" 
+                className="h-12 w-12 rounded-full" 
+              />
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-alien-gold mb-8 font-nasalization text-glow animate-fade-in">
-              Digital Money Advantage
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 font-nasalization text-glow animate-fade-in">
+              <span className="text-yellow-400">₿</span>
+              <span className="text-blue-400">£</span>
+              <span className="text-green-400">€</span>
+              <span className="text-green-400">$</span>
+              <span className="text-green-400">$</span>
             </h2>
+            <h3 className="text-4xl md:text-5xl font-bold text-alien-gold mb-8 font-nasalization text-glow animate-fade-in">
+              Financial Freedom for the Free Earth
+            </h3>
             <div className="max-w-4xl mx-auto">
               <p className="text-2xl text-gray-200 font-[Exo] leading-relaxed mb-6">
                 Any individual or professional can understand the advantage of digital Money:
@@ -206,6 +217,43 @@ const FinancialFreedomSection = () => {
                     <p className="text-gray-200 text-center font-[Exo] leading-relaxed">Unique digital and real-world experiences tailored to you</p>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* A₿tc Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+            viewport={{ once: true }}
+            className="mt-20 text-center"
+          >
+            <Card className="bg-gradient-to-br from-alien-space-dark/95 to-alien-space-light/40 backdrop-blur-xl border-2 border-alien-gold/40 hover:border-alien-gold/60 transition-all duration-500 group overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-alien-gold/5 via-alien-green/5 to-alien-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <CardContent className="p-10 text-center relative z-10">
+                <div className="flex items-center justify-center mb-6">
+                  <img 
+                    src="/lovable-uploads/ALogo.png" 
+                    alt="A₿tc Logo" 
+                    className="h-16 w-16 rounded-full border-2 border-alien-gold/30 group-hover:scale-110 transition-transform duration-300" 
+                  />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold text-alien-gold font-nasalization mb-4 text-glow">
+                  A₿tc
+                </h3>
+                <p className="text-lg text-gray-300 font-[Exo] italic mb-6">
+                  (Aurum nostrum non est aurum vulgi)
+                </p>
+                <a 
+                  href="https://abtc.space" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-alien-gold/20 to-alien-green/20 hover:from-alien-gold/30 hover:to-alien-green/30 text-alien-gold hover:text-alien-gold-light px-6 py-3 rounded-full border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300 font-[Exo] font-semibold group-hover:scale-105"
+                >
+                  Visit A₿tc
+                  <span className="text-alien-green">→</span>
+                </a>
               </CardContent>
             </Card>
           </motion.div>
