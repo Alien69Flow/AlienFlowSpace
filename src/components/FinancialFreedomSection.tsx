@@ -4,7 +4,7 @@ import { Bitcoin, TrendingUp, Shield, Coins, Zap, Lock, ShoppingCart, Wand2, Spa
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 const FinancialFreedomSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-alien-space-dark via-alien-space to-alien-space-dark relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       {/* Enhanced background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-32 h-32 bg-alien-gold/10 rounded-full blur-3xl animate-pulse"></div>
@@ -16,38 +16,30 @@ const FinancialFreedomSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           
-          {/* Enhanced Section Header */}
+          {/* Header Section - Two Line Title */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-alien-gold/20 to-alien-green/20 rounded-full mb-8 border-2 border-alien-gold/30 backdrop-blur-md hover:scale-110 transition-transform duration-300">
-              <img 
-                src="/lovable-uploads/AW.png" 
-                alt="Alien Wallet" 
-                className="h-12 w-12 rounded-full" 
-              />
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 font-nasalization text-glow animate-fade-in">
-              <span className="text-yellow-400">₿</span>
-              <span className="text-blue-400">£</span>
-              <span className="text-green-400">€</span>
-              <span className="text-green-400">$</span>
-              <span className="text-green-400">$</span>
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-alien-gold mb-8 font-nasalization text-glow animate-fade-in">
-              Financial Freedom for the Free Earth
-            </h3>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-2xl text-gray-200 font-[Exo] leading-relaxed mb-6">
-                Any individual or professional can understand the advantage of digital Money:
-              </p>
-              <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto rounded-full"></div>
+            <div className="space-y-4">
+              <h2 className="text-5xl md:text-6xl text-alien-gold font-nasalization tracking-wider font-bold">
+                ₿£€$$
+              </h2>
+              <h3 className="text-2xl md:text-3xl font-bold text-alien-green font-nasalization tracking-wide">
+                Financial Freedom for the Free Earth
+              </h3>
             </div>
           </motion.div>
+
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <p className="text-2xl text-gray-200 font-[Exo] leading-relaxed mb-6">
+              Any individual or professional can understand the advantage of digital Money:
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto rounded-full"></div>
+          </div>
 
           {/* Enhanced Main Features Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
@@ -221,41 +213,62 @@ const FinancialFreedomSection = () => {
             </Card>
           </motion.div>
 
-          {/* A₿tc Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+          {/* ABTC Token Highlight - Simplified without widget */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
-            className="mt-20 text-center"
+            className="card-border p-8 max-w-6xl mx-auto text-center relative overflow-hidden"
           >
-            <Card className="bg-gradient-to-br from-alien-space-dark/95 to-alien-space-light/40 backdrop-blur-xl border-2 border-alien-gold/40 hover:border-alien-gold/60 transition-all duration-500 group overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-alien-gold/5 via-alien-green/5 to-alien-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardContent className="p-10 text-center relative z-10">
-                <div className="flex items-center justify-center mb-6">
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 via-transparent to-alien-green/5" />
+            <div className="absolute top-0 left-0 w-32 h-32 bg-alien-gold/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-alien-green/10 rounded-full blur-3xl" />
+            
+            <div className="relative z-10">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-bold mb-4 text-alien-gold font-nasalization"
+              >
+                A₿tc <span className="text-sm text-[#03ff19]">(Aurum nostrum non est aurum vulgi)</span>
+              </motion.h3>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+                className="text-lg text-gray-300 mb-6 font-[Exo] max-w-3xl mx-auto"
+              >
+                Aurum ₿itcoin cryptoken serves as collateral and derivative of Bitcoin and gold, 
+                providing <span className="text-alien-green font-semibold">scalability</span>, 
+                <span className="text-alien-gold font-semibold"> stability</span> and 
+                <span className="text-alien-green font-semibold"> growth potential (Φπ)</span>...
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-alien-space-dark to-alien-space px-6 py-3 rounded-full border border-alien-green/30"
+              >
+                <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="flex items-center">
                   <img 
-                    src="/lovable-uploads/ALogo.png" 
-                    alt="A₿tc Logo" 
-                    className="h-16 w-16 rounded-full border-2 border-alien-gold/30 group-hover:scale-110 transition-transform duration-300" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" 
+                    alt="Bitcoin" 
+                    className="h-5 w-5"
                   />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-alien-gold font-nasalization mb-4 text-glow">
-                  A₿tc
-                </h3>
-                <p className="text-lg text-gray-300 font-[Exo] italic mb-6">
-                  (Aurum nostrum non est aurum vulgi)
-                </p>
-                <a 
-                  href="https://abtc.space" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-alien-gold/20 to-alien-green/20 hover:from-alien-gold/30 hover:to-alien-green/30 text-alien-gold hover:text-alien-gold-light px-6 py-3 rounded-full border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300 font-[Exo] font-semibold group-hover:scale-105"
-                >
-                  Visit A₿tc
-                  <span className="text-alien-green">→</span>
                 </a>
-              </CardContent>
-            </Card>
+                <span className="text-alien-green font-semibold font-[Exo]">₿itcoin backed</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-alien-gold font-semibold font-[Exo]">Interoperable</span>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
