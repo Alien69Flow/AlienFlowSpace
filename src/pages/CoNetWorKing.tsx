@@ -274,7 +274,7 @@ const CoNetWorKing: React.FC = () => {
           <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src="/lovable-uploads/VC.png" 
+                src="/lovable-uploads/CoNetWorKingLogo" 
                 alt="CoNetWorKing Official Logo" 
                 className="h-16 w-16 object-contain"
               />

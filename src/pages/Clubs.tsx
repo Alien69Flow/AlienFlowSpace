@@ -194,8 +194,8 @@ const Clubs: React.FC = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src="/lovable-uploads/34dc9a1f-3c47-43ba-9218-4e3b44992404.png" 
-                alt="Clubs Logo" 
+                src="/lovable-uploads/ClubLogo" 
+                alt="Clubs Official Logo" 
                 className="h-12 w-12 object-contain"
               />
             </div>
