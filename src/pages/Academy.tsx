@@ -1,10 +1,8 @@
-
 import React from 'react';
 import StarBackground from '@/components/StarBackground';
 import { GraduationCap, BookOpen, Video, Users, Award, Sparkles, Leaf, Brain, Coins, ShoppingCart, Heart, Lightbulb, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import academyLogo from '@/assets/academy-logo.png';
 
 const CourseCard = ({
   title,
@@ -19,7 +17,7 @@ const CourseCard = ({
   modules: Array<{ name: string; topics: string[] }>;
   color: string;
 }) => (
-  <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-alien-gold/20 group">
+  <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-alien-gold/10 group relative">
     <div className={`h-1 ${color} rounded-t-lg`}></div>
     <CardHeader className="pb-4">
       <div className="flex items-start justify-between mb-4">
@@ -75,7 +73,7 @@ const PartnerCard = ({ name, url, logoUrl }: { name: string; url: string; logoUr
     href={url} 
     target="_blank" 
     rel="noopener noreferrer"
-    className="bg-alien-space-dark/70 backdrop-blur-md rounded-xl p-4 border border-alien-gold/20 hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105 group flex items-center justify-center min-h-[100px] relative overflow-hidden"
+    className="bg-alien-space-dark/70 backdrop-blur-md rounded-xl p-4 border border-alien-gold/20 hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105 group flex items-center justify-center relative"
   >
     <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 to-alien-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     <div className="text-center relative z-10">
@@ -306,25 +304,26 @@ const Academy: React.FC = () => {
       url: "https://eyes.nasa.gov/apps/solar-system/#/home",
       logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
     },
+    // Local lovable-uploads partner logos a partir de aquí
     { 
       name: "OEGlobal", 
       url: "https://oeglobal.org/",
-      logoUrl: "https://www.oeglobal.org/wp-content/uploads/2019/08/cropped-OEG_Logo_Full_Colour_Large-192x192.png"
+      logoUrl: "/lovable-uploads/OEGlobalLogo.jpeg"
     },
     { 
-      name: "OpenupEd", 
+      name: "OpenUpEd", 
       url: "https://openuped.eu/",
-      logoUrl: "https://www.openuped.eu/images/logo.png"
+      logoUrl: "/lovable-uploads/OpenUpEdLogo.jpeg"
     },
     { 
       name: "Skillshare", 
       url: "https://www.skillshare.com/",
-      logoUrl: "https://static.skillshare.com/uploads/brandAssets/logos/ss-logo.svg"
+      logoUrl: "/lovable-uploads/SkillShareLogo.jpeg"
     },
     { 
       name: "Udacity", 
       url: "https://www.udacity.com/",
-      logoUrl: "https://d20vrrgs8k4bvw.cloudfront.net/images/header/udacity-logo.svg"
+      logoUrl: "/lovable-uploads/UdacityLogo.svg"
     },
     { 
       name: "Udemy", 
@@ -334,12 +333,12 @@ const Academy: React.FC = () => {
     { 
       name: "UNESCO", 
       url: "https://www.unesco.org/",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/UNESCO_logo.svg"
+      logoUrl: "/lovable-uploads/UnescoLogo.svg"
     },
     { 
       name: "Unity Learn", 
       url: "https://learn.unity.com/",
-      logoUrl: "https://unity.com/themes/unity/images/company/brand/logos/primary/k-h-Logo_Unity_Horiz_2020.svg"
+      logoUrl: "/lovable-uploads/UnityLearnLogo.svg"
     },
     { 
       name: "Unreal Engine", 
@@ -349,12 +348,12 @@ const Academy: React.FC = () => {
     { 
       name: "UNSSC", 
       url: "https://unssc.org/",
-      logoUrl: "https://www.unssc.org/sites/unssc/files/images/UNSSC%20logo.png"
+      logoUrl: "/lovable-uploads/UNSSCLogo.png"
     },
     { 
       name: "Virgo-GW", 
       url: "https://www.virgo-gw.eu/",
-      logoUrl: "https://www.virgo-gw.eu/images/logo-virgo.png"
+      logoUrl: "/lovable-uploads/VirgoLogo.svg"
     }
   ];
 
@@ -378,7 +377,7 @@ const Academy: React.FC = () => {
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src="/lovable-uploads/AcademyLogo" 
+                src="/lovable-uploads/AcademyLogo.png" 
                 alt="Academy Official Logo" 
                 className="h-14 w-14 object-contain"
               />
