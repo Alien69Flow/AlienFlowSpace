@@ -34,6 +34,64 @@ const FinancialFreedomSection = () => {
             </div>
           </motion.div>
 
+          {/* ABTC Token Highlight - Moved up here */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="card-border p-8 max-w-6xl mx-auto text-center relative overflow-hidden mb-16"
+          >
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 via-transparent to-alien-green/5" />
+            <div className="absolute top-0 left-0 w-32 h-32 bg-alien-gold/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-alien-green/10 rounded-full blur-3xl" />
+            
+            <div className="relative z-10">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-bold mb-4 text-alien-gold font-nasalization"
+              >
+                A₿tc <span className="text-sm text-[#03ff19]">(Aurum nostrum non est aurum vulgi)</span>
+              </motion.h3>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+                className="text-lg text-gray-300 mb-6 font-[Exo] max-w-3xl mx-auto"
+              >
+                Aurum ₿itcoin cryptoken serves as collateral and derivative of Bitcoin and gold, 
+                providing <span className="text-alien-green font-semibold">scalability</span>, 
+                <span className="text-alien-gold font-semibold"> stability</span> and 
+                <span className="text-alien-green font-semibold"> growth potential (Φπ)</span>...
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-alien-space-dark to-alien-space px-6 py-3 rounded-full border border-alien-green/30"
+              >
+                <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" 
+                    alt="Bitcoin" 
+                    className="h-5 w-5"
+                  />
+                </a>
+                <span className="text-alien-green font-semibold font-[Exo]">₿itcoin backed</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-alien-gold font-semibold font-[Exo]">Interoperable</span>
+              </motion.div>
+            </div>
+          </motion.div>
+
           <div className="max-w-4xl mx-auto text-center mb-16">
             <p className="text-2xl text-gray-200 font-[Exo] leading-relaxed mb-6">
               Any individual or professional can understand the advantage of digital Money:
@@ -213,63 +271,6 @@ const FinancialFreedomSection = () => {
             </Card>
           </motion.div>
 
-          {/* ABTC Token Highlight - Simplified without widget */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="card-border p-8 max-w-6xl mx-auto text-center relative overflow-hidden"
-          >
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 via-transparent to-alien-green/5" />
-            <div className="absolute top-0 left-0 w-32 h-32 bg-alien-gold/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-alien-green/10 rounded-full blur-3xl" />
-            
-            <div className="relative z-10">
-              <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-alien-gold font-nasalization"
-              >
-                A₿tc <span className="text-sm text-[#03ff19]">(Aurum nostrum non est aurum vulgi)</span>
-              </motion.h3>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                viewport={{ once: true }}
-                className="text-lg text-gray-300 mb-6 font-[Exo] max-w-3xl mx-auto"
-              >
-                Aurum ₿itcoin cryptoken serves as collateral and derivative of Bitcoin and gold, 
-                providing <span className="text-alien-green font-semibold">scalability</span>, 
-                <span className="text-alien-gold font-semibold"> stability</span> and 
-                <span className="text-alien-green font-semibold"> growth potential (Φπ)</span>...
-              </motion.p>
-              
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-alien-space-dark to-alien-space px-6 py-3 rounded-full border border-alien-green/30"
-              >
-                <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" 
-                    alt="Bitcoin" 
-                    className="h-5 w-5"
-                  />
-                </a>
-                <span className="text-alien-green font-semibold font-[Exo]">₿itcoin backed</span>
-                <span className="text-gray-400">•</span>
-                <span className="text-alien-gold font-semibold font-[Exo]">Interoperable</span>
-              </motion.div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

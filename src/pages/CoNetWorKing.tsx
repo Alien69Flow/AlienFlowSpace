@@ -135,83 +135,68 @@ const CoNetWorKing: React.FC = () => {
   const partners = [
     {
       name: "Aragon DAO",
-      logo: "https://aragon.org/images/brand/aragongov.svg",
+      logo: "https://aragon.org/favicon.ico",
       description: "Decentralized governance platform",
       url: "https://www.aragon.org/"
     },
     {
       name: "CoinGecko",
-      logo: "https://static.coingecko.com/s/coingecko-logo-8903d34ce19ca4be1c81f0db30e924154750d208683fad7ae6f2ce06c76d0a56.png",
+      logo: "https://static.coingecko.com/s/gecko_guide-39a8b5b7dd8e3799d9452b5f6e5cd5d734139d019e3de5b3be5d5c55e3e0ed33.png",
       description: "Cryptocurrency data platform",
       url: "https://www.coingecko.com/"
     },
     {
       name: "CoinGlass",
-      logo: "https://www.coinglass.com/static/logo/logo-text-white.png",
+      logo: "https://www.coinglass.com/favicon.ico",
       description: "Crypto derivatives data platform",
       url: "https://www.coinglass.com/"
     },
     {
       name: "CoinMarketCap",
-      logo: "https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg",
+      logo: "https://s2.coinmarketcap.com/static/img/coins/128x128/1.png",
       description: "Cryptocurrency market data",
       url: "https://coinmarketcap.com/"
     },
     {
       name: "DappRadar",
-      logo: "https://dappradar.com/hubfs/DappRadar%20Logo%20White.svg",
+      logo: "https://dappradar.com/favicon.ico",
       description: "DApp analytics and discovery platform",
       url: "https://dappradar.com/"
-    },
-    {
-      name: "TechCorp",
-      logo: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=150&h=150&auto=format&fit=crop",
-      description: "Leading blockchain infrastructure provider"
-    },
-    {
-      name: "CryptoVault",
-      logo: "https://images.unsplash.com/photo-1614851099175-e5b30eb872c7?q=80&w=150&h=150&auto=format&fit=crop",
-      description: "Secure digital asset management"
-    },
-    {
-      name: "DefiLabs",
-      logo: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=150&h=150&auto=format&fit=crop",
-      description: "DeFi research and development"
     }
   ];
 
   const officialPartners = [
     {
       name: "Behance",
-      avatar: "https://a5.behance.net/2acd763cb06c5a944ece7c3ca7946ab3e0417e25/img/site/apple-touch-icon.png",
+      avatar: "https://a5.behance.net/img/site/apple-touch-icon.png",
       role: "Creative Portfolio Platform",
       location: "Global",
       url: "https://www.behance.net/"
     },
     {
       name: "Fiverr",
-      avatar: "https://npm-assets.s3.amazonaws.com/production/uploads/connect/uploads/logo/6d93e8e6-cf0c-4df0-8910-0bd9e7b7ecf5/fiverr.svg",
+      avatar: "https://fiverr-res.cloudinary.com/npm-assets/layout-service/standard.6dfb32c.png",
       role: "Freelance Services",
       location: "Global",
       url: "https://fiverr.com/"
     },
     {
       name: "Upwork",
-      avatar: "https://assets-global.website-files.com/603fea6471d9d8559d077f85/6092b7514135708162a4be92_Favicon%20256.png",
+      avatar: "https://www.upwork.com/ab/brontes/favicon.ico",
       role: "Remote Work Platform",
       location: "Global",
       url: "https://upwork.com/"
     },
     {
       name: "WeWork",
-      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/WeWork_logo.svg/1200px-WeWork_logo.svg.png",
+      avatar: "https://wework.com/favicon-16x16.png",
       role: "Shared Workspaces",
       location: "Global",
       url: "https://wework.com/"
     },
     {
       name: "Workana",
-      avatar: "https://workana.com/static/wp-content/uploads/2020/01/logo_workana_light_bg.svg",
+      avatar: "https://www.workana.com/favicon.ico",
       role: "Latin America Freelance",
       location: "LATAM",
       url: "https://workana.com/"
@@ -289,7 +274,7 @@ const CoNetWorKing: React.FC = () => {
           <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src={conetworkingLogo} 
+                src="/lovable-uploads/VC.png" 
                 alt="CoNetWorKing Official Logo" 
                 className="h-16 w-16 object-contain"
               />
