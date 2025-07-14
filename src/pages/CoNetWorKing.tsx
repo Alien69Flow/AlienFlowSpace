@@ -4,7 +4,6 @@ import { Network, TrendingUp, Shield, Coins, Sprout, Pickaxe, Layers, Dna, Flask
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import conetworkingLogo from '@/assets/conetworking-logo.png';
 
 type ServiceProps = {
   title: string;
@@ -48,7 +47,7 @@ const CoNetWorKing: React.FC = () => {
   const services: ServiceProps[] = [
     {
       title: "AMM (Automated Market Maker)",
-      description: "Buy and sell cryptocurrencies in an automated and easy way! Facilitate exchange without the need for intermediaries with automated smart contracts using neural intelligence networks for buying cheap and selling high.",
+      description: "Buy and sell cryptocurrencies in an automated and easy way! Facilitate exchange without the need for intermediaries with automated smart contracts using neural intelligence networks.",
       icon: <TrendingUp className="h-8 w-8 text-white" />,
       color: "bg-gradient-to-br from-blue-500 to-cyan-400"
     },
@@ -135,31 +134,31 @@ const CoNetWorKing: React.FC = () => {
   const partners = [
     {
       name: "Aragon DAO",
-      logo: "https://aragon.org/favicon.ico",
+      logo: "/lovable-uploads/AragonDAOLogo.svg",
       description: "Decentralized governance platform",
       url: "https://www.aragon.org/"
     },
     {
       name: "CoinGecko",
-      logo: "https://static.coingecko.com/s/gecko_guide-39a8b5b7dd8e3799d9452b5f6e5cd5d734139d019e3de5b3be5d5c55e3e0ed33.png",
+      logo: "/lovable-uploads/CoinGeckoLogo.svg",
       description: "Cryptocurrency data platform",
       url: "https://www.coingecko.com/"
     },
     {
       name: "CoinGlass",
-      logo: "https://www.coinglass.com/favicon.ico",
+      logo: "/lovable-uploads/CoinGlassLogo.svg",
       description: "Crypto derivatives data platform",
       url: "https://www.coinglass.com/"
     },
     {
       name: "CoinMarketCap",
-      logo: "https://s2.coinmarketcap.com/static/img/coins/128x128/1.png",
+      logo: "/lovable-uploads/CoinMarketCapLogo.jpeg",
       description: "Cryptocurrency market data",
       url: "https://coinmarketcap.com/"
     },
     {
       name: "DappRadar",
-      logo: "https://dappradar.com/favicon.ico",
+      logo: "/lovable-uploads/DappRadarLogo.jpeg",
       description: "DApp analytics and discovery platform",
       url: "https://dappradar.com/"
     }
@@ -168,14 +167,14 @@ const CoNetWorKing: React.FC = () => {
   const officialPartners = [
     {
       name: "Behance",
-      avatar: "https://a5.behance.net/img/site/apple-touch-icon.png",
+      avatar: "/lovable-uploads/BehanceLogo.jpeg",
       role: "Creative Portfolio Platform",
       location: "Global",
       url: "https://www.behance.net/"
     },
     {
       name: "Fiverr",
-      avatar: "https://fiverr-res.cloudinary.com/npm-assets/layout-service/standard.6dfb32c.png",
+      avatar: "/lovable-uploads/FiverrLogo.png",
       role: "Freelance Services",
       location: "Global",
       url: "https://fiverr.com/"
@@ -189,7 +188,7 @@ const CoNetWorKing: React.FC = () => {
     },
     {
       name: "WeWork",
-      avatar: "https://wework.com/favicon-16x16.png",
+      avatar: "/lovable-uploads/WeWorkLogo.png",
       role: "Shared Workspaces",
       location: "Global",
       url: "https://wework.com/"
@@ -274,7 +273,7 @@ const CoNetWorKing: React.FC = () => {
           <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src="/lovable-uploads/CoNetWorKingLogo" 
+                src="/lovable-uploads/CoNetWorKingLogo.png" 
                 alt="CoNetWorKing Official Logo" 
                 className="h-16 w-16 object-contain"
               />
@@ -420,7 +419,7 @@ const CoNetWorKing: React.FC = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {officialPartners.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-alien-gold/25">
+                  <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105">
                     <CardHeader className="text-center pb-3">
                       <div className="mx-auto mb-3 w-16 h-16 rounded-full overflow-hidden border-2 border-alien-gold bg-white/10">
                         <a href={partner.url} target="_blank" rel="noopener noreferrer">
