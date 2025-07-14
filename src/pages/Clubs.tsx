@@ -1,4 +1,3 @@
-
 import React from 'react';
 import StarBackground from '@/components/StarBackground';
 import Header from '@/components/Header';
@@ -17,7 +16,7 @@ type ClubProps = {
 };
 
 const ClubCard = ({ club }: { club: ClubProps }) => (
-  <div className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:transform hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40 shadow-lg hover:shadow-2xl hover:shadow-alien-gold/20`}>
+  <div className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:transform hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-alien-space-dark/60 to-alien-space-dark/90 z-0"></div>
     
     <div className="relative z-10">
@@ -194,7 +193,7 @@ const Clubs: React.FC = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
-                src="/lovable-uploads/ClubLogo" 
+                src="/lovable-uploads/ClubLogo.png" 
                 alt="Clubs Official Logo" 
                 className="h-12 w-12 object-contain"
               />
@@ -292,7 +291,7 @@ const Clubs: React.FC = () => {
                   href={partner.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-alien-space-dark/80 backdrop-blur-md rounded-xl p-6 border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-105 group flex items-center justify-center min-h-[100px]"
+                  className="bg-alien-space-dark/80 backdrop-blur-md rounded-xl p-6 border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-105 group"
                 >
                   <div className="text-center">
                     <h3 className="text-alien-gold font-semibold text-sm group-hover:text-alien-gold-light transition-colors font-[Exo]">
