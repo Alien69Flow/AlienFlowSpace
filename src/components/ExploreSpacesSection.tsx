@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Clover, Network } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 
@@ -9,19 +7,19 @@ const spaces = [{
   id: 'academy',
   title: 'Academy',
   description: 'Unlock cosmic knowledge through comprehensive educational resources, courses, and tutorials in blockchain, finance, and sustainability.',
-  icon: <img src="/lovable-uploads/bdb8277c-dc0f-4a67-8159-804f77ad3567.png" alt="Academy" className="h-10 w-10 object-contain" />,
+  icon: <img src="/AcademyLogo.png" alt="Academy" className="h-10 w-10 object-contain" />,
   link: '/academy'
 }, {
   id: 'clubs',
   title: 'Clubs',
   description: 'Join specialized communities focused on specific interests, technologies, and missions within the AlienFlowSpace ecosystem.',
-  icon: <img src="/lovable-uploads/34dc9a1f-3c47-43ba-9218-4e3b44992404.png" alt="Clubs" className="h-10 w-10 object-contain" />,
+  icon: <img src="/ClubLogo.png" alt="Clubs" className="h-10 w-10 object-contain" />,
   link: '/clubs'
 }, {
   id: 'conetworking',
   title: 'CoNetWorKing',
   description: 'Connect with like-minded individuals, projects, and initiatives across the multiverse to expand your network and opportunities.',
-  icon: <img src="/lovable-uploads/d57b7651-e2f6-4603-8b55-71e714501ff2.png" alt="CoNetWorKing" className="h-10 w-10 object-contain" />,
+  icon: <img src="/CoNetWorKingLogo.png" alt="CoNetWorKing" className="h-10 w-10 object-contain" />,
   link: '/conetworking'
 }];
 
