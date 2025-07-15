@@ -39,7 +39,21 @@ const PriceTicker = () => {
         widgetElement.setAttribute('outlined', 'true');
         widgetElement.setAttribute('coin-ids', 'bitcoin,tether-gold,ethereum,binancecoin,bitcoin-cash,bittensor,aave,solana,hyperliquid,avalanche-2,chainlink,injective-protocol,uniswap,internet-computer,aptos,cosmos,bitget-token,polkadot,sui,the-open-network,near,celestia,nexo,pi-network,tron,polygon-ecosystem-token,pancakeswap-token,osmosis,crypto-com-chain');
         widgetElement.setAttribute('initial-currency', 'usd');
-        widgetElement.setAttribute('speed', '0.1'); // Extremely slow speed for better readability
+        // Note: CoinGecko speed attribute doesn't always work, so we'll use CSS override
+        widgetElement.setAttribute('speed', '1');
+        
+        // Add custom CSS to slow down the animation
+        const style = document.createElement('style');
+        style.textContent = `
+          gecko-coin-price-marquee-widget * {
+            animation-duration: 120s !important;
+            animation-timing-function: linear !important;
+          }
+          gecko-coin-price-marquee-widget [class*="marquee"] {
+            animation-duration: 120s !important;
+          }
+        `;
+        document.head.appendChild(style);
         
         containerRef.current.appendChild(widgetElement);
         
