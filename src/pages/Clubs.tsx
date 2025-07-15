@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from "framer-motion";
 import StarBackground from '@/components/StarBackground';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,7 +17,13 @@ type ClubProps = {
 };
 
 const ClubCard = ({ club }: { club: ClubProps }) => (
-  <div className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:transform hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
+  <motion.div 
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:transform hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}
+  >
     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-alien-space-dark/60 to-alien-space-dark/90 z-0"></div>
     
     <div className="relative z-10">
@@ -42,7 +49,7 @@ const ClubCard = ({ club }: { club: ClubProps }) => (
         </Button>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const Clubs: React.FC = () => {
@@ -165,21 +172,15 @@ const Clubs: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-alien-space relative">
-      <StarBackground />
-      
-      {/* Cosmic background image */}
-      <div 
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url('/lovable-uploads/630f07a8-9ff5-4bd8-9881-91336cfaf826.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.12,
-          zIndex: -25
-        }}
+    <div className="w-full flex-col flex justify-center items-center bg-cover bg-center relative">
+      {/* Fixed Background Image */}
+      <img 
+        src="/lovable-uploads/ClubLogo.png" 
+        alt="" 
+        className="fixed top-0 -z-1 w-full h-full object-cover mt-20" 
       />
+      
+      <StarBackground />
       
       {/* Overlay for better readability */}
       <div 
@@ -188,122 +189,195 @@ const Clubs: React.FC = () => {
       />
       
       <Header />
-      <main className="container mx-auto px-4 pt-28 pb-16 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
-              <img 
-                src="/lovable-uploads/ClubLogo.png" 
-                alt="Clubs Official Logo" 
-                className="h-12 w-12 object-contain"
-              />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-alien-gold mb-6 font-nasalization text-glow">Clubs</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto font-[Exo] leading-relaxed">
-              Join specialized communities within the AlienFlowSpace ecosystem to connect with like-minded individuals across the multiverse.
-            </p>
-          </div>
+      
+      <div className="max-w-7xl w-full flex flex-col justify-center md:items-start items-center gap-12 mt-40 px-4 relative z-10">
+        <motion.h1
+          className="font-[Titles] lg:text-[69px] md:text-[55px] text-[50px] text-[#B9954F] uppercase font-nasalization"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Clubs
+        </motion.h1>
+        
+        <motion.span
+          className="md:w-[50%] w-full font-[Titles] md:text-[20px] text-[15px] text-[#B9954F] font-thin md:text-start text-center font-[Exo]"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Enjoy the Advantages: Benefit from exclusive, fully customizable and sustainable orders Airdrops, Events, Jewelry, Textiles, Tournaments, trips
+        </motion.span>
+        
+        <motion.button
+          className="md:w-[50%] cursor-pointer w-full font-[Titles] md:text-[30px] text-[18px] text-[#ECDD91] py-3 bg-[#329415] rounded-full shadow-[inset_4px_4px_4px_0px_rgba(255,255,255,0.5),7px_7px_20px_0px_rgba(1,0,0,0.1),4px_4px_5px_0px_rgba(0,0,0,0.1)] font-[Exo]"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Contact
+        </motion.button>
 
-          {/* Featured Clubs */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-center text-glow">Featured Clubs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredClubs.map((club, index) => (
-                <ClubCard key={index} club={club} />
+        {/* Featured Clubs */}
+        <div className="w-full mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-center text-glow"
+          >
+            Featured Clubs
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredClubs.map((club, index) => (
+              <ClubCard key={index} club={club} />
+            ))}
+          </div>
+        </div>
+
+        {/* Club Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 w-full">
+          <div className="lg:col-span-2">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-glow"
+            >
+              All Clubs
+            </motion.h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {allClubs.map((club, index) => (
+                <ClubCard key={`all-${index}`} club={club} />
               ))}
             </div>
           </div>
-
-          {/* Club Activity */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            <div className="lg:col-span-2">
-              <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-glow">All Clubs</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {allClubs.map((club, index) => (
-                  <ClubCard key={`all-${index}`} club={club} />
-                ))}
-              </div>
-            </div>
-            
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold text-alien-gold mb-6 font-nasalization">Upcoming Events</h2>
-                <div className="space-y-4">
-                  {upcomingEvents.map((event, index) => (
-                    <div key={index} className="bg-alien-space-dark/80 p-6 rounded-xl backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 bg-alien-space-light/60 rounded-full border border-alien-gold/30">
-                          <Calendar className="h-5 w-5 text-alien-gold" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-alien-gold font-[Exo] mb-1">{event.title}</h4>
-                          <p className="text-sm text-gray-300 font-[Exo] mb-2">{event.club}</p>
-                          <div className="flex items-center text-xs text-alien-green">
-                            <Calendar className="h-3 w-3 mr-1" />
-                            <span>{event.date} · {event.time}</span>
-                          </div>
+          
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl font-bold text-alien-gold mb-6 font-nasalization">Upcoming Events</h2>
+              <div className="space-y-4">
+                {upcomingEvents.map((event, index) => (
+                  <motion.div 
+                    key={index} 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-alien-space-dark/80 p-6 rounded-xl backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-alien-space-light/60 rounded-full border border-alien-gold/30">
+                        <Calendar className="h-5 w-5 text-alien-gold" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-alien-gold font-[Exo] mb-1">{event.title}</h4>
+                        <p className="text-sm text-gray-300 font-[Exo] mb-2">{event.club}</p>
+                        <div className="flex items-center text-xs text-alien-green">
+                          <Calendar className="h-3 w-3 mr-1" />
+                          <span>{event.date} · {event.time}</span>
                         </div>
                       </div>
                     </div>
-                  ))}
-                  
-                  <Button variant="outline" className="w-full border-alien-gold/40 text-alien-gold hover:bg-alien-gold/20 hover:border-alien-gold/60 mt-4 font-[Exo] backdrop-blur-sm">
-                    View All Events
-                  </Button>
-                </div>
-              </div>
-              
-              {/* Create Club CTA */}
-              <div className="bg-gradient-to-br from-alien-green/30 to-alien-gold/30 p-8 rounded-xl backdrop-blur-md border border-alien-gold/30">
-                <h3 className="text-xl font-bold text-alien-gold mb-4 font-nasalization text-glow">Start Your Own Club</h3>
-                <p className="text-sm text-gray-200 mb-6 font-[Exo] leading-relaxed">
-                  Have a unique interest not represented yet? Create your own club and invite others to join.
-                </p>
-                <Button className="w-full bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-[Exo] font-semibold">
-                  Create Club
+                  </motion.div>
+                ))}
+                
+                <Button variant="outline" className="w-full border-alien-gold/40 text-alien-gold hover:bg-alien-gold/20 hover:border-alien-gold/60 mt-4 font-[Exo] backdrop-blur-sm">
+                  View All Events
                 </Button>
               </div>
-            </div>
-          </div>
-
-          {/* Community Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {[
-              { value: "15+", label: "Active Clubs" },
-              { value: "28.5K", label: "Members" },
-              { value: "450+", label: "Events Held" },
-              { value: "142", label: "Countries" }
-            ].map((stat, index) => (
-              <div key={index} className="bg-alien-space-dark/80 p-8 rounded-xl text-center backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
-                <p className="text-4xl font-bold text-alien-gold mb-2 font-nasalization text-glow">{stat.value}</p>
-                <p className="text-sm text-gray-300 font-[Exo]">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Partners Section */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-glow">Community Partners</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {partners.map((partner, index) => (
-                <a 
-                  key={index}
-                  href={partner.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-alien-space-dark/80 backdrop-blur-md rounded-xl p-6 border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-105 group"
-                >
-                  <div className="text-center">
-                    <h3 className="text-alien-gold font-semibold text-sm group-hover:text-alien-gold-light transition-colors font-[Exo]">
-                      {partner.name}
-                    </h3>
-                  </div>
-                </a>
-              ))}
-            </div>
+            </motion.div>
+            
+            {/* Create Club CTA */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-alien-green/30 to-alien-gold/30 p-8 rounded-xl backdrop-blur-md border border-alien-gold/30"
+            >
+              <h3 className="text-xl font-bold text-alien-gold mb-4 font-nasalization text-glow">Start Your Own Club</h3>
+              <p className="text-sm text-gray-200 mb-6 font-[Exo] leading-relaxed">
+                Have a unique interest not represented yet? Create your own club and invite others to join.
+              </p>
+              <Button className="w-full bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-[Exo] font-semibold">
+                Create Club
+              </Button>
+            </motion.div>
           </div>
         </div>
-      </main>
+
+        {/* Community Stats */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 w-full"
+        >
+          {[
+            { value: "15+", label: "Active Clubs" },
+            { value: "28.5K", label: "Members" },
+            { value: "450+", label: "Events Held" },
+            { value: "142", label: "Countries" }
+          ].map((stat, index) => (
+            <motion.div 
+              key={index} 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-alien-space-dark/80 p-8 rounded-xl text-center backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105"
+            >
+              <p className="text-4xl font-bold text-alien-gold mb-2 font-nasalization text-glow">{stat.value}</p>
+              <p className="text-sm text-gray-300 font-[Exo]">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Partners Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center w-full mb-16"
+        >
+          <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-glow">Community Partners</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {partners.map((partner, index) => (
+              <motion.a 
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                href={partner.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-alien-space-dark/80 backdrop-blur-md rounded-xl p-6 border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-105 group"
+              >
+                <div className="text-center">
+                  <h3 className="text-alien-gold font-semibold text-sm group-hover:text-alien-gold-light transition-colors font-[Exo]">
+                    {partner.name}
+                  </h3>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+      
       <Footer />
     </div>
   );

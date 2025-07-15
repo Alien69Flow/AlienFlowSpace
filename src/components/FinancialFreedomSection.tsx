@@ -53,9 +53,10 @@ const FinancialFreedomSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-alien-gold font-nasalization"
+                className="text-3xl md:text-4xl font-bold mb-4 text-alien-gold font-nasalization text-center"
               >
-                A₿tc <span className="text-sm text-[#03ff19]">(Aurum nostrum non est aurum vulgi)</span>
+                <div>A₿tc</div>
+                <div className="text-sm text-[#03ff19]">(Aurum nostrum non est aurum vulgi)</div>
               </motion.h3>
               
               <motion.p 
@@ -118,17 +119,17 @@ const FinancialFreedomSection = () => {
                       <Shield className="h-8 w-8 text-alien-gold" />
                     </div>
                     <div>
-                      <CardTitle className="text-2xl font-bold text-alien-gold font-nasalization group-hover:text-alien-gold-light transition-colors mb-2">
+                  <CardTitle className="text-2xl font-bold text-alien-gold font-nasalization group-hover:text-alien-gold-light transition-colors mb-2">
                         Impartial Money
                       </CardTitle>
                       <div className="flex items-center">
                         <span className="w-2 h-2 bg-alien-green rounded-full mr-2"></span>
-                        <span className="text-alien-green text-sm font-[Exo]">Neutral & Fair</span>
+                        <span className="text-alien-green text-sm font-[Exo]">Fair & Neutral</span>
                       </div>
                     </div>
                   </div>
                   <CardDescription className="text-gray-200 text-lg leading-relaxed font-[Exo] relative z-10 mb-6">
-                    · <span className="text-alien-gold font-semibold">Access rewards for saving</span>, without giving up control.
+                    · Access rewards for saving, without giving up control.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-8 pt-0">
@@ -176,14 +177,14 @@ const FinancialFreedomSection = () => {
                     </div>
                   </div>
                   <CardDescription className="text-gray-200 text-lg leading-relaxed font-[Exo] relative z-10 mb-6">
-                    · <span className="text-alien-green font-semibold">Scalable and Stable</span> with the Volatility for Safe Reserves of Values.
+                    · Scalable and Stable with the Volatility for Safe Reserves of Values.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-8 pt-0">
                   <div className="space-y-4">
                     <div className="flex items-start p-3 bg-alien-space-light/20 rounded-lg border border-alien-green/10 hover:border-alien-green/20 transition-colors">
                       <div className="w-3 h-3 bg-alien-gold rounded-full mt-1 mr-3 flex-shrink-0 animate-pulse"></div>
-                      <p className="text-gray-200 font-[Exo] font-medium">Proven layer-2 scalability solutions</p>
+                      <p className="text-gray-200 font-[Exo] font-medium">Proven layer 2 scalability and layer 1 stable solutions</p>
                     </div>
                     <div className="flex items-start p-3 bg-alien-space-light/20 rounded-lg border border-alien-green/10 hover:border-alien-green/20 transition-colors">
                       <div className="w-3 h-3 bg-alien-gold rounded-full mt-1 mr-3 flex-shrink-0 animate-pulse delay-200"></div>
@@ -191,7 +192,7 @@ const FinancialFreedomSection = () => {
                     </div>
                     <div className="flex items-start p-3 bg-alien-space-light/20 rounded-lg border border-alien-green/10 hover:border-alien-green/20 transition-colors">
                       <div className="w-3 h-3 bg-alien-gold rounded-full mt-1 mr-3 flex-shrink-0 animate-pulse delay-400"></div>
-                      <p className="text-gray-200 font-[Exo] font-medium">Strategic volatility hedging</p>
+                      <p className="text-gray-200 font-[Exo] font-medium">Holding Strategic volatility hedging</p>
                     </div>
                   </div>
                 </CardContent>
@@ -245,6 +246,13 @@ const FinancialFreedomSection = () => {
               </CardHeader>
               <CardContent className="p-10 pt-0 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                  <div className="flex flex-col items-center p-6 bg-alien-space-light/20 rounded-2xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:transform hover:scale-105 group">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-500/10 rounded-full flex items-center justify-center mb-4 border-2 border-purple-500/30 group-hover:scale-110 transition-transform duration-300">
+                      <Sparkles className="h-8 w-8 text-purple-400" />
+                    </div>
+                    <h4 className="text-alien-gold font-bold text-lg mb-3 font-[Exo]">Experiences</h4>
+                    <p className="text-gray-200 text-center font-[Exo] leading-relaxed">Unique digital and real-world experiences tailored to you</p>
+                  </div>
                   <div className="flex flex-col items-center p-6 bg-alien-space-light/20 rounded-2xl border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300 hover:transform hover:scale-105 group">
                     <div className="w-16 h-16 bg-gradient-to-br from-alien-gold/20 to-alien-gold/10 rounded-full flex items-center justify-center mb-4 border-2 border-alien-gold/30 group-hover:scale-110 transition-transform duration-300">
                       <ShoppingCart className="h-8 w-8 text-alien-gold" />
@@ -258,13 +266,6 @@ const FinancialFreedomSection = () => {
                     </div>
                     <h4 className="text-alien-gold font-bold text-lg mb-3 font-[Exo]">Services</h4>
                     <p className="text-gray-200 text-center font-[Exo] leading-relaxed">On-demand professional services with guaranteed quality</p>
-                  </div>
-                  <div className="flex flex-col items-center p-6 bg-alien-space-light/20 rounded-2xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:transform hover:scale-105 group">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-500/10 rounded-full flex items-center justify-center mb-4 border-2 border-purple-500/30 group-hover:scale-110 transition-transform duration-300">
-                      <Sparkles className="h-8 w-8 text-purple-400" />
-                    </div>
-                    <h4 className="text-alien-gold font-bold text-lg mb-3 font-[Exo]">Experiences</h4>
-                    <p className="text-gray-200 text-center font-[Exo] leading-relaxed">Unique digital and real-world experiences tailored to you</p>
                   </div>
                 </div>
               </CardContent>
