@@ -19,8 +19,21 @@ export default {
     },
     extend: {
       fontFamily: {
+        orbitron: ['Orbitron', 'monospace'],
         nasalization: ['Nasalization', 'sans-serif'],
         exo: ['Exo', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'xs': 'var(--scale-xs)',
+        'sm': 'var(--scale-sm)',
+        'base': 'var(--scale-base)',
+        'lg': 'var(--scale-lg)',
+        'xl': 'var(--scale-xl)',
+        '2xl': 'var(--scale-2xl)',
+        '3xl': 'var(--scale-3xl)',
+        '4xl': 'var(--scale-4xl)',
+        '5xl': 'var(--scale-5xl)',
+        '6xl': 'var(--scale-6xl)',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -76,6 +89,15 @@ export default {
           'space': '#0C0C1D',
           'space-light': '#1A1A3A',
           'space-dark': '#050510',
+        },
+        follow: {
+          primary: 'hsl(var(--follow-primary))',
+          secondary: 'hsl(var(--follow-secondary))',
+          accent: 'hsl(var(--follow-accent))',
+          warning: 'hsl(var(--follow-warning))',
+          error: 'hsl(var(--follow-error))',
+          success: 'hsl(var(--follow-success))',
+          info: 'hsl(var(--follow-info))',
         }
       },
       borderRadius: {

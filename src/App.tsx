@@ -8,6 +8,7 @@ import AlienTrip from './pages/AlienTrip';
 import Clubs from './pages/Clubs';
 import CoNetWorKing from './pages/CoNetWorKing';
 import Contact from './pages/Contact';
+import FollowDemo from './pages/FollowDemo';
 import NotFound from './pages/NotFound';
 import './index.css';
 import './global.css';
@@ -24,6 +25,7 @@ function App() {
           <Route path="clubs" element={<Clubs />} />
           <Route path="conetworking" element={<CoNetWorKing />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="follow-demo" element={<FollowDemo />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

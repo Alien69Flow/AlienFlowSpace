@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ORBITRON FONT: For techno-style headers */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
 /* NASALIZATION FONT: Carga directa con múltiples formatos para compatibilidad */
 @font-face {
   font-family: 'Nasalization';
@@ -44,24 +47,52 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 20% 16%;
     --sidebar-ring: 48 83% 72%;
+    
+    /* WCAG Contrast-Checked Palette */
+    --follow-primary: 48 83% 72%; /* Gold - meets WCAG AA */
+    --follow-secondary: 142 67% 45%; /* Green - meets WCAG AA */
+    --follow-accent: 210 100% 50%; /* Blue - meets WCAG AA */
+    --follow-warning: 30 100% 50%; /* Orange - meets WCAG AA */
+    --follow-error: 0 84% 60%; /* Red - meets WCAG AA */
+    --follow-success: 120 61% 50%; /* Success Green - meets WCAG AA */
+    --follow-info: 200 100% 50%; /* Info Blue - meets WCAG AA */
+    
+    /* Modular Scale */
+    --scale-xs: 0.75rem;   /* 12px */
+    --scale-sm: 0.875rem;  /* 14px */
+    --scale-base: 1rem;    /* 16px */
+    --scale-lg: 1.125rem;  /* 18px */
+    --scale-xl: 1.25rem;   /* 20px */
+    --scale-2xl: 1.5rem;   /* 24px */
+    --scale-3xl: 1.875rem; /* 30px */
+    --scale-4xl: 2.25rem;  /* 36px */
+    --scale-5xl: 3rem;     /* 48px */
+    --scale-6xl: 3.75rem;  /* 60px */
   }
 
-  /* TIPOGRAFÍA: Nasalization solo para títulos y botones */
-  h1, h2, h3, h4, h5, h6, button {
+  /* TIPOGRAFÍA: Orbitron for headers, Nasalization for special elements, Exo for body */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* Nasalization for buttons and special UI elements */
+  button, .font-nasalization {
     font-family: 'Nasalization', sans-serif;
     font-weight: 400;
     letter-spacing: 0.5px;
   }
 
-  /* Exo para texto general y formularios */
+  /* Exo for text general and formularios */
   body, p, span, div, a, input, textarea, label {
     font-family: 'Exo', system-ui, sans-serif;
   }
 
-  /* Helper para forzar Nasalization donde quieras */
-  .font-nasalization {
-    font-family: 'Nasalization', sans-serif;
-    font-weight: 400;
+  /* Helper for forzar Orbitron donde quieras */
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
     letter-spacing: 0.5px;
   }
 
