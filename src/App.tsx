@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppKitProvider } from '@reown/appkit/react'; // Importa correctamente el provider
+import { mainnet, polygon, arbitrum, sepolia } from '@reown/appkit/networks';
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
@@ -17,6 +18,8 @@ function App() {
     <AppKitProvider
       projectId="ced40e4d52234c471808977208586c7e"
       theme="dark"
+      networks={[mainnet, polygon, arbitrum, sepolia]}
+      defaultNetwork={mainnet}
       locale={["en", "es", "fr", "zh", "hi", "pt", "ja", "ar"]} // Idiomas oficiales
     >
       <Router>
