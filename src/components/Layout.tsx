@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
@@ -14,7 +13,7 @@ const Layout: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-black relative">
+    <div className="flex flex-col min-h-screen relative">
       {/* Fixed background image - positioned behind everything */}
       <div 
         className="fixed inset-0 pointer-events-none"
