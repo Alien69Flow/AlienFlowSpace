@@ -1,5 +1,5 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AppKitProvider } from '@reown/appkit'; // Importa el provider
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
@@ -14,20 +14,26 @@ import './global.css';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Index />} />
-          <Route path="about" element={<About />} />
-          <Route path="academy" element={<Academy />} />
-          <Route path="alien-trip" element={<AlienTrip />} />
-          <Route path="clubs" element={<Clubs />} />
-          <Route path="conetworking" element={<CoNetWorKing />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Router>
+    <AppKitProvider
+      projectId="ced40e4d52234c471808977208586c7e"
+      theme="dark"
+      locale={["en", "es", "fr", "zh", "hi", "pt", "ja", "ar"]} // Idiomas oficiales
+    >
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Index />} />
+            <Route path="about" element={<About />} />
+            <Route path="academy" element={<Academy />} />
+            <Route path="alien-trip" element={<AlienTrip />} />
+            <Route path="clubs" element={<Clubs />} />
+            <Route path="conetworking" element={<CoNetWorKing />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AppKitProvider>
   );
 }
 
