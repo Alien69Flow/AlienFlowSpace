@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AppKitProvider } from '@reown/appkit'; // Importa el provider
+import { AppKitProvider } from '@reown/appkit/react'; // Importa correctamente el provider
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
