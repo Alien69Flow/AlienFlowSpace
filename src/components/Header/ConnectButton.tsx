@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { useAppKit, useAppKitModal } from '@reown/appkit';
+import { useAppKit } from '@reown/appkit';
 
 const WALLET_ICON = "/lovable-uploads/AW.png";
 const PORTAL_ICON_AVIF = "/lovable-uploads/AP1.avif";
@@ -11,8 +11,9 @@ const shortAddress = (addr: string) =>
   addr ? addr.slice(0, 6) + '...' + addr.slice(-4) : '';
 
 const ConnectButton = () => {
-  const { open } = useAppKitModal();
-  const { account, disconnect } = useAppKit();
+  // Ajusta esta línea según el API real de useAppKit.
+  // Si no existe openConnectModal, revisa la doc oficial.
+  const { account, disconnect, openConnectModal } = useAppKit();
 
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -53,7 +54,7 @@ const ConnectButton = () => {
             transition-all duration-200 ease-in-out
             hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold
           "
-          onClick={open}
+          onClick={() => (openConnectModal ? openConnectModal() : alert('Función para conectar wallet no implementada'))}
           title="Conectar Wallet"
           aria-label="Conectar Wallet"
           type="button"
