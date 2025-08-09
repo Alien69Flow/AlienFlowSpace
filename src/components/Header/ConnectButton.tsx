@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { useAppKit } from '@reown/appkit';
+import { useAppKit } from '@reown/appkit/react';
+import { useAppKitAccount } from '@reown/appkit/react';
+import { useDisconnect } from '@reown/appkit/react';
 
 const WALLET_ICON = "/lovable-uploads/AW.png";
 const PORTAL_ICON_AVIF = "/lovable-uploads/AP1.avif";
@@ -11,22 +13,22 @@ const shortAddress = (addr: string) =>
   addr ? addr.slice(0, 6) + '...' + addr.slice(-4) : '';
 
 const ConnectButton = () => {
-  // Ajusta esta línea según el API real de useAppKit.
-  // Si no existe openConnectModal, revisa la doc oficial.
-  const { account, disconnect, openConnectModal } = useAppKit();
+  const { open } = useAppKit();
+  const { address, isConnected } = useAppKitAccount();
+  const { disconnect } = useDisconnect();
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      {account?.address ? (
+      {isConnected && address ? (
         <>
           <span
             className="
               text-alien-gold font-mono text-xs sm:text-sm bg-alien-green px-3 py-1 rounded-full
               border border-alien-gold shadow transition-all duration-200 select-all
             "
-            title={account.address}
+            title={address}
           >
-            {shortAddress(account.address)}
+            {shortAddress(address)}
           </span>
           <Button
             onClick={disconnect}
@@ -54,7 +56,7 @@ const ConnectButton = () => {
             transition-all duration-200 ease-in-out
             hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold
           "
-          onClick={() => (openConnectModal ? openConnectModal() : alert('Función para conectar wallet no implementada'))}
+          onClick={() => open({ view: "Connect" })}
           title="Conectar Wallet"
           aria-label="Conectar Wallet"
           type="button"
