@@ -18,6 +18,12 @@ function App() {
     <AppKitProvider
       projectId="ced40e4d52234c471808977208586c7e"
       networks={[mainnet, arbitrum, polygon]}
+      metadata={{
+        name: 'Alien World',
+        description: 'Alien World dApp',
+        url: window.location.origin,
+        icons: [`${window.location.origin}/lovable-uploads/ALogo.png`]
+      }}
     >
       <Router>
         <Routes>

@@ -21,11 +21,21 @@ const COINS: Coin[] = [
   { id: 'polkadot', symbol: 'DOT', label: 'Polkadot' },
   { id: 'avalanche-2', symbol: 'AVAX', label: 'Avalanche' },
 ];
+const ICONS: Record<string, string> = {
+  BTC: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png',
+  ETH: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png',
+  BNB: 'https://assets.coingecko.com/coins/images/825/small/binance-coin-logo.png',
+  SOL: 'https://assets.coingecko.com/coins/images/4128/small/solana.png',
+  XAUt: 'https://assets.coingecko.com/coins/images/10488/small/Tether_Gold.png',
+  LINK: 'https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png',
+  DOT: 'https://assets.coingecko.com/coins/images/12171/small/polkadot.png',
+  AVAX: 'https://assets.coingecko.com/coins/images/12559/small/coin-round-red.png'
+};
 
 const API = (ids: string[]) =>
   `https://api.coingecko.com/api/v3/simple/price?ids=${ids.join(',')}&vs_currencies=usd&precision=2`;
 
-const DURATION_SEC = 180; // Adjust speed here (bigger = slower)
+const DURATION_SEC = 60; // Adjust speed here (bigger = slower)
 
 const PriceTicker: React.FC = () => {
   const [prices, setPrices] = useState<Record<string, number>>({});
@@ -103,6 +113,17 @@ const PriceTicker: React.FC = () => {
             >
               {items.map((it, idx) => (
                 <div key={`${i}-${idx}`} className="flex items-center gap-2">
+                  <img
+                    src={ICONS[it.symbol]}
+                    alt={`${it.symbol} logo`}
+                    loading="lazy"
+                    width={16}
+                    height={16}
+                    className="inline-block"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
                   <span className="font-bold">{it.symbol}:</span>
                   <span className="text-alien-green">${it.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
