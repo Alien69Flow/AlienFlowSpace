@@ -71,7 +71,7 @@
   }
 
   body {
-    @apply bg-alien-space text-foreground overflow-x-hidden;
+    @apply bg-transparent text-foreground overflow-x-hidden;
     scroll-behavior: smooth;
   }
 
