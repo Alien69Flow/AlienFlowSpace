@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppKitProvider } from '@reown/appkit/react'; // Importa correctamente el provider
+import { mainnet, arbitrum, polygon } from '@reown/appkit/networks';
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
@@ -16,7 +17,7 @@ function App() {
   return (
     <AppKitProvider
       projectId="ced40e4d52234c471808977208586c7e"
-      networks={[] as any}
+      networks={[mainnet, arbitrum, polygon]}
     >
       <Router>
         <Routes>
