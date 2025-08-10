@@ -1,135 +1,114 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-const PriceTicker = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
+// A fully controlled, ultra-smooth ticker (no external widget)
+// - Fetches selected coins from CoinGecko public API
+// - Uses pure CSS animation you can precisely control (duration)
+
+type Coin = {
+  id: string;
+  symbol: string;
+  label: string;
+};
+
+const COINS: Coin[] = [
+  { id: 'bitcoin', symbol: 'BTC', label: 'Bitcoin' },
+  { id: 'ethereum', symbol: 'ETH', label: 'Ethereum' },
+  { id: 'binancecoin', symbol: 'BNB', label: 'BNB' },
+  { id: 'solana', symbol: 'SOL', label: 'Solana' },
+  { id: 'tether-gold', symbol: 'XAUt', label: 'Tether Gold' },
+  { id: 'chainlink', symbol: 'LINK', label: 'Chainlink' },
+  { id: 'polkadot', symbol: 'DOT', label: 'Polkadot' },
+  { id: 'avalanche-2', symbol: 'AVAX', label: 'Avalanche' },
+];
+
+const API = (ids: string[]) =>
+  `https://api.coingecko.com/api/v3/simple/price?ids=${ids.join(',')}&vs_currencies=usd&precision=2`;
+
+const DURATION_SEC = 180; // Adjust speed here (bigger = slower)
+
+const PriceTicker: React.FC = () => {
+  const [prices, setPrices] = useState<Record<string, number>>({});
+  const [error, setError] = useState<string | null>(null);
+
+  const ids = useMemo(() => COINS.map(c => c.id), []);
+
   useEffect(() => {
-    // Remove any existing script from previous widgets
-    const existingScript = document.getElementById('coingecko-widget-script');
-    if (existingScript) {
-      existingScript.remove();
-    }
-    
-    // Create and add the CoinGecko script
-    const script = document.createElement('script');
-    script.id = 'coingecko-widget-script';
-    script.src = 'https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js';
-    script.async = true;
-    
-    // Cleanup function
-    const cleanup = () => {
-      script.remove();
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+    let mounted = true;
+
+    const fetchPrices = async () => {
+      try {
+        setError(null);
+        const res = await fetch(API(ids), { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (!mounted) return;
+        const mapped: Record<string, number> = {};
+        COINS.forEach(c => {
+          const v = data?.[c.id]?.usd;
+          if (typeof v === 'number') mapped[c.symbol] = v;
+        });
+        setPrices(mapped);
+      } catch (e: any) {
+        if (!mounted) return;
+        console.error('Ticker fetch failed', e);
+        setError('offline');
       }
     };
-    
-    // Initialize widget after script loads
-    script.onload = () => {
-      if (containerRef.current) {
-        // Reset container to ensure proper initialization
-        containerRef.current.innerHTML = '';
-        
-        // Create widget element with the new structure
-        const widgetElement = document.createElement('gecko-coin-price-marquee-widget');
-        widgetElement.setAttribute('locale', 'es');
-        widgetElement.setAttribute('dark-mode', 'true');
-        widgetElement.setAttribute('transparent-background', 'true');
-        widgetElement.setAttribute('outlined', 'true');
-        widgetElement.setAttribute('coin-ids', 'bitcoin,tether-gold,ethereum,binancecoin,bitcoin-cash,bittensor,aave,solana,hyperliquid,avalanche-2,chainlink,injective-protocol,uniswap,internet-computer,aptos,cosmos,bitget-token,polkadot,sui,the-open-network,near,celestia,nexo,pi-network,tron,polygon-ecosystem-token,pancakeswap-token,osmosis,crypto-com-chain');
-        widgetElement.setAttribute('initial-currency', 'usd');
-        // Note: CoinGecko speed attribute doesn't always work, so we'll use CSS override
-        widgetElement.setAttribute('speed', '1');
-        
-        // Add custom CSS to slow down the animation
-        const style = document.createElement('style');
-        style.textContent = `
-          gecko-coin-price-marquee-widget * {
-            animation-duration: 120s !important;
-            animation-timing-function: linear !important;
-          }
-          gecko-coin-price-marquee-widget [class*="marquee"] {
-            animation-duration: 120s !important;
-          }
-        `;
-        document.head.appendChild(style);
-        
-        containerRef.current.appendChild(widgetElement);
-        
-        console.log('CoinGecko widget initialized with new format');
-      }
-    };
-    
-    script.onerror = () => {
-      console.error('Error loading CoinGecko widget script');
-      
-      // Fallback in case of error
-      if (containerRef.current) {
-        containerRef.current.innerHTML = `
-          <div class="flex items-center justify-start gap-6 overflow-x-auto py-2 px-4 text-white">
-            <div class="flex items-center gap-2">
-              <span class="font-bold">BTC:</span>
-              <span class="text-alien-green">$64,750.21</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold">ETH:</span>
-              <span class="text-alien-green">$3,145.89</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold">BNB:</span>
-              <span class="text-alien-green">$596.24</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold">SOL:</span>
-              <span class="text-alien-green">$152.36</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold">COSMOS:</span>
-              <span class="text-alien-green">$6.82</span>
-            </div>
-          </div>
-        `;
-      }
-    };
-    
-    // Add the script to the document
-    document.body.appendChild(script);
-    
-    // Cleanup when unmounting the component
+
+    fetchPrices();
+    const iv = setInterval(fetchPrices, 60_000); // refresh each minute
     return () => {
-      cleanup();
+      mounted = false;
+      clearInterval(iv);
     };
-  }, []);
+  }, [ids]);
+
+  const items = useMemo(() => {
+    const list = Object.keys(prices).length
+      ? COINS.map(c => ({ symbol: c.symbol, price: prices[c.symbol] }))
+      : [
+          { symbol: 'BTC', price: 64750.21 },
+          { symbol: 'ETH', price: 3145.89 },
+          { symbol: 'BNB', price: 596.24 },
+          { symbol: 'SOL', price: 152.36 },
+          { symbol: 'XAUt', price: 2321.42 },
+          { symbol: 'LINK', price: 13.45 },
+          { symbol: 'DOT', price: 6.12 },
+          { symbol: 'AVAX', price: 28.77 },
+        ];
+    return list;
+  }, [prices]);
 
   return (
     <div className="w-full overflow-hidden bg-alien-space-dark/80 backdrop-blur-sm border-t border-b border-alien-gold/20 h-[40px]">
-      <div 
-        ref={containerRef}
-        className="w-full h-[40px]"
-      >
-        {/* The CoinGecko widget will be loaded here */}
-        <div className="flex items-center justify-start gap-6 overflow-x-auto py-2 px-4 text-white">
-          <div className="flex items-center gap-2">
-            <span className="font-bold">BTC:</span>
-            <span className="text-alien-green">$64,750.21</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold">ETH:</span>
-            <span className="text-alien-green">$3,145.89</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold">BNB:</span>
-            <span className="text-alien-green">$596.24</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold">SOL:</span>
-            <span className="text-alien-green">$152.36</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold">COSMOS:</span>
-            <span className="text-alien-green">$6.82</span>
-          </div>
+      {/* Local keyframes to avoid touching global CSS */}
+      <style>{`
+        @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      `}</style>
+
+      <div className="relative w-full h-[40px]">
+        {/* Track wrapper */}
+        <div className="absolute inset-0 flex items-center">
+          {/* Two tracks for seamless loop */}
+          {[0,1].map(i => (
+            <div
+              key={i}
+              className="flex items-center gap-6 px-4 whitespace-nowrap"
+              style={{
+                animation: `ticker-scroll ${DURATION_SEC}s linear infinite`,
+                // Stagger the second copy to start where first ends
+                animationDelay: i === 1 ? `${DURATION_SEC/2}s` : '0s',
+              }}
+            >
+              {items.map((it, idx) => (
+                <div key={`${i}-${idx}`} className="flex items-center gap-2">
+                  <span className="font-bold">{it.symbol}:</span>
+                  <span className="text-alien-green">${it.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>

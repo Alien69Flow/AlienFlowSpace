@@ -31,7 +31,7 @@ const ConnectButton = () => {
             {shortAddress(address)}
           </span>
           <Button
-            onClick={disconnect}
+            onClick={() => disconnect()}
             className="
               bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full
               flex items-center justify-center p-2 sm:p-3

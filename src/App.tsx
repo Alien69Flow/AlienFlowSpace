@@ -16,8 +16,7 @@ function App() {
   return (
     <AppKitProvider
       projectId="ced40e4d52234c471808977208586c7e"
-      theme="dark"
-      locale={["en", "es", "fr", "zh", "hi", "pt", "ja", "ar"]} // Idiomas oficiales
+      networks={[] as any}
     >
       <Router>
         <Routes>
