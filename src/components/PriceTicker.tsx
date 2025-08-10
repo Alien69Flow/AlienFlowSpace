@@ -35,7 +35,7 @@ const ICONS: Record<string, string> = {
 const API = (ids: string[]) =>
   `https://api.coingecko.com/api/v3/simple/price?ids=${ids.join(',')}&vs_currencies=usd&precision=2`;
 
-const DURATION_SEC = 60; // Adjust speed here (bigger = slower)
+const DURATION_SEC = 30; // Adjust speed here (bigger = slower)
 
 const PriceTicker: React.FC = () => {
   const [prices, setPrices] = useState<Record<string, number>>({});
@@ -91,7 +91,7 @@ const PriceTicker: React.FC = () => {
   }, [prices]);
 
   return (
-    <div className="w-full overflow-hidden bg-alien-space-dark/80 backdrop-blur-sm border-t border-b border-alien-gold/20 h-[40px]">
+    <div className="w-full overflow-hidden bg-alien-space-dark/80 border-t border-b border-alien-gold/20 h-[40px]">
       {/* Local keyframes to avoid touching global CSS */}
       <style>{`
         @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
