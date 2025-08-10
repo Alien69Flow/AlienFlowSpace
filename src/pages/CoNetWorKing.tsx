@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import StarBackground from '@/components/StarBackground';
+
 import { Network, TrendingUp, Shield, Coins, Sprout, Pickaxe, Layers, Dna, FlaskConical, Gamepad2, Database, Zap, Leaf, Building, Users, Landmark, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -251,21 +251,6 @@ const CoNetWorKing: React.FC = () => {
   return (
     <div className="min-h-screen bg-alien-space relative overflow-hidden">
       {/* Background Network Image */}
-      <div 
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url('/lovable-uploads/debf8db3-f2a1-4235-9e43-f6b8ba371818.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.4
-        }}
-      />
-      
-      {/* Overlay for better text readability */}
-      <div className="fixed inset-0 bg-black/60 z-10" />
-      
-      <StarBackground />
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
         <div className="max-w-7xl mx-auto">

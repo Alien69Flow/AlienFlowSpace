@@ -1,14 +1,9 @@
 import React from 'react';
-import StarBackground from '@/components/StarBackground';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 // Revert to a simple, original-style layout while we clarify the redesign
 const Clubs: React.FC = () => {
   return (
     <div className="min-h-screen bg-alien-space relative">
-      <StarBackground />
-      <Header />
 
       <main className="container mx-auto px-4 pt-28 pb-20 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
@@ -34,7 +29,6 @@ const Clubs: React.FC = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };

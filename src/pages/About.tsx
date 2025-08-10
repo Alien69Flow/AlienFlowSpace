@@ -8,23 +8,6 @@ import { GraduationCap, Users, Trophy, Shield, Zap, Globe, Leaf } from "lucide-r
 const About: React.FC = () => {
   return (
     <div className="relative flex flex-col flex-1 min-h-screen">
-      {/* New cosmic background with improved overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
-        style={{
-          backgroundImage: `url('/lovable-uploads/808e8413-144f-4a4c-834a-cc55fceac706.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          zIndex: -20
-        }} 
-      />
-      
-      {/* Improved overlay for better text readability */}
-      <div 
-        className="fixed inset-0 pointer-events-none bg-black/40 backdrop-blur-[1px]" 
-        style={{ zIndex: -15 }} 
-      />
 
       {/* Main content */}
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-8 pb-16">

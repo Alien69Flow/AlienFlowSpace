@@ -1,29 +1,12 @@
 
 import React from 'react';
-import StarBackground from '@/components/StarBackground';
+
 import { Button } from '@/components/ui/button';
 import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
     <div className="relative flex flex-col flex-1">
-      {/* Galaxy background */}
-      <div 
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url('/lovable-uploads/78a366c8-b4ad-4ae7-8358-3aae322b228f.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.6,
-          zIndex: -30
-        }}
-      />
-      
-      {/* Star background effect */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -20 }}>
-        <StarBackground />
-      </div>
 
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
         <div className="max-w-6xl mx-auto">

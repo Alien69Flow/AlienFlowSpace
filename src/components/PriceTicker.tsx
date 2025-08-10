@@ -27,7 +27,7 @@ const PriceTicker: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden h-[40px]">
+    <div className="w-full overflow-visible min-h-[48px]">
       <gecko-coin-price-marquee-widget
         locale="es"
         transparent-background="true"

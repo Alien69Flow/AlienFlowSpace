@@ -1,5 +1,5 @@
 import React from 'react';
-import StarBackground from '@/components/StarBackground';
+
 import { GraduationCap, BookOpen, Video, Users, Award, Sparkles, Leaf, Brain, Coins, ShoppingCart, Heart, Lightbulb, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -360,17 +360,6 @@ const Academy: React.FC = () => {
   return (
     <div className="relative flex flex-col flex-1">
       {/* Academy Background Image */}
-      <div 
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url('/lovable-uploads/9e48e9b3-7a5a-4c0a-b89d-9cbbef58d7a7.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.15,
-          zIndex: -25
-        }}
-      />
       
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
         <div className="max-w-6xl mx-auto">

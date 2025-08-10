@@ -1,5 +1,5 @@
 import React from 'react';
-import StarBackground from '@/components/StarBackground';
+
 import { Rocket, Star, Clock, ScrollText, BookOpen, PieChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -73,22 +73,6 @@ const AlienTrip: React.FC = () => {
     color: "#E91E63"
   }];
   return <div className="relative flex flex col flex-1">
-      {/* Cosmic microwave background radiation */}
-      <div className="fixed inset-0 pointer-events-none" style={{
-      backgroundImage: `url('/lovable-uploads/74c23ca3-be80-46d6-9817-d6a5cde81736.png')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      opacity: 0.7,
-      zIndex: -30
-    }} />
-      
-      {/* Star background effect */}
-      <div className="fixed inset-0 pointer-events-none" style={{
-      zIndex: -20
-    }}>
-        <StarBackground />
-      </div>
 
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-24 pb-16">
         <div className="max-w-6xl mx-auto">
