@@ -54,7 +54,7 @@ const Hero = () => {
           
           <div className="star-wars-crawl mb-4">
             <div className="star-wars-content py-2">
-              <motion.div className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto font-[Exo] text-center leading-relaxed" style={{
+              <motion.div className="text-[clamp(1rem,1.8vw,1.25rem)] md:text-[clamp(1.1rem,1.6vw,1.35rem)] text-foreground readable-glow max-w-4xl mx-auto font-[Exo] text-center leading-relaxed" style={{
               letterSpacing: '0.01em'
             }} initial={{
               opacity: 0

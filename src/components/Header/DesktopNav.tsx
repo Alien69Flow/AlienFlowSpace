@@ -34,6 +34,15 @@ const DesktopNav = () => {
     { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
   ];
 
+  const openTranslate = (provider: 'google' | 'deepl') => {
+    const url = window.location.href;
+    if (provider === 'google') {
+      window.open(`https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(url)}`, '_blank');
+    } else {
+      window.open(`https://www.deepl.com/translator#auto/es/${encodeURIComponent(url)}`, '_blank');
+    }
+  };
+
   return (
     <nav className="hidden lg:flex items-center gap-8">
       <div className="flex items-center space-x-6">
@@ -114,6 +123,18 @@ const DesktopNav = () => {
                   <span className="font-medium">{lang.name}</span>
                 </DropdownMenuItem>
               ))}
+              <DropdownMenuItem
+                className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
+                onSelect={(e) => { e.preventDefault(); openTranslate('google'); }}
+              >
+                <span className="font-medium">Traducir con Google</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
+                onSelect={(e) => { e.preventDefault(); openTranslate('deepl'); }}
+              >
+                <span className="font-medium">Traducir con DeepL</span>
+              </DropdownMenuItem>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>

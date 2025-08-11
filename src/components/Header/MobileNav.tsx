@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Globe, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ConnectButton from '@/components/Header/ConnectButton';
 
 interface MobileNavProps {
   isMenuOpen: boolean;
@@ -38,6 +39,15 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
     { code: 'pt', name: 'Português', lang: 'pt' },
     { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
   ];
+
+  const openTranslate = (provider: 'google' | 'deepl') => {
+    const url = window.location.href;
+    if (provider === 'google') {
+      window.open(`https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(url)}`, '_blank');
+    } else {
+      window.open(`https://www.deepl.com/translator#auto/es/${encodeURIComponent(url)}`, '_blank');
+    }
+  };
 
   return (
     <motion.div
@@ -163,6 +173,18 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
                       <span className="text-xs">{lang.name}</span>
                     </motion.div>
                   ))}
+                  <div
+                    className="p-3 hover:bg-alien-space-light/30 cursor-pointer text-alien-gold hover:text-alien-green transition-all duration-300 border-t border-alien-gold/20"
+                    onClick={() => openTranslate('google')}
+                  >
+                    <span className="text-xs font-medium">Traducir con Google</span>
+                  </div>
+                  <div
+                    className="p-3 hover:bg-alien-space-light/30 cursor-pointer text-alien-gold hover:text-alien-green transition-all duration-300"
+                    onClick={() => openTranslate('deepl')}
+                  >
+                    <span className="text-xs font-medium">Traducir con DeepL</span>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
