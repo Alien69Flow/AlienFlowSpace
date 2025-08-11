@@ -3,7 +3,7 @@ import React from 'react';
 // Revert to a simple, original-style layout while we clarify the redesign
 const Clubs: React.FC = () => {
   return (
-    <div className="min-h-screen bg-alien-space relative">
+    <div className="min-h-screen relative">
 
       <main className="container mx-auto px-4 pt-28 pb-20 relative z-10">
         <div className="max-w-5xl mx-auto text-center">

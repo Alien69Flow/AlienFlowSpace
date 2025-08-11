@@ -249,7 +249,7 @@ const CoNetWorKing: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-alien-space relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Background Network Image */}
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">

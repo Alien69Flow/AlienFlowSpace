@@ -15,6 +15,10 @@ const Layout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       {/* Star background effect - also behind content */}
+      <div 
+        className="fixed inset-0 -z-30 pointer-events-none bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/lovable-uploads/EMWBack.png')" }}
+      />
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -20 }}>
         <StarBackground />
       </div>
