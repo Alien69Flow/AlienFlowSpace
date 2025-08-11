@@ -61,7 +61,7 @@ const Header = () => {
         )}
       </AnimatePresence>
       
-      <div className="w-full border-t border-alien-gold/20 border-b border-alien-gold/20 bg-transparent">
+      <div className="w-full border-t border-alien-gold/20 border-b border-alien-gold/20 bg-foreground/10">
         <PriceTicker />
       </div>
     </header>
