@@ -43,7 +43,7 @@ const Hero = () => {
               <h1 style={{
               fontFamily: "'Nasalization', sans-serif !important",
               letterSpacing: '0.02em'
-            }} className="text-3xl sm:text-4xl lg:text-6xl mb-3 text-glow text-center font-nasalization leading-tight md:text-6xl">
+            }} className="text-3xl sm:text-4xl lg:text-6xl mb-3 sw-title-glow text-center font-nasalization leading-tight md:text-6xl">
                 <span className="text-alien-green">Δlieπ</span>
                 <span className="text-alien-gold">FlΦw</span>
                 <span className="text-alien-green"> $pac€</span>
@@ -54,7 +54,7 @@ const Hero = () => {
           
           <div className="star-wars-crawl mb-4">
             <div className="star-wars-content py-2">
-              <motion.div className="text-[clamp(1rem,1.8vw,1.25rem)] md:text-[clamp(1.1rem,1.6vw,1.35rem)] text-foreground readable-glow max-w-4xl mx-auto font-[Exo] text-center leading-relaxed" style={{
+              <motion.div className="readable-panel text-[clamp(1rem,1.8vw,1.25rem)] md:text-[clamp(1.1rem,1.6vw,1.35rem)] text-foreground readable-glow max-w-4xl mx-auto font-[Exo] text-center leading-relaxed" style={{
               letterSpacing: '0.01em'
             }} initial={{
               opacity: 0

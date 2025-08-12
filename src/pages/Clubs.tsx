@@ -2,6 +2,29 @@ import React from 'react';
 
 // Revert to a simple, original-style layout while we clarify the redesign
 const Clubs: React.FC = () => {
+  const clubs = [
+    { name: 'Aragon DAO', logo: '/lovable-uploads/AragonDAOLogo.svg' },
+    { name: 'Virgo', logo: '/lovable-uploads/VirgoLogo.svg' },
+    { name: 'Unity Learn', logo: '/lovable-uploads/UnityLearnLogo.svg' },
+    { name: 'Udacity', logo: '/lovable-uploads/UdacityLogo.svg' },
+    { name: 'OpenUpEd', logo: '/lovable-uploads/OpenUpEdLogo.jpeg' },
+    { name: 'OE Global', logo: '/lovable-uploads/OEGlobalLogo.jpeg' },
+    { name: 'UNSSC', logo: '/lovable-uploads/UNSSCLogo.png' },
+    { name: 'Skillshare', logo: '/lovable-uploads/SkillShareLogo.jpeg' },
+    { name: 'DappRadar', logo: '/lovable-uploads/DappRadarLogo.jpeg' },
+    { name: 'CoinMarketCap', logo: '/lovable-uploads/CoinMarketCapLogo.jpeg' },
+    { name: 'CoinGecko', logo: '/lovable-uploads/CoinGeckoLogo.svg' },
+    { name: 'CoinGlass', logo: '/lovable-uploads/CoinGlassLogo.jpeg' },
+    { name: 'Behance', logo: '/lovable-uploads/BehanceLogo.jpeg' },
+    { name: 'Upwork', logo: '/lovable-uploads/UpWorkLogo.png' },
+    { name: 'WeWork', logo: '/lovable-uploads/WeWorkLogo.png' },
+    { name: 'AulaFacil', logo: '/lovable-uploads/AulaFacilLogo.png' },
+    { name: 'Grow with Google', logo: '/lovable-uploads/GrowGoogleLogo.png' },
+    { name: 'Hotmart', logo: '/lovable-uploads/HotmartLogo.png' },
+    { name: 'MasterClass', logo: '/lovable-uploads/MasterClasssLogo.jpeg' },
+    { name: 'edX', logo: '/lovable-uploads/edXLogo.png' },
+    { name: 'MOOC', logo: '/lovable-uploads/MoocLogo.png' },
+  ];
   return (
     <div className="min-h-screen relative">
 
@@ -14,15 +37,19 @@ const Clubs: React.FC = () => {
           />
           <h1 className="text-4xl md:text-5xl font-bold text-alien-gold font-nasalization mb-4">Clubs</h1>
           <p className="text-gray-300 font-[Exo] max-w-2xl mx-auto">
-            Explore official community clubs and partners. We are restoring the previous version as requested while we align on the new UX/UI.
+            Descubre clubs y partners oficiales de la comunidad AlienFlowSpace.
           </p>
 
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1,2,3,4,5,6].map(i => (
-              <div key={i} className="bg-alien-space-dark/70 border border-alien-gold/20 rounded-xl p-6 text-left">
-                <div className="h-10 w-10 rounded-lg bg-alien-gold/15 border border-alien-gold/30 mb-4" />
-                <h3 className="text-alien-gold font-semibold mb-2">Club {i}</h3>
-                <p className="text-sm text-gray-300">Restored card placeholder. We will plug back the original content you had.</p>
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+            {clubs.map((club) => (
+              <div key={club.name} className="card-border rounded-xl p-4 flex flex-col items-center justify-center bg-transparent">
+                <img
+                  src={club.logo}
+                  alt={`${club.name} club partner logo`}
+                  className="h-12 w-auto object-contain mb-3"
+                  loading="lazy"
+                />
+                <h3 className="text-sm text-alien-gold font-semibold text-center">{club.name}</h3>
               </div>
             ))}
           </div>

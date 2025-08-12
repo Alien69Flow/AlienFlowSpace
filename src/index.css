@@ -119,6 +119,23 @@
   filter: drop-shadow(0 0 10px rgba(240, 216, 130, 0.6)) drop-shadow(0 0 20px rgba(240, 216, 130, 0.3));
 }
 
+/* Star Wars title improved glow */
+.sw-title-glow {
+  text-shadow:
+    0 0 10px hsl(var(--sidebar-primary) / 0.9),
+    0 0 24px hsl(var(--sidebar-accent) / 0.5),
+    0 2px 28px hsl(var(--background) / 0.95);
+}
+
+/* Readability panel for paragraphs over images */
+.readable-panel {
+  background: linear-gradient(180deg, hsl(var(--background) / 0.45), hsl(var(--background) / 0.25));
+  backdrop-filter: blur(6px);
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
 /* Improved card-border with better effects */
 .card-border {
   position: relative;
