@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/83ea2c39-5424-4ac2-b26f-e00df7bb6c06
+**URL**: https://AlienFlow.Space
 
 ## How can I edit this code?
 
@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/83ea2c39-5424-4ac2-b26f-e00df7bb6c06) and start prompting.
+Simply visit the [Lovable Project] and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -62,7 +62,7 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/83ea2c39-5424-4ac2-b26f-e00df7bb6c06) and click on Share -> Publish.
+Simply open [Lovable] and click on Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
