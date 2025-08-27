@@ -1,24 +1,49 @@
+import React, { Suspense, lazy } from 'react';
+import StarBackground from '@/components/StarBackground';
 
-import React from 'react';
-
-import Hero from '@/components/Hero';
-import ExploreSpacesSection from '@/components/ExploreSpacesSection';
-import EcosystemSection from '@/components/EcosystemSection';
-import FeaturesSection from '@/components/FeaturesSection';
-import FinancialFreedomSection from '@/components/FinancialFreedomSection';
-import ParticipationSection from '@/components/ParticipationSection';
+// Lazy loading de secciones
+const Hero = lazy(() => import('@/components/Hero'));
+const ExploreSpacesSection = lazy(() => import('@/components/ExploreSpacesSection'));
+const EcosystemSection = lazy(() => import('@/components/EcosystemSection'));
+const FeaturesSection = lazy(() => import('@/components/FeaturesSection'));
+const FinancialFreedomSection = lazy(() => import('@/components/FinancialFreedomSection'));
+const ParticipationSection = lazy(() => import('@/components/ParticipationSection'));
 
 const Index: React.FC = () => {
   return (
     <div className="relative z-10 min-h-screen">
-      <Hero />
-      <FinancialFreedomSection />
-      <ExploreSpacesSection />
-      <EcosystemSection />
-      <FeaturesSection />
-      <div className="section-center">
-        <ParticipationSection />
+      {/* Hero con efecto Star Wars + estrellas */}
+      <div className="relative">
+        <div className="absolute inset-0 -z-10">
+          <StarBackground />
+        </div>
+        <Suspense fallback={<div className="h-[80vh] flex items-center justify-center">Loading...</div>}>
+          <Hero />
+        </Suspense>
       </div>
+
+      {/* Secciones con lazy loading */}
+      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+        <FinancialFreedomSection />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+        <ExploreSpacesSection />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+        <EcosystemSection />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+        <FeaturesSection />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+        <div className="section-center">
+          <ParticipationSection />
+        </div>
+      </Suspense>
     </div>
   );
 };
