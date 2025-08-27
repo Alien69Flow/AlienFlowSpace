@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ScrollText, Globe, Orbit } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const scrollToSpaces = () => {
     const spacesSection = document.querySelector('[data-section="explore-spaces"]');
     if (spacesSection) spacesSection.scrollIntoView({ behavior: 'smooth' });
   };
 
+  if (!mounted) return <div className="min-h-[calc(100vh-4rem)] bg-alien-space"></div>;
+
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-16 overflow-hidden">
-      {/* Fondo de estrellas eficiente */}
-      <div className="absolute inset-0 bg-stars bg-cover bg-center opacity-40 animate-pulse-glow"></div>
+      {/* Fondo de estrellas */}
+      <div className="absolute inset-0 bg-stars bg-cover bg-center opacity-40"></div>
       <div className="absolute inset-0 bg-glow-radial"></div>
 
       <div className="container relative z-10 px-4 mx-auto text-center">
@@ -21,7 +29,7 @@ const Hero: React.FC = () => {
         <motion.img
           src="/lovable-uploads/ALogo.png"
           alt="AlienFlowSpaceDAO Logo"
-          className="h-24 md:h-28 gold-glow z-20 mb-8"
+          className="h-24 md:h-28 gold-glow z-20 mb-8 mx-auto"
           initial={{ scale: 0.8 }}
           animate={{
             scale: [1, 1.05, 1],
@@ -29,9 +37,10 @@ const Hero: React.FC = () => {
             y: [0, -10, 0]
           }}
           transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
+          loading="lazy"
         />
 
-        {/* Título tipo Star Wars */}
+        {/* Título */}
         <motion.h1
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -44,7 +53,7 @@ const Hero: React.FC = () => {
           <span className="text-alien-gold"> DAO</span>
         </motion.h1>
 
-        {/* Subtextos estilo Star Wars Crawl en verde */}
+        {/* Crawl Star Wars */}
         <div className="star-wars-crawl perspective-400 relative">
           <motion.div
             className="star-wars-content readable-glow font-exo text-center text-[clamp(1rem,1.8vw,1.25rem)] md:text-[clamp(1.1rem,1.6vw,1.35rem)] text-alien-green font-semibold"
@@ -61,7 +70,7 @@ const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Botones dorado oscuro / texto verde claro */}
+        {/* Botones originales */}
         <motion.div
           className="flex flex-wrap justify-center gap-4 mt-8"
           initial={{ opacity: 0, y: 20 }}
@@ -69,20 +78,20 @@ const Hero: React.FC = () => {
           transition={{ delay: 1.5, duration: 1 }}
         >
           <Link to="/about">
-            <Button className="bg-alien-gold-dark text-alien-green-light hover:bg-alien-green hover:text-alien-gold-dark font-nasalization px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base rounded-full shadow-lg shadow-alien-gold-dark/40 transition-all transform hover:-translate-y-1 hover:scale-105">
+            <Button className="bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base rounded-full transition-colors shadow-lg">
               <Orbit className="mr-2 h-4 w-4" /> About Enter Portal
             </Button>
           </Link>
 
           <Link to="/alien-trip">
-            <Button className="bg-alien-gold-dark text-alien-green-light hover:bg-alien-green hover:text-alien-gold-dark font-nasalization px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base rounded-full shadow-lg shadow-alien-gold-dark/40 transition-all transform hover:-translate-y-1 hover:scale-105">
+            <Button className="bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base rounded-full transition-colors shadow-lg">
               <ScrollText className="mr-2 h-4 w-4" /> Alientrip Manifesto
             </Button>
           </Link>
 
           <Button
             onClick={scrollToSpaces}
-            className="bg-alien-gold-dark text-alien-green-light hover:bg-alien-green hover:text-alien-gold-dark font-nasalization px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base rounded-full shadow-lg shadow-alien-gold-dark/40 transition-all transform hover:-translate-y-1 hover:scale-105"
+            className="bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base rounded-full transition-colors shadow-lg"
           >
             <Globe className="mr-2 h-4 w-4" /> Join the Journey
           </Button>
