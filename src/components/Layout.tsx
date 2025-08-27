@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import StarBackground from './StarBackground';
 
 const Layout: React.FC = () => {
   const location = useLocation();
@@ -12,6 +11,7 @@ const Layout: React.FC = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Map of route backgrounds
   const bgMap: Record<string, string> = {
     '/': "/lovable-uploads/EMWBack.png",
     '/about': "/lovable-uploads/AboutBG.png",
@@ -21,23 +21,24 @@ const Layout: React.FC = () => {
     '/clubs': "/lovable-uploads/ClubsBG.png",
     '/conetworking': "/lovable-uploads/CoNetWorKingBG.png",
   };
+
   const bgImage = bgMap[location.pathname] || "/lovable-uploads/EMWBack.png";
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Star background effect - also behind content */}
+      {/* Dynamic background image */}
       <div 
-        className="fixed inset-0 -z-30 pointer-events-none bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 -z-30 pointer-events-none bg-cover bg-center bg-no-repeat bg-fixed"
         style={{ backgroundImage: `url('${bgImage}')` }}
       />
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -20 }}>
-        <StarBackground />
-      </div>
 
       <Header />
+
+      {/* Main content */}
       <main className="flex-1 relative z-10 pt-16 lg:pt-20">
         <Outlet />
       </main>
+
       <Footer />
     </div>
   );
