@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
     if (spacesSection) spacesSection.scrollIntoView({ behavior: 'smooth' });
   };
 
-  if (!mounted) return <div className="min-h-[calc(100vh-4rem)] bg-alien-space"></div>;
+  if (!mounted) return null; // ✅ Eliminado flash "loading..."
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-16 overflow-hidden">
@@ -42,8 +42,8 @@ const Hero: React.FC = () => {
 
         {/* Título */}
         <motion.h1
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
           className="text-3xl sm:text-4xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center sw-title-glow mb-6"
         >
@@ -54,23 +54,18 @@ const Hero: React.FC = () => {
         </motion.h1>
 
         {/* Crawl Star Wars */}
-        <div className="star-wars-crawl perspective-400 relative">
-          <motion.div
-            className="star-wars-content readable-glow font-exo text-center text-[clamp(1rem,1.8vw,1.25rem)] md:text-[clamp(1.1rem,1.6vw,1.35rem)] text-alien-green font-semibold"
-            initial={{ translateY: '100%' }}
-            animate={{ translateY: '-120%' }}
-            transition={{ duration: 60, ease: 'linear', repeat: Infinity }}
-          >
-            <p className="mb-2">
+        <div className="star-wars-crawl">
+          <div className="star-wars-content">
+            <p>
               Access the DAO with Innovative Solutions, Unlocks Energy Efficiency & Environmental Sustainability.
             </p>
             <p>
               Advantages Boosting the BENEFITS, for Connecting you and Raise your QUALITY of LIFE, with Mutual PROFITS…
             </p>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Botones originales */}
+        {/* Botones */}
         <motion.div
           className="flex flex-wrap justify-center gap-4 mt-8"
           initial={{ opacity: 0, y: 20 }}
