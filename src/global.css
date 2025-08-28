@@ -1,11 +1,13 @@
+/* ===== Reset & Base ===== */
 html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   width: 100%;
-  background-color: transparent;  /* Fondo transparente para mostrar imagen de fondo */
-  color: #F0D882;                /* Dorado claro para texto principal */
+  background-color: transparent;
+  color: #F0D882; /* Dorado claro */
   overflow-x: hidden;
+  font-family: 'Exo', sans-serif;
 }
 
 #root {
@@ -20,19 +22,91 @@ main {
   padding-top: 8rem;
 }
 
+/* ===== Utility Classes ===== */
 .text-glow {
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 
+               0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.readable-glow {
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 }
 
 .card-border {
   border: 1px solid rgba(255, 215, 0, 0.2);
   border-radius: 10px;
-  background-color: rgba(17, 17, 25, 0.6);
+  background-color: rgba(17, 17, 25, 0.65);
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
 }
 .card-border:hover {
   border-color: rgba(255, 215, 0, 0.4);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+}
+
+/* ===== Fondo de estrellas ===== */
+.bg-stars {
+  background: black url('/lovable-uploads/stars-bg.png') repeat;
+  animation: moveStars 200s linear infinite;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
+}
+
+/* ===== Radial Glow Overlay ===== */
+.bg-glow-radial {
+  background: radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, transparent 70%);
+  opacity: 0.4;
+}
+
+/* ===== Star Wars Crawl Effect ===== */
+.star-wars-crawl {
+  perspective: 400px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.star-wars-content {
+  transform-origin: 50% 100%;
+  transform: rotateX(20deg);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #32cd32; /* Alien green para textos secundarios */
+  text-shadow: 0 0 8px rgba(0,0,0,0.9);
+}
+
+.sw-title-glow {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.9),
+               0 0 40px rgba(255, 215, 0, 0.6),
+               0 0 60px rgba(255, 215, 0, 0.4);
+}
+
+/* ===== Logo Glow ===== */
+.gold-glow {
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
+          drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+}
+
+/* ===== Responsive Optimizations ===== */
+@media (max-width: 768px) {
+  .star-wars-crawl {
+    height: 200px;
+  }
+  .star-wars-content {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .star-wars-crawl {
+    height: 160px;
+  }
+  .star-wars-content {
+    font-size: 0.8rem;
+  }
 }
