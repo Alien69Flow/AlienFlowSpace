@@ -8,6 +8,7 @@ html, body {
   color: #F0D882; /* Dorado claro */
   overflow-x: hidden;
   font-family: 'Exo', sans-serif;
+  scroll-behavior: smooth;
 }
 
 #root {
@@ -22,72 +23,62 @@ main {
   padding-top: 8rem;
 }
 
-/* ===== Text Glow Utilities ===== */
+/* ===== Utility Classes ===== */
 .text-glow {
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 
-               0 0 20px rgba(255, 215, 0, 0.4);
+  text-shadow: 
+    0 0 8px rgba(240, 216, 130, 0.8),
+    0 0 16px rgba(240, 216, 130, 0.4),
+    0 0 24px rgba(240, 216, 130, 0.2);
 }
 
 .readable-glow {
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  text-shadow:
+    0 2px 6px hsl(240, 33%, 5% / 0.85),
+    0 0 24px hsl(240, 33%, 5% / 0.65);
 }
 
-/* ===== Card Styling ===== */
-.card-border {
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  border-radius: 10px;
-  background-color: rgba(17, 17, 25, 0.65);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-.card-border:hover {
-  border-color: rgba(255, 215, 0, 0.4);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+.gold-glow {
+  filter: drop-shadow(0 0 10px rgba(240, 216, 130, 0.6))
+          drop-shadow(0 0 20px rgba(240, 216, 130, 0.3));
 }
 
-/* ===== Background Stars ===== */
-.bg-stars {
-  background: black url('/lovable-uploads/stars-bg.png') repeat;
-  animation: moveStars 300s linear infinite;
+.green-glow {
+  filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.6))
+          drop-shadow(0 0 20px rgba(34, 197, 94, 0.3));
 }
 
-@keyframes moveStars {
-  from { background-position: 0 0; }
-  to { background-position: -10000px 5000px; }
-}
-
-/* ===== Radial Glow Overlay ===== */
-.bg-glow-radial {
-  background: radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, transparent 70%);
-  opacity: 0.4;
-}
-
-/* ===== Star Wars Crawl ===== */
+/* ===== Star Wars Crawl Effect ===== */
 .star-wars-crawl {
-  perspective: 400px;
-  height: 300px;
+  perspective: 500px;
   overflow: hidden;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
 }
 
 .star-wars-content {
-  transform-origin: 50% 100%;
-  transform: rotateX(20deg);
-  line-height: 1.6;
+  transform: rotateX(15deg);
+  transform-origin: center top;
+  animation: star-wars-float 60s linear infinite;
+  width: 100%;
   max-width: 700px;
-  margin: 0 auto;
+  line-height: 1.6;
   color: #32cd32; /* Alien green */
   text-shadow: 0 0 8px rgba(0,0,0,0.9);
-  font-weight: 600;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+@keyframes star-wars-float {
+  0% { transform: rotateX(15deg) translateY(100%); }
+  100% { transform: rotateX(15deg) translateY(-120%); }
 }
 
 /* ===== Hero Title Glow ===== */
 .sw-title-glow {
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.9),
-               0 0 40px rgba(255, 215, 0, 0.6),
-               0 0 60px rgba(255, 215, 0, 0.4);
+  text-shadow:
+    0 0 20px rgba(255, 215, 0, 0.9),
+    0 0 40px rgba(255, 215, 0, 0.6),
+    0 0 60px rgba(255, 215, 0, 0.4);
 }
 
 /* ===== Logo Glow ===== */
@@ -96,36 +87,65 @@ main {
           drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
 }
 
-/* ===== Preloader (optional) ===== */
-#preloader {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #0C0C1D;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+/* ===== Card Border ===== */
+.card-border {
+  position: relative;
+  border-radius: 0.5rem;
+  background: rgba(17, 17, 25, 0.7);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(145deg, hsl(48, 83%, 72%), hsl(142, 67%, 45%));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.card-border:hover::before {
+  background: linear-gradient(145deg, hsl(142, 67%, 45%), hsl(48, 83%, 72%));
 }
 
-#preloader img {
-  width: 120px;
-  height: auto;
-  animation: preloader-spin 2s linear infinite;
+/* ===== Background & Stars ===== */
+.bg-stars {
+  background: black url('/lovable-uploads/stars-bg.png') repeat;
+  animation: moveStars 200s linear infinite;
 }
 
-@keyframes preloader-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
+}
+
+.bg-glow-radial {
+  background: radial-gradient(circle at center, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+  opacity: 0.4;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .star-wars-crawl { height: 200px; }
-  .star-wars-content { font-size: 0.9rem; }
+  .star-wars-content { transform: rotateX(10deg); }
 }
 
 @media (max-width: 480px) {
-  .star-wars-crawl { height: 160px; }
   .star-wars-content { font-size: 0.8rem; }
 }
+
+/* ===== Nasalization font for titles/buttons ===== */
+.font-nasalization, .font-nasalization * {
+  font-family: 'Nasalization', sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Smooth transitions & accessibility */
+* {
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+:focus-visible { outline: 2px solid hsl(48, 83%, 72%); outline-offset: 2px; }
