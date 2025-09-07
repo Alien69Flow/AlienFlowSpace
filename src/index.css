@@ -166,61 +166,63 @@
   background: linear-gradient(145deg, hsl(var(--sidebar-accent)), hsl(var(--sidebar-primary)));
 }
 
-/* Star Wars text styling */
+/* Professional Star Wars text styling - Subtle and harmonious */
 .starwars-text {
-  color: #FFE81F;
+  color: hsl(var(--primary));
   text-shadow: 
-    0 0 5px #FFE81F,
-    0 0 10px #FFE81F,
-    0 0 20px #FFE81F,
-    0 0 40px #FFE81F,
-    0 0 80px #FFE81F;
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 8px hsl(var(--primary) / 0.2);
   font-family: 'Nasalization', sans-serif;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
-/* Star Wars scrolling text effect - COMPACTO Y MEJORADO */
+/* Clean Star Wars crawl - No background box, subtle animation */
 .star-wars-crawl {
-  perspective: 300px;
-  height: 200px;
-  overflow: hidden;
+  perspective: 400px;
+  height: auto;
+  overflow: visible;
   margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .star-wars-content {
-  animation: crawl 15s linear infinite;
-  transform-origin: 50% 100%;
-  transform: rotateX(25deg);
-  color: #FFE81F;
-  text-align: justify;
-  max-width: 600px;
+  transform: rotateX(12deg);
+  transform-origin: center top;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 2rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  text-shadow: 
-    0 0 5px #FFE81F,
-    0 0 10px #FFE81F,
-    0 0 15px #FFE81F;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 232, 31, 0.3);
+  padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: center;
+  color: hsl(var(--foreground) / 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  animation: subtle-float 4s ease-in-out infinite;
 }
 
-@keyframes crawl {
-  0% {
-    transform: rotateX(25deg) translateY(50px);
-    opacity: 0;
+@keyframes subtle-float {
+  0%, 100% {
+    transform: rotateX(12deg) translateY(0px);
   }
-  20% {
-    opacity: 1;
+  50% {
+    transform: rotateX(12deg) translateY(-3px);
   }
-  100% {
-    transform: rotateX(25deg) translateY(-200px);
-    opacity: 0;
-  }
+}
+
+/* Professional title glow - Subtle and elegant */
+.hero-title {
+  text-shadow: 
+    0 0 20px hsl(var(--primary) / 0.3),
+    0 0 40px hsl(var(--secondary) / 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Refined logo glow */
+.logo-glow {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)) 
+          drop-shadow(0 0 12px hsl(var(--primary) / 0.2));
 }
 
 /* Responsive improvements */
