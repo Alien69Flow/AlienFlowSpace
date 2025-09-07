@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="text-3xl sm:text-4xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center sw-title-glow mb-6"
+          className="text-3xl sm:text-4xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center starwars-text mb-6"
         >
           <span className="text-alien-green">Δlieπ</span>
           <span className="text-alien-gold">FlΦw</span>
@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
 
         {/* Crawl Star Wars */}
         <div className="star-wars-crawl">
-          <div className="star-wars-content">
+          <div className="star-wars-content starwars-text">
             <p>
               Access the DAO with Innovative Solutions, Unlocks Energy Efficiency & Environmental Sustainability.
             </p>

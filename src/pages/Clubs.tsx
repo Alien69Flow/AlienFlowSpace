@@ -61,7 +61,7 @@ const Clubs: React.FC = () => {
   const featuredClubs: ClubProps[] = [
     {
       name: 'Δ CashFlow',
-      description: 'Advanced earning strategies and winning analysis for interplanetary assets.',
+      description: 'Advanced earning strategies and winning analysis for interplanetary assets through DeFi protocols, yield farming, and strategic portfolio management.',
       members: 314159,
       icon: <Zap className="h-6 w-6 text-alien-gold" />,
       category: 'CashFlow',
@@ -70,7 +70,7 @@ const Clubs: React.FC = () => {
     },
     {
       name: 'Δ EcoFlow',
-      description: "Shaping the planet's present through collaborative decision-making with budgets and proposals.",
+      description: "Shaping the planet's present through collaborative decision-making with budgets, proposals, and sustainable governance mechanisms for environmental impact.",
       members: 161803,
       icon: <Shield className="h-6 w-6 text-alien-gold" />,
       category: 'DAO',
@@ -79,8 +79,8 @@ const Clubs: React.FC = () => {
     },
     {
       name: 'ΔGameFlow ΔWeedFlow ΔXFlow',
-      description: 'Discovering and creating digital artifacts across the multiverse with utility in reality.',
-      members: 3712,
+      description: 'Discovering and creating digital artifacts across the multiverse with utility in reality through gaming, wellness, and cross-chain experiences.',
+      members: 37128,
       icon: <Rocket className="h-6 w-6 text-alien-gold" />,
       category: 'NFTs',
       categoryColor: 'bg-pink-500/80 text-white border border-pink-400/50',
@@ -153,12 +153,14 @@ const Clubs: React.FC = () => {
   ];
 
   const partners = [
-    { name: 'Discord', url: 'https://discord.com/' },
-    { name: 'Telegram', url: 'https://telegram.org/' },
-    { name: 'Twitter', url: 'https://twitter.com/' },
-    { name: 'GitHub', url: 'https://github.com/' },
-    { name: 'Medium', url: 'https://medium.com/' },
-    { name: 'Reddit', url: 'https://reddit.com/' },
+    { name: 'CoinGecko', url: 'https://coingecko.com/', logo: '/lovable-uploads/CoinGeckoLogo.svg' },
+    { name: 'CoinMarketCap', url: 'https://coinmarketcap.com/', logo: '/lovable-uploads/CoinMarketCapLogo.jpeg' },
+    { name: 'DappRadar', url: 'https://dappradar.com/', logo: '/lovable-uploads/DappRadarLogo.jpeg' },
+    { name: 'Aragon DAO', url: 'https://aragon.org/', logo: '/lovable-uploads/AragonDAOLogo.svg' },
+    { name: 'Unity Learn', url: 'https://learn.unity.com/', logo: '/lovable-uploads/UnityLearnLogo.svg' },
+    { name: 'Climate Reanalyzer', url: 'https://climatereanalyzer.org/', logo: '/lovable-uploads/ClimateReanalyzerLogo.svg' },
+    { name: 'CoinGlass', url: 'https://coinglass.com/', logo: '/lovable-uploads/CoinGlassLogo.jpeg' },
+    { name: 'Behance', url: 'https://behance.net/', logo: '/lovable-uploads/BehanceLogo.jpeg' },
   ];
 
   return (
@@ -281,17 +283,24 @@ const Clubs: React.FC = () => {
           {/* Partners */}
           <div className="text-center">
             <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-glow">Community Partners</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
               {partners.map((partner, index) => (
                 <a
                   key={index}
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-alien-space-dark/80 backdrop-blur-md rounded-xl p-6 border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-105 group"
+                  className="bg-alien-space-dark/80 backdrop-blur-md rounded-xl p-4 border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:transform hover:scale-105 group"
                 >
                   <div className="text-center">
-                    <h3 className="text-alien-gold font-semibold text-sm group-hover:text-alien-gold-light transition-colors font-[Exo]">
+                    {partner.logo && (
+                      <img
+                        src={partner.logo}
+                        alt={`${partner.name} logo`}
+                        className="h-8 w-8 object-contain mx-auto mb-2 group-hover:scale-110 transition-transform"
+                      />
+                    )}
+                    <h3 className="text-alien-gold font-semibold text-xs group-hover:text-alien-gold-light transition-colors font-[Exo]">
                       {partner.name}
                     </h3>
                   </div>
