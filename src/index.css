@@ -45,13 +45,14 @@
     --sidebar-ring: 48 83% 72%;
   }
 
-  h1, h2, h3, h4, h5, h6, button {
+  /* REGLA CORREGIDA Y MÁS ESPECÍFICA */
+  h1, h2, h3, h4, h5, h6, button, a.font-nasalization {
     font-family: 'Nasalization', sans-serif;
     font-weight: 400;
     letter-spacing: 0.5px;
   }
-
-  body, p, span, div, a, input, textarea, label {
+  
+  body, p, span, div, input, textarea, label {
     font-family: 'Exo', system-ui, sans-serif;
   }
 
