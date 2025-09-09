@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-8 sm:mb-12"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-8 sm:mb-12 text-glow" // <-- Añadido aquí
         >
           <span className="text-alien-green">Δlieπ</span>
           <span className="text-alien-gold">FlΦw</span>
@@ -58,9 +58,9 @@ const Hero: React.FC = () => {
           <span className="text-alien-gold"> DAO</span>
         </motion.h1>
 
-        {/* Star Wars inspired description - ESTÁTICO, SIN FONDO NI ANIMACIÓN DE CRAWL */}
+        {/* Star Wars inspired description - con resplandor */}
         <motion.div 
-          className="text-center px-2 py-4" // Elimina clases tipo 'star-wars-crawl'
+          className="text-center px-2 py-4 text-glow" // <-- Añadido aquí
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
