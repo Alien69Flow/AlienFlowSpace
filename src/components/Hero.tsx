@@ -59,21 +59,16 @@ const Hero: React.FC = () => {
         </motion.h1>
 
         {/* Star Wars inspired description - Static and optimized */}
-        <motion.div 
-          className="max-w-4xl mx-auto text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          <div className="starwars-text space-y-4">
-            <p className="text-base sm:text-lg lg:text-xl font-medium leading-relaxed">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="starwars-text space-y-4 opacity-100">
+            <p className="text-base sm:text-lg lg:text-xl font-medium leading-relaxed text-yellow-300">
               Access the DAO with Innovative Solutions, Unlocks Energy Efficiency & Environmental Sustainability.
             </p>
-            <p className="text-sm sm:text-base lg:text-lg opacity-90 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-yellow-200/90 leading-relaxed">
               Advantages Boosting the BENEFITS, for Connecting you and Raise your QUALITY of LIFE, with Mutual PROFITS…
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Action buttons */}
         <motion.div

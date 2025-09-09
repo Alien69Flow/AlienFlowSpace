@@ -35,18 +35,19 @@ const DesktopNav = () => {
     { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
   ];
 
-  const translatePage = (langCode: string, service: 'google' | 'deepl') => {
+  const translatePage = (langCode: string) => {
     const currentUrl = window.location.href;
-    let translateUrl: string;
-
-    if (service === 'google') {
-      translateUrl = `https://translate.google.com/translate?sl=auto&tl=${langCode}&u=${encodeURIComponent(currentUrl)}`;
-    } else {
-      // DeepL direct translation
-      translateUrl = `https://www.deepl.com/translator?utm_source=alienflowspace#auto/${langCode}/${encodeURIComponent(window.location.hostname)}`;
-    }
+    // Try Google Translate first, fallback to DeepL
+    const googleUrl = `https://translate.google.com/translate?sl=auto&tl=${langCode}&u=${encodeURIComponent(currentUrl)}`;
     
-    window.open(translateUrl, '_blank', 'noopener,noreferrer');
+    // Open Google Translate
+    const googleWindow = window.open(googleUrl, '_blank', 'noopener,noreferrer');
+    
+    // If Google fails or user prefers DeepL, they can manually use DeepL
+    if (!googleWindow) {
+      const deeplUrl = `https://www.deepl.com/translator?utm_source=alienflowspace#auto/${langCode}/${encodeURIComponent(currentUrl)}`;
+      window.open(deeplUrl, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
@@ -120,7 +121,7 @@ const DesktopNav = () => {
                 <DropdownMenuItem 
                   key={lang.code} 
                   className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
-                  onSelect={(e) => { e.preventDefault(); translatePage(lang.lang, 'google'); }}
+                  onSelect={(e) => { e.preventDefault(); translatePage(lang.lang); }}
                 >
                   <img 
                     src={`https://flagcdn.com/w20/${lang.code}.png`} 
@@ -130,21 +131,6 @@ const DesktopNav = () => {
                   <span className="font-medium">{lang.name}</span>
                 </DropdownMenuItem>
               ))}
-              <div className="border-t border-alien-gold/20 my-2" />
-              <DropdownMenuItem
-                className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
-                onSelect={(e) => { e.preventDefault(); translatePage('es', 'google'); }}
-              >
-                <Globe className="w-4 h-4" />
-                <span className="font-medium">Traducir con Google</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
-                onSelect={(e) => { e.preventDefault(); translatePage('es', 'deepl'); }}
-              >
-                <Globe className="w-4 h-4" />
-                <span className="font-medium">Traducir con DeepL</span>
-              </DropdownMenuItem>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>

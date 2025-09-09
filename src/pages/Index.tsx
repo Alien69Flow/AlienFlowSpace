@@ -1,79 +1,45 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import StarBackground from '@/components/StarBackground';
-import LoadingLogo from '@/components/LoadingLogo';
-
-// Lazy loading de secciones
-const Hero = lazy(() => import('@/components/Hero'));
-const ExploreSpacesSection = lazy(() => import('@/components/ExploreSpacesSection'));
-const EcosystemSection = lazy(() => import('@/components/EcosystemSection'));
-const FeaturesSection = lazy(() => import('@/components/FeaturesSection'));
-const FinancialFreedomSection = lazy(() => import('@/components/FinancialFreedomSection'));
-const ParticipationSection = lazy(() => import('@/components/ParticipationSection'));
+import React, { useState, useEffect } from 'react';
+import Hero from '../components/Hero';
+import ExploreSpacesSection from '../components/ExploreSpacesSection';
+import FinancialFreedomSection from '../components/FinancialFreedomSection';
+import FeaturesSection from '../components/FeaturesSection';
+import StatsSection from '../components/StatsSection';
+import EcosystemSection from '../components/EcosystemSection';
+import ParticipationSection from '../components/ParticipationSection';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Index: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time for better UX
     const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+      setLoading(false);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) {
-    return <LoadingLogo />;
+  if (loading) {
+    return <LoadingScreen />;
   }
 
   return (
-    <div className="relative z-10 min-h-screen">
-      {/* Hero con efecto Star Wars + estrellas */}
-      <div className="relative">
-        <div className="absolute inset-0 -z-10">
-          <StarBackground />
-        </div>
-        <Suspense fallback={
-          <div className="h-[80vh] flex items-center justify-center">
-            <div className="flex items-center space-x-3">
-              <motion.img
-                src="/lovable-uploads/ALogo.png"
-                alt="Loading"
-                className="h-8 w-8 logo-glow"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              />
-              <span className="text-alien-gold font-[Exo]">Loading Hero...</span>
-            </div>
-          </div>
-        }>
-          <Hero />
-        </Suspense>
-      </div>
-
-      {/* Secciones con lazy loading */}
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
-        <FinancialFreedomSection />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+    <div className="relative flex flex-col flex-1">
+      {/* Background Layers */}
+      <div className="fixed inset-0 bg-gradient-to-br from-alien-space-dark via-alien-space to-alien-space-light"></div>
+      <div className="absolute inset-0 bg-stars bg-cover bg-center opacity-20"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-alien-green/5 via-transparent to-alien-gold/5"></div>
+      
+      {/* Content */}
+      <main className="relative z-10 flex-grow">
+        <Hero />
         <ExploreSpacesSection />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
-        <EcosystemSection />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+        <FinancialFreedomSection />
         <FeaturesSection />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
-        <div className="section-center">
-          <ParticipationSection />
-        </div>
-      </Suspense>
+        <StatsSection />
+        <EcosystemSection />
+        <ParticipationSection />
+      </main>
     </div>
   );
 };

@@ -99,35 +99,54 @@ const AlienTrip: React.FC = () => {
                 >
                   <Rocket className="mr-2 h-5 w-5" /> Join the Journey
                 </Button>
-                <Button 
-                  className="bg-alien-green/20 border-alien-green text-alien-green hover:bg-alien-green hover:text-alien-space-dark font-nasalization border-2 hover:shadow-lg hover:scale-105 transition-all duration-300" 
-                  onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")}
-                >
-                  <ScrollText className="mr-2 h-5 w-5" /> Documentation & Greenpapers
-                </Button>
               </div>
-              
-              {/* Combined Documentation Card - Simplified */}
-              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <BookOpen className="h-6 w-6 text-alien-gold mr-3" />
-                    <h3 className="text-xl font-semibold text-alien-gold font-nasalization">Complete Documentation Hub</h3>
-                  </div>
-                  <p className="text-gray-300 mb-4 font-[Exo]">
-                    Access our complete documentation including whitepaper, tokenomics, roadmap, and all technical specifications in one place.
-                  </p>
-                  <a 
-                    href="https://alienflowspace.gitbook.io/DAO" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-flex items-center text-alien-green hover:text-alien-green-light font-[Exo] hover:scale-105 transition-all duration-300"
-                  >
-                    <span>Complete GitBook Hub</span>
-                    <Rocket className="ml-2 h-4 w-4" />
-                  </a>
-                </CardContent>
-              </Card>
+
+              {/* Documentation Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* GitBook Documentation */}
+                <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <BookOpen className="h-6 w-6 text-alien-gold mr-3" />
+                      <h3 className="text-xl font-semibold text-alien-gold font-nasalization">Documentation & Greenpapers</h3>
+                    </div>
+                    <p className="text-gray-300 mb-4 font-[Exo]">
+                      Access our complete whitepaper, technical documentation, and all greenpapers in our GitBook hub.
+                    </p>
+                    <a 
+                      href="https://alienflowspace.gitbook.io/DAO" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex items-center text-alien-green hover:text-alien-green-light font-[Exo] hover:scale-105 transition-all duration-300 bg-alien-green/10 px-4 py-2 rounded-lg border border-alien-green/30 hover:bg-alien-green/20"
+                    >
+                      <span>Read GitBook Documentation</span>
+                      <Rocket className="ml-2 h-4 w-4" />
+                    </a>
+                  </CardContent>
+                </Card>
+
+                {/* Tokenomics Card */}
+                <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-green/20 hover:border-alien-green/40 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <PieChart className="h-6 w-6 text-alien-green mr-3" />
+                      <h3 className="text-xl font-semibold text-alien-green font-nasalization">Tokenomics Details</h3>
+                    </div>
+                    <p className="text-gray-300 mb-4 font-[Exo]">
+                      Explore the complete A₿TC token distribution, utility mechanisms, and economic model.
+                    </p>
+                    <a 
+                      href="https://alienflowspace.gitbook.io/DAO" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex items-center text-alien-gold hover:text-alien-gold-light font-[Exo] hover:scale-105 transition-all duration-300 bg-alien-gold/10 px-4 py-2 rounded-lg border border-alien-gold/30 hover:bg-alien-gold/20"
+                    >
+                      <span>View Tokenomics</span>
+                      <Rocket className="ml-2 h-4 w-4" />
+                    </a>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Crypto Mint NFT - Compact design */}

@@ -253,9 +253,12 @@ const CoNetWorKing: React.FC = () => {
       {/* Background Network Image */}
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
-        <div className="max-w-7xl mx-auto">
+        {/* Semi-transparent overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm rounded-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-30">
           {/* Hero Section with better readability */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 bg-black/30 backdrop-blur-md p-8 rounded-2xl border border-alien-gold/20">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
                 src="/lovable-uploads/CoNetWorKingLogo.png" 
