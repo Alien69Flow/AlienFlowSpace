@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-8 sm:mb-12 text-glow" // <-- Añadido aquí
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-8 sm:mb-12 hero-title"
         >
           <span className="text-alien-green">Δlieπ</span>
           <span className="text-alien-gold">FlΦw</span>
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
 
         {/* Star Wars inspired description - con resplandor */}
         <motion.div 
-          className="text-center px-2 py-4 text-glow" // <-- Añadido aquí
+          className="text-center px-2 py-4 readable-glow"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
