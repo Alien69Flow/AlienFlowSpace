@@ -45,20 +45,20 @@
     --sidebar-ring: 48 83% 72%;
   }
 
-  /* REGLAS CORREGIDAS PARA FONT NASALIZATION */
-  h1, h2, h3, h4, h5, h6, button, a.font-nasalization, .font-nasalization {
-    font-family: 'Nasalization', sans-serif;
-    font-weight: 400;
+  /* REGLAS CORREGIDAS CON MAYOR ESPECIFICIDAD */
+  h1, h2, h3, h4, h5, h6, button, a, .font-nasalization, .font-nasalization * {
+    font-family: 'Nasalization', sans-serif !important;
+    font-weight: 400 !important;
     letter-spacing: 0.5px;
   }
   
-  body, p, span, div, a, input, textarea, label {
+  body, p, span, div, input, textarea, label {
     font-family: 'Exo', system-ui, sans-serif;
   }
 
-  /* REGLA PARA SOBREESCRIBIR FONT-FAMILY DE ELEMENTOS ESPECÍFICOS EN HERO */
-  .hero-title, .hero-title *, .readable-glow, .readable-glow * {
-    font-family: 'Nasalization', sans-serif !important;
+  /* REGLA ESPECÍFICA PARA QUE EL TEXTO EN HERO SEA EXO */
+  .hero-description p {
+    font-family: 'Exo', system-ui, sans-serif !important;
   }
 
   :where(*, *::before, *::after) {
