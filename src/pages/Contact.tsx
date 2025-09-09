@@ -8,9 +8,9 @@ const Contact: React.FC = () => {
   return (
     <div className="relative flex flex-col flex-1">
 
-      <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
+      <main className="relative z-10 flex-grow container mx-auto px-4 pt-20 pb-16">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-alien-gold mb-8 font-nasalization text-center">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-alien-gold mb-12 font-nasalization text-center">Contact Us</h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Methods - Takes 2/3 of the space on large screens */}
@@ -19,8 +19,8 @@ const Contact: React.FC = () => {
                 Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-colors border border-alien-gold/20">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-center p-6 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-colors border border-alien-gold/20 hover:border-alien-gold/40 hover:scale-105 transition-all duration-300">
                   <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
                     <Disc className="h-5 w-5 text-alien-space-dark" />
                   </div>

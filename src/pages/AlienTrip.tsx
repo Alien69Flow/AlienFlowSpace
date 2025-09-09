@@ -93,27 +93,37 @@ const AlienTrip: React.FC = () => {
               </Card>
 
               <div className="flex flex-wrap gap-4 mb-8">
-                <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization">
+                <Button 
+                  className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization hover:shadow-lg hover:scale-105 transition-all duration-300"
+                  onClick={() => window.location.href = '/contact'}
+                >
                   <Rocket className="mr-2 h-5 w-5" /> Join the Journey
                 </Button>
-                <Button variant="outline" className="border-alien-green text-alien-green hover:bg-alien-green/20 font-nasalization" onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")}>
-                  <ScrollText className="mr-2 h-5 w-5" /> Look Greenpapers
+                <Button 
+                  className="bg-alien-green/20 border-alien-green text-alien-green hover:bg-alien-green hover:text-alien-space-dark font-nasalization border-2 hover:shadow-lg hover:scale-105 transition-all duration-300" 
+                  onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")}
+                >
+                  <ScrollText className="mr-2 h-5 w-5" /> Documentation & Greenpapers
                 </Button>
               </div>
               
-              {/* GitBook Card */}
-              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20">
+              {/* Combined Documentation Card - Simplified */}
+              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <BookOpen className="h-6 w-6 text-alien-gold mr-3" />
-                    <h3 className="text-xl font-semibold text-alien-gold font-nasalization">Official Documentation</h3>
+                    <h3 className="text-xl font-semibold text-alien-gold font-nasalization">Complete Documentation Hub</h3>
                   </div>
                   <p className="text-gray-300 mb-4 font-[Exo]">
-                    Access our comprehensive documentation to learn about tokenomics, roadmap, and 
-                    technical specifications of the ΔlieπFlΦw $pac€ DAO ecosystem.
+                    Access our complete documentation including whitepaper, tokenomics, roadmap, and all technical specifications in one place.
                   </p>
-                  <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="flex items-center text-alien-green hover:text-alien-green-light font-[Exo]">
-                    <span>Visit GitBook</span>
+                  <a 
+                    href="https://alienflowspace.gitbook.io/DAO" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center text-alien-green hover:text-alien-green-light font-[Exo] hover:scale-105 transition-all duration-300"
+                  >
+                    <span>Complete GitBook Hub</span>
                     <Rocket className="ml-2 h-4 w-4" />
                   </a>
                 </CardContent>
@@ -213,11 +223,6 @@ const AlienTrip: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="text-center mt-8">
-                  <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-alien-green hover:text-alien-green-light inline-flex items-center font-[Exo]">
-                    View detailed tokenomics <Rocket className="ml-2 h-4 w-4" />
-                  </a>
-                </div>
               </CardContent>
             </Card>
           </div>
@@ -288,11 +293,6 @@ const AlienTrip: React.FC = () => {
                 </div>)}
             </div>
             
-            <div className="text-center mt-8">
-              <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-alien-green hover:text-alien-green-light inline-flex items-center font-[Exo]">
-                View complete roadmap <Rocket className="ml-2 h-4 w-4" />
-              </a>
-            </div>
           </div>
           
           <Card className="bg-alien-space-dark/70 backdrop-blur-md border-alien-gold/20">
@@ -302,8 +302,17 @@ const AlienTrip: React.FC = () => {
                 The AlienFlowSpace DAO is more than a project—it's a movement to transform blockchain collaboration across the multiverse. Be part of this revolutionary journey.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark px-8 py-6 font-nasalization">
+                <Button 
+                  className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark px-8 py-6 font-nasalization hover:shadow-lg hover:scale-105 transition-all duration-300"
+                  onClick={() => window.location.href = '/contact'}
+                >
                   <Rocket className="mr-2 h-5 w-5" /> Join AlienFlowSpace
+                </Button>
+                <Button 
+                  className="bg-alien-green/20 border-alien-green text-alien-green hover:bg-alien-green hover:text-alien-space-dark font-nasalization border-2 px-8 py-6 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                  onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")}
+                >
+                  <BookOpen className="mr-2 h-5 w-5" /> Complete Documentation
                 </Button>
               </div>
             </CardContent>

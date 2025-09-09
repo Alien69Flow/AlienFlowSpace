@@ -28,19 +28,25 @@ const DesktopNav = () => {
     { code: 'us', name: 'English', lang: 'en' },
     { code: 'es', name: 'Español', lang: 'es' },
     { code: 'fr', name: 'Français', lang: 'fr' },
+    { code: 'de', name: 'Deutsch', lang: 'de' },
     { code: 'cn', name: '汉语 (Hànyǔ)', lang: 'zh' },
     { code: 'in', name: 'हिन्दी (Hindī)', lang: 'hi' },
     { code: 'pt', name: 'Português', lang: 'pt' },
     { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
   ];
 
-  const openTranslate = (provider: 'google' | 'deepl') => {
-    const url = window.location.href;
-    if (provider === 'google') {
-      window.open(`https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(url)}`, '_blank');
+  const translatePage = (langCode: string, service: 'google' | 'deepl') => {
+    const currentUrl = window.location.href;
+    let translateUrl: string;
+
+    if (service === 'google') {
+      translateUrl = `https://translate.google.com/translate?sl=auto&tl=${langCode}&u=${encodeURIComponent(currentUrl)}`;
     } else {
-      window.open(`https://www.deepl.com/translator#auto/es/${encodeURIComponent(url)}`, '_blank');
+      // DeepL direct translation
+      translateUrl = `https://www.deepl.com/translator?utm_source=alienflowspace#auto/${langCode}/${encodeURIComponent(window.location.hostname)}`;
     }
+    
+    window.open(translateUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -114,6 +120,7 @@ const DesktopNav = () => {
                 <DropdownMenuItem 
                   key={lang.code} 
                   className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
+                  onSelect={(e) => { e.preventDefault(); translatePage(lang.lang, 'google'); }}
                 >
                   <img 
                     src={`https://flagcdn.com/w20/${lang.code}.png`} 
@@ -123,16 +130,19 @@ const DesktopNav = () => {
                   <span className="font-medium">{lang.name}</span>
                 </DropdownMenuItem>
               ))}
+              <div className="border-t border-alien-gold/20 my-2" />
               <DropdownMenuItem
                 className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
-                onSelect={(e) => { e.preventDefault(); openTranslate('google'); }}
+                onSelect={(e) => { e.preventDefault(); translatePage('es', 'google'); }}
               >
+                <Globe className="w-4 h-4" />
                 <span className="font-medium">Traducir con Google</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="flex items-center gap-3 text-alien-gold hover:text-alien-green hover:bg-alien-space-light/30 cursor-pointer p-3 rounded-lg transition-all duration-300"
-                onSelect={(e) => { e.preventDefault(); openTranslate('deepl'); }}
+                onSelect={(e) => { e.preventDefault(); translatePage('es', 'deepl'); }}
               >
+                <Globe className="w-4 h-4" />
                 <span className="font-medium">Traducir con DeepL</span>
               </DropdownMenuItem>
             </div>

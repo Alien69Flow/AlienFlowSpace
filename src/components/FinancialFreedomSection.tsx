@@ -4,8 +4,9 @@ import { Bitcoin, TrendingUp, Shield, Coins, Zap, Lock, ShoppingCart, Wand2, Spa
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 const FinancialFreedomSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Enhanced background decorative elements */}
+    <section className="py-24 relative overflow-hidden bg-glow-radial">
+      {/* Background layers matching hero */}
+      <div className="absolute inset-0 bg-stars bg-cover bg-center opacity-30"></div>
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-32 h-32 bg-alien-gold/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-40 h-40 bg-alien-green/10 rounded-full blur-3xl animate-pulse delay-1000"></div>

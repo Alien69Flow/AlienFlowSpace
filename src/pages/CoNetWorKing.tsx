@@ -254,7 +254,7 @@ const CoNetWorKing: React.FC = () => {
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
         <div className="max-w-7xl mx-auto">
-          {/* Hero Section */}
+          {/* Hero Section with better readability */}
           <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
@@ -263,12 +263,14 @@ const CoNetWorKing: React.FC = () => {
                 className="h-16 w-16 object-contain"
               />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-alien-gold mb-8 font-[Atomic Age, Star Wars] text-glow">
-              CoNetWorKing
-            </h1>
-            <p className="text-2xl text-gray-200 max-w-4xl mx-auto font-[Exo] leading-relaxed">
-              Connect with the future of decentralized finance through our comprehensive suite of blockchain services
-            </p>
+            <div className="readable-panel max-w-4xl mx-auto">
+              <h1 className="text-5xl md:text-7xl font-bold text-alien-gold mb-6 font-nasalization">
+                CoNetWorKing
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-100 font-[Exo] leading-relaxed">
+                Connect with the future of decentralized finance through our comprehensive suite of blockchain services
+              </p>
+            </div>
           </div>
 
           {/* Services Grid */}

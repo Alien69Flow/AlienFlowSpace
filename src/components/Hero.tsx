@@ -58,18 +58,18 @@ const Hero: React.FC = () => {
           <span className="text-alien-gold"> DAO</span>
         </motion.h1>
 
-        {/* Star Wars inspired description */}
+        {/* Star Wars inspired description - Static and optimized */}
         <motion.div 
-          className="star-wars-crawl"
+          className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          <div className="star-wars-content">
-            <p className="mb-4 text-sm sm:text-base lg:text-lg">
+          <div className="starwars-text space-y-4">
+            <p className="text-base sm:text-lg lg:text-xl font-medium leading-relaxed">
               Access the DAO with Innovative Solutions, Unlocks Energy Efficiency & Environmental Sustainability.
             </p>
-            <p className="text-sm sm:text-base lg:text-lg opacity-90">
+            <p className="text-sm sm:text-base lg:text-lg opacity-90 leading-relaxed">
               Advantages Boosting the BENEFITS, for Connecting you and Raise your QUALITY of LIFE, with Mutual PROFITS…
             </p>
           </div>
