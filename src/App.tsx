@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AppKitProvider } from '@reown/appkit/react'; // Importa correctamente el provider
+import { AppKitProvider } from '@reown/appkit/react';
 import { mainnet, arbitrum, polygon } from '@reown/appkit/networks';
 import Layout from './components/Layout';
 import Index from './pages/Index';
@@ -10,8 +10,7 @@ import Clubs from './pages/Clubs';
 import CoNetWorKing from './pages/CoNetWorKing';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-import './index.css';
-import './global.css';
+import './index.css'; // Solo se importa el archivo final
 
 function App() {
   return (
