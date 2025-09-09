@@ -58,18 +58,18 @@ const Hero: React.FC = () => {
           <span className="text-alien-gold"> DAO</span>
         </motion.h1>
 
-        {/* Star Wars inspired description */}
+        {/* Star Wars inspired description - ESTÁTICO, SIN FONDO NI ANIMACIÓN DE CRAWL */}
         <motion.div 
-          className="star-wars-crawl"
+          className="text-center px-2 py-4" // Elimina clases tipo 'star-wars-crawl'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          <div className="star-wars-content">
-            <p className="mb-4 text-sm sm:text-base lg:text-lg">
+          <div>
+            <p className="mb-4 text-lg font-nasalization text-alien-gold">
               Access the DAO with Innovative Solutions, Unlocks Energy Efficiency & Environmental Sustainability.
             </p>
-            <p className="text-sm sm:text-base lg:text-lg opacity-90">
+            <p className="text-base opacity-90 text-alien-green font-nasalization">
               Advantages Boosting the BENEFITS, for Connecting you and Raise your QUALITY of LIFE, with Mutual PROFITS…
             </p>
           </div>
@@ -83,20 +83,20 @@ const Hero: React.FC = () => {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <Link to="/about" className="w-full sm:w-auto">
-            <Button className="w-full sm:w-auto bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+            <Button className="w-full sm:w-auto bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full">
               <Orbit className="mr-2 h-4 w-4" /> About Enter Portal
             </Button>
           </Link>
 
           <Link to="/alien-trip" className="w-full sm:w-auto">
-            <Button className="w-full sm:w-auto bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+            <Button className="w-full sm:w-auto bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full">
               <ScrollText className="mr-2 h-4 w-4" /> Alientrip Manifesto
             </Button>
           </Link>
 
           <Button
             onClick={scrollToSpaces}
-            className="w-full sm:w-auto bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            className="w-full sm:w-auto bg-alien-green text-alien-gold hover:bg-alien-gold hover:text-alien-green font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full transition"
           >
             <Globe className="mr-2 h-4 w-4" /> Join the Journey
           </Button>
