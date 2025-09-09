@@ -21,7 +21,6 @@ const Hero: React.FC = () => {
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12 sm:py-16 overflow-hidden">
       {/* Background layers */}
-      <div className="absolute inset-0 bg-stars bg-cover bg-center opacity-30"></div>
       <div className="absolute inset-0 bg-glow-radial"></div>
 
       <div className="container relative z-10 px-4 mx-auto text-center max-w-6xl">
