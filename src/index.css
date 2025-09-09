@@ -8,9 +8,9 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Nasalization.woff2') format('woff2'),
-       url('/fonts/Nasalization.woff') format('woff'),
-       url('/fonts/Nasalization.otf') format('opentype');
+  src: url('./fonts/Nasalization.woff2') format('woff2'),
+       url('./fonts/Nasalization.woff') format('woff'),
+       url('./fonts/Nasalization.otf') format('opentype');
 }
 
 @layer base {
