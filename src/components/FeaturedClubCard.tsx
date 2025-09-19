@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ExternalLink, Users, Gamepad2, Leaf, DollarSign, Music, Shield, Zap } from 'lucide-react';
+import EcoProductCarousel from '@/components/EcoProductCarousel';
 
 interface PlatformLink {
   name: string;
@@ -99,37 +100,40 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
           {club.description}
         </p>
 
-        {/* Sections */}
-        <div className="space-y-4 mb-6">
+        {/* Sections - Horizontal Layout */}
+        <div className="space-y-6 mb-6">
           {club.sections.map((section, index) => (
-            <Card key={index} className="bg-alien-space-dark/60 border-alien-gold/20 backdrop-blur-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center text-alien-gold text-sm font-nasalization">
-                  {section.icon}
-                  <span className="ml-2">{section.title}</span>
-                </CardTitle>
-                <CardDescription className="text-xs text-gray-300 font-[Exo]">
-                  {section.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="grid grid-cols-2 gap-2">
-                  {section.platforms.map((platform, pIndex) => (
+            <div key={index} className="bg-alien-space-dark/60 border border-alien-gold/20 backdrop-blur-sm rounded-lg p-4">
+              <div className="flex items-center text-alien-gold text-sm font-nasalization mb-3">
+                {section.icon}
+                <span className="ml-2">{section.title}</span>
+              </div>
+              <p className="text-xs text-gray-300 font-[Exo] mb-4">{section.description}</p>
+              
+              {/* Special handling for EcoFlow product carousel */}
+              {club.name === 'Δ EcoFlow' && section.title === 'Eco Products Catalog' ? (
+                <div className="mt-4">
+                  <EcoProductCarousel />
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
                     <Button
                       key={pIndex}
                       variant="ghost"
                       size="sm"
-                      className={`${section.color} text-white hover:bg-white/20 text-xs h-8 justify-start font-[Exo]`}
+                      className={`${section.color} text-white hover:bg-white/20 text-xs h-8 justify-center font-[Exo] min-w-[100px] flex-1 max-w-[140px]`}
                       onClick={() => platform.url && window.open(platform.url, '_blank')}
                       disabled={!platform.url}
                     >
-                      <ExternalLink className="h-3 w-3 mr-1" />
+                      {platform.icon && <img src={platform.icon} alt={platform.name} className="h-3 w-3 mr-1" />}
+                      {!platform.icon && <ExternalLink className="h-3 w-3 mr-1" />}
                       {platform.name}
                     </Button>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              )}
+            </div>
           ))}
         </div>
 

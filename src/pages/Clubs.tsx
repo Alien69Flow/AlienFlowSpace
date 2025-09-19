@@ -407,14 +407,6 @@ const Clubs: React.FC = () => {
                 <FeaturedClubCard key={index} club={club} />
               ))}
             </div>
-            
-            {/* Special EcoFlow Product Showcase */}
-            <div className="mt-8 bg-alien-space-dark/60 p-6 rounded-xl backdrop-blur-md border border-alien-gold/30">
-              <h3 className="text-xl font-bold text-alien-gold mb-4 font-nasalization text-center">
-                🌱 EcoFlow Product Showcase
-              </h3>
-              <EcoProductCarousel />
-            </div>
           </div>
 
           {/* All Clubs + Sidebar */}
