@@ -1,8 +1,9 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { useAppKit } from '@reown/appkit/react';
-import { useAppKitAccount } from '@reown/appkit/react';
-import { useDisconnect } from '@reown/appkit/react';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { useAppKit } from "@reown/appkit/react";
+import { useAppKitAccount } from "@reown/appkit/react";
+import { useDisconnect } from "@reown/appkit/react";
+import { useWallet } from "@/context/WalletContext";
 
 const WALLET_ICON = "/lovable-uploads/AW.png";
 const PORTAL_ICON_AVIF = "/lovable-uploads/AP1.avif";
@@ -10,12 +11,11 @@ const PORTAL_ICON_JPG = "/lovable-uploads/AP.jpg";
 const ICON_SIZE = "h-7 w-7 sm:h-8 sm:w-8";
 
 const shortAddress = (addr: string) =>
-  addr ? addr.slice(0, 6) + '...' + addr.slice(-4) : '';
+  addr ? addr.slice(0, 6) + "..." + addr.slice(-4) : "";
 
 const ConnectButton = () => {
   const { open } = useAppKit();
-  const { address, isConnected } = useAppKitAccount();
-  const { disconnect } = useDisconnect();
+  const { address, isConnected, disconnect, connect } = useWallet();
 
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -43,8 +43,21 @@ const ConnectButton = () => {
             type="button"
           >
             <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-              <path d="M16 17L21 12M21 12L16 7M21 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              <rect x="3" y="4" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="2"/>
+              <path
+                d="M16 17L21 12M21 12L16 7M21 12H9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+              <rect
+                x="3"
+                y="4"
+                width="12"
+                height="16"
+                rx="2"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
             </svg>
           </Button>
         </>
@@ -56,7 +69,7 @@ const ConnectButton = () => {
             transition-all duration-200 ease-in-out
             hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold
           "
-          onClick={() => open({ view: "Connect" })}
+          onClick={() => connect()}
           title="Conectar Wallet"
           aria-label="Conectar Wallet"
           type="button"
