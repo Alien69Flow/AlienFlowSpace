@@ -36,11 +36,11 @@ const DesktopNav = () => {
 
   const handleLanguageSelect = (lang: string) => {
     const url = window.location.href;
-    // Try Google Translate first, fallback to DeepL
+    // Try Google Translate (website translate), fallback to DeepL Website Translator
     try {
-      window.open(`https://translate.google.com/translate?sl=auto&tl=${lang}&u=${encodeURIComponent(url)}`, '_blank');
+      window.open(`https://translate.google.com/translate?sl=auto&tl=${lang}&u=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer');
     } catch (error) {
-      window.open(`https://www.deepl.com/translator#auto/${lang}/${encodeURIComponent(url)}`, '_blank');
+      window.open(`https://www.deepl.com/translate?url=${encodeURIComponent(url)}&tl=${lang}&op=translate`, '_blank', 'noopener,noreferrer');
     }
   };
 
