@@ -100,8 +100,8 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
           {club.description}
         </p>
 
-        {/* Sections - Horizontal Layout */}
-        <div className="space-y-6 mb-6">
+        {/* Sections - Horizontal Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           {club.sections.map((section, index) => (
             <div key={index} className="bg-alien-space-dark/60 border border-alien-gold/20 backdrop-blur-sm rounded-lg p-4">
               <div className="flex items-center text-alien-gold text-sm font-nasalization mb-3">
@@ -116,19 +116,19 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
                   <EcoProductCarousel />
                 </div>
               ) : (
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
                     <Button
                       key={pIndex}
                       variant="ghost"
                       size="sm"
-                      className={`${section.color} text-white hover:bg-white/20 text-xs h-8 justify-center font-[Exo] min-w-[100px] flex-1 max-w-[140px]`}
+                      className={`${section.color} text-white hover:bg-white/20 text-xs h-8 justify-start font-[Exo] w-full`}
                       onClick={() => platform.url && window.open(platform.url, '_blank')}
                       disabled={!platform.url}
                     >
-                      {platform.icon && <img src={platform.icon} alt={platform.name} className="h-3 w-3 mr-1" />}
-                      {!platform.icon && <ExternalLink className="h-3 w-3 mr-1" />}
-                      {platform.name}
+                      {platform.icon && <img src={platform.icon} alt={platform.name} className="h-3 w-3 mr-1 flex-shrink-0" />}
+                      {!platform.icon && <ExternalLink className="h-3 w-3 mr-1 flex-shrink-0" />}
+                      <span className="truncate">{platform.name}</span>
                     </Button>
                   ))}
                 </div>

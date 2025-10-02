@@ -40,12 +40,15 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
     { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
   ];
 
-  const openTranslate = (provider: 'google' | 'deepl') => {
-    const url = window.location.href;
-    if (provider === 'google') {
-      window.open(`https://translate.google.com/translate?sl=auto&tl=es&u=${encodeURIComponent(url)}`, '_blank');
-    } else {
-      window.open(`https://www.deepl.com/translator#auto/es/${encodeURIComponent(url)}`, '_blank');
+  const translatePage = (langCode: string) => {
+    const currentUrl = window.location.href;
+    const googleTranslateUrl = `https://translate.google.com/translate?sl=auto&tl=${langCode}&u=${encodeURIComponent(currentUrl)}`;
+    
+    try {
+      window.open(googleTranslateUrl, '_blank');
+    } catch (error) {
+      const deeplUrl = `https://www.deepl.com/translator#en/${langCode}/${encodeURIComponent(currentUrl)}`;
+      window.open(deeplUrl, '_blank');
     }
   };
 
@@ -164,6 +167,7 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       className="p-2 hover:bg-alien-space-light/30 cursor-pointer text-alien-gold hover:text-alien-green flex items-center gap-2 transition-all duration-300"
+                      onClick={() => translatePage(lang.lang)}
                     >
                       <img 
                         src={`https://flagcdn.com/w20/${lang.code}.png`} 
@@ -173,18 +177,6 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
                       <span className="text-xs">{lang.name}</span>
                     </motion.div>
                   ))}
-                  <div
-                    className="p-3 hover:bg-alien-space-light/30 cursor-pointer text-alien-gold hover:text-alien-green transition-all duration-300 border-t border-alien-gold/20"
-                    onClick={() => openTranslate('google')}
-                  >
-                    <span className="text-xs font-medium">Traducir con Google</span>
-                  </div>
-                  <div
-                    className="p-3 hover:bg-alien-space-light/30 cursor-pointer text-alien-gold hover:text-alien-green transition-all duration-300"
-                    onClick={() => openTranslate('deepl')}
-                  >
-                    <span className="text-xs font-medium">Traducir con DeepL</span>
-                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

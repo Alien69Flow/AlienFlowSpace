@@ -465,6 +465,99 @@ const CoNetWorKing: React.FC = () => {
             </div>
           </div>
           
+          {/* DAO Section */}
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+              Decentralized Autonomous Organization
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Governance */}
+              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full">
+                      <Shield className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Governance</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
+                    Participate in the democratic governance of AlienFlowSpace DAO. Every token holder has a voice in shaping the future of our ecosystem through transparent voting mechanisms.
+                  </CardDescription>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Users className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Token-Based Voting</h4>
+                        <p className="text-gray-400 text-sm">One token, one vote - fully decentralized decision-making</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Landmark className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Treasury Management</h4>
+                        <p className="text-gray-400 text-sm">Community controls allocation of DAO funds</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Network className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">On-Chain Execution</h4>
+                        <p className="text-gray-400 text-sm">Smart contracts execute approved proposals automatically</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Proposals */}
+              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full">
+                      <Zap className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Proposals</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
+                    Submit and vote on proposals that drive the evolution of our ecosystem. From protocol upgrades to community initiatives, your voice matters.
+                  </CardDescription>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <TrendingUp className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Protocol Upgrades</h4>
+                        <p className="text-gray-400 text-sm">Propose improvements to smart contracts and features</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Coins className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Funding Requests</h4>
+                        <p className="text-gray-400 text-sm">Request DAO funding for community projects</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Globe className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Partnership Proposals</h4>
+                        <p className="text-gray-400 text-sm">Suggest strategic collaborations and integrations</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <Button className="w-full bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
+                      View Active Proposals
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-alien-green/20 to-alien-gold/20 rounded-xl p-12 text-center backdrop-blur-md border border-alien-gold/30">
             <Network className="h-16 w-16 text-alien-gold mx-auto mb-6" />

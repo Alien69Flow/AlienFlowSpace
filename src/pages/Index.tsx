@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import StarBackground from '@/components/StarBackground';
+import LoadingScreen from '@/components/LoadingScreen';
 
 // Lazy loading de secciones
 const Hero = lazy(() => import('@/components/Hero'));
@@ -17,29 +18,29 @@ const Index: React.FC = () => {
         <div className="absolute inset-0 -z-10">
           <StarBackground />
         </div>
-        <Suspense fallback={<div className="h-[80vh] flex items-center justify-center">Loading...</div>}>
+        <Suspense fallback={<LoadingScreen />}>
           <Hero />
         </Suspense>
       </div>
 
       {/* Secciones con lazy loading */}
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <FinancialFreedomSection />
       </Suspense>
 
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <ExploreSpacesSection />
       </Suspense>
 
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <EcosystemSection />
       </Suspense>
 
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <FeaturesSection />
       </Suspense>
 
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading section...</div>}>
+      <Suspense fallback={<LoadingScreen />}>
         <div className="section-center">
           <ParticipationSection />
         </div>
