@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Globe, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConnectButton from '@/components/Header/ConnectButton';
+import { translateTo } from '@/lib/translator';
 
 interface MobileNavProps {
   isMenuOpen: boolean;
@@ -41,14 +42,7 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
   ];
 
   const translatePage = (langCode: string) => {
-    const currentUrl = window.location.href;
-    const googleTranslateUrl = `https://translate.google.com/translate?sl=auto&tl=${langCode}&u=${encodeURIComponent(currentUrl)}`;
-    try {
-      window.open(googleTranslateUrl, '_blank', 'noopener,noreferrer');
-    } catch (error) {
-      const deeplUrl = `https://www.deepl.com/translate?url=${encodeURIComponent(currentUrl)}&tl=${langCode}&op=translate`;
-      window.open(deeplUrl, '_blank', 'noopener,noreferrer');
-    }
+    translateTo(langCode);
   };
 
   return (
@@ -188,18 +182,9 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
             transition={{ delay: 0.6 }}
             className="pt-2"
           >
-            <Button 
-              className="w-full bg-alien-green hover:bg-alien-green-light text-alien-space-dark rounded-lg py-2 flex items-center justify-center gap-2 font-nasalization transition-all duration-300 hover:scale-105"
-              onClick={() => window.open('https://aliendex.vercel.app', '_blank', 'noopener,noreferrer')}
-              aria-label="Open AlienDex Portal"
-            >
-              <img 
-                src="/lovable-uploads/AW.png" 
-                alt="Wallet" 
-                className="h-5 w-5 rounded-full" 
-              />
-              <span>Connect Portal</span>
-            </Button>
+            <div className="w-full">
+              <ConnectButton />
+            </div>
           </motion.div>
         </nav>
       </div>

@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { translateTo } from '@/lib/translator';
 
 const DesktopNav = () => {
   const navLinks = [
@@ -35,13 +36,7 @@ const DesktopNav = () => {
   ];
 
   const handleLanguageSelect = (lang: string) => {
-    const url = window.location.href;
-    // Try Google Translate (website translate), fallback to DeepL Website Translator
-    try {
-      window.open(`https://translate.google.com/translate?sl=auto&tl=${lang}&u=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer');
-    } catch (error) {
-      window.open(`https://www.deepl.com/translate?url=${encodeURIComponent(url)}&tl=${lang}&op=translate`, '_blank', 'noopener,noreferrer');
-    }
+    translateTo(lang);
   };
 
   return (

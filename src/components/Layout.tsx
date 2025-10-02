@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import { initGoogleTranslate } from '@/lib/translator';
 
 const Layout: React.FC = () => {
   const location = useLocation();
@@ -10,6 +11,11 @@ const Layout: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  // Initialize Google Website Translator once
+  useEffect(() => {
+    initGoogleTranslate();
+  }, []);
 
   // Map of route backgrounds
   const bgMap: Record<string, string> = {
@@ -32,6 +38,7 @@ const Layout: React.FC = () => {
         style={{ backgroundImage: `url('${bgImage}')` }}
       />
 
+      <div id="google_translate_element" className="hidden" aria-hidden="true"></div>
       <Header />
 
       {/* Main content */}

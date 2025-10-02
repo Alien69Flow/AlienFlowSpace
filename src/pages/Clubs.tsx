@@ -402,14 +402,10 @@ const Clubs: React.FC = () => {
             <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-center text-glow">
               Featured Clubs
             </h2>
-            <div className="overflow-x-auto pb-2" aria-label="Featured clubs horizontal list">
-              <div className="flex gap-6 snap-x snap-mandatory">
-                {[...featuredClubs].sort((a, b) => a.name.localeCompare(b.name)).map((club, index) => (
-                  <div key={index} className="min-w-[320px] md:min-w-[520px] xl:min-w-[560px] snap-start">
-                    <FeaturedClubCard club={club} />
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              {[...featuredClubs].sort((a, b) => a.name.localeCompare(b.name)).map((club, index) => (
+                <FeaturedClubCard key={index} club={club} />
+              ))}
             </div>
           </div>
 

@@ -18,7 +18,14 @@ const Header = () => {
   if (isMobile === undefined) {
     return (
       <div className="bg-alien-space-dark h-14 w-full flex items-center justify-center font-nasalization">
-        <div className="animate-pulse text-alien-gold">Loading...</div>
+        <div className="flex items-center gap-3">
+          <img src="/lovable-uploads/ALogo.png" alt="AlienFlowSpace" className="h-8 w-8 animate-pulse" />
+          <div className="flex gap-1">
+            <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{animationDelay:'0s'}}></span>
+            <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{animationDelay:'0.15s'}}></span>
+            <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{animationDelay:'0.3s'}}></span>
+          </div>
+        </div>
       </div>
     );
   }
