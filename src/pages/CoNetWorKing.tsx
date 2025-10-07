@@ -52,12 +52,6 @@ const CoNetWorKing: React.FC = () => {
       color: "bg-gradient-to-br from-blue-500 to-cyan-400"
     },
     {
-      title: "Mining",
-      description: "Participate in network security and earn rewards through proof-of-work and proof-of-stake mining operations.",
-      icon: <Pickaxe className="h-8 w-8 text-white" />,
-      color: "bg-gradient-to-br from-yellow-500 to-orange-400"
-    },
-    {
       title: "BioFi",
       description: "Revolutionize biotechnology funding through decentralized finance. Support and invest in groundbreaking biological research and medical innovations.",
       icon: <Dna className="h-8 w-8 text-white" />,
@@ -98,6 +92,12 @@ const CoNetWorKing: React.FC = () => {
       description: "Store and share data in a distributed file system. Access decentralized storage solutions that ensure data permanence and censorship resistance.",
       icon: <Database className="h-8 w-8 text-white" />,
       color: "bg-gradient-to-br from-slate-500 to-gray-400"
+    },
+    {
+      title: "Mining",
+      description: "Participate in network security and earn rewards through proof-of-work and proof-of-stake mining operations.",
+      icon: <Pickaxe className="h-8 w-8 text-white" />,
+      color: "bg-gradient-to-br from-yellow-500 to-orange-400"
     },
     {
       title: "QFS (Quantum Financial System)",
@@ -261,7 +261,7 @@ const CoNetWorKing: React.FC = () => {
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-20 bg-alien-space-dark/80 backdrop-blur-md rounded-2xl p-12 border border-alien-gold/30">
+          <div className="text-center mb-20 bg-alien-space-dark/90 backdrop-blur-md rounded-2xl p-12 border border-alien-gold/30 shadow-[0_0_50px_rgba(0,0,0,0.3)]">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
                 src="/lovable-uploads/CoNetWorKingLogo.png" 
@@ -279,10 +279,6 @@ const CoNetWorKing: React.FC = () => {
 
           {/* Real-time Network Stats with Bitcoin Widget */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
-              Live Network & Market Data
-            </h2>
-            
             {/* Bitcoin Price Widget */}
             <div className="mb-8 max-w-4xl mx-auto">
               <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30">
@@ -348,6 +344,18 @@ const CoNetWorKing: React.FC = () => {
                   </Card>
                 );
               })}
+            </div>
+          </div>
+
+          {/* Services Grid */}
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+              DAO | DAPP | DEX
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <ServiceCard key={index} service={service} />
+              ))}
             </div>
           </div>
 
@@ -441,18 +449,6 @@ const CoNetWorKing: React.FC = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          </div>
-
-          {/* Services Grid */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
-              DAO | DAPP | DEX
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <ServiceCard key={index} service={service} />
-              ))}
             </div>
           </div>
 
