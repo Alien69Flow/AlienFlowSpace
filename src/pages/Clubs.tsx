@@ -402,7 +402,7 @@ const Clubs: React.FC = () => {
             <h2 className="text-3xl font-bold text-alien-gold mb-8 font-nasalization text-center text-glow">
               Featured Clubs
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
               {[...featuredClubs].sort((a, b) => a.name.localeCompare(b.name)).map((club, index) => (
                 <FeaturedClubCard key={index} club={club} />
               ))}

@@ -52,6 +52,12 @@ const CoNetWorKing: React.FC = () => {
       color: "bg-gradient-to-br from-blue-500 to-cyan-400"
     },
     {
+      title: "Mining",
+      description: "Participate in network security and earn rewards through proof-of-work and proof-of-stake mining operations.",
+      icon: <Pickaxe className="h-8 w-8 text-white" />,
+      color: "bg-gradient-to-br from-yellow-500 to-orange-400"
+    },
+    {
       title: "BioFi",
       description: "Revolutionize biotechnology funding through decentralized finance. Support and invest in groundbreaking biological research and medical innovations.",
       icon: <Dna className="h-8 w-8 text-white" />,
@@ -255,7 +261,7 @@ const CoNetWorKing: React.FC = () => {
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 bg-alien-space-dark/80 backdrop-blur-md rounded-2xl p-12 border border-alien-gold/30">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
                 src="/lovable-uploads/CoNetWorKingLogo.png" 
@@ -263,24 +269,12 @@ const CoNetWorKing: React.FC = () => {
                 className="h-16 w-16 object-contain"
               />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-alien-gold mb-8 font-[Atomic Age, Star Wars] text-glow">
+            <h1 className="text-5xl md:text-7xl font-bold text-alien-gold mb-8 font-[Atomic Age, Star Wars] text-glow drop-shadow-[0_0_30px_rgba(255,215,0,0.5)]">
               CoNetWorKing
             </h1>
-            <p className="text-2xl text-gray-200 max-w-4xl mx-auto font-[Exo] leading-relaxed">
+            <p className="text-2xl text-white max-w-4xl mx-auto font-[Exo] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               Connect with the future of decentralized finance through our comprehensive suite of blockchain services
             </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
-              Our Services
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <ServiceCard key={index} service={service} />
-              ))}
-            </div>
           </div>
 
           {/* Real-time Network Stats with Bitcoin Widget */}
@@ -354,6 +348,111 @@ const CoNetWorKing: React.FC = () => {
                   </Card>
                 );
               })}
+            </div>
+          </div>
+
+          {/* DAO Section */}
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+              Decentralized Autonomous Organization
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Governance */}
+              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full">
+                      <Shield className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Governance</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
+                    Participate in the democratic governance of AlienFlowSpace DAO. Every token holder has a voice in shaping the future of our ecosystem through transparent voting mechanisms.
+                  </CardDescription>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Users className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Token-Based Voting</h4>
+                        <p className="text-gray-400 text-sm">One token, one vote - fully decentralized decision-making</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Landmark className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Treasury Management</h4>
+                        <p className="text-gray-400 text-sm">Community controls allocation of DAO funds</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Network className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">On-Chain Execution</h4>
+                        <p className="text-gray-400 text-sm">Smart contracts execute approved proposals automatically</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Proposals */}
+              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full">
+                      <Zap className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Proposals</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
+                    Submit and vote on proposals that drive the evolution of our ecosystem. From protocol upgrades to community initiatives, your voice matters.
+                  </CardDescription>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <TrendingUp className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Protocol Upgrades</h4>
+                        <p className="text-gray-400 text-sm">Propose improvements to smart contracts and features</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Coins className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Funding Requests</h4>
+                        <p className="text-gray-400 text-sm">Request DAO funding for community projects</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                      <Globe className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Partnership Proposals</h4>
+                        <p className="text-gray-400 text-sm">Suggest strategic collaborations and integrations</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <Button className="w-full bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
+                      View Active Proposals
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Services Grid */}
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+              DAO | DAPP | DEX
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <ServiceCard key={index} service={service} />
+              ))}
             </div>
           </div>
 
@@ -462,99 +561,6 @@ const CoNetWorKing: React.FC = () => {
                   </Card>
                 ))}
               </div>
-            </div>
-          </div>
-          
-          {/* DAO Section */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
-              Decentralized Autonomous Organization
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Governance */}
-              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full">
-                      <Shield className="h-8 w-8 text-white" />
-                    </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Governance</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
-                    Participate in the democratic governance of AlienFlowSpace DAO. Every token holder has a voice in shaping the future of our ecosystem through transparent voting mechanisms.
-                  </CardDescription>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
-                      <Users className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Token-Based Voting</h4>
-                        <p className="text-gray-400 text-sm">One token, one vote - fully decentralized decision-making</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
-                      <Landmark className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Treasury Management</h4>
-                        <p className="text-gray-400 text-sm">Community controls allocation of DAO funds</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
-                      <Network className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">On-Chain Execution</h4>
-                        <p className="text-gray-400 text-sm">Smart contracts execute approved proposals automatically</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Proposals */}
-              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full">
-                      <Zap className="h-8 w-8 text-white" />
-                    </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Proposals</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
-                    Submit and vote on proposals that drive the evolution of our ecosystem. From protocol upgrades to community initiatives, your voice matters.
-                  </CardDescription>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
-                      <TrendingUp className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Protocol Upgrades</h4>
-                        <p className="text-gray-400 text-sm">Propose improvements to smart contracts and features</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
-                      <Coins className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Funding Requests</h4>
-                        <p className="text-gray-400 text-sm">Request DAO funding for community projects</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
-                      <Globe className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Partnership Proposals</h4>
-                        <p className="text-gray-400 text-sm">Suggest strategic collaborations and integrations</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-6">
-                    <Button className="w-full bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
-                      View Active Proposals
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
 

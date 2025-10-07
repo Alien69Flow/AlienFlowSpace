@@ -79,13 +79,13 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
 
   // Render advanced card with sections
   return (
-    <div className={`${club.bgColor} p-4 sm:p-6 rounded-xl backdrop-blur-md overflow-hidden relative group transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
+    <div className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-alien-space-dark/60 to-alien-space-dark/90 z-0"></div>
       
       <div className="relative z-10">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-stretch">
+        <div className="flex flex-col lg:flex-row gap-6 items-stretch">
           {/* Left sidebar with icon, meta and actions */}
-          <aside className="w-full lg:w-64 lg:min-w-[16rem] bg-alien-space-dark/60 border border-alien-gold/20 rounded-lg p-4 backdrop-blur-sm flex flex-col justify-between">
+          <aside className="w-full lg:w-72 lg:min-w-[18rem] bg-alien-space-dark/60 border border-alien-gold/20 rounded-lg p-5 backdrop-blur-sm flex flex-col justify-between">{/* ... keep existing code (sidebar content) ... */}
             <div>
               <div className="flex items-start justify-between lg:flex-col lg:items-start gap-3">
                 <div className="p-3 lg:p-4 bg-alien-space-dark/80 rounded-xl border border-alien-gold/30 group-hover:border-alien-gold/50 transition-all duration-300 inline-block">
@@ -119,15 +119,15 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
           </aside>
 
           {/* Right content with sections */}
-          <div className="flex-1">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="grid grid-cols-1 gap-4">
               {club.sections.map((section, index) => (
-                <div key={index} className="bg-alien-space-dark/60 border border-alien-gold/20 backdrop-blur-sm rounded-lg p-3 lg:p-4">
-                  <div className="flex items-center text-alien-gold text-xs lg:text-sm font-nasalization mb-2 lg:mb-3">
+                <div key={index} className="bg-alien-space-dark/60 border border-alien-gold/20 backdrop-blur-sm rounded-lg p-5">{/* ... keep existing code (section content) ... */}
+                  <div className="flex items-center text-alien-gold text-sm font-nasalization mb-3">
                     {section.icon}
                     <span className="ml-2">{section.title}</span>
                   </div>
-                  <p className="text-xs text-gray-300 font-[Exo] mb-3 lg:mb-4">{section.description}</p>
+                  <p className="text-sm text-gray-300 font-[Exo] mb-4">{section.description}</p>
 
                   {/* Special handling for EcoFlow product carousel */}
                   {club.name === 'Δ EcoFlow' && section.title === 'Eco Products Catalog' ? (
@@ -135,7 +135,7 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
                       <EcoProductCarousel />
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                       {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
                         <Button
                           key={pIndex}
