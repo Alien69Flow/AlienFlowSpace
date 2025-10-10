@@ -145,6 +145,18 @@ const CoNetWorKing: React.FC = () => {
       url: "https://www.aragon.org/"
     },
     {
+      name: "Behance",
+      logo: "/lovable-uploads/BehanceLogo.jpeg",
+      description: "Creative portfolio platform",
+      url: "https://www.behance.net/"
+    },
+    {
+      name: "Climate Reanalyzer",
+      logo: "/lovable-uploads/ClimateReanalyzerLogo.svg",
+      description: "Climate data visualization",
+      url: "https://climatereanalyzer.org/"
+    },
+    {
       name: "CoinGecko",
       logo: "/lovable-uploads/CoinGeckoLogo.svg",
       description: "Cryptocurrency data platform",
@@ -152,7 +164,7 @@ const CoNetWorKing: React.FC = () => {
     },
     {
       name: "CoinGlass",
-      logo: "/lovable-uploads/CoinGlassLogo.svg",
+      logo: "/lovable-uploads/CoinGlassLogo.jpeg",
       description: "Crypto derivatives data platform",
       url: "https://www.coinglass.com/"
     },
@@ -167,6 +179,12 @@ const CoNetWorKing: React.FC = () => {
       logo: "/lovable-uploads/DappRadarLogo.jpeg",
       description: "DApp analytics and discovery platform",
       url: "https://dappradar.com/"
+    },
+    {
+      name: "Unity Learn",
+      logo: "/lovable-uploads/UnityLearnLogo.svg",
+      description: "Game development education",
+      url: "https://learn.unity.com/"
     }
   ];
 
@@ -212,38 +230,74 @@ const CoNetWorKing: React.FC = () => {
     {
       name: "Isabella Rodriguez",
       avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Crypto Analyst",
+      role: "Chief Technology Officer",
       location: "Barcelona"
     },
     {
       name: "Emma Chen",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Blockchain Developer",
+      role: "Head of Blockchain Development",
       location: "Singapore"
     },
     {
       name: "Sophia Williams",
       avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "DeFi Strategist",
+      role: "DeFi Strategy Director",
       location: "London"
     },
     {
       name: "Aria Nakamura",
       avatar: "https://images.unsplash.com/photo-1506863530036-1efeddceb993?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Smart Contract Developer",
+      role: "Smart Contract Lead",
       location: "Tokyo"
     },
     {
       name: "Valentina Martinez",
       avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "NFT Artist",
+      role: "NFT Creative Director",
       location: "Mexico City"
     },
     {
       name: "Zoe Anderson",
       avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&h=150&auto=format&fit=crop",
-      role: "Crypto Trader",
+      role: "Treasury Manager",
       location: "New York"
+    },
+    {
+      name: "Yuki Tanaka",
+      avatar: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Security Auditor",
+      location: "Osaka"
+    },
+    {
+      name: "Luna Silva",
+      avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Community Manager",
+      location: "São Paulo"
+    },
+    {
+      name: "Aisha Patel",
+      avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Data Scientist",
+      location: "Mumbai"
+    },
+    {
+      name: "Natasha Volkov",
+      avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Tokenomics Specialist",
+      location: "Dubai"
+    },
+    {
+      name: "Carmen Diaz",
+      avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Marketing Director",
+      location: "Madrid"
+    },
+    {
+      name: "Priya Kumar",
+      avatar: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?q=80&w=150&h=150&auto=format&fit=crop",
+      role: "Governance Coordinator",
+      location: "Bangalore"
     }
   ];
 
@@ -255,13 +309,14 @@ const CoNetWorKing: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Background Network Image */}
+    <div className="min-h-screen relative overflow-hidden bg-alien-space-dark/80">
+      {/* Background with darkened overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-alien-space-dark/90 to-alien-space-dark/70 z-0"></div>
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
         <div className="max-w-7xl mx-auto">
-          {/* Hero Section */}
-          <div className="text-center mb-20 bg-alien-space-dark/90 backdrop-blur-md rounded-2xl p-12 border border-alien-gold/30 shadow-[0_0_50px_rgba(0,0,0,0.3)]">
+          {/* Hero Section - No box, just content */}
+          <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
                 src="/lovable-uploads/CoNetWorKingLogo.png" 
@@ -277,53 +332,49 @@ const CoNetWorKing: React.FC = () => {
             </p>
           </div>
 
-          {/* Real-time Network Stats with Bitcoin Widget */}
+          {/* Combined Bitcoin & Market Data Card */}
           <div className="mb-20">
-            {/* Bitcoin Price Widget */}
-            <div className="mb-8 max-w-4xl mx-auto">
-              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30">
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl flex items-center justify-center gap-3">
-                    <Coins className="h-8 w-8" />
-                    Bitcoin Real-Time Price
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="coinmarketcap-currency-widget" 
-                       data-currencyid="1" 
-                       data-base="USD" 
-                       data-secondary="BTC" 
-                       data-ticker="true" 
-                       data-rank="true" 
-                       data-marketcap="true" 
-                       data-volume="true" 
-                       data-statsticker="true" 
-                       data-stats="USD">
+            <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 max-w-6xl mx-auto">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Bitcoin Real-Time Price */}
+                  <div>
+                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl flex items-center gap-3 mb-6">
+                      <Coins className="h-8 w-8" />
+                      Bitcoin Real-Time Price
+                    </CardTitle>
+                    <div className="coinmarketcap-currency-widget" 
+                         data-currencyid="1" 
+                         data-base="USD" 
+                         data-secondary="BTC" 
+                         data-ticker="true" 
+                         data-rank="true" 
+                         data-marketcap="true" 
+                         data-volume="true" 
+                         data-statsticker="true" 
+                         data-stats="USD">
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
 
-            {/* Crypto Fear & Greed Index */}
-            <div className="mb-12 max-w-2xl mx-auto">
-              <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30">
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-alien-gold font-[Atomic Age] text-xl flex items-center justify-center gap-3">
-                    <TrendingUp className="h-6 w-6" />
-                    Market Sentiment
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6 text-center">
-                  <img 
-                    src="https://alternative.me/crypto/fear-and-greed-index.png" 
-                    alt="Latest Crypto Fear & Greed Index" 
-                    className="w-full max-w-md mx-auto rounded-lg"
-                  />
-                </CardContent>
-              </Card>
-            </div>
+                  {/* Market Sentiment */}
+                  <div>
+                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl flex items-center gap-3 mb-6">
+                      <TrendingUp className="h-8 w-8" />
+                      Market Sentiment
+                    </CardTitle>
+                    <img 
+                      src="https://alternative.me/crypto/fear-and-greed-index.png" 
+                      alt="Latest Crypto Fear & Greed Index" 
+                      className="w-full rounded-lg"
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-            {/* Network Stats Grid */}
+          {/* Network Stats Grid */}
+          <div className="mb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {networkStats.map((stat, index) => {
                 const IconComponent = stat.icon;
@@ -377,28 +428,35 @@ const CoNetWorKing: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
-                    Participate in the democratic governance of AlienFlowSpace DAO. Every token holder has a voice in shaping the future of our ecosystem through transparent voting mechanisms.
+                    Participate in the democratic governance of AlienFlowSpace DAO. Every token holder has a voice in shaping the future of our ecosystem through transparent on-chain voting.
                   </CardDescription>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
                       <Users className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Token-Based Voting</h4>
-                        <p className="text-gray-400 text-sm">One token, one vote - fully decentralized decision-making</p>
+                        <p className="text-gray-400 text-sm">Democratic decision-making with weighted voting power</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
                       <Landmark className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Treasury Management</h4>
-                        <p className="text-gray-400 text-sm">Community controls allocation of DAO funds</p>
+                        <p className="text-gray-400 text-sm">Multi-sig wallet with transparent fund allocation</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
                       <Network className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">On-Chain Execution</h4>
-                        <p className="text-gray-400 text-sm">Smart contracts execute approved proposals automatically</p>
+                        <p className="text-gray-400 text-sm">Automated smart contract execution of approved proposals</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
+                      <Zap className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Quadratic Voting</h4>
+                        <p className="text-gray-400 text-sm">Fair voting system preventing whale dominance</p>
                       </div>
                     </div>
                   </div>
@@ -417,34 +475,44 @@ const CoNetWorKing: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-gray-300 font-[Exo] leading-relaxed mb-6">
-                    Submit and vote on proposals that drive the evolution of our ecosystem. From protocol upgrades to community initiatives, your voice matters.
+                    Submit and vote on proposals that drive ecosystem evolution. Shape the future through transparent, community-driven decision-making.
                   </CardDescription>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
                       <TrendingUp className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Protocol Upgrades</h4>
-                        <p className="text-gray-400 text-sm">Propose improvements to smart contracts and features</p>
+                        <p className="text-gray-400 text-sm">Propose smart contract improvements and new features</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
                       <Coins className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
                       <div>
-                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Funding Requests</h4>
-                        <p className="text-gray-400 text-sm">Request DAO funding for community projects</p>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Grant Proposals</h4>
+                        <p className="text-gray-400 text-sm">Apply for DAO treasury funding with detailed roadmaps</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg">
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
                       <Globe className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Partnership Proposals</h4>
-                        <p className="text-gray-400 text-sm">Suggest strategic collaborations and integrations</p>
+                        <p className="text-gray-400 text-sm">Suggest strategic partnerships and ecosystem integrations</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-alien-space-light/20 rounded-lg hover:bg-alien-space-light/30 transition-colors">
+                      <Sprout className="h-5 w-5 text-alien-green flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="text-alien-gold font-[Exo] font-semibold mb-1">Community Initiatives</h4>
+                        <p className="text-gray-400 text-sm">Launch educational programs and outreach campaigns</p>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-6">
-                    <Button className="w-full bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
-                      View Active Proposals
+                  <div className="mt-6 flex gap-3">
+                    <Button className="flex-1 bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
+                      View Proposals
+                    </Button>
+                    <Button variant="outline" className="flex-1 border-alien-green text-alien-green hover:bg-alien-green/10 font-[Exo]">
+                      Create New
                     </Button>
                   </div>
                 </CardContent>
@@ -492,11 +560,8 @@ const CoNetWorKing: React.FC = () => {
               Global Community
             </h2>
             
-            {/* Official Partners */}
+            {/* Official Partners - no repeated title */}
             <div className="mb-16">
-              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-[Atomic Age]">
-                Official Partners
-              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {officialPartners.map((partner, index) => (
                   <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105">
