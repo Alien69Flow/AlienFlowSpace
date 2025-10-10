@@ -138,54 +138,47 @@ const CoNetWorKing: React.FC = () => {
   ];
 
   const partners = [
-    {
-      name: "Aragon DAO",
-      logo: "/lovable-uploads/AragonDAOLogo.svg",
-      description: "Decentralized governance platform",
-      url: "https://www.aragon.org/"
-    },
-    {
-      name: "Behance",
-      logo: "/lovable-uploads/BehanceLogo.jpeg",
-      description: "Creative portfolio platform",
-      url: "https://www.behance.net/"
-    },
-    {
-      name: "Climate Reanalyzer",
-      logo: "/lovable-uploads/ClimateReanalyzerLogo.svg",
-      description: "Climate data visualization",
-      url: "https://climatereanalyzer.org/"
-    },
-    {
-      name: "CoinGecko",
-      logo: "/lovable-uploads/CoinGeckoLogo.svg",
-      description: "Cryptocurrency data platform",
-      url: "https://www.coingecko.com/"
-    },
-    {
-      name: "CoinGlass",
-      logo: "/lovable-uploads/CoinGlassLogo.jpeg",
-      description: "Crypto derivatives data platform",
-      url: "https://www.coinglass.com/"
-    },
-    {
-      name: "CoinMarketCap",
-      logo: "/lovable-uploads/CoinMarketCapLogo.jpeg",
-      description: "Cryptocurrency market data",
-      url: "https://coinmarketcap.com/"
-    },
-    {
-      name: "DappRadar",
-      logo: "/lovable-uploads/DappRadarLogo.jpeg",
-      description: "DApp analytics and discovery platform",
-      url: "https://dappradar.com/"
-    },
-    {
-      name: "Unity Learn",
-      logo: "/lovable-uploads/UnityLearnLogo.svg",
-      description: "Game development education",
-      url: "https://learn.unity.com/"
-    }
+    // CashFlow Partners
+    { name: "Binance", url: "https://binance.com/", logo: "/lovable-uploads/BinanceLogo.svg", description: "Leading crypto exchange" },
+    { name: "BingX", url: "https://bingx.com/referral-program/QCXRKM", logo: "/lovable-uploads/BingXLogo.svg", description: "Crypto trading platform" },
+    { name: "Bitget", url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N", logo: "/lovable-uploads/BitgetLogo.svg", description: "Crypto derivatives exchange" },
+    { name: "Bybit", url: "https://www.bybit.com/invite?ref=Q15Q4M", logo: "/lovable-uploads/BybitLogo.svg", description: "Crypto trading platform" },
+    { name: "Coinbase", url: "https://www.coinbase.com/join/EC2PSZT?src", logo: "/lovable-uploads/CoinbaseLogo.svg", description: "Trusted crypto exchange" },
+    { name: "Crypto.com", url: "https://crypto.com/app/una5xskncn", logo: "/lovable-uploads/CryptoComLogo.svg", description: "Crypto platform with card" },
+    { name: "Nexo", url: "https://nexo.com/ref/x6ts3r0kb2?src", logo: "/lovable-uploads/NexoLogo.svg", description: "Crypto banking platform" },
+    { name: "Pionex", url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7", logo: "/lovable-uploads/PionexLogo.svg", description: "Crypto trading bot platform" },
+    { name: "Pi Network", url: "https://minepi.com/Aitor69Alien", logo: "/lovable-uploads/PiNetworkLogo.svg", description: "Mobile crypto mining" },
+    
+    // GameFi Partners
+    { name: "Axie Infinity", url: "https://app.axieinfinity.com/", logo: "/lovable-uploads/AxieLogo.svg", description: "Play-to-earn game" },
+    { name: "Community Gaming", url: "https://www.communitygaming.io/", logo: "/lovable-uploads/CommunityGamingLogo.svg", description: "Gaming tournaments" },
+    { name: "Decentraland", url: "https://decentraland.org/", logo: "/lovable-uploads/DecentralandLogo.svg", description: "Virtual world platform" },
+    { name: "GAMEE", url: "https://www.gamee.com/", logo: "/lovable-uploads/GAMEELogo.svg", description: "Blockchain gaming" },
+    { name: "GameFi.org", url: "https://gamefi.org/", logo: "/lovable-uploads/GameFiLogo.svg", description: "GameFi aggregator" },
+    { name: "Illuvium", url: "https://www.illuvium.io/", logo: "/lovable-uploads/IlluviumLogo.svg", description: "AAA blockchain game" },
+    { name: "MOBOX", url: "https://www.mobox.io/", logo: "/lovable-uploads/MOBOXLogo.svg", description: "Gaming metaverse" },
+    { name: "The Sandbox", url: "https://www.sandbox.game/", logo: "/lovable-uploads/SandboxLogo.svg", description: "Metaverse platform" },
+    { name: "Treasure", url: "https://treasure.lol/", logo: "/lovable-uploads/TreasureLogo.svg", description: "Decentralized game console" },
+    { name: "Wombat", url: "https://go.getwombat.io/eN3a", logo: "/lovable-uploads/WombatLogo.svg", description: "Gaming wallet" },
+    { name: "ZEBEDEE", url: "https://zbd.link/hcHi/invite?af_sub1=S2S7IY", logo: "/lovable-uploads/ZEBEDEELogo.svg", description: "Bitcoin gaming platform" },
+    { name: "Arena.gg", url: "https://www.arenagg.com/", logo: "/lovable-uploads/ArenaLogo.svg", description: "eSports tournaments" },
+    { name: "Battlefy", url: "https://battlefy.com/", logo: "/lovable-uploads/BattlefyLogo.svg", description: "Tournament platform" },
+    { name: "Blitz.gg", url: "https://blitz.gg/", logo: "/lovable-uploads/BlitzLogo.svg", description: "Gaming performance" },
+    { name: "ESL Gaming", url: "https://esl.com/", logo: "/lovable-uploads/ESLLogo.svg", description: "eSports organization" },
+    { name: "LVP Global", url: "https://lvp.global/", logo: "/lovable-uploads/LVPLogo.svg", description: "eSports leagues" },
+    
+    // Data & Analytics Partners
+    { name: "CoinGecko", url: "https://www.coingecko.com/", logo: "/lovable-uploads/CoinGeckoLogo.svg", description: "Crypto data platform" },
+    { name: "CoinMarketCap", url: "https://coinmarketcap.com/", logo: "/lovable-uploads/CoinMarketCapLogo.jpeg", description: "Crypto market data" },
+    { name: "DappRadar", url: "https://dappradar.com/", logo: "/lovable-uploads/DappRadarLogo.jpeg", description: "DApp analytics" },
+    { name: "CoinGlass", url: "https://www.coinglass.com/", logo: "/lovable-uploads/CoinGlassLogo.jpeg", description: "Crypto derivatives data" },
+    
+    // Governance & Infrastructure
+    { name: "Aragon DAO", url: "https://www.aragon.org/", logo: "/lovable-uploads/AragonDAOLogo.svg", description: "DAO governance platform" },
+    
+    // Education & Resources
+    { name: "Unity Learn", url: "https://learn.unity.com/", logo: "/lovable-uploads/UnityLearnLogo.svg", description: "Game development" },
+    { name: "Climate Reanalyzer", url: "https://climatereanalyzer.org/", logo: "/lovable-uploads/ClimateReanalyzerLogo.svg", description: "Climate data" }
   ];
 
   const officialPartners = [
@@ -309,9 +302,9 @@ const CoNetWorKing: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-alien-space-dark/80">
-      {/* Background with darkened overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-alien-space-dark/90 to-alien-space-dark/70 z-0"></div>
+    <div className="min-h-screen relative overflow-hidden bg-alien-space-dark/50">
+      {/* Background with subtle overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-alien-space-dark/60 to-alien-space-dark/40 z-0"></div>
       
       <main className="container mx-auto px-4 pt-32 pb-16 relative z-20">
         <div className="max-w-7xl mx-auto">
@@ -332,41 +325,53 @@ const CoNetWorKing: React.FC = () => {
             </p>
           </div>
 
-          {/* Combined Bitcoin & Market Data Card */}
+          {/* Combined Bitcoin & Market Data Card - Luxury Design */}
           <div className="mb-20">
-            <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 max-w-6xl mx-auto">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-gradient-to-br from-alien-space-dark/90 via-alien-space-dark/80 to-alien-space-dark/70 backdrop-blur-xl border-2 border-alien-gold/40 max-w-6xl mx-auto shadow-[0_0_50px_rgba(255,215,0,0.2)] hover:shadow-[0_0_80px_rgba(255,215,0,0.3)] transition-all duration-500">
+              <CardContent className="p-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                   {/* Bitcoin Real-Time Price */}
-                  <div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl flex items-center gap-3 mb-6">
-                      <Coins className="h-8 w-8" />
-                      Bitcoin Real-Time Price
-                    </CardTitle>
-                    <div className="coinmarketcap-currency-widget" 
-                         data-currencyid="1" 
-                         data-base="USD" 
-                         data-secondary="BTC" 
-                         data-ticker="true" 
-                         data-rank="true" 
-                         data-marketcap="true" 
-                         data-volume="true" 
-                         data-statsticker="true" 
-                         data-stats="USD">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4 mb-6 pb-4 border-b border-alien-gold/30">
+                      <div className="p-3 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl shadow-lg">
+                        <Coins className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl text-glow">
+                        Bitcoin Real-Time Price
+                      </CardTitle>
+                    </div>
+                    <div className="bg-alien-space-light/20 p-4 rounded-xl border border-alien-gold/20">
+                      <div className="coinmarketcap-currency-widget" 
+                           data-currencyid="1" 
+                           data-base="USD" 
+                           data-secondary="BTC" 
+                           data-ticker="true" 
+                           data-rank="true" 
+                           data-marketcap="true" 
+                           data-volume="true" 
+                           data-statsticker="true" 
+                           data-stats="USD">
+                      </div>
                     </div>
                   </div>
 
                   {/* Market Sentiment */}
-                  <div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl flex items-center gap-3 mb-6">
-                      <TrendingUp className="h-8 w-8" />
-                      Market Sentiment
-                    </CardTitle>
-                    <img 
-                      src="https://alternative.me/crypto/fear-and-greed-index.png" 
-                      alt="Latest Crypto Fear & Greed Index" 
-                      className="w-full rounded-lg"
-                    />
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4 mb-6 pb-4 border-b border-alien-gold/30">
+                      <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl shadow-lg">
+                        <TrendingUp className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl text-glow">
+                        Market Sentiment
+                      </CardTitle>
+                    </div>
+                    <div className="bg-alien-space-light/20 p-4 rounded-xl border border-alien-gold/20">
+                      <img 
+                        src="https://alternative.me/crypto/fear-and-greed-index.png" 
+                        alt="Latest Crypto Fear & Greed Index" 
+                        className="w-full rounded-lg shadow-xl"
+                      />
+                    </div>
                   </div>
                 </div>
               </CardContent>

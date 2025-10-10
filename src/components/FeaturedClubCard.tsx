@@ -124,8 +124,8 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
           </div>
         </div>
 
-        {/* Sections - horizontal grid layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Sections - vertical stack with horizontal layout */}
+        <div className="space-y-6">
           {club.sections.map((section, index) => (
             <div key={index} className="bg-alien-space-dark/60 border border-alien-gold/20 backdrop-blur-sm rounded-lg p-5 hover:border-alien-gold/40 transition-all duration-300">
               <div className="flex items-center text-alien-gold text-sm font-nasalization mb-3">
@@ -140,13 +140,13 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
                   <EcoProductCarousel />
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-wrap gap-2">
                   {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
                     <Button
                       key={pIndex}
                       variant="ghost"
                       size="sm"
-                      className={`${section.color} text-white hover:bg-white/20 text-xs h-auto py-2 justify-start font-[Exo] w-full`}
+                      className={`${section.color} text-white hover:bg-white/20 text-xs h-auto py-2 justify-start font-[Exo]`}
                       onClick={() => platform.url && window.open(platform.url, '_blank')}
                       disabled={!platform.url}
                     >
