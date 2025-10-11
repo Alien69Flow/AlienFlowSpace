@@ -12,7 +12,7 @@ const ParticipationSection = lazy(() => import('@/components/ParticipationSectio
 
 const Index: React.FC = () => {
   return (
-    <div className="relative z-10 min-h-screen">
+    <div className="relative z-10 min-h-screen bg-alien-space-dark/10">
       {/* Hero con efecto Star Wars + estrellas */}
       <div className="relative">
         <div className="absolute inset-0 -z-10">

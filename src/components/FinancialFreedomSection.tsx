@@ -237,7 +237,7 @@ const FinancialFreedomSection = () => {
                     <Zap className="h-12 w-12 text-alien-gold animate-pulse" />
                   </div>
                 </div>
-                <CardTitle className="text-3xl md:text-4xl font-bold text-alien-gold font-nasalization group-hover:text-alien-gold-light transition-colors mb-6 text-glow">
+                <CardTitle className="text-3xl md:text-4xl font-bold text-alien-green font-nasalization group-hover:text-alien-green-light transition-colors mb-6 drop-shadow-[0_0_30px_rgba(3,255,25,0.6)]">
                   Instant Digital Access
                 </CardTitle>
                 <CardDescription className="text-gray-200 text-xl leading-relaxed font-[Exo] max-w-5xl mx-auto">

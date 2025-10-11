@@ -34,7 +34,7 @@ const ExploreSpacesSection = () => {
           viewport={{ once: true }} 
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 text-alien-gold text-glow font-nasalization">Explore Spaces</h2>
+          <h2 className="text-4xl font-bold mb-4 text-alien-green drop-shadow-[0_0_30px_rgba(3,255,25,0.6)] font-nasalization">Explore Spaces</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Discover specialized environments designed to enhance your journey through the cosmos
           </p>
