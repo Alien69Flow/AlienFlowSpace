@@ -1,27 +1,24 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { GraduationCap, Users, Trophy, Shield, Zap, Globe, Leaf } from "lucide-react";
-
 const About: React.FC = () => {
-  return (
-    <div className="relative flex flex-col flex-1 min-h-screen">
+  return <div className="relative flex flex-col flex-1 min-h-screen">
 
       {/* Main content */}
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-8 pb-16">
         <div className="max-w-6xl mx-auto">
           {/* Hero section with improved styling */}
           <div className="text-center mb-16">
-            <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl">
+            <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl rounded-3xl">
               <CardHeader className="pb-4">
-                <CardTitle className="text-4xl md:text-6xl font-bold text-alien-gold mb-6 font-nasalization text-glow leading-tight">
+                <CardTitle className="font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green md:text-5xl text-3xl">
                   We offer INNOVATIVE SOLUTIONS with cutting-edge technologies
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <h2 className="text-xl md:text-2xl text-alien-green mb-8 font-[Exo] max-w-4xl mx-auto leading-relaxed">
+                <h2 className="md:text-2xl text-alien-green mb-8 font-[Exo] max-w-4xl mx-auto leading-relaxed text-lg">
                   Improving Energy Efficiency and Environmental Sustainability, managing to professionally improve work flows and processes, this is WorkFlow.
                 </h2>
               </CardContent>
@@ -34,7 +31,7 @@ const About: React.FC = () => {
               <CardContent className="p-8">
                 <div className="space-y-8">
                   <div className="text-center">
-                    <h3 className="text-3xl font-semibold text-alien-gold mb-2 font-nasalization text-glow">
+                    <h3 className="text-3xl font-semibold mb-2 font-nasalization text-glow text-alien-green">
                       Web 5 (Quantum Computing)
                     </h3>
                     <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-4"></div>
@@ -62,7 +59,7 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold text-alien-gold font-nasalization text-glow flex items-center gap-3">
+                  <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
                     <Shield className="h-8 w-8" />
                     1st Pillar
                   </CardTitle>
@@ -90,7 +87,7 @@ const About: React.FC = () => {
 
               <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold text-alien-gold font-nasalization text-glow flex items-center gap-3">
+                  <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
                     <Globe className="h-8 w-8" />
                     3rd Pillar
                   </CardTitle>
@@ -135,7 +132,7 @@ const About: React.FC = () => {
 
               <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl">
                 <CardHeader>
-                  <CardTitle className="text-3xl font-semibold text-alien-gold font-nasalization text-glow text-center">
+                  <CardTitle className="text-3xl font-semibold font-nasalization text-glow text-center text-alien-green">
                     Our Values and Vision
                   </CardTitle>
                   <div className="w-32 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-4"></div>
@@ -195,7 +192,7 @@ const About: React.FC = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                   <div className="bg-alien-space-dark/90 p-6 rounded-xl backdrop-blur-md border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
-                    <h4 className="text-alien-gold font-semibold mb-3 text-xl font-nasalization text-glow">
+                    <h4 className="font-semibold mb-3 text-xl font-nasalization text-glow text-alien-green">
                       Decentralization
                     </h4>
                     <p className="leading-relaxed">
@@ -211,7 +208,7 @@ const About: React.FC = () => {
                     </p>
                   </div>
                   <div className="bg-alien-space-dark/90 p-6 rounded-xl backdrop-blur-md border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
-                    <h4 className="text-alien-gold font-semibold mb-3 text-xl font-nasalization text-glow">
+                    <h4 className="font-semibold mb-3 text-xl font-nasalization text-glow text-alien-green">
                       Liquidity
                     </h4>
                     <p className="leading-relaxed">
@@ -227,7 +224,7 @@ const About: React.FC = () => {
                     </p>
                   </div>
                   <div className="bg-alien-space-dark/90 p-6 rounded-xl backdrop-blur-md border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300 md:col-span-2 lg:col-span-1">
-                    <h4 className="text-alien-gold font-semibold mb-3 text-xl font-nasalization text-glow">
+                    <h4 className="font-semibold mb-3 text-xl font-nasalization text-glow text-alien-green">
                       Transparency
                     </h4>
                     <p className="leading-relaxed">
@@ -237,7 +234,7 @@ const About: React.FC = () => {
                 </div>
                 
                 <div className="text-center">
-                  <Button className="bg-gradient-to-r from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark font-semibold text-xl px-12 py-4 rounded-full font-nasalization shadow-2xl hover:shadow-alien-green/40 transition-all duration-300 hover:transform hover:scale-105">
+                  <Button className="bg-gradient-to-r from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark font-semibold font-nasalization shadow-2xl hover:shadow-alien-green/40 transition-all duration-300 hover:transform hover:scale-105 px-0 py-0 rounded-xl text-alien-gold text-lg">
                     Access Cryptotokens & NFTs
                   </Button>
                 </div>
@@ -246,8 +243,6 @@ const About: React.FC = () => {
           </div>
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
