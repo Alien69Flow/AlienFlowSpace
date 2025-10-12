@@ -1,21 +1,17 @@
-
 import React from 'react';
-
 import { Button } from '@/components/ui/button';
 import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen } from 'lucide-react';
-
 const Contact: React.FC = () => {
-  return (
-    <div className="relative flex flex-col flex-1">
+  return <div className="relative flex flex-col flex-1">
 
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-alien-gold mb-8 font-nasalization text-center">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl text-alien-gold mb-8 font-nasalization text-center py-[23px] font-extrabold">Contact Us</h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Methods - Takes 2/3 of the space on large screens */}
             <div className="lg:col-span-2 space-y-6">
-              <p className="text-xl text-gray-300 font-[Exo] mb-6">
+              <p className="text-xl font-[Exo] mb-6 text-alien-green font-bold text-left">
                 Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
               </p>
               
@@ -128,32 +124,17 @@ const Contact: React.FC = () => {
               <form className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-1 font-[Exo]" htmlFor="name">Name</label>
-                  <input 
-                    type="text" 
-                    id="name"
-                    className="w-full px-3 py-2 bg-alien-space-light/50 rounded-md border border-gray-600 text-gray-200 focus:border-alien-gold focus:outline-none font-[Exo] text-sm"
-                    placeholder="Your name"
-                  />
+                  <input type="text" id="name" className="w-full px-3 py-2 bg-alien-space-light/50 rounded-md border border-gray-600 text-gray-200 focus:border-alien-gold focus:outline-none font-[Exo] text-sm" placeholder="Your name" />
                 </div>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-1 font-[Exo]" htmlFor="email">Email</label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    className="w-full px-3 py-2 bg-alien-space-light/50 rounded-md border border-gray-600 text-gray-200 focus:border-alien-gold focus:outline-none font-[Exo] text-sm"
-                    placeholder="your@email.com"
-                  />
+                  <input type="email" id="email" className="w-full px-3 py-2 bg-alien-space-light/50 rounded-md border border-gray-600 text-gray-200 focus:border-alien-gold focus:outline-none font-[Exo] text-sm" placeholder="your@email.com" />
                 </div>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-1 font-[Exo]" htmlFor="message">Message</label>
-                  <textarea 
-                    id="message"
-                    rows={3}
-                    className="w-full px-3 py-2 bg-alien-space-light/50 rounded-md border border-gray-600 text-gray-200 focus:border-alien-gold focus:outline-none font-[Exo] text-sm resize-none"
-                    placeholder="Your message"
-                  ></textarea>
+                  <textarea id="message" rows={3} className="w-full px-3 py-2 bg-alien-space-light/50 rounded-md border border-gray-600 text-gray-200 focus:border-alien-gold focus:outline-none font-[Exo] text-sm resize-none" placeholder="Your message"></textarea>
                 </div>
                 
                 <Button className="w-full bg-alien-green hover:bg-alien-green-light text-alien-space-dark font-[Exo] mt-4">
@@ -164,8 +145,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
