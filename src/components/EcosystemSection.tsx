@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Dna, Coins, Wifi, Beaker, Database, Shield, Leaf, Building, Share2, Landmark, ArrowRight } from 'lucide-react';
-
 const ecosystems = [{
   id: 'biofi',
   title: 'BioFi',
@@ -54,7 +52,6 @@ const ecosystems = [{
   description: 'Traditional finance integration and bridging.',
   icon: <Landmark className="h-8 w-8 text-alien-gold" />
 }];
-
 const EcosystemCard = ({
   ecosystem,
   index
@@ -89,7 +86,6 @@ const EcosystemCard = ({
       </div>
     </motion.div>;
 };
-
 const EcosystemSection = () => {
   return <section id="ecosystem" className="relative overflow-hidden cosmic-grid py-[30px] my-[10px]">
       <div className="container mx-auto px-4">
@@ -103,8 +99,8 @@ const EcosystemSection = () => {
         once: true,
         margin: "-100px"
       }} className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-alien-gold text-glow font-nasalization">DAO Ecosystem</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">ΔlieπFlΦw $pac€ bridges diverse decentralized domains into a coherent, interoperable ecosystem.</p>
+          <h2 className="text-4xl font-bold mb-4 text-glow font-nasalization text-alien-green">DAO Ecosystem</h2>
+          <p className="max-w-3xl mx-auto font-bold text-alien-gold text-[alien-gold-dark]">ΔlieπFlΦw $pac€ bridges diverse decentralized domains into a coherent, interoperable ecosystem.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
@@ -113,5 +109,4 @@ const EcosystemSection = () => {
       </div>
     </section>;
 };
-
 export default EcosystemSection;
