@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Rocket, Star, Clock, ScrollText, BookOpen, PieChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -78,25 +77,25 @@ const AlienTrip: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
             <div>
-              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 mb-6">
+              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 mb-6 rounded-full">
                 <CardHeader>
-                  <CardTitle className="text-4xl md:text-5xl font-bold text-alien-gold font-nasalization">
+                  <CardTitle className="md:text-5xl font-bold text-alien-gold font-nasalization text-center text-3xl">
                     AlienTrip
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-lg text-gray-300 font-[Exo] mb-4">
+                  <p className="text-lg text-gray-300 font-[Exo] mb-4 text-center">
                     Explore our cosmic journey through the knowledge skills multiverse as we build the next generation of decentralized collaboration together.
                   </p>
-                  <p className="text-alien-green font-[Exo] font-semibold">Join us to enjoy the advantages, benefits and profits of the ecosystem.</p>
+                  <p className="text-alien-green font-[Exo] text-center text-base font-medium">Join us to enjoy the advantages, benefits and profits of the ecosystem.</p>
                 </CardContent>
               </Card>
 
               <div className="flex flex-wrap gap-4 mb-8">
-                <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization">
+                <Button className="hover:bg-alien-gold-light text-alien-space-dark font-nasalization text-center text-alien-green bg-alien-gold">
                   <Rocket className="mr-2 h-5 w-5" /> Join the Journey
                 </Button>
-                <Button variant="outline" className="border-alien-green text-alien-green hover:bg-alien-green/20 font-nasalization" onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")}>
+                <Button variant="outline" onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")} className="border-alien-green text-alien-green font-nasalization bg-alien-gold">
                   <ScrollText className="mr-2 h-5 w-5" /> Look Greenpapers
                 </Button>
               </div>
@@ -138,11 +137,11 @@ const AlienTrip: React.FC = () => {
                   </div>
                   <div className="flex justify-between items-center mb-1.5">
                     <span className="text-alien-gold font-[Exo] text-sm">Total Supply</span>
-                    <span className="text-alien-green font-semibold font-[Exo] text-sm">1,618.034</span>
+                    <span className="text-alien-green font-semibold font-[Exo] text-sm">1,618.033</span>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-alien-gold font-[Exo] text-sm">Minted</span>
-                    <span className="text-alien-green font-semibold font-[Exo] text-sm">314.159 / 1,618.034</span>
+                    <span className="text-alien-green font-semibold font-[Exo] text-sm">314.159 / 1,618.033</span>
                   </div>
                   <div className="w-full bg-alien-space-dark rounded-full h-2 mb-2">
                     <div className="bg-alien-gold h-2 rounded-full" style={{
@@ -150,7 +149,7 @@ const AlienTrip: React.FC = () => {
                   }}></div>
                   </div>
                 </div>
-                <Button className="w-full bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization text-sm">
+                <Button className="w-full bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization text-sm text-alien-green">
                   Crypto Mint NFT Passport
                 </Button>
               </CardContent>
