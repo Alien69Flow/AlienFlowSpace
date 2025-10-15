@@ -6,7 +6,19 @@ const Contact: React.FC = () => {
 
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl text-alien-gold mb-8 font-nasalization text-center py-[23px] font-extrabold">Contact Us</h1>
+          <div className="relative mb-12 py-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-nasalization text-center font-extrabold relative">
+              <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_30px_rgba(57,255,20,0.5)]">
+                Contact Us
+              </span>
+              <div className="absolute inset-0 blur-xl opacity-50 bg-gradient-to-r from-alien-green/30 via-alien-gold/30 to-alien-green/30 -z-10"></div>
+            </h1>
+            <div className="flex justify-center items-center gap-2 mt-4">
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-green to-transparent"></div>
+              <div className="w-2 h-2 rounded-full bg-alien-green animate-pulse shadow-[0_0_10px_rgba(57,255,20,0.8)]"></div>
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-gold to-transparent"></div>
+            </div>
+          </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Methods - Takes 2/3 of the space on large screens */}
