@@ -63,9 +63,7 @@ const ParticipationSection = () => {
         duration: 0.8
       }} viewport={{
         once: true
-      }} className="mb-8 max-w-2xl font-semibold text-[alien-gold-light] text-alien-gold">
-          ΔlieπFlΦw $pac€ DAO operates on a principle of transparent, decentralized governance where all participants have the opportunity to shape the future of our interplanetary ecosystem.
-        </motion.p>
+      }} className="mb-8 max-w-2xl font-semibold text-[alien-gold-light] text-alien-gold">ΔlieπFlΦw $pac€ DAO operates on a principle of transparent, decentralized governance where all participants have the opportunity to shape the present of our interplanetary ecosystem.</motion.p>
         {/* Features */}
         <div className="space-y-6 mb-8 w-full max-w-2xl">
           {features.map((feature, i) => <motion.div key={feature.title} className="flex flex-col sm:flex-row items-center justify-center gap-4 text-left sm:text-left" initial={{
