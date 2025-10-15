@@ -11,14 +11,14 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Methods - Takes 2/3 of the space on large screens */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="relative mb-8 max-w-2xl">
-                <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-6 shadow-lg shadow-alien-green/10 px-0 py-0">
-                  <p className="text-lg md:text-xl font-[Exo] font-semibold leading-relaxed text-alien-gold">
+              <div className="relative mb-8 max-w-2xl mx-auto">
+                <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-8 shadow-lg shadow-alien-green/10">
+                  <p className="text-lg md:text-xl font-[Exo] font-semibold leading-relaxed text-alien-gold text-center">
                     Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
                   </p>
                 </div>
                 {/* Chat bubble pointer */}
-                <div className="absolute -top-2 left-0 w-4 h-4 bg-alien-green/20 border-l-2 border-t-2 border-alien-green/40 transform rotate-45"></div>
+                <div className="absolute -top-2 left-8 w-4 h-4 bg-alien-green/20 border-l-2 border-t-2 border-alien-green/40 transform rotate-45"></div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
