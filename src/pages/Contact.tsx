@@ -12,8 +12,8 @@ const Contact: React.FC = () => {
             {/* Contact Methods - Takes 2/3 of the space on large screens */}
             <div className="lg:col-span-2 space-y-6">
               <div className="relative mb-8 max-w-2xl">
-                <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-6 shadow-lg shadow-alien-green/10">
-                  <p className="text-lg md:text-xl font-[Exo] text-alien-green font-semibold leading-relaxed">
+                <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-6 shadow-lg shadow-alien-green/10 px-0 py-0">
+                  <p className="text-lg md:text-xl font-[Exo] font-semibold leading-relaxed text-alien-gold">
                     Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
                   </p>
                 </div>
