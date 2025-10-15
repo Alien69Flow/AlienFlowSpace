@@ -11,9 +11,15 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Methods - Takes 2/3 of the space on large screens */}
             <div className="lg:col-span-2 space-y-6">
-              <p className="text-xl font-[Exo] mb-6 text-alien-green font-bold text-left">
-                Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
-              </p>
+              <div className="relative mb-8 max-w-2xl">
+                <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-6 shadow-lg shadow-alien-green/10">
+                  <p className="text-lg md:text-xl font-[Exo] text-alien-green font-semibold leading-relaxed">
+                    Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
+                  </p>
+                </div>
+                {/* Chat bubble pointer */}
+                <div className="absolute -top-2 left-0 w-4 h-4 bg-alien-green/20 border-l-2 border-t-2 border-alien-green/40 transform rotate-45"></div>
+              </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-colors border border-alien-gold/20">
