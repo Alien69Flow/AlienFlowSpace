@@ -74,87 +74,98 @@ const AlienTrip: React.FC = () => {
   return <div className="relative flex flex col flex-1">
 
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-24 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-            <div>
-              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 mb-6 rounded-full">
-                <CardHeader>
-                  <CardTitle className="md:text-5xl font-bold text-alien-gold font-nasalization text-center text-3xl">
-                    AlienTrip
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg text-gray-300 font-[Exo] mb-4 text-center">
-                    Explore our cosmic journey through the knowledge skills multiverse as we build the next generation of decentralized collaboration together.
-                  </p>
-                  <p className="text-alien-green font-[Exo] text-center text-base font-medium">Join us to enjoy the advantages, benefits and profits of the ecosystem.</p>
-                </CardContent>
-              </Card>
+        <div className="max-w-4xl mx-auto">
+          {/* Hero Section */}
+          <div className="relative mb-12 py-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-nasalization text-center font-extrabold relative">
+              <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_30px_rgba(57,255,20,0.5)]">
+                AlienTrip
+              </span>
+              <div className="absolute inset-0 blur-xl opacity-50 bg-gradient-to-r from-alien-green/30 via-alien-gold/30 to-alien-green/30 -z-10"></div>
+            </h1>
+            <div className="flex justify-center items-center gap-2 mt-4">
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-green to-transparent"></div>
+              <div className="w-2 h-2 rounded-full bg-alien-green animate-pulse shadow-[0_0_10px_rgba(57,255,20,0.8)]"></div>
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-gold to-transparent"></div>
+            </div>
+          </div>
 
-              <div className="flex flex-wrap gap-4 mb-8">
-                <Button className="hover:bg-alien-gold-light text-alien-space-dark font-nasalization text-center text-alien-green bg-alien-gold">
+          {/* Intro Section with Animation */}
+          <div className="relative w-full max-w-3xl mx-auto animate-fade-in mb-12">
+            <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-8 shadow-lg shadow-alien-green/10 hover:shadow-alien-green/20 transition-all duration-300 hover:scale-[1.02]">
+              <p className="text-lg md:text-xl font-[Exo] font-semibold leading-relaxed text-gray-300 text-center mb-4">
+                Explore our cosmic journey through the knowledge skills multiverse as we build the next generation of decentralized collaboration together.
+              </p>
+              <p className="text-alien-green font-[Exo] text-center text-base font-medium mb-6">
+                Join us to enjoy the advantages, benefits and profits of the ecosystem.
+              </p>
+              <div className="flex justify-center">
+                <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization px-8 py-6">
                   <Rocket className="mr-2 h-5 w-5" /> Join the Journey
                 </Button>
-                <Button variant="outline" onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")} className="border-alien-green text-alien-green font-nasalization bg-alien-gold">
-                  <ScrollText className="mr-2 h-5 w-5" /> Look Greenpapers
-                </Button>
               </div>
-              
-              {/* GitBook Card */}
-              <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <BookOpen className="h-6 w-6 text-alien-gold mr-3" />
-                    <h3 className="text-xl font-semibold text-alien-gold font-nasalization">Official Documentation</h3>
-                  </div>
-                  <p className="text-gray-300 mb-4 font-[Exo]">
-                    Access our comprehensive documentation to learn about tokenomics, roadmap, and 
-                    technical specifications of the ΔlieπFlΦw $pac€ DAO ecosystem.
-                  </p>
-                  <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="flex items-center text-alien-green hover:text-alien-green-light font-[Exo]">
-                    <span>Visit GitBook</span>
-                    <Rocket className="ml-2 h-4 w-4" />
-                  </a>
-                </CardContent>
-              </Card>
             </div>
+            {/* Chat bubble pointer */}
+            <div className="absolute -top-2 left-8 w-4 h-4 bg-alien-green/20 border-l-2 border-t-2 border-alien-green/40 transform rotate-45"></div>
+          </div>
 
-            {/* Crypto Mint NFT - Compact design */}
-            <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20 h-fit">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-xl font-bold text-alien-green font-nasalization">
-                  Crypto Mint NFT
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-4">
-                <p className="mb-4 font-[Exo] text-alien-gold text-sm">
-                  Secure your place in our cosmic ecosystem by minting an ΔlieπFlΦw $pac€ DAO Passport, granting you early access to all present and future features and governance rights.
-                </p>
-                <div className="bg-alien-space-light rounded-lg p-3 mb-4">
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-alien-gold font-[Exo] text-sm">Mint Price</span>
-                    <span className="text-alien-green font-semibold font-[Exo] text-sm">0.08 ₿TC</span>
-                  </div>
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-alien-gold font-[Exo] text-sm">Total Supply</span>
-                    <span className="text-alien-green font-semibold font-[Exo] text-sm">1,618.033</span>
-                  </div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-alien-gold font-[Exo] text-sm">Minted</span>
-                    <span className="text-alien-green font-semibold font-[Exo] text-sm">314.159 / 1,618.033</span>
-                  </div>
-                  <div className="w-full bg-alien-space-dark rounded-full h-2 mb-2">
-                    <div className="bg-alien-gold h-2 rounded-full" style={{
-                    width: '19.4%'
-                  }}></div>
-                  </div>
+          {/* Crypto Mint NFT Section */}
+          <Card className="bg-gradient-to-br from-alien-space-dark/90 to-alien-space-dark/70 backdrop-blur-md border-2 border-alien-green/30 shadow-[0_0_30px_rgba(57,255,20,0.15)] hover:shadow-[0_0_40px_rgba(57,255,20,0.25)] transition-all duration-300 mb-12">
+            <CardHeader>
+              <CardTitle className="text-3xl md:text-4xl font-bold text-alien-green font-nasalization text-center">
+                Crypto Mint NFT
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-8">
+              <p className="mb-6 font-[Exo] text-alien-gold text-center text-lg">
+                Secure your place in our cosmic ecosystem by minting an ΔlieπFlΦw $pac€ DAO Passport, granting you early access to all present and future features and governance rights.
+              </p>
+              <div className="bg-alien-space-light/50 rounded-lg p-6 mb-6 max-w-md mx-auto">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-alien-gold font-[Exo] text-base">Mint Price</span>
+                  <span className="text-alien-green font-semibold font-[Exo] text-base">0.08 ₿TC</span>
                 </div>
-                <Button className="w-full bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization text-sm text-alien-green">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-alien-gold font-[Exo] text-base">Total Supply</span>
+                  <span className="text-alien-green font-semibold font-[Exo] text-base">1,618.033</span>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-alien-gold font-[Exo] text-base">Minted</span>
+                  <span className="text-alien-green font-semibold font-[Exo] text-base">314.159 / 1,618.033</span>
+                </div>
+                <div className="w-full bg-alien-space-dark rounded-full h-3 mb-4">
+                  <div className="bg-alien-gold h-3 rounded-full transition-all duration-500" style={{width: '19.4%'}}></div>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-nasalization px-8 py-6 hover:scale-105 hover:shadow-[0_0_20px_rgba(57,255,20,0.5)] transition-all duration-300">
                   Crypto Mint NFT Passport
                 </Button>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Look Greenpapers Section */}
+          <Card className="bg-gradient-to-br from-alien-space-dark/90 to-alien-space-dark/70 backdrop-blur-md border-2 border-alien-gold/30 shadow-lg hover:shadow-xl transition-all duration-300 mb-12">
+            <CardContent className="p-8">
+              <div className="flex items-center justify-center mb-4">
+                <BookOpen className="h-8 w-8 text-alien-gold mr-3" />
+                <h3 className="text-2xl md:text-3xl font-semibold text-alien-gold font-nasalization">Official Documentation</h3>
+              </div>
+              <p className="text-gray-300 mb-6 font-[Exo] text-center text-lg max-w-2xl mx-auto">
+                Access our comprehensive documentation to learn about tokenomics, roadmap, and technical specifications of the ΔlieπFlΦw $pac€ DAO ecosystem.
+              </p>
+              <div className="flex justify-center">
+                <Button 
+                  variant="outline" 
+                  onClick={() => window.open("https://alienflowspace.gitbook.io/DAO", "_blank")} 
+                  className="border-2 border-alien-green text-alien-green hover:bg-alien-green/10 font-nasalization px-8 py-6 transition-all duration-300 hover:scale-105"
+                >
+                  <ScrollText className="mr-2 h-5 w-5" /> Visit GitBook
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
           
           {/* Tokenomics Section */}
           <div className="mb-16">
