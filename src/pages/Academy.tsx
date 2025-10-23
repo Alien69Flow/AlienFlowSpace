@@ -144,7 +144,7 @@ const Academy: React.FC = () => {
   const partners = [{
     name: "Alchemy",
     url: "https://www.alchemy.com/",
-    logoUrl: "https://docs.alchemy.com/img/logo-light.svg"
+    logoUrl: "/lovable-uploads/Academy/Alchemy.png"
   }, {
     name: "Bitcoin",
     url: "https://bitcoin.org",
@@ -156,7 +156,7 @@ const Academy: React.FC = () => {
   }, {
     name: "Climate Reanalyzer",
     url: "https://climatereanalyzer.org/",
-    logoUrl: "https://climatereanalyzer.org/wx_frames/gfs/world-ced/t2anom/t2anom.latest.png"
+    logoUrl: "/lovable-uploads/Academy/ClimateReanalyzer.svg"
   }, {
     name: "Coursera",
     url: "https://www.coursera.org/",
@@ -164,15 +164,15 @@ const Academy: React.FC = () => {
   }, {
     name: "edX",
     url: "https://www.edx.org/",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/cd/EdX_logo.svg"
+    logoUrl: "/lovable-uploads/Academy/edx.png"
   }, {
     name: "ESA",
     url: "https://www.esa.int/",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f8/ESA_logo.svg"
+    logoUrl: "/lovable-uploads/Academy/ESA.svg"
   }, {
     name: "Explore",
     url: "https://explore.org/",
-    logoUrl: "https://explore.org/assets/images/global/explore-logo.svg"
+    logoUrl: "/lovable-uploads/Academy/Explore.svg"
   }, {
     name: "FutureLearn",
     url: "https://www.futurelearn.com/",
@@ -182,9 +182,17 @@ const Academy: React.FC = () => {
     url: "https://edu.google.com/",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
   }, {
+    name: "Google Growth",
+    url: "https://grow.google/",
+    logoUrl: "/lovable-uploads/Academy/GrowGoogle.png"
+  }, {
+        name: "HackerRank",
+    url: "https://www.hackerrank.com/",
+    logoUrl: "/lovable-uploads/Academy/HackerRank.svg"
+  }, {
     name: "Hotmart",
     url: "https://www.hotmart.com/",
-    logoUrl: "https://static.hotmart.com/assets/img/hotmart_logo.svg"
+    logoUrl: "/lovable-uploads/Academy/Hotmart.png"
   }, {
     name: "Khan Academy",
     url: "https://khanacademy.org/",
@@ -192,22 +200,24 @@ const Academy: React.FC = () => {
   }, {
     name: "LSC-Canfranc",
     url: "https://lsc-canfranc.es/",
-    logoUrl: "https://lsc-canfranc.es/sites/default/files/logos/logo-lsc-canfranc-250.png"
+    logoUrl: "/lovable-uploads/Academy/LSC.png"
+  }, {
+     name: "Map of the Universe",
+    url: "https://mapoftheuniverse.net/",
+    logoUrl: "/lovable-uploads/Academy/Universe.jpg"
   }, {
     name: "MasterClass",
     url: "https://masterclass.com/",
-    logoUrl: "https://cdn.masterclass.com/assets/logo-masterclass-white.svg"
+    logoUrl: "/lovable-uploads/Academy/MasterClass.jpeg"
   }, {
     name: "MOOC",
     url: "https://mooc.org/",
-    logoUrl: "https://www.mooc.org/hubfs/mooc-org-logo.svg"
+    logoUrl: "/lovable-uploads/Academy/Mooc.png"
   }, {
     name: "NASA Eyes",
     url: "https://eyes.nasa.gov/apps/solar-system/#/home",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
-  },
-  // Local lovable-uploads partner logos a partir de aquí
-  {
+  }, {
     name: "OEGlobal",
     url: "https://oeglobal.org/",
     logoUrl: "/lovable-uploads/OEGlobalLogo.jpeg"
