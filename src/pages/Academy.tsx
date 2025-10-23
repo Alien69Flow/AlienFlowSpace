@@ -164,7 +164,7 @@ const Academy: React.FC = () => {
   }, {
     name: "edX",
     url: "https://www.edx.org/",
-    logoUrl: "/lovable-uploads/Academy/edx.png"
+    logoUrl: "/lovable-uploads/Academy/edX.png"
   }, {
     name: "ESA",
     url: "https://www.esa.int/",
@@ -172,7 +172,7 @@ const Academy: React.FC = () => {
   }, {
     name: "Explore",
     url: "https://explore.org/",
-    logoUrl: "/lovable-uploads/Academy/Explore.svg"
+    logoUrl: "/lovable-uploads/Academy/Explore.png"
   }, {
     name: "FutureLearn",
     url: "https://www.futurelearn.com/",
