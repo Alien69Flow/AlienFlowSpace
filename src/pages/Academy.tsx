@@ -142,6 +142,10 @@ const Academy: React.FC = () => {
     }]
   }];
   const partners = [{
+    name: "Academia",
+    url: "https://www.academia.edu/",
+    logoUrl: "/lovable-uploads/Academy/Academia.svg"
+  }, {
     name: "Alchemy",
     url: "https://www.alchemy.com/",
     logoUrl: "/lovable-uploads/Academy/Alchemy.png"
@@ -161,6 +165,10 @@ const Academy: React.FC = () => {
     name: "Coursera",
     url: "https://www.coursera.org/",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg"
+  }, {
+    name: "Cursa",
+    url: "https://cursa.app/",
+    logoUrl: "/lovable-uploads/Academy/Cursa.webp"
   }, {
     name: "edX",
     url: "https://www.edx.org/",
@@ -194,9 +202,17 @@ const Academy: React.FC = () => {
     url: "https://www.hotmart.com/",
     logoUrl: "/lovable-uploads/Academy/Hotmart.png"
   }, {
-    name: "Khan Academy",
+    name: "KAGRA",
     url: "https://khanacademy.org/",
     logoUrl: "https://cdn.kastatic.org/images/khan-logo-dark-background.png"
+  }, {
+    name: "Khan Academy",
+    url: "https://gwcenter.icrr.u-tokyo.ac.jp/",
+    logoUrl: "/lovable-uploads/Academy/KAGRA.svg"
+  }, {
+    name: "LIGO",
+    url: "https://www.ligo.caltech.edu/",
+    logoUrl: "/lovable-uploads/Academy/LIGO.png"
   }, {
     name: "LSC-Canfranc",
     url: "https://lsc-canfranc.es/",
@@ -237,6 +253,10 @@ const Academy: React.FC = () => {
     name: "Udemy",
     url: "https://www.udemy.com/",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg"
+  }, {
+    name: "UNED",
+    url: "https://iedra.uned.es/",
+    logoUrl: "/lovable-uploads/UNED.png"
   }, {
     name: "UNESCO",
     url: "https://www.unesco.org/",
