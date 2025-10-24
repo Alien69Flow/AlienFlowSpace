@@ -198,6 +198,10 @@ const Academy: React.FC = () => {
     url: "https://www.hackerrank.com/",
     logoUrl: "/lovable-uploads/Academy/HackerRank.svg"
   }, {
+    name: "HackMD",
+    url: "https://hackmd.io/",
+    logoUrl: "/lovable-uploads/Academy/HackMD.svg"
+  }, {
     name: "Hotmart",
     url: "https://www.hotmart.com/",
     logoUrl: "/lovable-uploads/Academy/Hotmart.png"
@@ -256,7 +260,7 @@ const Academy: React.FC = () => {
   }, {
     name: "UNED",
     url: "https://iedra.uned.es/",
-    logoUrl: "/lovable-uploads/UNED.png"
+    logoUrl: "/lovable-uploads/Academy/UNED.png"
   }, {
     name: "UNESCO",
     url: "https://www.unesco.org/",
