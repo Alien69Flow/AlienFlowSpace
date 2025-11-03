@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { CircleDollarSign, Calendar, MessagesSquare, Users, ShieldCheck, Database, Coins } from 'lucide-react';
+import { CircleDollarSign, Calendar, MessagesSquare, Database, Globe } from 'lucide-react';
+import { getCurrentChineseYear } from '@/lib/chineseCalendar';
+
 const features = [{
   icon: <CircleDollarSign className="h-6 w-6 text-alien-gold" />,
   title: "Token Governance",
@@ -15,28 +17,24 @@ const features = [{
   title: "Community Forums",
   description: "Contribute to ongoing discussions and knowledge sharing in our decentralized forums."
 }];
+
 const stats = [{
-  icon: <Users className="h-8 w-8" />,
-  value: "10,000+",
-  label: "DAO Members",
+  value: "195",
+  label: "Countries - DAO Members",
+  icon: Globe,
+  color: "text-alien-green",
+  planetIcon: true
+}, {
+  value: "161 YB",
+  label: "Data Storage",
+  icon: Database,
   color: "text-alien-gold"
-}, {
-  icon: <ShieldCheck className="h-8 w-8" />,
-  value: "99.9%",
-  label: "Protocol Security",
-  color: "text-alien-green"
-}, {
-  icon: <Database className="h-8 w-8" />,
-  value: "250 TB",
-  label: "Data Secured",
-  color: "text-alien-gold"
-}, {
-  icon: <Coins className="h-8 w-8" />,
-  value: "$125M",
-  label: "Total Value Locked",
-  color: "text-alien-green"
 }];
+
 const ParticipationSection = () => {
+  const chineseYear = getCurrentChineseYear();
+  const currentYear = new Date().getFullYear();
+  
   return <section id="participate" className="py-20 relative">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         {/* Título */}
@@ -91,9 +89,9 @@ const ParticipationSection = () => {
         <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-medium px-8 py-6 text-lg rounded-full mb-12 font-nasalization">
           Connect & Participate
         </Button>
-        {/* Stats Grid - SIEMPRE centrado */}
+        {/* Stats Grid - MORE TRANSPARENT */}
         <div className="flex justify-center mt-12 w-full">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-3xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center max-w-2xl w-full">
             {stats.map((stat, index) => <motion.div key={index} initial={{
             opacity: 0,
             y: 20
@@ -105,9 +103,20 @@ const ParticipationSection = () => {
             delay: index * 0.1
           }} viewport={{
             once: true
-          }} className="text-center">
-                <div className={`mx-auto mb-4 p-3 rounded-full bg-alien-space-dark w-fit ${stat.color}`}>
-                  {stat.icon}
+          }} className="bg-alien-space-dark/30 backdrop-blur-sm p-6 rounded-xl border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
+                <div className="mx-auto mb-4">
+                  {stat.planetIcon ? (
+                    <div className="h-16 w-16 mx-auto">
+                      <img 
+                        src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=150&h=150&fit=crop" 
+                        alt="Planet Earth" 
+                        className="w-full h-full object-cover rounded-full animate-pulse"
+                        style={{ filter: 'drop-shadow(0 0 12px rgba(34, 197, 94, 0.6))' }}
+                      />
+                    </div>
+                  ) : (
+                    <stat.icon className={`h-16 w-16 ${stat.color} mx-auto`} />
+                  )}
                 </div>
                 <motion.div initial={{
               scale: 0.8
@@ -122,11 +131,35 @@ const ParticipationSection = () => {
             }} className={`text-3xl font-bold mb-2 ${stat.color} font-nasalization`}>
                   {stat.value}
                 </motion.div>
-                <div className="text-gray-300 text-sm">{stat.label}</div>
+                <div className="text-gray-300 text-sm font-[Exo]">{stat.label}</div>
               </motion.div>)}
           </div>
         </div>
+        
+        {/* Year Display with Chinese Calendar */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-8 bg-alien-space-dark/30 backdrop-blur-sm p-6 rounded-xl border border-alien-gold/20 max-w-md"
+        >
+          <div className="flex items-center justify-center gap-4">
+            <span className="text-4xl" style={{ filter: `drop-shadow(0 0 8px ${chineseYear.color})` }}>
+              {chineseYear.icon}
+            </span>
+            <div className="text-left">
+              <p className="text-alien-gold font-bold text-xl font-nasalization">
+                Year {currentYear} / {chineseYear.year}
+              </p>
+              <p className="text-sm font-[Exo]" style={{ color: chineseYear.color }}>
+                {chineseYear.element} {chineseYear.animal}
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>;
 };
+
 export default ParticipationSection;

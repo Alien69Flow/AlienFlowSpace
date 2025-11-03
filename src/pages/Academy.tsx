@@ -284,8 +284,7 @@ const Academy: React.FC = () => {
   }];
   return <div className="relative flex flex-col flex-1">
       {/* Academy Background Image */}
-      
-      <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
+      <main className="relative z-10 flex-grow container mx-auto px-4 pt-20 pb-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">

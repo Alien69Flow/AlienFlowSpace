@@ -382,20 +382,20 @@ const CoNetWorKing: React.FC = () => {
     location: "Bangalore"
   }];
   const networkStats = [{
+    label: "195 Countries",
+    value: "195",
+    change: "DAO Members",
+    icon: Globe
+  }, {
+    label: "Data Storage",
+    value: "161 YB",
+    change: "Available",
+    icon: Database
+  }, {
     label: "Active Nodes",
     value: "47,293",
     change: "+2.8%",
     icon: Network
-  }, {
-    label: "Global Reach",
-    value: "189",
-    change: "+7 countries",
-    icon: Globe
-  }, {
-    label: "TPS Network",
-    value: "28,459",
-    change: "+31.4%",
-    icon: Zap
   }];
   return <div className="min-h-screen relative overflow-hidden bg-alien-space-dark/30">
       {/* Background with subtle overlay */}

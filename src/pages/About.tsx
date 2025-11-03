@@ -11,6 +11,12 @@ const About: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           {/* Hero section with improved styling */}
           <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
+              <img src="/lovable-uploads/ALogo.png" alt="About Official Logo" className="h-12 w-12 object-contain" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green">
+              About Us
+            </h1>
             <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl rounded-3xl">
               <CardHeader className="pb-4">
                 <CardTitle className="font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green md:text-5xl text-3xl">
