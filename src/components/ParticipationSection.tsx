@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { CircleDollarSign, Calendar, MessagesSquare, Database, Globe } from 'lucide-react';
-import { getCurrentChineseYear } from '@/lib/chineseCalendar';
 
 const features = [{
   icon: <CircleDollarSign className="h-6 w-6 text-alien-gold" />,
@@ -29,12 +28,14 @@ const stats = [{
   label: "Data Storage",
   icon: Database,
   color: "text-alien-gold"
+}, {
+  value: "$125M",
+  label: "Total Value Locked",
+  icon: CircleDollarSign,
+  color: "text-alien-gold"
 }];
 
 const ParticipationSection = () => {
-  const chineseYear = getCurrentChineseYear();
-  const currentYear = new Date().getFullYear();
-  
   return <section id="participate" className="py-20 relative">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         {/* Título */}
@@ -91,7 +92,7 @@ const ParticipationSection = () => {
         </Button>
         {/* Stats Grid - MORE TRANSPARENT */}
         <div className="flex justify-center mt-12 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center max-w-2xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center max-w-4xl w-full">
             {stats.map((stat, index) => <motion.div key={index} initial={{
             opacity: 0,
             y: 20
@@ -135,29 +136,6 @@ const ParticipationSection = () => {
               </motion.div>)}
           </div>
         </div>
-        
-        {/* Year Display with Chinese Calendar */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-8 bg-alien-space-dark/30 backdrop-blur-sm p-6 rounded-xl border border-alien-gold/20 max-w-md"
-        >
-          <div className="flex items-center justify-center gap-4">
-            <span className="text-4xl" style={{ filter: `drop-shadow(0 0 8px ${chineseYear.color})` }}>
-              {chineseYear.icon}
-            </span>
-            <div className="text-left">
-              <p className="text-alien-gold font-bold text-xl font-nasalization">
-                Year {currentYear} / {chineseYear.year}
-              </p>
-              <p className="text-sm font-[Exo]" style={{ color: chineseYear.color }}>
-                {chineseYear.element} {chineseYear.animal}
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>;
 };

@@ -164,7 +164,8 @@ const Clubs: React.FC = () => {
           icon: '/lovable-uploads/Clubs/SafePal.png'
         }, {
           name: 'Trezor',
-          url: 'https://trezor.io/'
+          url: 'https://trezor.io/',
+          icon: '/lovable-uploads/Clubs/Trezor.svg'
         }]
       }, {
         title: 'Hot Wallets',
@@ -177,13 +178,16 @@ const Clubs: React.FC = () => {
           icon: '/lovable-uploads/Clubs/AtomicWallet.svg'
         }, {
           name: 'Base',
-          url: 'https://www.base.org/'
+          url: 'https://www.base.org/',
+          icon: '/lovable-uploads/Clubs/Coinbase.svg'
         }, {
           name: 'Bitget Wallet',
-          url: 'https://newshare.bwb.global/es_es/referralLanding?inviteCode=cmR3qk&utm_source=newInviteRebate&type=card'
+          url: 'https://newshare.bwb.global/es_es/referralLanding?inviteCode=cmR3qk&utm_source=newInviteRebate&type=card',
+          icon: '/lovable-uploads/Clubs/Bitget.png'
         }, {
           name: 'Crypto Onchain',
-          url: 'https://crypto.com/onchain'
+          url: 'https://crypto.com/onchain',
+          icon: '/lovable-uploads/Clubs/Cryptocom.svg'
         }, {
           name: 'Exodus',
           url: 'https://www.exodus.com/',
@@ -198,17 +202,20 @@ const Clubs: React.FC = () => {
           icon: '/lovable-uploads/Clubs/MetaMask.svg'
         }, {
           name: 'OKX',
-          url: 'https://my.okx.com/join/11556162'
+          url: 'https://my.okx.com/join/11556162',
+          icon: '/lovable-uploads/Clubs/OKX.svg'
         }, {
           name: 'Phantom',
           url: 'https://phantom.com',
           icon: '/lovable-uploads/Clubs/PhantomLogo.svg'
         }, {
           name: 'Pi Network',
-          url: 'https://minepi.com/Aitor69Alien'
+          url: 'https://minepi.com/Aitor69Alien',
+          icon: '/lovable-uploads/Clubs/PiNetwork.svg'
         }, {
           name: 'Trust Wallet',
-          url: 'https://trustwallet.com/'
+          url: 'https://trustwallet.com/',
+          icon: '/lovable-uploads/Clubs/TrustWallet.svg'
         }]
       }]
     },
@@ -435,12 +442,23 @@ const Clubs: React.FC = () => {
   return (
     <div className="relative flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-16">
+      <main className="flex-grow container mx-auto px-4 pt-24 pb-16">
+        {/* Page Header with Logo */}
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <img 
+            src="/lovable-uploads/ClubLogo.png" 
+            alt="Clubs Logo" 
+            className="h-16 w-auto object-contain"
+          />
+          <h1 className="text-4xl md:text-5xl font-bold font-nasalization text-alien-green text-glow">
+            Clubs
+          </h1>
+        </div>
         <section id="featured" className="mb-16">
           <h2 className="text-3xl font-bold mb-8 font-nasalization text-alien-green text-center">
             Featured Clubs
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-8">
             {featuredClubs.map((club, index) => (
               <FeaturedClubCard key={index} club={club} />
             ))}

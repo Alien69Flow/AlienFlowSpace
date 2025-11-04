@@ -1,7 +1,11 @@
 import React from 'react';
 import { X, Facebook, Instagram, Mail, Disc, Send, Github, Linkedin, MessageSquare, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getCurrentChineseYear } from '@/lib/chineseCalendar';
 const Footer = () => {
+  const chineseYear = getCurrentChineseYear();
+  const currentYear = new Date().getFullYear();
+  
   return <footer className="bg-gradient-to-br from-alien-space-dark/95 to-alien-space/90 backdrop-blur-sm border-t-2 border-alien-gold/30 py-6 lg:py-8 mt-auto relative z-20">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -134,11 +138,27 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t-2 border-alien-gold/30 mt-6 pt-4 bg-gradient-to-r from-alien-space-dark/50 to-alien-space/30 rounded-lg px-4 py-2">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
+        <div className="border-t-2 border-alien-gold/30 mt-6 pt-4 bg-gradient-to-r from-alien-space-dark/50 to-alien-space/30 rounded-lg px-4 py-3">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-3">
             <p className="text-xs text-alien-green/70 font-[Exo] text-center lg:text-left">
-              © {new Date().getFullYear()} AlienFlowSpace DAO. All rights reserved across the multiverse.
+              © {currentYear} AlienFlowSpace DAO. All rights reserved across the multiverse.
             </p>
+            
+            {/* Chinese Calendar Display */}
+            <div className="flex items-center gap-2 bg-alien-space-dark/40 px-3 py-1.5 rounded-lg border border-alien-gold/20">
+              <span className="text-2xl" style={{ filter: `drop-shadow(0 0 6px ${chineseYear.color})` }}>
+                {chineseYear.icon}
+              </span>
+              <div className="text-left">
+                <p className="text-alien-gold font-bold text-xs font-nasalization">
+                  {currentYear} / {chineseYear.year}
+                </p>
+                <p className="text-[10px] font-[Exo]" style={{ color: chineseYear.color }}>
+                  {chineseYear.element} {chineseYear.animal}
+                </p>
+              </div>
+            </div>
+            
             <div className="flex items-center gap-1 text-xs text-alien-gold/80">
               <span>Made with</span>
               <span className="text-alien-green text-base">💚</span>
