@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FeaturedClubCard from '@/components/FeaturedClubCard';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
-import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye } from 'lucide-react';
+import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 type ClubProps = {
