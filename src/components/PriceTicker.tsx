@@ -32,7 +32,7 @@ const PriceTicker: React.FC = () => {
         locale="es"
         dark-mode="true"
         outlined="true"
-        coin-ids="bitcoin,tether-gold,ethereum,binancecoin,bitcoin-cash,bittensor,solana,litecoin,hyperliquid,chainlink,injective-protocol,uniswap,aptos,cosmos,bitget-token,polkadot,sui,the-open-network,near,nexo,cardano,tron,crypto-com-chain,axie-infinity,polygon-ecosystem-token,ronin,osmosis"
+        coin-ids="bitcoin,ethereum,tether-gold,binancecoin,solana,near,nexo,polkadot,cardano,cosmos,osmosis,axie-infinity,crypto-com-chain,ronin,polygon-ecosystem-token"
         initial-currency="usd"
       />
     </div>

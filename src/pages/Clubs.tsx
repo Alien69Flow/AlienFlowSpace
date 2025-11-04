@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import FeaturedClubCard from '@/components/FeaturedClubCard';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
 import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical } from 'lucide-react';
@@ -302,9 +300,6 @@ const Clubs: React.FC = () => {
         }, {
           name: 'Wombat',
           url: 'https://go.getwombat.io/eN3a'
-        }, {
-          name: 'ZEBEDEE',
-          url: 'https://zbd.link/hcHi/invite?af_sub1=S2S7IY'
         }]
       }, {
         title: 'eSports Platforms',
@@ -313,19 +308,28 @@ const Clubs: React.FC = () => {
         color: 'bg-red-600/80',
         platforms: [{
           name: 'Arena.gg',
-          url: 'https://www.arenagg.com/'
+          url: 'https://www.arenagg.com/',
+          icon: '/lovable-uploads/Clubs/ArenaGG.png'
         }, {
           name: 'Battlefy',
-          url: 'https://battlefy.com/'
+          url: 'https://battlefy.com/',
+          icon: '/lovable-uploads/Clubs/Battlefy.svg'
         }, {
           name: 'Blitz.gg',
-          url: 'https://blitz.gg/'
+          url: 'https://blitz.gg/',
+          icon: '/lovable-uploads/Clubs/BlitzGG.svg'
         }, {
           name: 'ESL Gaming',
-          url: 'https://esl.com/'
+          url: 'https://esl.com/',
+          icon: '/lovable-uploads/Clubs/ESL.svg'
         }, {
           name: 'LVP Global',
-          url: 'https://lvp.global/'
+          url: 'https://lvp.global/',
+          icon: '/lovable-uploads/Clubs/LVP.PNG'
+        }, {
+          name: 'ZEBEDEE',
+          url: 'https://zbd.link/hcHi/invite?af_sub1=S2S7IY',
+          icon: '/lovable-uploads/Clubs/ZBD.svg'
         }]
       }]
     },
@@ -344,10 +348,12 @@ const Clubs: React.FC = () => {
         color: 'bg-green-600/80',
         platforms: [{
           name: 'Leafly',
-          url: 'https://www.leafly.com/'
+          url: 'https://www.leafly.com/',
+          icon: '/lovable-uploads/Clubs/Leafly.svg'
         }, {
           name: 'Weedmaps',
-          url: 'https://weedmaps.com/'
+          url: 'https://weedmaps.com/',
+          icon: '/lovable-uploads/Clubs/Weedmaps.svg'
         }, {
           name: 'Cannabis Training'
         }, {
@@ -369,14 +375,25 @@ const Clubs: React.FC = () => {
         icon: <Eye className="h-4 w-4" />,
         color: 'bg-red-600/80',
         platforms: [{
+          name: 'Fansly',
+          url: 'https://fansly.com/',
+          icon: '/lovable-uploads/Clubs/Fansly.svg'
+        }, {
           name: 'OnlyFans',
-          url: 'https://onlyfans.com/'
+          url: 'https://onlyfans.com/',
+          icon: '/lovable-uploads/Clubs/OnlyFans.svg'
         }, {
-          name: 'Adult NFTs'
+          name: 'Pornhub',
+          url: 'https://pornhub.com/',
+          icon: '/lovable-uploads/Clubs/Pornhub.svg'
         }, {
-          name: 'Verified Community'
+          name: 'XHamster',
+          url: 'https://xhamster.com/',
+          icon: '/lovable-uploads/Clubs/XHamster.svg'
         }, {
-          name: 'Age Verification'
+          name: 'YouPorn',
+          url: 'https://youporn.com/',
+          icon: '/lovable-uploads/Clubs/YouPorn.svg'
         }]
       }]
     }
@@ -440,50 +457,52 @@ const Clubs: React.FC = () => {
   ];
 
   return (
-    <div className="relative flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 pt-24 pb-16">
-        {/* Page Header with Logo */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <img 
-            src="/lovable-uploads/ClubLogo.png" 
-            alt="Clubs Logo" 
-            className="h-16 w-auto object-contain"
-          />
-          <h1 className="text-4xl md:text-5xl font-bold font-nasalization text-alien-green text-glow">
-            Clubs
-          </h1>
+    <div className="relative flex flex-col flex-1">
+      <main className="relative z-10 flex-grow container mx-auto px-4 pt-20 pb-16">
+        <div className="max-w-6xl mx-auto">
+          {/* Page Header with Logo */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
+              <img 
+                src="/lovable-uploads/ClubLogo.png" 
+                alt="Clubs Official Logo" 
+                className="h-14 w-14 object-contain"
+              />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold font-nasalization text-glow text-alien-green">
+              Clubs
+            </h1>
+          </div>
+          <section id="featured" className="mb-16">
+            <h2 className="text-3xl font-bold mb-8 font-nasalization text-alien-green text-center">
+              Featured Clubs
+            </h2>
+            <div className="space-y-8">
+              {featuredClubs.map((club, index) => (
+                <FeaturedClubCard key={index} club={club} />
+              ))}
+            </div>
+          </section>
+
+          <section id="other" className="mb-16">
+            <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
+              Other Clubs
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {otherClubs.map((club, index) => (
+                <ClubCard key={index} club={club} />
+              ))}
+            </div>
+          </section>
+
+          <section id="eco-products">
+            <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
+              Eco Products
+            </h2>
+            <EcoProductCarousel />
+          </section>
         </div>
-        <section id="featured" className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 font-nasalization text-alien-green text-center">
-            Featured Clubs
-          </h2>
-          <div className="space-y-8">
-            {featuredClubs.map((club, index) => (
-              <FeaturedClubCard key={index} club={club} />
-            ))}
-          </div>
-        </section>
-
-        <section id="other" className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
-            Other Clubs
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherClubs.map((club, index) => (
-              <ClubCard key={index} club={club} />
-            ))}
-          </div>
-        </section>
-
-        <section id="eco-products">
-          <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
-            Eco Products
-          </h2>
-          <EcoProductCarousel />
-        </section>
       </main>
-      <Footer />
     </div>
   );
 };
