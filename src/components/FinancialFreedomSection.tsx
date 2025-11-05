@@ -32,7 +32,7 @@ const FinancialFreedomSection = () => {
                 ₿£€$$
               </h2>
               <h3 className="text-2xl md:text-3xl font-bold text-alien-green font-nasalization tracking-wide">
-                Financial Freedom for the Free Earth
+                Bless Financial Freedom for the Free Earth
               </h3>
             </div>
           </motion.div>
@@ -114,7 +114,7 @@ const FinancialFreedomSection = () => {
 
           <div className="max-w-4xl mx-auto text-center mb-16">
             <p className="text-2xl font-[Exo] leading-relaxed mb-6 text-alien-green font-extrabold">
-              Any individual or professional can understand the advantage of digital Money:
+              Any individual or professional can understand the advantage of digital money:
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto rounded-full"></div>
           </div>
@@ -251,7 +251,7 @@ const FinancialFreedomSection = () => {
                   <Lock className="h-8 w-8 text-alien-gold" />
                 </div>
                 <p className="text-2xl text-gray-100 font-[Exo] leading-relaxed">
-                  Allowing individuals to <span className="text-alien-gold font-bold bg-alien-gold/10 px-2 py-1 rounded">secure their wealth</span> while enjoying the benefits of a <span className="text-alien-green font-bold bg-alien-green/10 px-2 py-1 rounded">decentralized economy</span>.
+                  Allowing to <span className="text-alien-gold font-bold bg-alien-gold/10 px-2 py-1 rounded">secure their wealth</span> while enjoying the benefits of a <span className="text-alien-green font-bold bg-alien-green/10 px-2 py-1 rounded">circular decentralized economy</span>.
                 </p>
               </CardContent>
             </Card>
