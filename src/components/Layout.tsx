@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import CookieConsent from './CookieConsent';
+import ScrollToTop from './ScrollToTop';
+import AIChatbot from './AIChatbot';
 import { initGoogleTranslate } from '@/lib/translator';
 
 const Layout: React.FC = () => {
@@ -47,6 +50,9 @@ const Layout: React.FC = () => {
       </main>
 
       <Footer />
+      <CookieConsent />
+      <ScrollToTop />
+      <AIChatbot />
     </div>
   );
 };

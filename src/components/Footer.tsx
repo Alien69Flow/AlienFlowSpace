@@ -117,23 +117,21 @@ const Footer = () => {
           <div>
             <h4 className="text-alien-gold font-nasalization font-bold mb-3 text-base text-glow">Resources</h4>
             <ul className="space-y-2 font-[Exo]">
-              {[{
-              href: "https://alienflowspace.gitbook.io/DAO",
-              label: "Documentation"
-            }, {
-              href: "https://alienflowspace.gitbook.io/DAO",
-              label: "Terms of Service"
-            }, {
-              href: "https://alienflowspace.gitbook.io/DAO",
-              label: "Privacy Policy"
-            }, {
-              href: "https://alienflowspace.gitbook.io/DAO",
-              label: "Cookie Policy"
-            }].map((link, index) => <li key={index}>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
-                    {link.label}
-                  </a>
-                </li>)}
+              <li>
+                <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
+                  Privacy & Cookie Policy
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

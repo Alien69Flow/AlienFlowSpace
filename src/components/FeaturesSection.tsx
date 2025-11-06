@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Shield, Users, Box, BarChart4 } from 'lucide-react';
+import { Globe, Shield, Users, Box, BarChart4, Zap } from 'lucide-react';
 const features = [{
   icon: <Box className="h-10 w-10" />,
   title: "Cross-Chain Integration",
@@ -10,13 +10,17 @@ const features = [{
   title: "Interplanetary Governance",
   description: "Participate in decentralized decision-making across planetary boundaries with our advanced DAO structure."
 }, {
-  icon: <Shield className="h-10 w-10" />,
-  title: "Quantum Security",
-  description: "Next-generation quantum-resistant cryptography ensures the safety of all transactions and governance actions."
+  icon: <Zap className="h-10 w-10" />,
+  title: "Lightning Fast Transactions",
+  description: "Experience near instant transaction finality with our optimized consensus mechanisms and layer 2 scaling solutions."
 }, {
   icon: <Users className="h-10 w-10" />,
   title: "Multi-Species Collaboration",
   description: "Our platform is designed for collaboration between diverse entities, ensuring inclusive participation."
+}, {
+  icon: <Shield className="h-10 w-10" />,
+  title: "Quantum Security",
+  description: "Next-generation quantum-resistant cryptography ensures the safety of all transactions and governance actions."
 }, {
   icon: <BarChart4 className="h-10 w-10" />,
   title: "Transparent Analytics",

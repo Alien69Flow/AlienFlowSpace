@@ -68,23 +68,28 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Audius',
           url: 'https://audius.co/',
-          icon: '/lovable-uploads/Clubs/Audius.svg'
+          icon: '/lovable-uploads/Clubs/Audius.svg',
+          description: 'Decentralized music streaming with artist NFTs'
         }, {
           name: 'Sound.xyz',
           url: 'https://sound.xyz/',
-          icon: '/lovable-uploads/Clubs/SoundXYZ.svg'
+          icon: '/lovable-uploads/Clubs/SoundXYZ.svg',
+          description: 'Limited edition music NFTs and releases'
         }, {
           name: 'SoundCloud',
           url: 'https://soundcloud.com/',
-          icon: '/lovable-uploads/Clubs/Soundcloud.svg'
+          icon: '/lovable-uploads/Clubs/Soundcloud.svg',
+          description: 'Global music sharing and discovery platform'
         }, {
           name: 'Spotify',
           url: 'https://open.spotify.com/',
-          icon: '/lovable-uploads/Clubs/Spotify.svg'
+          icon: '/lovable-uploads/Clubs/Spotify.svg',
+          description: 'Leading music streaming service worldwide'
         }, {
           name: 'YouTube',
           url: 'https://youtube.com/',
-          icon: '/lovable-uploads/Clubs/YouTube.svg'
+          icon: '/lovable-uploads/Clubs/YouTube.svg',
+          description: 'Video and music content sharing platform'
         }]
       }]
     },
@@ -104,44 +109,55 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Binance',
           url: 'https://binance.com/',
-          icon: '/lovable-uploads/Clubs/Binance.svg'
+          icon: '/lovable-uploads/Clubs/Binance.svg',
+          description: 'Crypto trading with card and earn rewards'
         }, {
           name: 'BingX',
           url: 'https://bingx.com/referral-program/QCXRKM',
-          icon: '/lovable-uploads/Clubs/BingX.png'
+          icon: '/lovable-uploads/Clubs/BingX.png',
+          description: 'Copy trading platform with crypto card'
         }, {
           name: 'Bitget',
           url: 'https://www.bitgetapp.com/referral/register?clacCode=42E67C3N',
-          icon: '/lovable-uploads/Clubs/Bitget.png'
+          icon: '/lovable-uploads/Clubs/Bitget.png',
+          description: 'Trading and rewards with crypto card'
         }, {
           name: 'Bybit',
           url: 'https://www.bybit.com/invite?ref=Q15Q4M',
-          icon: '/lovable-uploads/Clubs/Bybit.png'
+          icon: '/lovable-uploads/Clubs/Bybit.png',
+          description: 'Derivatives trading with card benefits'
         }, {
           name: 'Coinbase',
           url: 'https://www.coinbase.com/join/EC2PSZT?src',
-          icon: '/lovable-uploads/Clubs/Coinbase.svg'
+          icon: '/lovable-uploads/Clubs/Coinbase.svg',
+          description: 'US-based exchange with debit card'
         }, {
           name: 'Crypto.com',
           url: 'https://crypto.com/app/una5xskncn',
-          icon: '/lovable-uploads/Clubs/Cryptocom.svg'
+          icon: '/lovable-uploads/Clubs/Cryptocom.svg',
+          description: 'Visa card with up to 8% cashback'
         }, {
           name: 'Gemini',
-          url: 'https://www.gemini.com/'
+          url: 'https://www.gemini.com/',
+          description: 'Regulated exchange with credit card'
         }, {
           name: 'Nexo',
           url: 'https://nexo.com/ref/x6ts3r0kb2?src',
-          icon: '/lovable-uploads/Clubs/NexoLogo.svg'
+          icon: '/lovable-uploads/Clubs/NexoLogo.svg',
+          description: 'Crypto-backed card with instant credit'
         }, {
           name: 'Pionex',
           url: 'https://www.pionex.com/es/signUp?r=0TTkucC3Gy7',
-          icon: '/lovable-uploads/Clubs/PionexLogo.svg'
+          icon: '/lovable-uploads/Clubs/PionexLogo.svg',
+          description: 'Trading bots with crypto card access'
         }, {
           name: 'Revolut',
-          url: 'https://www.revolut.com/'
+          url: 'https://www.revolut.com/',
+          description: 'Banking app with crypto and card'
         }, {
           name: 'Wirex',
-          url: 'https://wirexapp.com/'
+          url: 'https://wirexapp.com/',
+          description: 'Multi-currency card with crypto rewards'
         }]
       }, {
         title: 'Cold Hard Wallets',
@@ -151,19 +167,23 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Ledger',
           url: 'https://www.ledger.com/',
-          icon: '/lovable-uploads/Clubs/Ledger.jpg'
+          icon: '/lovable-uploads/Clubs/Ledger.jpg',
+          description: 'Hardware security with Nano devices'
         }, {
           name: 'Material Bitcoin',
           url: 'https://materialbitcoin.com/AlienFlowSpace',
-          icon: '/lovable-uploads/Clubs/MaterialBitcoin.png'
+          icon: '/lovable-uploads/Clubs/MaterialBitcoin.png',
+          description: 'Premium metal wallet storage'
         }, {
           name: 'SafePal',
           url: 'https://www.safepal.com/',
-          icon: '/lovable-uploads/Clubs/SafePal.png'
+          icon: '/lovable-uploads/Clubs/SafePal.png',
+          description: 'Affordable hardware wallet solution'
         }, {
           name: 'Trezor',
           url: 'https://trezor.io/',
-          icon: '/lovable-uploads/Clubs/Trezor.svg'
+          icon: '/lovable-uploads/Clubs/Trezor.svg',
+          description: 'Open-source hardware wallet security'
         }]
       }, {
         title: 'Hot Wallets',
@@ -173,47 +193,58 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Atomic Wallet',
           url: 'https://atomicwallet.io/',
-          icon: '/lovable-uploads/Clubs/AtomicWallet.svg'
+          icon: '/lovable-uploads/Clubs/AtomicWallet.svg',
+          description: 'Non-custodial multi-chain wallet'
         }, {
           name: 'Base',
           url: 'https://www.base.org/',
-          icon: '/lovable-uploads/Clubs/Coinbase.svg'
+          icon: '/lovable-uploads/Clubs/Coinbase.svg',
+          description: 'Coinbase L2 for low-cost transactions'
         }, {
           name: 'Bitget Wallet',
           url: 'https://newshare.bwb.global/es_es/referralLanding?inviteCode=cmR3qk&utm_source=newInviteRebate&type=card',
-          icon: '/lovable-uploads/Clubs/Bitget.png'
+          icon: '/lovable-uploads/Clubs/Bitget.png',
+          description: 'Multi-chain DeFi wallet'
         }, {
           name: 'Crypto Onchain',
           url: 'https://crypto.com/onchain',
-          icon: '/lovable-uploads/Clubs/Cryptocom.svg'
+          icon: '/lovable-uploads/Clubs/Cryptocom.svg',
+          description: 'Crypto.com self-custody wallet'
         }, {
           name: 'Exodus',
           url: 'https://www.exodus.com/',
-          icon: '/lovable-uploads/Clubs/Exodus.svg'
+          icon: '/lovable-uploads/Clubs/Exodus.svg',
+          description: 'Beautiful desktop and mobile wallet'
         }, {
           name: 'Kraken Wallet',
           url: 'https://www.kraken.com/wallet',
-          icon: '/lovable-uploads/Clubs/Kraken.svg'
+          icon: '/lovable-uploads/Clubs/Kraken.svg',
+          description: 'Self-custody with DeFi access'
         }, {
           name: 'MetaMask',
           url: 'https://metamask.io/',
-          icon: '/lovable-uploads/Clubs/MetaMask.svg'
+          icon: '/lovable-uploads/Clubs/MetaMask.svg',
+          description: 'Leading Ethereum and EVM wallet'
         }, {
           name: 'OKX',
           url: 'https://my.okx.com/join/11556162',
-          icon: '/lovable-uploads/Clubs/OKX.svg'
+          icon: '/lovable-uploads/Clubs/OKX.svg',
+          description: 'Web3 wallet with DeFi integration'
         }, {
           name: 'Phantom',
           url: 'https://phantom.com',
-          icon: '/lovable-uploads/Clubs/PhantomLogo.svg'
+          icon: '/lovable-uploads/Clubs/PhantomLogo.svg',
+          description: 'Solana ecosystem wallet'
         }, {
           name: 'Pi Network',
           url: 'https://minepi.com/Aitor69Alien',
-          icon: '/lovable-uploads/Clubs/PiNetwork.svg'
+          icon: '/lovable-uploads/Clubs/PiNetwork.svg',
+          description: 'Mobile mining and wallet app'
         }, {
           name: 'Trust Wallet',
           url: 'https://trustwallet.com/',
-          icon: '/lovable-uploads/Clubs/TrustWallet.svg'
+          icon: '/lovable-uploads/Clubs/TrustWallet.svg',
+          description: 'Binance multi-chain wallet'
         }]
       }]
     },
@@ -272,34 +303,44 @@ const Clubs: React.FC = () => {
         color: 'bg-purple-600/80',
         platforms: [{
           name: 'Axie Infinity',
-          url: 'https://app.axieinfinity.com/'
+          url: 'https://app.axieinfinity.com/',
+          description: 'Play-to-earn creature battling game'
         }, {
           name: 'Community Gaming',
-          url: 'https://www.communitygaming.io/'
+          url: 'https://www.communitygaming.io/',
+          description: 'Tournament platform with rewards'
         }, {
           name: 'Decentraland',
-          url: 'https://decentraland.org/'
+          url: 'https://decentraland.org/',
+          description: 'Virtual world with land NFTs'
         }, {
           name: 'GAMEE',
-          url: 'https://www.gamee.com/'
+          url: 'https://www.gamee.com/',
+          description: 'Mobile gaming with Arc8 tournaments'
         }, {
           name: 'GameFi.org',
-          url: 'https://gamefi.org/'
+          url: 'https://gamefi.org/',
+          description: 'GameFi aggregator and launchpad'
         }, {
           name: 'Illuvium',
-          url: 'https://www.illuvium.io/'
+          url: 'https://www.illuvium.io/',
+          description: 'Open-world RPG with NFT creatures'
         }, {
           name: 'MOBOX',
-          url: 'https://www.mobox.io/'
+          url: 'https://www.mobox.io/',
+          description: 'GameFi platform with NFT farming'
         }, {
           name: 'The Sandbox',
-          url: 'https://www.sandbox.game/'
+          url: 'https://www.sandbox.game/',
+          description: 'Voxel metaverse and game creation'
         }, {
           name: 'Treasure',
-          url: 'https://treasure.lol/'
+          url: 'https://treasure.lol/',
+          description: 'Decentralized gaming ecosystem'
         }, {
           name: 'Wombat',
-          url: 'https://go.getwombat.io/eN3a'
+          url: 'https://go.getwombat.io/eN3a',
+          description: 'Multi-chain gaming wallet'
         }]
       }, {
         title: 'eSports Platforms',
@@ -309,27 +350,33 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Arena.gg',
           url: 'https://www.arenagg.com/',
-          icon: '/lovable-uploads/Clubs/ArenaGG.png'
+          icon: '/lovable-uploads/Clubs/ArenaGG.png',
+          description: 'Tournament hosting and team management'
         }, {
           name: 'Battlefy',
           url: 'https://battlefy.com/',
-          icon: '/lovable-uploads/Clubs/Battlefy.svg'
+          icon: '/lovable-uploads/Clubs/Battlefy.svg',
+          description: 'eSports tournament organization'
         }, {
           name: 'Blitz.gg',
           url: 'https://blitz.gg/',
-          icon: '/lovable-uploads/Clubs/BlitzGG.svg'
+          icon: '/lovable-uploads/Clubs/BlitzGG.svg',
+          description: 'Performance analytics and coaching'
         }, {
           name: 'ESL Gaming',
           url: 'https://esl.com/',
-          icon: '/lovable-uploads/Clubs/ESL.svg'
+          icon: '/lovable-uploads/Clubs/ESL.svg',
+          description: "World's largest eSports company"
         }, {
           name: 'LVP Global',
           url: 'https://lvp.global/',
-          icon: '/lovable-uploads/Clubs/LVP.PNG'
+          icon: '/lovable-uploads/Clubs/LVP.PNG',
+          description: 'Professional league management'
         }, {
           name: 'ZEBEDEE',
           url: 'https://zbd.link/hcHi/invite?af_sub1=S2S7IY',
-          icon: '/lovable-uploads/Clubs/ZBD.svg'
+          icon: '/lovable-uploads/Clubs/ZBD.svg',
+          description: 'Bitcoin gaming and rewards platform'
         }]
       }]
     },
@@ -349,15 +396,19 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Leafly',
           url: 'https://www.leafly.com/',
-          icon: '/lovable-uploads/Clubs/Leafly.svg'
+          icon: '/lovable-uploads/Clubs/Leafly.svg',
+          description: 'Cannabis strain database and reviews'
         }, {
           name: 'Weedmaps',
           url: 'https://weedmaps.com/',
-          icon: '/lovable-uploads/Clubs/Weedmaps.svg'
+          icon: '/lovable-uploads/Clubs/Weedmaps.svg',
+          description: 'Dispensary finder and education'
         }, {
-          name: 'Cannabis Training'
+          name: 'Cannabis Training',
+          description: 'Professional certification courses'
         }, {
-          name: 'Medical Research'
+          name: 'Medical Research',
+          description: 'Clinical studies and findings'
         }]
       }]
     },
@@ -377,23 +428,28 @@ const Clubs: React.FC = () => {
         platforms: [{
           name: 'Fansly',
           url: 'https://fansly.com/',
-          icon: '/lovable-uploads/Clubs/Fansly.svg'
+          icon: '/lovable-uploads/Clubs/Fansly.svg',
+          description: 'Creator subscription platform'
         }, {
           name: 'OnlyFans',
           url: 'https://onlyfans.com/',
-          icon: '/lovable-uploads/Clubs/OnlyFans.svg'
+          icon: '/lovable-uploads/Clubs/OnlyFans.svg',
+          description: 'Content creator monetization'
         }, {
           name: 'Pornhub',
           url: 'https://pornhub.com/',
-          icon: '/lovable-uploads/Clubs/Pornhub.svg'
+          icon: '/lovable-uploads/Clubs/Pornhub.svg',
+          description: 'Adult video sharing platform'
         }, {
           name: 'XHamster',
           url: 'https://xhamster.com/',
-          icon: '/lovable-uploads/Clubs/XHamster.svg'
+          icon: '/lovable-uploads/Clubs/XHamster.svg',
+          description: 'Adult content community'
         }, {
           name: 'YouPorn',
           url: 'https://youporn.com/',
-          icon: '/lovable-uploads/Clubs/YouPorn.svg'
+          icon: '/lovable-uploads/Clubs/YouPorn.svg',
+          description: 'Premium adult video service'
         }]
       }]
     }
