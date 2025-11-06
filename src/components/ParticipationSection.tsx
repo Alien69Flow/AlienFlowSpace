@@ -33,6 +33,11 @@ const stats = [{
   label: "Total Value Locked",
   icon: CircleDollarSign,
   color: "text-alien-gold"
+}, {
+  value: "99.99%",
+  label: "DAO Uptime",
+  icon: Calendar,
+  color: "text-alien-green"
 }];
 
 const ParticipationSection = () => {
@@ -92,7 +97,7 @@ const ParticipationSection = () => {
         </Button>
         {/* Stats Grid - MORE TRANSPARENT */}
         <div className="flex justify-center mt-12 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center max-w-4xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center max-w-5xl w-full">
             {stats.map((stat, index) => <motion.div key={index} initial={{
             opacity: 0,
             y: 20

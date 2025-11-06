@@ -31,19 +31,42 @@ const elements = [
   { name: 'Water', color: '#3B82F6' }    // Blue
 ];
 
-export function getChineseYear(gregorianYear: number): ChineseYear {
-  // Chinese calendar started in 2697 BCE
-  const chineseYear = gregorianYear + 2697;
+// Chinese New Year dates for accurate year calculation
+const chineseNewYearDates: { [key: number]: string } = {
+  2024: '2024-02-10',
+  2025: '2025-01-29',
+  2026: '2026-02-17',
+  2027: '2027-02-06',
+  2028: '2028-01-26',
+  2029: '2029-02-13',
+  2030: '2030-02-03'
+};
+
+export function getChineseYear(gregorianYear: number, currentDate?: Date): ChineseYear {
+  const today = currentDate || new Date();
+  const cnyDateStr = chineseNewYearDates[gregorianYear];
+  
+  // Determine if we're before or after Chinese New Year
+  let effectiveYear = gregorianYear;
+  if (cnyDateStr) {
+    const cnyDate = new Date(cnyDateStr);
+    if (today < cnyDate) {
+      // Before CNY, use previous year's zodiac
+      effectiveYear = gregorianYear - 1;
+    }
+  }
+  
+  // Chinese calendar year (started 2697 BCE)
+  const chineseYear = effectiveYear + 2697;
   
   // Calculate animal (12-year cycle)
   // 2024 is Year of the Dragon (starting Feb 10, 2024)
-  // We use a base year of 2024 as Dragon (index 4)
-  const animalIndex = (gregorianYear - 2024 + 4) % 12;
+  const animalIndex = (effectiveYear - 2024 + 4) % 12;
   const animal = animals[animalIndex < 0 ? animalIndex + 12 : animalIndex];
   
   // Calculate element (10-year cycle, 2 years per element)
   // 2024 is Wood Dragon
-  const elementIndex = Math.floor(((gregorianYear - 2024 + 4) % 10) / 2);
+  const elementIndex = Math.floor(((effectiveYear - 2024 + 4) % 10) / 2);
   const element = elements[elementIndex < 0 ? elementIndex + 5 : elementIndex];
   
   return {

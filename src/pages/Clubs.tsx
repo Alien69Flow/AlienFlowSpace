@@ -62,7 +62,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-indigo-900/40 to-blue-900/40',
       sections: [{
         title: 'Music & Audio Platforms',
-        description: 'Create, distribute and monetize music through web 3, web 4, web 5',
+        description: 'Decentralized music streaming, NFT releases, and artist monetization platforms',
         icon: <Music className="h-4 w-4" />,
         color: 'bg-indigo-600/80',
         platforms: [{
@@ -98,7 +98,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-blue-900/40 to-purple-900/40',
       sections: [{
         title: 'Card Wallets (MasterCard & VISA)',
-        description: 'Premium cryptocurrency payment debit cards with traditional banking integration',
+        description: 'Crypto debit cards for everyday spending with cashback rewards and banking features',
         icon: <DollarSign className="h-4 w-4" />,
         color: 'bg-blue-600/80',
         platforms: [{
@@ -145,7 +145,7 @@ const Clubs: React.FC = () => {
         }]
       }, {
         title: 'Cold Hard Wallets',
-        description: 'Secure hardware wallets for long-term cryptocurrency storage',
+        description: 'Maximum security hardware wallets with offline storage and multi-signature support',
         icon: <Shield className="h-4 w-4" />,
         color: 'bg-gray-600/80',
         platforms: [{
@@ -167,7 +167,7 @@ const Clubs: React.FC = () => {
         }]
       }, {
         title: 'Hot Wallets',
-        description: 'Convenient software wallets for daily crypto transactions',
+        description: 'User-friendly mobile and browser wallets for quick trading and DeFi access',
         icon: <Zap className="h-4 w-4" />,
         color: 'bg-orange-600/80',
         platforms: [{
@@ -228,7 +228,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-emerald-900/40 to-green-900/40',
       sections: [{
         title: 'Education & Academy',
-        description: 'Learn about sustainable practices and environmental technologies',
+        description: 'Sustainability courses, green certifications, and climate action training programs',
         icon: <Shield className="h-4 w-4" />,
         color: 'bg-emerald-600/80',
         platforms: [{
@@ -243,7 +243,7 @@ const Clubs: React.FC = () => {
         }]
       }, {
         title: 'Eco Products Catalog',
-        description: 'Sustainable merchandise and eco-friendly products',
+        description: 'Organic apparel, hemp products, and sustainable accessories with carbon-neutral shipping',
         icon: <Leaf className="h-4 w-4" />,
         color: 'bg-green-600/80',
         platforms: [{
@@ -267,7 +267,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-purple-900/40 to-pink-900/40',
       sections: [{
         title: 'GameFi Platforms',
-        description: 'Play-to-earn games and blockchain gaming ecosystems',
+        description: 'Play-to-earn blockchain games with NFT assets, in-game economies, and token rewards',
         icon: <Gamepad2 className="h-4 w-4" />,
         color: 'bg-purple-600/80',
         platforms: [{
@@ -303,7 +303,7 @@ const Clubs: React.FC = () => {
         }]
       }, {
         title: 'eSports Platforms',
-        description: 'Competitive gaming tournaments and professional esports',
+        description: 'Professional gaming tournaments, team management, and competitive league platforms',
         icon: <Zap className="h-4 w-4" />,
         color: 'bg-red-600/80',
         platforms: [{
@@ -343,7 +343,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-green-900/40 to-emerald-900/40',
       sections: [{
         title: 'Cannabis Education',
-        description: 'Learn about cannabis wellness and legal cultivation',
+        description: 'Medical cannabis research, strain guides, legal cultivation, and wellness applications',
         icon: <Leaf className="h-4 w-4" />,
         color: 'bg-green-600/80',
         platforms: [{
@@ -371,7 +371,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-red-900/40 to-pink-900/40',
       sections: [{
         title: 'Adult Platforms',
-        description: 'Verified adult content and NFT collections (18+ only)',
+        description: 'Age-verified creator platforms and adult NFT marketplaces (18+ only, consensual content)',
         icon: <Eye className="h-4 w-4" />,
         color: 'bg-red-600/80',
         platforms: [{
