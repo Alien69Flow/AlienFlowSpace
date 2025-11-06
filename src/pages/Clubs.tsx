@@ -62,7 +62,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-indigo-900/40 to-blue-900/40',
       sections: [{
         title: 'Music & Audio Platforms',
-        description: 'Create, distribute and monetize music through blockchain',
+        description: 'Create, distribute and monetize music through web 3, web 4, web 5',
         icon: <Music className="h-4 w-4" />,
         color: 'bg-indigo-600/80',
         platforms: [{
@@ -90,7 +90,7 @@ const Clubs: React.FC = () => {
     },
     {
       name: 'Δ CashFlow',
-      description: 'Advanced earning strategies and winning analysis for interplanetary assets through DeFi protocols, yield farming, and strategic portfolio management.',
+      description: 'Advanced earning strategies and winning analysis for interplanetary assets through AI Agents, Automated Market Makers, BioFi, DeFi, DePin, DeSci protocols, Mining, ReFi, RWA, SocialFi, Staking, yield farming, and strategic portfolio management.',
       members: 314159,
       icon: <DollarSign className="h-6 w-6 text-alien-gold" />,
       category: 'CashFlow',
@@ -98,7 +98,7 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-blue-900/40 to-purple-900/40',
       sections: [{
         title: 'Card Wallets (MasterCard & VISA)',
-        description: 'Premium cryptocurrency payment cards with traditional banking integration',
+        description: 'Premium cryptocurrency payment debit cards with traditional banking integration',
         icon: <DollarSign className="h-4 w-4" />,
         color: 'bg-blue-600/80',
         platforms: [{
