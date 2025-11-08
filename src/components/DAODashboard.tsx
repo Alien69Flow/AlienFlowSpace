@@ -18,8 +18,8 @@ const DAODashboard: React.FC = () => {
   
   // Mock data - In production, fetch from blockchain
   const [stats] = useState({
-    activeVoters: 12847,
-    totalProposals: 156,
+    activeVoters: 1618033,
+    totalProposals: 2025,
     votingPower: '3.14M',
     participationRate: 69
   });
