@@ -26,7 +26,7 @@ const DAODashboard: React.FC = () => {
 
   const [treasury] = useState([
     { name: 'BTC', value: 123456789, change: 3.3, color: '#F7931A' },
-    { name: 'ETH', value: 333456789, change: -1.2, color: '#627EEA' },
+    { name: 'ETH', value: 33456789, change: -1.2, color: '#627EEA' },
     { name: 'USDC', value: 850000, change: 0, color: '#2775CA' },
     { name: 'Other', value: 95000, change: 2.3, color: '#22C55E' }
   ]);
