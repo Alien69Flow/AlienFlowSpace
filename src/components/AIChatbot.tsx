@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, X, Minimize2 } from 'lucide-react';
+import { Brain, X } from 'lucide-react';
+import { toast } from 'sonner';
 
 const AIChatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    toast.info('AI Assistant Loading', {
+      description: 'Opening Aitor AI Assistant...'
+    });
+  };
 
   return (
     <>
@@ -12,7 +20,7 @@ const AIChatbot = () => {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleOpen}
         className="fixed bottom-24 right-8 z-40 p-4 bg-gradient-to-br from-alien-gold to-alien-gold-dark backdrop-blur-md border-2 border-alien-gold-light rounded-full text-alien-space-dark hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-alien-gold/50"
         aria-label="Open AI Assistant"
       >
@@ -57,6 +65,11 @@ const AIChatbot = () => {
               className="w-full h-[calc(100%-4rem)] border-none"
               title="Aitor AI Assistant"
               allow="microphone; camera"
+              onError={() => {
+                toast.error('AI Assistant Error', {
+                  description: 'Failed to load AI assistant. Please try again.'
+                });
+              }}
             />
           </motion.div>
         )}

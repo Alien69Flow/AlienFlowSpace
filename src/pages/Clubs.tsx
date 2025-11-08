@@ -457,6 +457,15 @@ const Clubs: React.FC = () => {
 
   const otherClubs = [
     {
+      name: 'Δ AIFlow',
+      description: 'Advancing artificial intelligence through decentralized computing, neural networks, and collaborative AI model development.',
+      members: 11234,
+      icon: <Zap className="h-6 w-6 text-alien-gold" />,
+      category: 'AI',
+      categoryColor: 'bg-violet-500/80 text-white border border-violet-400/50',
+      bgColor: 'bg-gradient-to-br from-violet-900/40 to-purple-900/40'
+    },
+    {
       name: 'Δ BioFlow',
       description: 'Advancing biotechnology and regenerative medicine through decentralized research, funding, and community-driven innovation.',
       members: 6789,
@@ -493,6 +502,42 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-indigo-900/40 to-purple-900/40'
     },
     {
+      name: 'Δ EnergyFlow',
+      description: 'Powering the future with renewable energy, decentralized grids, and sustainable power solutions for communities worldwide.',
+      members: 8923,
+      icon: <Zap className="h-6 w-6 text-alien-gold" />,
+      category: 'Energy',
+      categoryColor: 'bg-yellow-500/80 text-white border border-yellow-400/50',
+      bgColor: 'bg-gradient-to-br from-yellow-900/40 to-amber-900/40'
+    },
+    {
+      name: 'Δ HealthFlow',
+      description: 'Revolutionizing healthcare through decentralized medical records, telemedicine, and community health initiatives.',
+      members: 10456,
+      icon: <Heart className="h-6 w-6 text-alien-gold" />,
+      category: 'Healthcare',
+      categoryColor: 'bg-red-500/80 text-white border border-red-400/50',
+      bgColor: 'bg-gradient-to-br from-red-900/40 to-pink-900/40'
+    },
+    {
+      name: 'Δ MetaFlow',
+      description: 'Exploring virtual worlds, metaverse platforms, and immersive VR/AR experiences in decentralized digital spaces.',
+      members: 9871,
+      icon: <Eye className="h-6 w-6 text-alien-gold" />,
+      category: 'Metaverse',
+      categoryColor: 'bg-cyan-500/80 text-white border border-cyan-400/50',
+      bgColor: 'bg-gradient-to-br from-cyan-900/40 to-blue-900/40'
+    },
+    {
+      name: 'Δ QuantumFlow',
+      description: 'Pioneering quantum computing applications, cryptography, and next-generation computational solutions for the blockchain.',
+      members: 4567,
+      icon: <Zap className="h-6 w-6 text-alien-gold" />,
+      category: 'Quantum',
+      categoryColor: 'bg-purple-500/80 text-white border border-purple-400/50',
+      bgColor: 'bg-gradient-to-br from-purple-900/40 to-indigo-900/40'
+    },
+    {
       name: 'Δ ReFlow',
       description: 'Regenerating ecosystems and promoting sustainable practices through decentralized finance, carbon offsetting, and community-led conservation.',
       members: 8156,
@@ -509,6 +554,15 @@ const Clubs: React.FC = () => {
       category: 'Social',
       categoryColor: 'bg-pink-500/80 text-white border border-pink-400/50',
       bgColor: 'bg-gradient-to-br from-pink-900/40 to-rose-900/40'
+    },
+    {
+      name: 'Δ SpaceFlow',
+      description: 'Advancing space exploration, satellite technology, and cosmic research through decentralized funding and collaboration.',
+      members: 5678,
+      icon: <Rocket className="h-6 w-6 text-alien-gold" />,
+      category: 'Space',
+      categoryColor: 'bg-indigo-500/80 text-white border border-indigo-400/50',
+      bgColor: 'bg-gradient-to-br from-indigo-900/40 to-blue-900/40'
     }
   ];
 

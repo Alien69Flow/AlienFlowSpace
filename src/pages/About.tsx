@@ -41,21 +41,30 @@ const About: React.FC = () => {
                       Web 5 (Quantum Computing)
                     </h3>
                     <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-4"></div>
+                    <p className="text-base text-gray-300 leading-relaxed mb-6 max-w-3xl mx-auto">
+                      Harnessing quantum mechanics for ultra-secure communications and exponentially faster computations. Web 5 represents the pinnacle of decentralized identity and data sovereignty, powered by quantum-resistant cryptography that future-proofs the entire ecosystem.
+                    </p>
                   </div>
                   <div className="text-center">
                     <h3 className="text-3xl font-semibold text-alien-green mb-2 font-nasalization">
                       Web 4 (A.I. Neural Networks)
                     </h3>
                     <div className="w-24 h-1 bg-gradient-to-r from-alien-green to-alien-gold mx-auto mb-4"></div>
+                    <p className="text-base text-gray-300 leading-relaxed mb-6 max-w-3xl mx-auto">
+                      Intelligent, adaptive systems that learn and evolve with user behavior. Advanced neural networks power predictive analytics, automated decision-making, and personalized experiences that anticipate needs before they arise. AI agents work seamlessly across the ecosystem.
+                    </p>
                   </div>
                   <div className="text-center">
                     <h3 className="text-3xl font-semibold text-alien-gold mb-4 font-nasalization">
                       Web 3 (Blockchain)
                     </h3>
                     <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-6"></div>
+                    <p className="text-base text-gray-300 leading-relaxed mb-6 max-w-3xl mx-auto">
+                      The foundation of true digital ownership and trustless transactions. Blockchain technology enables transparent, immutable records and smart contracts that execute automatically. Experience decentralized governance, NFT ownership, and peer-to-peer value exchange without intermediaries.
+                    </p>
                   </div>
-                  <p className="text-lg text-center leading-relaxed">
-                    AlienFlowSpace DAO = (Decentralized Autonomous Organization) is a space that allows users; access, acquire, redeem, buy, sell and exchange Cryptos, NFTs in an easy and secure way. [...]
+                  <p className="text-lg leading-relaxed">
+                    AlienFlowSpace DAO (Decentralized Autonomous Organization) is a revolutionary space that empowers users to seamlessly access, acquire, redeem, buy, sell, and exchange cryptocurrencies and NFTs in a secure, transparent environment. We leverage cutting-edge Web 5 quantum computing, Web 4 AI neural networks, and Web 3 blockchain technology to create an unparalleled ecosystem of innovation and sustainability.
                   </p>
                 </div>
               </CardContent>
@@ -131,7 +140,7 @@ const About: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg leading-relaxed">
-                    We are dedicated to creating the best experiences and synergies that generate greater value for the planet and its beings, implementing efficiency and environmentally sustainable friendly solutions. We strive for continuous improvement, overcoming challenges to offer our best every day through our actions.
+                    We are dedicated to creating exceptional experiences and powerful synergies that generate greater value for the planet and all its beings. By implementing energy-efficient and environmentally sustainable solutions, we lead the charge toward a regenerative future. Through continuous improvement and unwavering commitment, we overcome challenges to deliver our best work every day. Our mission extends beyond technology—we're building a movement that harmonizes innovation with ecological responsibility, empowering communities worldwide to thrive in balance with nature.
                   </p>
                 </CardContent>
               </Card>
@@ -145,10 +154,10 @@ const About: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg leading-relaxed mb-4">
-                    Our vision is to help business professionals adapt and thrive in an ever-evolving digital and hybrid world by offering innovative solutions that optimize energy efficiency and promote environmental sustainability.
+                    Our vision is to empower business professionals and individuals to adapt and excel in an ever-evolving digital and hybrid world. We provide innovative solutions that optimize energy efficiency, promote environmental sustainability, and bridge the gap between traditional systems and decentralized technologies. By fostering technological literacy and accessibility, we enable everyone to participate in the next generation of the internet.
                   </p>
                   <p className="text-lg leading-relaxed">
-                    Our main objective is to disseminate knowledge to provide greater understanding of wisdom in different fields, promoting sustainable growth and development in harmony with the cosmos.
+                    Our core objective is to democratize knowledge and wisdom across diverse fields—from quantum computing and AI to blockchain and sustainable practices. We believe in holistic growth that harmonizes technological advancement with cosmic consciousness, creating a future where innovation serves the greater good of all beings and the planet we call home.
                   </p>
                 </CardContent>
               </Card>
@@ -157,20 +166,20 @@ const About: React.FC = () => {
             {/* Navigation Buttons */}
             <div className="flex flex-wrap justify-center gap-8 my-12">
               <Link to="/academy">
-                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-24 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
-                  <GraduationCap className="h-8 w-8 mb-2" />
+                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-32 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
+                  <img src="/lovable-uploads/AcademyLogo.png" alt="Academy Logo" className="h-12 w-12 mb-2 object-contain" />
                   <span className="font-semibold text-lg font-nasalization">Academy</span>
                 </Button>
               </Link>
               <Link to="/clubs">
-                <Button className="bg-gradient-to-br from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark p-8 rounded-2xl text-center w-56 h-24 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-green/30 transition-all duration-300 hover:transform hover:scale-110">
-                  <Trophy className="h-8 w-8 mb-2" />
+                <Button className="bg-gradient-to-br from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark p-8 rounded-2xl text-center w-56 h-32 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-green/30 transition-all duration-300 hover:transform hover:scale-110">
+                  <img src="/lovable-uploads/ClubLogo.png" alt="Clubs Logo" className="h-12 w-12 mb-2 object-contain" />
                   <span className="font-semibold text-lg font-nasalization">Clubs</span>
                 </Button>
               </Link>
               <Link to="/conetworking">
-                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-24 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
-                  <Users className="h-8 w-8 mb-2" />
+                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-32 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
+                  <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing Logo" className="h-12 w-12 mb-2 object-contain" />
                   <span className="font-semibold text-lg font-nasalization">CoNetWorKing</span>
                 </Button>
               </Link>

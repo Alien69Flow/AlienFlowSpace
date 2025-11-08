@@ -3,6 +3,7 @@ import { Network, TrendingUp, Shield, Coins, Sprout, Pickaxe, Layers, Dna, Flask
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import DAODashboard from '@/components/DAODashboard';
 type ServiceProps = {
   title: string;
   description: string;
@@ -385,7 +386,8 @@ const CoNetWorKing: React.FC = () => {
     label: "195 Countries",
     value: "195",
     change: "DAO Members",
-    icon: Globe
+    icon: Globe,
+    isPlanet: true
   }, {
     label: "Data Storage",
     value: "161 YB",
@@ -461,7 +463,18 @@ const CoNetWorKing: React.FC = () => {
               const IconComponent = stat.icon;
               return <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
                     <CardContent className="p-6 text-center">
-                      <IconComponent className="h-8 w-8 text-alien-green mx-auto mb-4 animate-pulse" />
+                      {stat.isPlanet ? (
+                        <div className="relative w-24 h-24 mx-auto mb-4">
+                          <img 
+                            src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=150&h=150&fit=crop" 
+                            alt="Planet Earth" 
+                            className="w-full h-full object-cover rounded-full animate-pulse"
+                            style={{ filter: 'drop-shadow(0 0 12px rgba(34, 197, 94, 0.6))' }}
+                          />
+                        </div>
+                      ) : (
+                        <IconComponent className="h-8 w-8 text-alien-green mx-auto mb-4 animate-pulse" />
+                      )}
                       <div className="text-2xl font-bold text-alien-gold font-[Atomic Age] mb-2">
                         {stat.value}
                       </div>
@@ -475,6 +488,11 @@ const CoNetWorKing: React.FC = () => {
                   </Card>;
             })}
             </div>
+          </div>
+
+          {/* DAO Dashboard */}
+          <div className="mb-20">
+            <DAODashboard />
           </div>
 
           {/* Services Grid */}
@@ -584,13 +602,27 @@ const CoNetWorKing: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-6 flex gap-3">
-                    <Button className="flex-1 bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
-                      View Proposals
-                    </Button>
-                    <Button variant="outline" className="flex-1 border-alien-green text-alien-green hover:bg-alien-green/10 font-[Exo]">
-                      Create New
-                    </Button>
+                  <div className="mt-6 space-y-3">
+                    <div className="flex gap-3">
+                      <Button className="flex-1 bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo]">
+                        View Proposals
+                      </Button>
+                      <Button variant="outline" className="flex-1 border-alien-green text-alien-green hover:bg-alien-green/10 font-[Exo]">
+                        Create New
+                      </Button>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <a href="/alien-trip" className="flex-1">
+                        <Button className="w-full bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 border border-purple-500/50 font-[Exo]">
+                          View on Alientrip
+                        </Button>
+                      </a>
+                      <a href="https://gitbook.com" target="_blank" rel="noopener noreferrer" className="flex-1">
+                        <Button className="w-full bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/50 font-[Exo]">
+                          Read Docs on Gitbook
+                        </Button>
+                      </a>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
