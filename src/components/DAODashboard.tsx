@@ -20,15 +20,15 @@ const DAODashboard: React.FC = () => {
   const [stats] = useState({
     activeVoters: 12847,
     totalProposals: 156,
-    votingPower: '2.4M',
-    participationRate: 68
+    votingPower: '3.14M',
+    participationRate: 69
   });
 
   const [treasury] = useState([
-    { name: 'BTC', value: 145.7, change: 3.2, color: '#F7931A' },
-    { name: 'ETH', value: 2890.5, change: -1.5, color: '#627EEA' },
-    { name: 'USDC', value: 450000, change: 0, color: '#2775CA' },
-    { name: 'Other', value: 89000, change: 2.1, color: '#22C55E' }
+    { name: 'BTC', value: 123456789, change: 3.3, color: '#F7931A' },
+    { name: 'ETH', value: 333456789, change: -1.2, color: '#627EEA' },
+    { name: 'USDC', value: 850000, change: 0, color: '#2775CA' },
+    { name: 'Other', value: 95000, change: 2.3, color: '#22C55E' }
   ]);
 
   const [proposals] = useState<Proposal[]>([
