@@ -117,179 +117,216 @@ const CoNetWorKing: React.FC = () => {
     icon: <Landmark className="h-8 w-8 text-white" />,
     color: "bg-gradient-to-br from-blue-600 to-indigo-400"
   }];
-  const partners = [
-  // Data & Analytics
-  {
-    name: "Aragon DAO",
-    url: "https://www.aragon.org/",
-    logo: "/lovable-uploads/AragonDAOLogo.svg",
-    description: "DAO governance platform"
-  }, {
-    name: "Arena.gg",
-    url: "https://www.arenagg.com/",
-    logo: "/lovable-uploads/ArenaLogo.svg",
-    description: "eSports tournaments"
-  }, {
-    name: "Axie Infinity",
-    url: "https://app.axieinfinity.com/",
-    logo: "/lovable-uploads/AxieLogo.svg",
-    description: "Play-to-earn game"
-  },
-  // CashFlow Partners  
-  {
-    name: "Battlefy",
-    url: "https://battlefy.com/",
-    logo: "/lovable-uploads/BattlefyLogo.svg",
-    description: "Tournament platform"
-  }, {
-    name: "Binance",
-    url: "https://binance.com/",
-    logo: "/lovable-uploads/BinanceLogo.svg",
-    description: "Leading crypto exchange"
-  }, {
-    name: "BingX",
-    url: "https://bingx.com/referral-program/QCXRKM",
-    logo: "/lovable-uploads/BingXLogo.svg",
-    description: "Crypto trading platform"
-  }, {
-    name: "Bitget",
-    url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N",
-    logo: "/lovable-uploads/BitgetLogo.svg",
-    description: "Crypto derivatives exchange"
-  }, {
-    name: "Blitz.gg",
-    url: "https://blitz.gg/",
-    logo: "/lovable-uploads/BlitzLogo.svg",
-    description: "Gaming performance"
-  }, {
-    name: "Bybit",
-    url: "https://www.bybit.com/invite?ref=Q15Q4M",
-    logo: "/lovable-uploads/BybitLogo.svg",
-    description: "Crypto trading platform"
-  },
-  // Education & Climate
-  {
-    name: "Climate Reanalyzer",
-    url: "https://climatereanalyzer.org/",
-    logo: "/lovable-uploads/ClimateReanalyzerLogo.svg",
-    description: "Climate data"
-  }, {
-    name: "Coinbase",
-    url: "https://www.coinbase.com/join/EC2PSZT?src",
-    logo: "/lovable-uploads/CoinbaseLogo.svg",
-    description: "Trusted crypto exchange"
-  }, {
-    name: "CoinGecko",
-    url: "https://www.coingecko.com/",
-    logo: "/lovable-uploads/CoinGeckoLogo.svg",
-    description: "Crypto data platform"
-  }, {
-    name: "CoinGlass",
-    url: "https://www.coinglass.com/",
-    logo: "/lovable-uploads/CoinGlassLogo.jpeg",
-    description: "Crypto derivatives data"
-  }, {
-    name: "CoinMarketCap",
-    url: "https://coinmarketcap.com/",
-    logo: "/lovable-uploads/CoinMarketCapLogo.jpeg",
-    description: "Crypto market data"
-  }, {
-    name: "Community Gaming",
-    url: "https://www.communitygaming.io/",
-    logo: "/lovable-uploads/CommunityGamingLogo.svg",
-    description: "Gaming tournaments"
-  }, {
-    name: "Crypto.com",
-    url: "https://crypto.com/app/una5xskncn",
-    logo: "/lovable-uploads/CryptoComLogo.svg",
-    description: "Crypto platform with card"
-  },
-  // GameFi & Metaverse
-  {
-    name: "DappRadar",
-    url: "https://dappradar.com/",
-    logo: "/lovable-uploads/DappRadarLogo.jpeg",
-    description: "DApp analytics"
-  }, {
-    name: "Decentraland",
-    url: "https://decentraland.org/",
-    logo: "/lovable-uploads/DecentralandLogo.svg",
-    description: "Virtual world platform"
-  }, {
-    name: "ESL Gaming",
-    url: "https://esl.com/",
-    logo: "/lovable-uploads/ESLLogo.svg",
-    description: "eSports organization"
-  }, {
-    name: "GAMEE",
-    url: "https://www.gamee.com/",
-    logo: "/lovable-uploads/GAMEELogo.svg",
-    description: "Blockchain gaming"
-  }, {
-    name: "GameFi.org",
-    url: "https://gamefi.org/",
-    logo: "/lovable-uploads/GameFiLogo.svg",
-    description: "GameFi aggregator"
-  },
-  // Infrastructure & Finance
-  {
-    name: "Illuvium",
-    url: "https://www.illuvium.io/",
-    logo: "/lovable-uploads/IlluviumLogo.svg",
-    description: "AAA blockchain game"
-  }, {
-    name: "LVP Global",
-    url: "https://lvp.global/",
-    logo: "/lovable-uploads/LVPLogo.svg",
-    description: "eSports leagues"
-  }, {
-    name: "MOBOX",
-    url: "https://www.mobox.io/",
-    logo: "/lovable-uploads/MOBOXLogo.svg",
-    description: "Gaming metaverse"
-  }, {
-    name: "Nexo",
-    url: "https://nexo.com/ref/x6ts3r0kb2?src",
-    logo: "/lovable-uploads/NexoLogo.svg",
-    description: "Crypto banking platform"
-  }, {
-    name: "Pi Network",
-    url: "https://minepi.com/Aitor69Alien",
-    logo: "/lovable-uploads/PiNetworkLogo.svg",
-    description: "Mobile crypto mining"
-  }, {
-    name: "Pionex",
-    url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7",
-    logo: "/lovable-uploads/PionexLogo.svg",
-    description: "Crypto trading bot platform"
-  },
-  // Gaming & Development
-  {
-    name: "The Sandbox",
-    url: "https://www.sandbox.game/",
-    logo: "/lovable-uploads/SandboxLogo.svg",
-    description: "Metaverse platform"
-  }, {
-    name: "Treasure",
-    url: "https://treasure.lol/",
-    logo: "/lovable-uploads/TreasureLogo.svg",
-    description: "Decentralized game console"
-  }, {
-    name: "Unity Learn",
-    url: "https://learn.unity.com/",
-    logo: "/lovable-uploads/UnityLearnLogo.svg",
-    description: "Game development"
-  }, {
-    name: "Wombat",
-    url: "https://go.getwombat.io/eN3a",
-    logo: "/lovable-uploads/WombatLogo.svg",
-    description: "Gaming wallet"
-  }, {
-    name: "ZEBEDEE",
-    url: "https://zbd.link/hcHi/invite?af_sub1=S2S7IY",
-    logo: "/lovable-uploads/ZEBEDEELogo.svg",
-    description: "Bitcoin gaming platform"
-  }];
+  // Partner categories for classification
+  const academyPartners = [
+    {
+      name: "Climate Reanalyzer",
+      url: "https://climatereanalyzer.org/",
+      logo: "/lovable-uploads/ClimateReanalyzerLogo.svg",
+      description: "Climate data & analytics",
+      category: "Academy"
+    },
+    {
+      name: "Unity Learn",
+      url: "https://learn.unity.com/",
+      logo: "/lovable-uploads/UnityLearnLogo.svg",
+      description: "Game development education",
+      category: "Academy"
+    }
+  ];
+
+  const clubsPartners = {
+    cashFlow: [
+      {
+        name: "Binance",
+        url: "https://binance.com/",
+        logo: "/lovable-uploads/BinanceLogo.svg",
+        description: "Leading crypto exchange"
+      },
+      {
+        name: "BingX",
+        url: "https://bingx.com/referral-program/QCXRKM",
+        logo: "/lovable-uploads/BingXLogo.svg",
+        description: "Crypto trading platform"
+      },
+      {
+        name: "Bitget",
+        url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N",
+        logo: "/lovable-uploads/BitgetLogo.svg",
+        description: "Crypto derivatives exchange"
+      },
+      {
+        name: "Bybit",
+        url: "https://www.bybit.com/invite?ref=Q15Q4M",
+        logo: "/lovable-uploads/BybitLogo.svg",
+        description: "Crypto trading platform"
+      },
+      {
+        name: "Coinbase",
+        url: "https://www.coinbase.com/join/EC2PSZT?src",
+        logo: "/lovable-uploads/CoinbaseLogo.svg",
+        description: "Trusted crypto exchange"
+      },
+      {
+        name: "Crypto.com",
+        url: "https://crypto.com/app/una5xskncn",
+        logo: "/lovable-uploads/CryptoComLogo.svg",
+        description: "Crypto platform with card"
+      },
+      {
+        name: "Nexo",
+        url: "https://nexo.com/ref/x6ts3r0kb2?src",
+        logo: "/lovable-uploads/NexoLogo.svg",
+        description: "Crypto banking platform"
+      },
+      {
+        name: "Pionex",
+        url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7",
+        logo: "/lovable-uploads/PionexLogo.svg",
+        description: "Crypto trading bot platform"
+      }
+    ],
+    gameFlow: [
+      {
+        name: "Arena.gg",
+        url: "https://www.arenagg.com/",
+        logo: "/lovable-uploads/ArenaLogo.svg",
+        description: "eSports tournaments"
+      },
+      {
+        name: "Axie Infinity",
+        url: "https://app.axieinfinity.com/",
+        logo: "/lovable-uploads/AxieLogo.svg",
+        description: "Play-to-earn game"
+      },
+      {
+        name: "Battlefy",
+        url: "https://battlefy.com/",
+        logo: "/lovable-uploads/BattlefyLogo.svg",
+        description: "Tournament platform"
+      },
+      {
+        name: "Blitz.gg",
+        url: "https://blitz.gg/",
+        logo: "/lovable-uploads/BlitzLogo.svg",
+        description: "Gaming performance"
+      },
+      {
+        name: "ESL Gaming",
+        url: "https://esl.com/",
+        logo: "/lovable-uploads/ESLLogo.svg",
+        description: "eSports organization"
+      },
+      {
+        name: "GAMEE",
+        url: "https://www.gamee.com/",
+        logo: "/lovable-uploads/GAMEELogo.svg",
+        description: "Blockchain gaming"
+      },
+      {
+        name: "GameFi.org",
+        url: "https://gamefi.org/",
+        logo: "/lovable-uploads/GameFiLogo.svg",
+        description: "GameFi aggregator"
+      },
+      {
+        name: "Illuvium",
+        url: "https://www.illuvium.io/",
+        logo: "/lovable-uploads/IlluviumLogo.svg",
+        description: "AAA blockchain game"
+      },
+      {
+        name: "LVP Global",
+        url: "https://lvp.global/",
+        logo: "/lovable-uploads/LVPLogo.svg",
+        description: "eSports leagues"
+      },
+      {
+        name: "MOBOX",
+        url: "https://www.mobox.io/",
+        logo: "/lovable-uploads/MOBOXLogo.svg",
+        description: "Gaming metaverse"
+      },
+      {
+        name: "Community Gaming",
+        url: "https://www.communitygaming.io/",
+        logo: "/lovable-uploads/CommunityGamingLogo.svg",
+        description: "Gaming tournaments"
+      },
+      {
+        name: "Treasure",
+        url: "https://treasure.lol/",
+        logo: "/lovable-uploads/TreasureLogo.svg",
+        description: "Decentralized game console"
+      },
+      {
+        name: "Wombat",
+        url: "https://go.getwombat.io/eN3a",
+        logo: "/lovable-uploads/WombatLogo.svg",
+        description: "Gaming wallet"
+      },
+      {
+        name: "ZEBEDEE",
+        url: "https://zbd.link/hcHi/invite?af_sub1=S2S7IY",
+        logo: "/lovable-uploads/ZEBEDEELogo.svg",
+        description: "Bitcoin gaming platform"
+      }
+    ],
+    metaFlow: [
+      {
+        name: "Decentraland",
+        url: "https://decentraland.org/",
+        logo: "/lovable-uploads/DecentralandLogo.svg",
+        description: "Virtual world platform"
+      },
+      {
+        name: "The Sandbox",
+        url: "https://www.sandbox.game/",
+        logo: "/lovable-uploads/SandboxLogo.svg",
+        description: "Metaverse platform"
+      }
+    ],
+    dataFlow: [
+      {
+        name: "CoinGecko",
+        url: "https://www.coingecko.com/",
+        logo: "/lovable-uploads/CoinGeckoLogo.svg",
+        description: "Crypto data platform"
+      },
+      {
+        name: "CoinGlass",
+        url: "https://www.coinglass.com/",
+        logo: "/lovable-uploads/CoinGlassLogo.jpeg",
+        description: "Crypto derivatives data"
+      },
+      {
+        name: "CoinMarketCap",
+        url: "https://coinmarketcap.com/",
+        logo: "/lovable-uploads/CoinMarketCapLogo.jpeg",
+        description: "Crypto market data"
+      },
+      {
+        name: "DappRadar",
+        url: "https://dappradar.com/",
+        logo: "/lovable-uploads/DappRadarLogo.jpeg",
+        description: "DApp analytics"
+      }
+    ],
+    quantumFlow: [
+      {
+        name: "Aragon DAO",
+        url: "https://www.aragon.org/",
+        logo: "/lovable-uploads/AragonDAOLogo.svg",
+        description: "DAO governance platform"
+      },
+      {
+        name: "Pi Network",
+        url: "https://minepi.com/Aitor69Alien",
+        logo: "/lovable-uploads/PiNetworkLogo.svg",
+        description: "Mobile crypto mining"
+      }
+    ]
+  };
   const officialPartners = [{
     name: "Behance",
     avatar: "/lovable-uploads/BehanceLogo.jpeg",
@@ -629,31 +666,205 @@ const CoNetWorKing: React.FC = () => {
             </div>
           </div>
 
-          {/* Partners Section */}
+          {/* Partners Section - Organized by Categories */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
-              Our Partners
+            <h2 className="text-4xl font-bold text-alien-gold mb-4 text-center font-[Atomic Age]">
+              Our Partners Ecosystem
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {partners.map((partner, index) => <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
-                  <CardHeader className="text-center pb-4">
-                    <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-alien-gold">
-                      <a href={partner.url || '#'} target="_blank" rel="noopener noreferrer">
-                        <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                      </a>
-                    </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
-                      <a href={partner.url || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
-                        {partner.name}
-                      </a>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                      {partner.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>)}
+            <p className="text-center text-gray-300 font-[Exo] mb-12 max-w-3xl mx-auto">
+              Discover our network of partners across Academy and specialized Clubs
+            </p>
+
+            {/* Academy Partners */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-alien-gold to-transparent flex-1"></div>
+                <h3 className="text-2xl font-bold text-alien-gold font-[Atomic Age] px-4">Academy</h3>
+                <div className="h-px bg-gradient-to-r from-transparent via-alien-gold to-transparent flex-1"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {academyPartners.map((partner, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-gold/5 backdrop-blur-md border border-alien-gold/40 hover:border-alien-gold/70 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-alien-gold">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                        </a>
+                      </div>
+                      <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
+                          {partner.name}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                        {partner.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Clubs - CashFlow */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-alien-green to-transparent flex-1"></div>
+                <h3 className="text-2xl font-bold text-alien-green font-[Atomic Age] px-4">CashFlow</h3>
+                <div className="h-px bg-gradient-to-r from-transparent via-alien-green to-transparent flex-1"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {clubsPartners.cashFlow.map((partner, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border border-alien-green/40 hover:border-alien-green/70 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-alien-green">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                        </a>
+                      </div>
+                      <CardTitle className="text-alien-green font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-green-light">
+                          {partner.name}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                        {partner.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Clubs - GameFlow */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent flex-1"></div>
+                <h3 className="text-2xl font-bold text-purple-400 font-[Atomic Age] px-4">GameFlow</h3>
+                <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent flex-1"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {clubsPartners.gameFlow.map((partner, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-purple-500/20 to-purple-500/5 backdrop-blur-md border border-purple-500/40 hover:border-purple-500/70 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-purple-500">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                        </a>
+                      </div>
+                      <CardTitle className="text-purple-400 font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-purple-300">
+                          {partner.name}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                        {partner.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Clubs - MetaFlow */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent flex-1"></div>
+                <h3 className="text-2xl font-bold text-cyan-400 font-[Atomic Age] px-4">MetaFlow</h3>
+                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent flex-1"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {clubsPartners.metaFlow.map((partner, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 backdrop-blur-md border border-cyan-500/40 hover:border-cyan-500/70 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-cyan-500">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                        </a>
+                      </div>
+                      <CardTitle className="text-cyan-400 font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-300">
+                          {partner.name}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                        {partner.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Clubs - DataFlow */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent flex-1"></div>
+                <h3 className="text-2xl font-bold text-blue-400 font-[Atomic Age] px-4">DataFlow</h3>
+                <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent flex-1"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {clubsPartners.dataFlow.map((partner, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-blue-500/20 to-blue-500/5 backdrop-blur-md border border-blue-500/40 hover:border-blue-500/70 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                        </a>
+                      </div>
+                      <CardTitle className="text-blue-400 font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
+                          {partner.name}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                        {partner.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Clubs - QuantumFlow */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent flex-1"></div>
+                <h3 className="text-2xl font-bold text-indigo-400 font-[Atomic Age] px-4">QuantumFlow</h3>
+                <div className="h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent flex-1"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {clubsPartners.quantumFlow.map((partner, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 backdrop-blur-md border border-indigo-500/40 hover:border-indigo-500/70 transition-all duration-300 hover:scale-105">
+                    <CardHeader className="text-center pb-4">
+                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                        </a>
+                      </div>
+                      <CardTitle className="text-indigo-400 font-[Atomic Age] text-lg">
+                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300">
+                          {partner.name}
+                        </a>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                        {partner.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { GraduationCap, Users, Trophy, Shield, Zap, Globe, Leaf } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedText from "@/components/AnimatedText";
 const About: React.FC = () => {
   return <div className="relative flex flex-col flex-1 min-h-screen">
 
@@ -10,31 +12,57 @@ const About: React.FC = () => {
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-8 pb-16">
         <div className="max-w-6xl mx-auto">
           {/* Hero section with improved styling */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div 
+              className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md"
+              whileHover={{ scale: 1.1, rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
               <img src="/lovable-uploads/ALogo.png" alt="About Official Logo" className="h-12 w-12 object-contain" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green">
+            </motion.div>
+            <AnimatedText
+              className="text-4xl md:text-5xl font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               About Us
-            </h1>
-            <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl rounded-3xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green md:text-5xl text-3xl">
-                  We offer INNOVATIVE SOLUTIONS with cutting-edge technologies
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <h2 className="md:text-2xl text-alien-green mb-8 font-[Exo] max-w-4xl mx-auto leading-relaxed text-lg">
-                  Improving Energy Efficiency and Environmental Sustainability, managing to professionally improve work flows and processes, this is WorkFlow.
-                </h2>
-              </CardContent>
-            </Card>
-          </div>
+            </AnimatedText>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl rounded-3xl hover:shadow-alien-gold/30 transition-all duration-500">
+                <CardHeader className="pb-4">
+                  <CardTitle className="font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green md:text-5xl text-3xl">
+                    We offer INNOVATIVE SOLUTIONS with cutting-edge technologies
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <h2 className="md:text-2xl text-alien-green mb-8 font-[Exo] max-w-4xl mx-auto leading-relaxed text-lg">
+                    Improving Energy Efficiency and Environmental Sustainability, managing to professionally improve work flows and processes, this is WorkFlow.
+                  </h2>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
 
           <div className="space-y-12 text-gray-200 font-[Exo]">
             {/* Web technologies section with enhanced design */}
-            <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl">
-              <CardContent className="p-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl hover:border-alien-gold/50 transition-all duration-500">
+                <CardContent className="p-8">
                 <div className="space-y-8">
                   <div className="text-center">
                     <h3 className="text-3xl font-semibold mb-2 font-nasalization text-glow text-alien-green">
@@ -69,65 +97,92 @@ const About: React.FC = () => {
                 </div>
               </CardContent>
             </Card>
+            </motion.div>
 
             {/* Four pillars section with improved grid and cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
-                    <Shield className="h-8 w-8" />
-                    1st Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    We are committed to providing personalized solutions that address current challenges and needs.
-                  </p>
-                </CardContent>
-              </Card>
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, staggerChildren: 0.2 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
+                      <Shield className="h-8 w-8" />
+                      1st Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      We are committed to providing personalized solutions that address current challenges and needs.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
-                    <Zap className="h-8 w-8" />
-                    2nd Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    Greater security by being able to trust the management of data and transactions thanks to the use of cryptography, blockchain, and quantum computing.
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
+                      <Zap className="h-8 w-8" />
+                      2nd Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      Greater security by being able to trust the management of data and transactions thanks to the use of cryptography, blockchain, and quantum computing.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
-                    <Globe className="h-8 w-8" />
-                    3rd Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    Improvement in decision making thanks to advanced data analysis and the application of artificial intelligence, raising awareness about gestal consciousness, generating synergies, and more.
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
+                      <Globe className="h-8 w-8" />
+                      3rd Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      Improvement in decision making thanks to advanced data analysis and the application of artificial intelligence, raising awareness about gestal consciousness, generating synergies, and more.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
-                    <Leaf className="h-8 w-8" />
-                    4th Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    Optimization of WorkFlow (processes and work flows) promoting energy efficiency and environmental sustainability, in addition to adding value and reducing costs.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
+                      <Leaf className="h-8 w-8" />
+                      4th Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      Optimization of WorkFlow (processes and work flows) promoting energy efficiency and environmental sustainability, in addition to adding value and reducing costs.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
 
             {/* Mission and Values section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
