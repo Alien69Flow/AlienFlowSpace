@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Network, TrendingUp, Shield, Coins, Sprout, Pickaxe, Layers, Dna, FlaskConical, Gamepad2, Database, Zap, Leaf, Building, Users, Landmark, Globe } from 'lucide-react';
+import { Network, TrendingUp, Shield, Coins, Sprout, Pickaxe, Layers, Dna, FlaskConical, Gamepad2, Database, Zap, Leaf, Building, Users, Landmark, Globe, Palette, Heart, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { motion } from 'framer-motion';
 import DAODashboard from '@/components/DAODashboard';
 type ServiceProps = {
   title: string;
@@ -10,6 +11,22 @@ type ServiceProps = {
   icon: React.ReactNode;
   color: string;
 };
+
+type Partner = {
+  name: string;
+  url: string;
+  logo: string;
+  description: string;
+};
+
+type PartnerSectionProps = {
+  title: string;
+  partners: Partner[];
+  color: string;
+  icon?: React.ReactNode;
+  delay?: number;
+};
+
 const ServiceCard = ({
   service
 }: {
@@ -27,6 +44,84 @@ const ServiceCard = ({
       </CardDescription>
     </CardContent>
   </Card>;
+
+const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color, icon, delay = 0 }) => {
+  const getColorClasses = () => {
+    const colorMap: Record<string, { bg: string; border: string; text: string; gradient: string }> = {
+      'alien-gold': { bg: 'from-alien-gold/20 to-alien-gold/5', border: 'border-alien-gold/40 hover:border-alien-gold/70', text: 'text-alien-gold', gradient: 'from-transparent via-alien-gold to-transparent' },
+      'alien-green': { bg: 'from-alien-green/20 to-alien-green/5', border: 'border-alien-green/40 hover:border-alien-green/70', text: 'text-alien-green', gradient: 'from-transparent via-alien-green to-transparent' },
+      'purple': { bg: 'from-purple-500/20 to-purple-500/5', border: 'border-purple-500/40 hover:border-purple-500/70', text: 'text-purple-400', gradient: 'from-transparent via-purple-500 to-transparent' },
+      'cyan': { bg: 'from-cyan-500/20 to-cyan-500/5', border: 'border-cyan-500/40 hover:border-cyan-500/70', text: 'text-cyan-400', gradient: 'from-transparent via-cyan-500 to-transparent' },
+      'blue': { bg: 'from-blue-500/20 to-blue-500/5', border: 'border-blue-500/40 hover:border-blue-500/70', text: 'text-blue-400', gradient: 'from-transparent via-blue-500 to-transparent' },
+      'indigo': { bg: 'from-indigo-500/20 to-indigo-500/5', border: 'border-indigo-500/40 hover:border-indigo-500/70', text: 'text-indigo-400', gradient: 'from-transparent via-indigo-500 to-transparent' },
+      'pink': { bg: 'from-pink-500/20 to-pink-500/5', border: 'border-pink-500/40 hover:border-pink-500/70', text: 'text-pink-400', gradient: 'from-transparent via-pink-500 to-transparent' },
+      'green': { bg: 'from-green-500/20 to-green-500/5', border: 'border-green-500/40 hover:border-green-500/70', text: 'text-green-400', gradient: 'from-transparent via-green-500 to-transparent' },
+      'red': { bg: 'from-red-500/20 to-red-500/5', border: 'border-red-500/40 hover:border-red-500/70', text: 'text-red-400', gradient: 'from-transparent via-red-500 to-transparent' },
+      'violet': { bg: 'from-violet-500/20 to-violet-500/5', border: 'border-violet-500/40 hover:border-violet-500/70', text: 'text-violet-400', gradient: 'from-transparent via-violet-500 to-transparent' }
+    };
+    return colorMap[color] || colorMap['alien-gold'];
+  };
+
+  const colors = getColorClasses();
+
+  return (
+    <motion.div 
+      className="mb-16"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay }}
+    >
+      <div className="flex items-center justify-center gap-3 mb-8">
+        <div className={`h-px bg-gradient-to-r ${colors.gradient} flex-1`}></div>
+        <div className="flex items-center gap-2">
+          {icon && <span className={colors.text}>{icon}</span>}
+          <h3 className={`text-2xl font-bold ${colors.text} font-[Atomic Age] px-4`}>{title}</h3>
+        </div>
+        <div className={`h-px bg-gradient-to-r ${colors.gradient} flex-1`}></div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {partners.map((partner, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.4, 
+              delay: delay + (index * 0.05),
+              ease: "easeOut"
+            }}
+          >
+            <Card className={`bg-gradient-to-br ${colors.bg} backdrop-blur-md border ${colors.border} transition-all duration-300 hover:scale-105`}>
+              <CardHeader className="text-center pb-4">
+                <motion.div 
+                  className={`mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 ${colors.border.split(' ')[0]}`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                    <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover" />
+                  </a>
+                </motion.div>
+                <CardTitle className={`${colors.text} font-[Atomic Age] text-lg`}>
+                  <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                    {partner.name}
+                  </a>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
+                  {partner.description}
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+};
 const CoNetWorKing: React.FC = () => {
   useEffect(() => {
     // Load CoinMarketCap widget script
@@ -140,150 +235,180 @@ const CoNetWorKing: React.FC = () => {
       {
         name: "Binance",
         url: "https://binance.com/",
-        logo: "/lovable-uploads/BinanceLogo.svg",
+        logo: "/lovable-uploads/Clubs/Binance.svg",
         description: "Leading crypto exchange"
       },
       {
         name: "BingX",
         url: "https://bingx.com/referral-program/QCXRKM",
-        logo: "/lovable-uploads/BingXLogo.svg",
+        logo: "/lovable-uploads/Clubs/BingX.png",
         description: "Crypto trading platform"
       },
       {
         name: "Bitget",
         url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N",
-        logo: "/lovable-uploads/BitgetLogo.svg",
+        logo: "/lovable-uploads/Clubs/Bitget.png",
         description: "Crypto derivatives exchange"
       },
       {
         name: "Bybit",
         url: "https://www.bybit.com/invite?ref=Q15Q4M",
-        logo: "/lovable-uploads/BybitLogo.svg",
+        logo: "/lovable-uploads/Clubs/Bybit.png",
         description: "Crypto trading platform"
       },
       {
         name: "Coinbase",
         url: "https://www.coinbase.com/join/EC2PSZT?src",
-        logo: "/lovable-uploads/CoinbaseLogo.svg",
+        logo: "/lovable-uploads/Clubs/Coinbase.svg",
         description: "Trusted crypto exchange"
       },
       {
         name: "Crypto.com",
         url: "https://crypto.com/app/una5xskncn",
-        logo: "/lovable-uploads/CryptoComLogo.svg",
+        logo: "/lovable-uploads/Clubs/Cryptocom.svg",
         description: "Crypto platform with card"
+      },
+      {
+        name: "Kraken",
+        url: "https://www.kraken.com/",
+        logo: "/lovable-uploads/Clubs/Kraken.svg",
+        description: "Secure crypto exchange"
+      },
+      {
+        name: "OKX",
+        url: "https://www.okx.com/",
+        logo: "/lovable-uploads/Clubs/OKX.svg",
+        description: "Global crypto exchange"
       },
       {
         name: "Nexo",
         url: "https://nexo.com/ref/x6ts3r0kb2?src",
-        logo: "/lovable-uploads/NexoLogo.svg",
+        logo: "/lovable-uploads/Clubs/NexoLogo.svg",
         description: "Crypto banking platform"
       },
       {
         name: "Pionex",
         url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7",
-        logo: "/lovable-uploads/PionexLogo.svg",
+        logo: "/lovable-uploads/Clubs/PionexLogo.svg",
         description: "Crypto trading bot platform"
+      },
+      {
+        name: "Atomic Wallet",
+        url: "https://atomicwallet.io/",
+        logo: "/lovable-uploads/Clubs/AtomicWallet.svg",
+        description: "Multi-crypto wallet"
+      },
+      {
+        name: "Exodus",
+        url: "https://www.exodus.com/",
+        logo: "/lovable-uploads/Clubs/Exodus.svg",
+        description: "Beautiful crypto wallet"
+      },
+      {
+        name: "Ledger",
+        url: "https://www.ledger.com/",
+        logo: "/lovable-uploads/Clubs/Ledger.jpg",
+        description: "Hardware wallet security"
+      },
+      {
+        name: "MetaMask",
+        url: "https://metamask.io/",
+        logo: "/lovable-uploads/Clubs/MetaMask.svg",
+        description: "Web3 wallet"
+      },
+      {
+        name: "Phantom",
+        url: "https://phantom.app/",
+        logo: "/lovable-uploads/Clubs/PhantomLogo.svg",
+        description: "Solana wallet"
+      },
+      {
+        name: "SafePal",
+        url: "https://www.safepal.com/",
+        logo: "/lovable-uploads/Clubs/SafePal.png",
+        description: "Secure crypto wallet"
+      },
+      {
+        name: "Trezor",
+        url: "https://trezor.io/",
+        logo: "/lovable-uploads/Clubs/Trezor.svg",
+        description: "Hardware wallet pioneer"
+      },
+      {
+        name: "Trust Wallet",
+        url: "https://trustwallet.com/",
+        logo: "/lovable-uploads/Clubs/Trust Wallet.svg",
+        description: "Multi-chain wallet"
       }
     ],
     gameFlow: [
       {
         name: "Arena.gg",
         url: "https://www.arenagg.com/",
-        logo: "/lovable-uploads/ArenaLogo.svg",
+        logo: "/lovable-uploads/Clubs/ArenaGG.png",
         description: "eSports tournaments"
-      },
-      {
-        name: "Axie Infinity",
-        url: "https://app.axieinfinity.com/",
-        logo: "/lovable-uploads/AxieLogo.svg",
-        description: "Play-to-earn game"
       },
       {
         name: "Battlefy",
         url: "https://battlefy.com/",
-        logo: "/lovable-uploads/BattlefyLogo.svg",
+        logo: "/lovable-uploads/Clubs/Battlefy.svg",
         description: "Tournament platform"
       },
       {
         name: "Blitz.gg",
         url: "https://blitz.gg/",
-        logo: "/lovable-uploads/BlitzLogo.svg",
+        logo: "/lovable-uploads/Clubs/BlitzGG.svg",
         description: "Gaming performance"
       },
       {
         name: "ESL Gaming",
         url: "https://esl.com/",
-        logo: "/lovable-uploads/ESLLogo.svg",
+        logo: "/lovable-uploads/Clubs/ESL.svg",
         description: "eSports organization"
-      },
-      {
-        name: "GAMEE",
-        url: "https://www.gamee.com/",
-        logo: "/lovable-uploads/GAMEELogo.svg",
-        description: "Blockchain gaming"
-      },
-      {
-        name: "GameFi.org",
-        url: "https://gamefi.org/",
-        logo: "/lovable-uploads/GameFiLogo.svg",
-        description: "GameFi aggregator"
-      },
-      {
-        name: "Illuvium",
-        url: "https://www.illuvium.io/",
-        logo: "/lovable-uploads/IlluviumLogo.svg",
-        description: "AAA blockchain game"
       },
       {
         name: "LVP Global",
         url: "https://lvp.global/",
-        logo: "/lovable-uploads/LVPLogo.svg",
+        logo: "/lovable-uploads/Clubs/LVP.PNG",
         description: "eSports leagues"
-      },
-      {
-        name: "MOBOX",
-        url: "https://www.mobox.io/",
-        logo: "/lovable-uploads/MOBOXLogo.svg",
-        description: "Gaming metaverse"
-      },
-      {
-        name: "Community Gaming",
-        url: "https://www.communitygaming.io/",
-        logo: "/lovable-uploads/CommunityGamingLogo.svg",
-        description: "Gaming tournaments"
-      },
-      {
-        name: "Treasure",
-        url: "https://treasure.lol/",
-        logo: "/lovable-uploads/TreasureLogo.svg",
-        description: "Decentralized game console"
-      },
-      {
-        name: "Wombat",
-        url: "https://go.getwombat.io/eN3a",
-        logo: "/lovable-uploads/WombatLogo.svg",
-        description: "Gaming wallet"
       },
       {
         name: "ZEBEDEE",
         url: "https://zbd.link/hcHi/invite?af_sub1=S2S7IY",
-        logo: "/lovable-uploads/ZEBEDEELogo.svg",
+        logo: "/lovable-uploads/Clubs/ZBD.svg",
         description: "Bitcoin gaming platform"
       }
     ],
     metaFlow: [
       {
-        name: "Decentraland",
-        url: "https://decentraland.org/",
-        logo: "/lovable-uploads/DecentralandLogo.svg",
-        description: "Virtual world platform"
+        name: "YouTube",
+        url: "https://www.youtube.com/",
+        logo: "/lovable-uploads/Clubs/YouTube.svg",
+        description: "Video streaming platform"
       },
       {
-        name: "The Sandbox",
-        url: "https://www.sandbox.game/",
-        logo: "/lovable-uploads/SandboxLogo.svg",
-        description: "Metaverse platform"
+        name: "Spotify",
+        url: "https://www.spotify.com/",
+        logo: "/lovable-uploads/Clubs/Spotify.svg",
+        description: "Music streaming"
+      },
+      {
+        name: "Audius",
+        url: "https://audius.co/",
+        logo: "/lovable-uploads/Clubs/Audius.svg",
+        description: "Decentralized music"
+      },
+      {
+        name: "Sound.xyz",
+        url: "https://www.sound.xyz/",
+        logo: "/lovable-uploads/Clubs/SoundXYZ.svg",
+        description: "Music NFT platform"
+      },
+      {
+        name: "Soundcloud",
+        url: "https://soundcloud.com/",
+        logo: "/lovable-uploads/Clubs/Soundcloud.svg",
+        description: "Audio distribution"
       }
     ],
     dataFlow: [
@@ -322,8 +447,100 @@ const CoNetWorKing: React.FC = () => {
       {
         name: "Pi Network",
         url: "https://minepi.com/Aitor69Alien",
-        logo: "/lovable-uploads/PiNetworkLogo.svg",
+        logo: "/lovable-uploads/Clubs/PiNetwork.svg",
         description: "Mobile crypto mining"
+      }
+    ],
+    artFlow: [
+      {
+        name: "Behance",
+        url: "https://www.behance.net/",
+        logo: "/lovable-uploads/BehanceLogo.jpeg",
+        description: "Creative portfolio platform"
+      },
+      {
+        name: "OnlyFans",
+        url: "https://onlyfans.com/",
+        logo: "/lovable-uploads/Clubs/OnlyFans.svg",
+        description: "Content creator platform"
+      },
+      {
+        name: "Fansly",
+        url: "https://fansly.com/",
+        logo: "/lovable-uploads/Clubs/Fansly.svg",
+        description: "Creator monetization"
+      },
+      {
+        name: "Pornhub",
+        url: "https://www.pornhub.com/",
+        logo: "/lovable-uploads/Clubs/Pornhub.svg",
+        description: "Adult entertainment"
+      },
+      {
+        name: "XHamster",
+        url: "https://xhamster.com/",
+        logo: "/lovable-uploads/Clubs/XHamster.svg",
+        description: "Adult content platform"
+      },
+      {
+        name: "YouPorn",
+        url: "https://www.youporn.com/",
+        logo: "/lovable-uploads/Clubs/YouPorn.svg",
+        description: "Adult video site"
+      }
+    ],
+    ecoFlow: [
+      {
+        name: "Leafly",
+        url: "https://www.leafly.com/",
+        logo: "/lovable-uploads/Clubs/Leafly.svg",
+        description: "Cannabis marketplace"
+      },
+      {
+        name: "Weedmaps",
+        url: "https://weedmaps.com/",
+        logo: "/lovable-uploads/Clubs/Weedmaps.svg",
+        description: "Cannabis directory"
+      }
+    ],
+    healthFlow: [
+      {
+        name: "Material Bitcoin",
+        url: "https://www.materialbitcoin.com/",
+        logo: "/lovable-uploads/Clubs/MaterialBitcoin.png",
+        description: "Bitcoin health solutions"
+      }
+    ],
+    spaceFlow: [
+      {
+        name: "ESA",
+        url: "https://www.esa.int/",
+        logo: "/lovable-uploads/Academy/ESA.svg",
+        description: "European Space Agency"
+      },
+      {
+        name: "LIGO",
+        url: "https://www.ligo.caltech.edu/",
+        logo: "/lovable-uploads/Academy/LIGO.png",
+        description: "Gravitational wave detection"
+      },
+      {
+        name: "KAGRA",
+        url: "https://gwcenter.icrr.u-tokyo.ac.jp/en/",
+        logo: "/lovable-uploads/Academy/KAGRA.svg",
+        description: "Japanese gravitational wave"
+      },
+      {
+        name: "Virgo",
+        url: "https://www.virgo-gw.eu/",
+        logo: "/lovable-uploads/Academy/Virgo.svg",
+        description: "European gravitational wave"
+      },
+      {
+        name: "LSC",
+        url: "https://www.ligo.org/",
+        logo: "/lovable-uploads/Academy/LSC.png",
+        description: "LIGO Scientific Collaboration"
       }
     ]
   };
@@ -676,229 +893,141 @@ const CoNetWorKing: React.FC = () => {
             </p>
 
             {/* Academy Partners */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-alien-gold to-transparent flex-1"></div>
-                <h3 className="text-2xl font-bold text-alien-gold font-[Atomic Age] px-4">Academy</h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-alien-gold to-transparent flex-1"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {academyPartners.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-gold/5 backdrop-blur-md border border-alien-gold/40 hover:border-alien-gold/70 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-4">
-                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-alien-gold">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                        {partner.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            <PartnerSection 
+              title="Academy" 
+              partners={academyPartners} 
+              color="alien-gold"
+              delay={0}
+            />
 
             {/* Clubs - CashFlow */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-alien-green to-transparent flex-1"></div>
-                <h3 className="text-2xl font-bold text-alien-green font-[Atomic Age] px-4">CashFlow</h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-alien-green to-transparent flex-1"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {clubsPartners.cashFlow.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border border-alien-green/40 hover:border-alien-green/70 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-4">
-                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-alien-green">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-alien-green font-[Atomic Age] text-lg">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-green-light">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                        {partner.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            <PartnerSection 
+              title="CashFlow" 
+              partners={clubsPartners.cashFlow} 
+              color="alien-green"
+              delay={0.1}
+            />
 
             {/* Clubs - GameFlow */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent flex-1"></div>
-                <h3 className="text-2xl font-bold text-purple-400 font-[Atomic Age] px-4">GameFlow</h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent flex-1"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {clubsPartners.gameFlow.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-purple-500/20 to-purple-500/5 backdrop-blur-md border border-purple-500/40 hover:border-purple-500/70 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-4">
-                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-purple-500">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-purple-400 font-[Atomic Age] text-lg">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-purple-300">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                        {partner.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            <PartnerSection 
+              title="GameFlow" 
+              partners={clubsPartners.gameFlow} 
+              color="purple"
+              delay={0.2}
+            />
 
             {/* Clubs - MetaFlow */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent flex-1"></div>
-                <h3 className="text-2xl font-bold text-cyan-400 font-[Atomic Age] px-4">MetaFlow</h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent flex-1"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {clubsPartners.metaFlow.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 backdrop-blur-md border border-cyan-500/40 hover:border-cyan-500/70 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-4">
-                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-cyan-500">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-cyan-400 font-[Atomic Age] text-lg">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-300">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                        {partner.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            <PartnerSection 
+              title="MetaFlow" 
+              partners={clubsPartners.metaFlow} 
+              color="cyan"
+              delay={0.3}
+            />
 
             {/* Clubs - DataFlow */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent flex-1"></div>
-                <h3 className="text-2xl font-bold text-blue-400 font-[Atomic Age] px-4">DataFlow</h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent flex-1"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {clubsPartners.dataFlow.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-blue-500/20 to-blue-500/5 backdrop-blur-md border border-blue-500/40 hover:border-blue-500/70 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-4">
-                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-blue-400 font-[Atomic Age] text-lg">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                        {partner.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            <PartnerSection 
+              title="DataFlow" 
+              partners={clubsPartners.dataFlow} 
+              color="blue"
+              delay={0.4}
+            />
 
             {/* Clubs - QuantumFlow */}
-            <div className="mb-16">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent flex-1"></div>
-                <h3 className="text-2xl font-bold text-indigo-400 font-[Atomic Age] px-4">QuantumFlow</h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent flex-1"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {clubsPartners.quantumFlow.map((partner, index) => (
-                  <Card key={index} className="bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 backdrop-blur-md border border-indigo-500/40 hover:border-indigo-500/70 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-4">
-                      <div className="mx-auto mb-4 w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-indigo-400 font-[Atomic Age] text-lg">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-300 font-[Exo] text-center text-sm">
-                        {partner.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            <PartnerSection 
+              title="QuantumFlow" 
+              partners={clubsPartners.quantumFlow} 
+              color="indigo"
+              delay={0.5}
+            />
+
+            {/* Clubs - ArtFlow */}
+            <PartnerSection 
+              title="ArtFlow" 
+              partners={clubsPartners.artFlow} 
+              color="pink"
+              icon={<Palette className="h-6 w-6" />}
+              delay={0.6}
+            />
+
+            {/* Clubs - EcoFlow */}
+            <PartnerSection 
+              title="EcoFlow" 
+              partners={clubsPartners.ecoFlow} 
+              color="green"
+              icon={<Leaf className="h-6 w-6" />}
+              delay={0.7}
+            />
+
+            {/* Clubs - HealthFlow */}
+            <PartnerSection 
+              title="HealthFlow" 
+              partners={clubsPartners.healthFlow} 
+              color="red"
+              icon={<Heart className="h-6 w-6" />}
+              delay={0.8}
+            />
+
+            {/* Clubs - SpaceFlow */}
+            <PartnerSection 
+              title="SpaceFlow" 
+              partners={clubsPartners.spaceFlow} 
+              color="violet"
+              icon={<Rocket className="h-6 w-6" />}
+              delay={0.9}
+            />
           </div>
 
           {/* Global Community Section */}
-          <div className="mb-20">
+          <motion.div 
+            className="mb-20"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
               Global Community
             </h2>
             
-            {/* Official Partners - no repeated title */}
+            {/* Official Partners */}
             <div className="mb-16">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {officialPartners.map((partner, index) => <Card key={index} className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center pb-3">
-                      <div className="mx-auto mb-3 w-16 h-16 rounded-full overflow-hidden border-2 border-alien-gold bg-white/10">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                          <img src={partner.avatar} alt={partner.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
-                        </a>
-                      </div>
-                      <CardTitle className="text-alien-gold font-[Atomic Age] text-base">
-                        <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light">
-                          {partner.name}
-                        </a>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center pt-0 pb-4">
-                      <CardDescription className="text-alien-green font-[Exo] text-xs mb-2">
-                        {partner.role}
-                      </CardDescription>
-                      <p className="text-gray-300 font-[Exo] text-xs">
-                        📍 {partner.location}
-                      </p>
-                    </CardContent>
-                  </Card>)}
+                {officialPartners.map((partner, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                  >
+                    <Card className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105 h-full">
+                      <CardHeader className="text-center pb-3">
+                        <motion.div 
+                          className="mx-auto mb-3 w-16 h-16 rounded-full overflow-hidden border-2 border-alien-gold bg-white/10"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                            <img src={partner.avatar} alt={partner.name} className="w-full h-full object-cover" />
+                          </a>
+                        </motion.div>
+                        <CardTitle className="text-alien-gold font-[Atomic Age] text-base">
+                          <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light transition-colors">
+                            {partner.name}
+                          </a>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center pt-0 pb-4">
+                        <CardDescription className="text-alien-green font-[Exo] text-xs mb-2">
+                          {partner.role}
+                        </CardDescription>
+                        <p className="text-gray-300 font-[Exo] text-xs">
+                          📍 {partner.location}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
@@ -908,28 +1037,43 @@ const CoNetWorKing: React.FC = () => {
                 Community Members
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {communityMembers.map((member, index) => <Card key={index} className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
-                    <CardHeader className="text-center">
-                      <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
-                        <AvatarImage src={member.avatar} alt={member.name} />
-                        <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                      </Avatar>
-                      <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
-                        {member.name}
-                      </CardTitle>
-                      <CardDescription className="text-alien-green font-[Exo]">
-                        {member.role}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-center pt-0">
-                      <p className="text-gray-300 font-[Exo] text-sm">
-                        📍 {member.location}
-                      </p>
-                    </CardContent>
-                  </Card>)}
+                {communityMembers.map((member, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.03 }}
+                  >
+                    <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105 h-full">
+                      <CardHeader className="text-center">
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Avatar className="mx-auto mb-4 w-20 h-20 border-2 border-alien-gold">
+                            <AvatarImage src={member.avatar} alt={member.name} />
+                            <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                          </Avatar>
+                        </motion.div>
+                        <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                          {member.name}
+                        </CardTitle>
+                        <CardDescription className="text-alien-green font-[Exo]">
+                          {member.role}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="text-center pt-0">
+                        <p className="text-gray-300 font-[Exo] text-sm">
+                          📍 {member.location}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-alien-green/20 to-alien-gold/20 rounded-xl p-12 text-center backdrop-blur-md border border-alien-gold/30">
