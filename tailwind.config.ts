@@ -76,7 +76,9 @@ export default {
           'space': '#0C0C1D',
           'space-light': '#1A1A3A',
           'space-dark': '#050510',
-        }
+          'space-darker': '#030308',
+        },
+        overlay: 'rgba(3, 3, 10, 0.8)'
       },
       borderRadius: {
         lg: 'var(--radius)',

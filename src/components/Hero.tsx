@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-8 sm:mb-12 hero-title"
+          className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-6 sm:mb-8 md:mb-12 tracking-tight sm:tracking-normal"
         >
           <span className="text-alien-green">Δlieπ</span>
           <span className="text-alien-gold">FlΦw</span>

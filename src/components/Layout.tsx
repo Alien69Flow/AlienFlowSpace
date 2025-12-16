@@ -40,6 +40,8 @@ const Layout: React.FC = () => {
         className="fixed inset-0 -z-30 pointer-events-none bg-cover bg-center bg-no-repeat bg-fixed"
         style={{ backgroundImage: `url('${bgImage}')` }}
       />
+      {/* Dark overlay for better contrast and readability */}
+      <div className="fixed inset-0 -z-20 pointer-events-none bg-alien-space-dark/75" />
 
       <div id="google_translate_element" className="hidden" aria-hidden="true"></div>
       <Header />
