@@ -42,29 +42,6 @@ const ConnectButton = () => {
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      {/* AI Button */}
-      <a
-        href="https://aitor.lovable.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="no-underline"
-        title="AI Assistant"
-        aria-label="AI Assistant"
-        tabIndex={-1}
-      >
-        <Button
-          className="
-            bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full
-            flex items-center justify-center p-2 sm:p-3
-            transition-all duration-200 ease-in-out
-            hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold
-          "
-          type="button"
-        >
-          <Brain className={ICON_SIZE} />
-        </Button>
-      </a>
-
       {isConnected && address ? (
         <>
           <div className="flex flex-col gap-2">
