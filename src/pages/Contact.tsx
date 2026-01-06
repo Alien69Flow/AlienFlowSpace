@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen } from 'lucide-react';
+import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen, Users } from 'lucide-react';
 const Contact: React.FC = () => {
   return <div className="relative flex flex-col flex-1">
 
@@ -99,8 +99,18 @@ const Contact: React.FC = () => {
                   <Linkedin className="h-5 w-5 text-alien-space-dark" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn</h3>
-                  <a href="https://linkedin.com/in/alienflow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/in/alienflow</a>
+                  <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn Personal</h3>
+                  <a href="https://linkedin.com/in/alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/in/alien69flow</a>
+                </div>
+              </div>
+              
+              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
+                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
+                  <Linkedin className="h-5 w-5 text-alien-space-dark" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn Company</h3>
+                  <a href="https://linkedin.com/company/alienflowspace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/company/alienflowspace</a>
                 </div>
               </div>
               
@@ -121,8 +131,18 @@ const Contact: React.FC = () => {
                   <Send className="h-5 w-5 text-alien-space-dark" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Telegram</h3>
-                  <a href="https://T.Me/AlienFlow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlow</a>
+                  <h3 className="font-medium text-alien-gold font-[Exo]">Telegram Personal</h3>
+                  <a href="https://t.me/Alien69Flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@Alien69Flow</a>
+                </div>
+              </div>
+              
+              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
+                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
+                  <Users className="h-5 w-5 text-alien-space-dark" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-alien-gold font-[Exo]">Telegram Community</h3>
+                  <a href="https://t.me/AlienFlowSpace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlowSpace</a>
                 </div>
               </div>
               
