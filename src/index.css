@@ -267,3 +267,25 @@ main {
     rgba(3, 3, 10, 0.7) 100%
   );
 }
+
+/* Typing indicator animation */
+.typing-dot {
+  @apply w-2 h-2 bg-alien-gold rounded-full;
+  animation: typing-bounce 1.4s ease-in-out infinite;
+}
+
+.typing-dot-lg {
+  @apply w-3 h-3 bg-alien-gold rounded-full;
+  animation: typing-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}

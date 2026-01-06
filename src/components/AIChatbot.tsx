@@ -1,24 +1,64 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import aiTorAvatar from '@/assets/ai-tor-avatar.jpg';
 
+const PROACTIVE_MESSAGES = [
+  "¿Puedo ayudarte a encontrar algo?",
+  "¿Tienes alguna pregunta sobre AlienFlowSpace?",
+  "¿Necesitas ayuda con los NFTs o las DAOs?",
+  "¿Te gustaría conocer más sobre nuestro ecosistema?",
+  "¿En qué puedo asistirte hoy?"
+];
+
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [showProactive, setShowProactive] = React.useState(false);
+  const [proactiveMessage, setProactiveMessage] = React.useState('');
+  const [hasInteracted, setHasInteracted] = React.useState(false);
 
-  const handleOpen = () => {
+  // Proactive engagement - show after 45 seconds of inactivity
+  useEffect(() => {
+    if (hasInteracted || isOpen) return;
+
+    const timer = setTimeout(() => {
+      const randomMessage = PROACTIVE_MESSAGES[Math.floor(Math.random() * PROACTIVE_MESSAGES.length)];
+      setProactiveMessage(randomMessage);
+      setShowProactive(true);
+      
+      // Auto-hide after 8 seconds
+      setTimeout(() => setShowProactive(false), 8000);
+    }, 45000);
+
+    return () => clearTimeout(timer);
+  }, [hasInteracted, isOpen]);
+
+  // Track user interaction
+  useEffect(() => {
+    const handleInteraction = () => setHasInteracted(true);
+    window.addEventListener('click', handleInteraction, { once: true });
+    window.addEventListener('scroll', handleInteraction, { once: true });
+    return () => {
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('scroll', handleInteraction);
+    };
+  }, []);
+
+  const handleOpen = useCallback(() => {
     setIsOpen(true);
     setIsLoading(true);
+    setShowProactive(false);
+    setHasInteracted(true);
     toast.info('AI Assistant Loading', {
       description: 'Opening AI Tor Assistant...'
     });
-  };
+  }, []);
 
-  const handleIframeLoad = () => {
+  const handleIframeLoad = useCallback(() => {
     setIsLoading(false);
-  };
+  }, []);
 
   return (
     <>
@@ -32,6 +72,35 @@ const AIChatbot = () => {
             onClick={() => setIsOpen(false)}
             className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
           />
+        )}
+      </AnimatePresence>
+
+      {/* Proactive Engagement Bubble */}
+      <AnimatePresence>
+        {showProactive && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: 20, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 20, scale: 0.8 }}
+            className="fixed bottom-36 right-4 sm:bottom-40 sm:right-8 z-40 
+              max-w-[250px] p-3 rounded-xl rounded-br-sm
+              bg-gradient-to-br from-alien-gold/90 to-alien-gold-dark/90 
+              backdrop-blur-md border border-alien-gold-light/50
+              shadow-lg shadow-alien-gold/20 cursor-pointer"
+            onClick={handleOpen}
+          >
+            <p className="text-alien-space-dark font-exo text-sm font-medium">
+              {proactiveMessage}
+            </p>
+            <button
+              onClick={(e) => { e.stopPropagation(); setShowProactive(false); }}
+              className="absolute -top-2 -right-2 w-5 h-5 bg-alien-space-dark rounded-full 
+                flex items-center justify-center border border-alien-gold/50 
+                hover:bg-alien-gold/20 transition-colors"
+            >
+              <X className="w-3 h-3 text-alien-gold" />
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -56,7 +125,7 @@ const AIChatbot = () => {
         />
       </motion.button>
 
-      {/* Chat Window - Fullscreen on mobile */}
+      {/* Chat Window - Fullscreen on mobile, optimized size on desktop */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -67,8 +136,8 @@ const AIChatbot = () => {
             className="fixed z-50 
               inset-0 sm:inset-auto
               sm:bottom-24 sm:right-8 
-              sm:w-[380px] md:w-[420px] 
-              sm:h-[550px] md:h-[600px]
+              sm:w-[360px] md:w-[380px] 
+              sm:h-[480px] md:h-[520px]
               sm:max-h-[calc(100vh-8rem)]
               bg-alien-space-dark/98 backdrop-blur-xl 
               sm:border-2 border-alien-gold/40 sm:rounded-2xl 
@@ -91,10 +160,20 @@ const AIChatbot = () => {
                   </h3>
                   <p className="text-xs text-alien-green font-exo">AI Tor</p>
                 </div>
-                {/* Status indicator */}
+                {/* Status indicator with typing animation when loading */}
                 <div className="flex items-center gap-1.5 ml-2">
-                  <span className="w-2 h-2 bg-alien-green rounded-full animate-pulse" />
-                  <span className="text-xs text-muted-foreground hidden sm:inline">Online</span>
+                  {isLoading ? (
+                    <div className="flex items-center gap-1">
+                      <span className="typing-dot" />
+                      <span className="typing-dot" style={{ animationDelay: '0.2s' }} />
+                      <span className="typing-dot" style={{ animationDelay: '0.4s' }} />
+                    </div>
+                  ) : (
+                    <>
+                      <span className="w-2 h-2 bg-alien-green rounded-full animate-pulse" />
+                      <span className="text-xs text-muted-foreground hidden sm:inline">Online</span>
+                    </>
+                  )}
                 </div>
               </div>
               <button
@@ -127,10 +206,11 @@ const AIChatbot = () => {
                     <Loader2 className="absolute -bottom-1 -right-1 h-8 w-8 text-alien-gold animate-spin" />
                   </div>
                   <p className="text-alien-gold font-nasalization text-sm mt-4">Loading AI Tor...</p>
-                  <div className="flex gap-1 mt-3">
-                    <span className="w-2 h-2 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-2 h-2 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-2 h-2 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  {/* Typing indicator animation */}
+                  <div className="flex gap-1.5 mt-3">
+                    <span className="typing-dot-lg" />
+                    <span className="typing-dot-lg" style={{ animationDelay: '0.15s' }} />
+                    <span className="typing-dot-lg" style={{ animationDelay: '0.3s' }} />
                   </div>
                 </motion.div>
               )}

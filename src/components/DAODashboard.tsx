@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, TrendingUp, FileText, Clock, CheckCircle, XCircle, RefreshCw } from 'lucide-react';
+import { Users, TrendingUp, FileText, Clock, CheckCircle, XCircle, RefreshCw, ExternalLink } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 type Proposal = {
@@ -16,6 +16,22 @@ type Proposal = {
 const DAODashboard: React.FC = () => {
   const [lastUpdate, setLastUpdate] = useState(new Date());
   
+  // AlienFlowSpace DAOs on Polygon
+  const DAOS = [
+    {
+      name: 'AlienFlowSpace DAO',
+      address: '0xCA497d631DB260ebFFF4bA71AEAc3201ae972a77',
+      url: 'https://app.aragon.org/dao/polygon-mainnet/0xCA497d631DB260ebFFF4bA71AEAc3201ae972a77/dashboard',
+      token: '$AFS'
+    },
+    {
+      name: 'Alien69Flow DAO',
+      address: '0x2A1F32A807b3f8a43F9473C1FA7d11881A579b16',
+      url: 'https://app.aragon.org/dao/polygon-mainnet/0x2A1F32A807b3f8a43F9473C1FA7d11881A579b16/dashboard',
+      token: '$A69F'
+    }
+  ];
+
   // Mock data - In production, fetch from blockchain
   const [stats] = useState({
     activeVoters: 1618033,
@@ -25,10 +41,10 @@ const DAODashboard: React.FC = () => {
   });
 
   const [treasury] = useState([
-    { name: 'BTC', value: 123456789, change: 3.3, color: '#F7931A' },
-    { name: 'ETH', value: 33456789, change: -1.2, color: '#627EEA' },
-    { name: 'USDC', value: 850000, change: 0, color: '#2775CA' },
-    { name: 'Other', value: 95000, change: 2.3, color: '#22C55E' }
+    { name: 'MATIC', value: 50000, change: 2.5, color: '#8247E5' },
+    { name: '$AFS', value: 1000000, change: 5.2, color: '#22C55E' },
+    { name: '$A69F', value: 500000, change: 3.8, color: '#F0D882' },
+    { name: 'USDC', value: 25000, change: 0, color: '#2775CA' }
   ]);
 
   const [proposals] = useState<Proposal[]>([
@@ -82,13 +98,27 @@ const DAODashboard: React.FC = () => {
             Last updated: {lastUpdate.toLocaleTimeString()}
           </p>
         </div>
-        <Button
-          onClick={handleRefresh}
-          className="bg-alien-gold/20 hover:bg-alien-gold/30 text-alien-gold border border-alien-gold/50"
-        >
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh Data
-        </Button>
+        <div className="flex gap-2 flex-wrap">
+          {DAOS.map((dao) => (
+            <Button
+              key={dao.address}
+              onClick={() => window.open(dao.url, '_blank')}
+              className="bg-alien-gold/20 hover:bg-alien-gold/30 text-alien-gold border border-alien-gold/50 text-xs"
+              size="sm"
+            >
+              <ExternalLink className="h-3 w-3 mr-1" />
+              {dao.name}
+            </Button>
+          ))}
+          <Button
+            onClick={handleRefresh}
+            className="bg-alien-green/20 hover:bg-alien-green/30 text-alien-green border border-alien-green/50"
+            size="sm"
+          >
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Refresh
+          </Button>
+        </div>
       </div>
 
       {/* Stats Grid */}
