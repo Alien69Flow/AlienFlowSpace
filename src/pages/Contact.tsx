@@ -38,9 +38,12 @@ const Contact: React.FC = () => {
                 <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
                   <Disc className="h-5 w-5 text-alien-space-dark" />
                 </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Discord</h3>
-                  <a href="https://discord.gg/alienflowspace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">discord.gg/alienflowspace</a>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-medium text-alien-gold font-[Exo]">Discord</h3>
+                    <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
+                  </div>
+                  <span className="text-gray-500 font-[Exo]">discord.gg/alienflow</span>
                 </div>
               </div>
               
@@ -142,7 +145,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-alien-gold font-[Exo]">Telegram Community</h3>
-                  <a href="https://t.me/AlienFlowSpace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlowSpace</a>
+                  <a href="https://t.me/AlienFlow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlow</a>
                 </div>
               </div>
               
@@ -152,9 +155,12 @@ const Contact: React.FC = () => {
                     <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
                   </svg>
                 </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">TikTok</h3>
-                  <a href="https://www.tiktok.com/@alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-medium text-alien-gold font-[Exo]">TikTok</h3>
+                    <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
+                  </div>
+                  <span className="text-gray-500 font-[Exo]">@alien69flow</span>
                 </div>
               </div>
               

@@ -41,17 +41,22 @@ const DAODashboard: React.FC = () => {
   });
 
   const [treasury] = useState([
-    { name: 'MATIC', value: 50000, change: 2.5, color: '#8247E5' },
+    { name: 'BTC', value: 15000, change: 4.2, color: '#F7931A' },
+    { name: 'ETH', value: 35000, change: 3.1, color: '#627EEA' },
+    { name: 'POL', value: 50000, change: 2.5, color: '#8247E5' },
+    { name: 'BNB', value: 8000, change: 1.8, color: '#F3BA2F' },
+    { name: 'SOL', value: 12000, change: 5.5, color: '#00FFA3' },
+    { name: 'ATOM', value: 5000, change: 2.0, color: '#2E3148' },
     { name: '$AFS', value: 1000000, change: 5.2, color: '#22C55E' },
     { name: '$A69F', value: 500000, change: 3.8, color: '#F0D882' },
     { name: 'USDC', value: 25000, change: 0, color: '#2775CA' }
   ]);
 
   const [proposals] = useState<Proposal[]>([
-    { id: 1, title: 'Expand Academy Programs', status: 'active', votesFor: 8450, votesAgainst: 1200, deadline: '2025-12-15' },
-    { id: 2, title: 'Partner with ESL Gaming', status: 'active', votesFor: 6800, votesAgainst: 3400, deadline: '2025-12-10' },
-    { id: 3, title: 'Launch ReFi Initiative', status: 'passed', votesFor: 9200, votesAgainst: 890, deadline: '2025-11-30' },
-    { id: 4, title: 'Increase Treasury APY', status: 'rejected', votesFor: 4100, votesAgainst: 7800, deadline: '2025-11-28' }
+    { id: 1, title: 'Expand Academy Programs', status: 'active', votesFor: 8450, votesAgainst: 1200, deadline: '2026-03-15' },
+    { id: 2, title: 'Partner with ESL Gaming', status: 'active', votesFor: 6800, votesAgainst: 3400, deadline: '2026-03-10' },
+    { id: 3, title: 'Launch ReFi Initiative', status: 'passed', votesFor: 9200, votesAgainst: 890, deadline: '2026-02-28' },
+    { id: 4, title: 'Increase Treasury APY', status: 'rejected', votesFor: 4100, votesAgainst: 7800, deadline: '2026-02-25' }
   ]);
 
   const [votingData] = useState([
