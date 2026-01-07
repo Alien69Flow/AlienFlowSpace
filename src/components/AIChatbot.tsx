@@ -134,13 +134,13 @@ const AIChatbot = () => {
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             transition={{ duration: 0.3 }}
             className="fixed z-50 
-              inset-0 sm:inset-auto
+              inset-2 sm:inset-auto
               sm:bottom-24 sm:right-8 
-              sm:w-[360px] md:w-[380px] 
-              sm:h-[480px] md:h-[520px]
-              sm:max-h-[calc(100vh-8rem)]
+              sm:w-[340px] md:w-[360px] 
+              sm:h-[420px] md:h-[460px]
+              sm:max-h-[calc(100vh-10rem)]
               bg-alien-space-dark/98 backdrop-blur-xl 
-              sm:border-2 border-alien-gold/40 sm:rounded-2xl 
+              border-2 border-alien-gold/40 rounded-xl 
               shadow-2xl overflow-hidden chat-glow"
           >
             {/* Header */}

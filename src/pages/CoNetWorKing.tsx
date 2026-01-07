@@ -101,7 +101,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color,
                   transition={{ duration: 0.3 }}
                 >
                   <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                    <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover" />
+                    <img src={partner.logo} alt={partner.name} className="w-full h-full object-contain p-1" />
                   </a>
                 </motion.div>
                 <CardTitle className={`${colors.text} font-[Atomic Age] text-lg`}>
@@ -503,14 +503,7 @@ const CoNetWorKing: React.FC = () => {
         description: "Cannabis directory"
       }
     ],
-    healthFlow: [
-      {
-        name: "Material Bitcoin",
-        url: "https://www.materialbitcoin.com/",
-        logo: "/lovable-uploads/Clubs/MaterialBitcoin.png",
-        description: "Bitcoin health solutions"
-      }
-    ],
+    healthFlow: [],
     spaceFlow: [
       {
         name: "ESA",
