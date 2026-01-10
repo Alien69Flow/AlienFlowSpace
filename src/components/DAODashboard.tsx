@@ -35,20 +35,20 @@ const DAODashboard: React.FC = () => {
   // Mock data - In production, fetch from blockchain
   const [stats] = useState({
     activeVoters: 1618033,
-    totalProposals: 2025,
+    totalProposals: 47,
     votingPower: '3.14M',
     participationRate: 69
   });
 
   const [treasury] = useState([
-    { name: 'BTC', value: 15000, change: 4.2, color: '#F7931A' },
+    { name: 'ABTC', value: 15000, change: 4.2, color: '#F7931A' },
     { name: 'ETH', value: 35000, change: 3.1, color: '#627EEA' },
     { name: 'POL', value: 50000, change: 2.5, color: '#8247E5' },
     { name: 'BNB', value: 8000, change: 1.8, color: '#F3BA2F' },
     { name: 'SOL', value: 12000, change: 5.5, color: '#00FFA3' },
     { name: 'ATOM', value: 5000, change: 2.0, color: '#2E3148' },
-    { name: '$AFS', value: 1000000, change: 5.2, color: '#22C55E' },
-    { name: '$A69F', value: 500000, change: 3.8, color: '#F0D882' },
+    { name: 'AFS', value: 1000000, change: 5.2, color: '#22C55E' },
+    { name: 'A69', value: 500000, change: 3.8, color: '#F0D882' },
     { name: 'USDC', value: 25000, change: 0, color: '#2775CA' }
   ]);
 
@@ -115,6 +115,14 @@ const DAODashboard: React.FC = () => {
               {dao.name}
             </Button>
           ))}
+          <Button
+            onClick={() => window.open('https://alienflowspace.gitbook.io/DAO', '_blank')}
+            className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/50 text-xs"
+            size="sm"
+          >
+            <ExternalLink className="h-3 w-3 mr-1" />
+            Docs
+          </Button>
           <Button
             onClick={handleRefresh}
             className="bg-alien-green/20 hover:bg-alien-green/30 text-alien-green border border-alien-green/50"
@@ -217,7 +225,6 @@ const DAODashboard: React.FC = () => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={(entry) => `${entry.name}: $${entry.value.toLocaleString()}`}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
@@ -226,7 +233,14 @@ const DAODashboard: React.FC = () => {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip />
+                <Tooltip 
+                  formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name]}
+                  contentStyle={{ 
+                    backgroundColor: 'rgba(17, 17, 25, 0.95)', 
+                    border: '1px solid rgba(240, 216, 130, 0.3)',
+                    borderRadius: '8px'
+                  }}
+                />
               </PieChart>
             </ResponsiveContainer>
             <div className="mt-4 space-y-2">

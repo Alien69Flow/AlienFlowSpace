@@ -43,7 +43,7 @@ const Footer = () => {
               label: "GitBook",
               color: "#22C55E"
             }, {
-              href: "https://github.com/AlienFlowSpaceDAO",
+              href: "https://github.com/Alien69Flow",
               icon: Github,
               label: "Github",
               color: "#22C55E"

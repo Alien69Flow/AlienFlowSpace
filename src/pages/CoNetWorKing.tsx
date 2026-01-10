@@ -393,18 +393,6 @@ const CoNetWorKing: React.FC = () => {
         description: "Music streaming"
       },
       {
-        name: "Audius",
-        url: "https://audius.co/",
-        logo: "/lovable-uploads/Clubs/Audius.svg",
-        description: "Decentralized music"
-      },
-      {
-        name: "Sound.xyz",
-        url: "https://www.sound.xyz/",
-        logo: "/lovable-uploads/Clubs/SoundXYZ.svg",
-        description: "Music NFT platform"
-      },
-      {
         name: "Soundcloud",
         url: "https://soundcloud.com/",
         logo: "/lovable-uploads/Clubs/Soundcloud.svg",
@@ -453,11 +441,35 @@ const CoNetWorKing: React.FC = () => {
     ],
     artFlow: [
       {
-        name: "Behance",
-        url: "https://www.behance.net/",
-        logo: "/lovable-uploads/BehanceLogo.jpeg",
-        description: "Creative portfolio platform"
+        name: "Audius",
+        url: "https://audius.co/",
+        logo: "/lovable-uploads/Clubs/Audius.svg",
+        description: "Decentralized music streaming"
       },
+      {
+        name: "Sound.xyz",
+        url: "https://www.sound.xyz/",
+        logo: "/lovable-uploads/Clubs/SoundXYZ.svg",
+        description: "Music NFT platform"
+      }
+    ],
+    ecoFlow: [],
+    healthFlow: [],
+    weedFlow: [
+      {
+        name: "Leafly",
+        url: "https://www.leafly.com/",
+        logo: "/lovable-uploads/Clubs/Leafly.svg",
+        description: "Cannabis marketplace"
+      },
+      {
+        name: "Weedmaps",
+        url: "https://weedmaps.com/",
+        logo: "/lovable-uploads/Clubs/Weedmaps.svg",
+        description: "Cannabis directory"
+      }
+    ],
+    xFlow: [
       {
         name: "OnlyFans",
         url: "https://onlyfans.com/",
@@ -489,21 +501,6 @@ const CoNetWorKing: React.FC = () => {
         description: "Adult video site"
       }
     ],
-    ecoFlow: [
-      {
-        name: "Leafly",
-        url: "https://www.leafly.com/",
-        logo: "/lovable-uploads/Clubs/Leafly.svg",
-        description: "Cannabis marketplace"
-      },
-      {
-        name: "Weedmaps",
-        url: "https://weedmaps.com/",
-        logo: "/lovable-uploads/Clubs/Weedmaps.svg",
-        description: "Cannabis directory"
-      }
-    ],
-    healthFlow: [],
     spaceFlow: [
       {
         name: "ESA",
@@ -864,7 +861,7 @@ const CoNetWorKing: React.FC = () => {
                           View on Alientrip
                         </Button>
                       </a>
-                      <a href="https://gitbook.com" target="_blank" rel="noopener noreferrer" className="flex-1">
+                      <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="flex-1">
                         <Button className="w-full bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/50 font-[Exo]">
                           Read Docs on Gitbook
                         </Button>
@@ -968,6 +965,23 @@ const CoNetWorKing: React.FC = () => {
               icon={<Rocket className="h-6 w-6" />}
               delay={0.9}
             />
+
+            {/* Clubs - WeedFlow */}
+            <PartnerSection 
+              title="WeedFlow" 
+              partners={clubsPartners.weedFlow} 
+              color="green"
+              icon={<Leaf className="h-6 w-6" />}
+              delay={1.0}
+            />
+
+            {/* Clubs - XFlow */}
+            <PartnerSection 
+              title="XFlow" 
+              partners={clubsPartners.xFlow} 
+              color="red"
+              delay={1.1}
+            />
           </div>
 
           {/* Global Community Section */}
@@ -996,12 +1010,12 @@ const CoNetWorKing: React.FC = () => {
                     <Card className="bg-gradient-to-br from-alien-gold/20 to-alien-green/20 backdrop-blur-md border border-alien-gold/50 hover:border-alien-gold/80 transition-all duration-300 hover:scale-105 h-full">
                       <CardHeader className="text-center pb-3">
                         <motion.div 
-                          className="mx-auto mb-3 w-16 h-16 rounded-full overflow-hidden border-2 border-alien-gold bg-white/10"
+                          className="mx-auto mb-3 w-16 h-16 rounded-full overflow-hidden border-2 border-alien-gold bg-white"
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.3 }}
                         >
                           <a href={partner.url} target="_blank" rel="noopener noreferrer">
-                            <img src={partner.avatar} alt={partner.name} className="w-full h-full object-cover" />
+                            <img src={partner.avatar} alt={partner.name} className="w-full h-full object-contain p-1" />
                           </a>
                         </motion.div>
                         <CardTitle className="text-alien-gold font-[Atomic Age] text-base">
@@ -1078,12 +1092,16 @@ const CoNetWorKing: React.FC = () => {
               Start your journey into decentralized finance and connect with a global network of innovators and investors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo] px-8 py-3 text-lg">
-                Get Started
-              </Button>
-              <Button variant="outline" className="border-alien-green text-alien-green hover:bg-alien-green/10 font-[Exo] px-8 py-3 text-lg">
-                Learn More
-              </Button>
+              <a href="/alien-trip">
+                <Button className="bg-alien-gold hover:bg-alien-gold/90 text-alien-space-dark font-[Exo] px-8 py-3 text-lg">
+                  Get Started
+                </Button>
+              </a>
+              <a href="/about">
+                <Button variant="outline" className="border-alien-green text-alien-green hover:bg-alien-green/10 font-[Exo] px-8 py-3 text-lg">
+                  Learn More
+                </Button>
+              </a>
             </div>
           </div>
         </div>

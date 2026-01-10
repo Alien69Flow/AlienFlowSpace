@@ -36,9 +36,9 @@ const PromoBanner: React.FC<PromoBannerProps> = ({
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          className="fixed bottom-[72px] left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-40 
+          className="fixed bottom-[140px] left-4 right-4 sm:left-auto sm:right-24 sm:max-w-sm z-40 
             bg-gradient-to-r from-alien-gold via-alien-gold-light to-alien-gold 
-            text-alien-space-dark py-2.5 px-4 shadow-lg rounded-xl border border-alien-gold-light/50"
+            text-alien-space-dark py-2 px-3 shadow-lg rounded-lg border border-alien-gold-light/50"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="flex items-center gap-2 flex-1 justify-center">
