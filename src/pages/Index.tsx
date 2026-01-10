@@ -10,7 +10,6 @@ const EcosystemSection = lazy(() => import('@/components/EcosystemSection'));
 const FeaturesSection = lazy(() => import('@/components/FeaturesSection'));
 const FinancialFreedomSection = lazy(() => import('@/components/FinancialFreedomSection'));
 const ParticipationSection = lazy(() => import('@/components/ParticipationSection'));
-const NFTGallery = lazy(() => import('@/components/NFTGallery'));
 const NewsletterSubscription = lazy(() => import('@/components/NewsletterSubscription'));
 
 const Index: React.FC = () => {
@@ -44,11 +43,6 @@ const Index: React.FC = () => {
 
       <Suspense fallback={<LoadingScreen />}>
         <EcosystemSection />
-      </Suspense>
-
-      {/* NFT Gallery Section */}
-      <Suspense fallback={<LoadingScreen />}>
-        <NFTGallery />
       </Suspense>
 
       <Suspense fallback={<LoadingScreen />}>

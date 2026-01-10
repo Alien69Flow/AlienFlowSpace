@@ -1,10 +1,14 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { GraduationCap, Users, Trophy, Shield, Zap, Globe, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/AnimatedText";
+import LoadingScreen from "@/components/LoadingScreen";
+
+const NFTGallery = lazy(() => import('@/components/NFTGallery'));
+
 const About: React.FC = () => {
   return <div className="relative flex flex-col flex-1 min-h-screen">
 
@@ -303,10 +307,13 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="text-center">
-                  <Button className="bg-gradient-to-r from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark font-semibold font-nasalization shadow-2xl hover:shadow-alien-green/40 transition-all duration-300 hover:transform hover:scale-105 px-0 py-0 rounded-xl text-alien-gold text-lg">
-                    Access Cryptotokens & NFTs
-                  </Button>
+                <div className="text-center mt-8">
+                  <h3 className="text-2xl font-semibold text-alien-gold mb-6 font-nasalization">
+                    Explore Our Digital Collectibles
+                  </h3>
+                  <Suspense fallback={<LoadingScreen />}>
+                    <NFTGallery />
+                  </Suspense>
                 </div>
               </CardContent>
             </Card>

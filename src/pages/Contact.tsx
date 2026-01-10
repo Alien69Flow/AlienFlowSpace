@@ -131,16 +131,6 @@ const Contact: React.FC = () => {
               
               <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
                 <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Send className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Telegram Personal</h3>
-                  <a href="https://t.me/Alien69Flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@Alien69Flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
                   <Users className="h-5 w-5 text-alien-space-dark" />
                 </div>
                 <div>
