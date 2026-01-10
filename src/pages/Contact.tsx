@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-alien-gold font-[Exo]">Discord</h3>
+                    <h3 className="font-medium text-alien-gold font-[Exo]">Community Discord</h3>
                     <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
                   </div>
                   <span className="text-gray-500 font-[Exo]">discord.gg/alienflow</span>
@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-alien-gold font-[Exo]">Email</h3>
-                  <a href="mailto:info@alienflow.space" className="text-gray-300 font-[Exo] hover:text-alien-green">info@alienflow.space</a>
+                  <a href="mailto:info@alienflow.space" className="text-gray-300 font-[Exo] hover:text-alien-green">alien69flow@proton.me</a>
                 </div>
               </div>
               
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn Personal</h3>
-                  <a href="https://linkedin.com/in/alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/in/alien69flow</a>
+                  <a href="https://linkedin.com/in/alienflow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/in/alien69flow</a>
                 </div>
               </div>
               
@@ -112,7 +112,7 @@ const Contact: React.FC = () => {
                   <Linkedin className="h-5 w-5 text-alien-space-dark" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn Company</h3>
+                  <h3 className="font-medium text-alien-gold font-[Exo]">Company LinkedIn</h3>
                   <a href="https://linkedin.com/company/alienflowspace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/company/alienflowspace</a>
                 </div>
               </div>
@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
                   <Users className="h-5 w-5 text-alien-space-dark" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Telegram Community</h3>
+                  <h3 className="font-medium text-alien-gold font-[Exo]">Group Telegram</h3>
                   <a href="https://t.me/AlienFlow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlow</a>
                 </div>
               </div>
