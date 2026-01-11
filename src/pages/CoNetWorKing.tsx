@@ -213,6 +213,7 @@ const CoNetWorKing: React.FC = () => {
     color: "bg-gradient-to-br from-blue-600 to-indigo-400"
   }];
   // Partner categories for classification
+  // Academy Partners (excluding space-related which go to SpaceFlow)
   const academyPartners = [
     { name: "Academia", url: "https://www.academia.edu/", logo: "/lovable-uploads/Academy/Academia.svg", description: "Academic research network" },
     { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png", description: "Web3 development platform" },
@@ -221,7 +222,6 @@ const CoNetWorKing: React.FC = () => {
     { name: "Coursera", url: "https://www.coursera.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg", description: "Online university courses" },
     { name: "Cursa", url: "https://cursa.app/", logo: "/lovable-uploads/Academy/Cursa.webp", description: "Free education platform" },
     { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png", description: "University-level courses" },
-    { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg", description: "European Space Agency" },
     { name: "Explore", url: "https://explore.org/", logo: "/lovable-uploads/Academy/Explore.png", description: "Nature & animal cams" },
     { name: "FutureLearn", url: "https://www.futurelearn.com/", logo: "https://www.futurelearn.com/favicon.ico", description: "UK online courses" },
     { name: "Google for Education", url: "https://edu.google.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", description: "Educational tools" },
@@ -229,14 +229,9 @@ const CoNetWorKing: React.FC = () => {
     { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg", description: "Coding challenges" },
     { name: "HackMD", url: "https://hackmd.io/", logo: "/lovable-uploads/Academy/HackMD.svg", description: "Collaborative markdown" },
     { name: "Hotmart", url: "https://www.hotmart.com/", logo: "/lovable-uploads/Academy/Hotmart.png", description: "Digital products platform" },
-    { name: "KAGRA", url: "https://gwcenter.icrr.u-tokyo.ac.jp/", logo: "/lovable-uploads/Academy/KAGRA.svg", description: "Gravitational wave observatory" },
     { name: "Khan Academy", url: "https://khanacademy.org/", logo: "https://cdn.kastatic.org/images/khan-logo-dark-background.png", description: "Free world-class education" },
-    { name: "LIGO", url: "https://www.ligo.caltech.edu/", logo: "/lovable-uploads/Academy/LIGO.png", description: "Gravitational wave research" },
-    { name: "LSC-Canfranc", url: "https://lsc-canfranc.es/", logo: "/lovable-uploads/Academy/LSC.png", description: "Underground physics lab" },
-    { name: "Map of the Universe", url: "https://mapoftheuniverse.net/", logo: "/lovable-uploads/Academy/Universe.jpg", description: "Interactive cosmic map" },
     { name: "MasterClass", url: "https://masterclass.com/", logo: "/lovable-uploads/Academy/MasterClass.jpeg", description: "Learn from the best" },
     { name: "MOOC", url: "https://mooc.org/", logo: "/lovable-uploads/Academy/Mooc.png", description: "Massive open online courses" },
-    { name: "NASA Eyes", url: "https://eyes.nasa.gov/apps/solar-system/#/home", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", description: "Solar system explorer" },
     { name: "OEGlobal", url: "https://oeglobal.org/", logo: "/lovable-uploads/OEGlobalLogo.jpeg", description: "Open education network" },
     { name: "OpenUpEd", url: "https://openuped.eu/", logo: "/lovable-uploads/OpenUpEdLogo.jpeg", description: "European MOOCs" },
     { name: "Skillshare", url: "https://www.skillshare.com/", logo: "/lovable-uploads/SkillShareLogo.jpeg", description: "Creative skills platform" },
@@ -246,312 +241,102 @@ const CoNetWorKing: React.FC = () => {
     { name: "UNESCO", url: "https://www.unesco.org/", logo: "/lovable-uploads/UnescoLogo.svg", description: "UN education & culture" },
     { name: "Unity Learn", url: "https://learn.unity.com/", logo: "/lovable-uploads/UnityLearnLogo.svg", description: "Game development education" },
     { name: "Unreal Engine", url: "https://www.unrealengine.com/en-US/learn", logo: "https://upload.wikimedia.org/wikipedia/commons/d/da/Unreal_Engine_Logo.svg", description: "Game engine education" },
-    { name: "UNSSC", url: "https://unssc.org/", logo: "/lovable-uploads/UNSSCLogo.png", description: "UN staff college" },
-    { name: "Virgo-GW", url: "https://www.virgo-gw.eu/", logo: "/lovable-uploads/VirgoLogo.svg", description: "Gravitational wave detector" }
+    { name: "UNSSC", url: "https://unssc.org/", logo: "/lovable-uploads/UNSSCLogo.png", description: "UN staff college" }
   ];
 
   const clubsPartners = {
-    cashFlow: [
-      {
-        name: "Binance",
-        url: "https://binance.com/",
-        logo: "/lovable-uploads/Clubs/Binance.svg",
-        description: "Leading crypto exchange"
-      },
-      {
-        name: "BingX",
-        url: "https://bingx.com/referral-program/QCXRKM",
-        logo: "/lovable-uploads/Clubs/BingX.png",
-        description: "Crypto trading platform"
-      },
-      {
-        name: "Bitget",
-        url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N",
-        logo: "/lovable-uploads/Clubs/Bitget.png",
-        description: "Crypto derivatives exchange"
-      },
-      {
-        name: "Bybit",
-        url: "https://www.bybit.com/invite?ref=Q15Q4M",
-        logo: "/lovable-uploads/Clubs/Bybit.png",
-        description: "Crypto trading platform"
-      },
-      {
-        name: "Coinbase",
-        url: "https://www.coinbase.com/join/EC2PSZT?src",
-        logo: "/lovable-uploads/Clubs/Coinbase.svg",
-        description: "Trusted crypto exchange"
-      },
-      {
-        name: "Crypto.com",
-        url: "https://crypto.com/app/una5xskncn",
-        logo: "/lovable-uploads/Clubs/Cryptocom.svg",
-        description: "Crypto platform with card"
-      },
-      {
-        name: "Kraken",
-        url: "https://www.kraken.com/",
-        logo: "/lovable-uploads/Clubs/Kraken.svg",
-        description: "Secure crypto exchange"
-      },
-      {
-        name: "OKX",
-        url: "https://www.okx.com/",
-        logo: "/lovable-uploads/Clubs/OKX.svg",
-        description: "Global crypto exchange"
-      },
-      {
-        name: "Nexo",
-        url: "https://nexo.com/ref/x6ts3r0kb2?src",
-        logo: "/lovable-uploads/Clubs/NexoLogo.svg",
-        description: "Crypto banking platform"
-      },
-      {
-        name: "Pionex",
-        url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7",
-        logo: "/lovable-uploads/Clubs/PionexLogo.svg",
-        description: "Crypto trading bot platform"
-      },
-      {
-        name: "Atomic Wallet",
-        url: "https://atomicwallet.io/",
-        logo: "/lovable-uploads/Clubs/AtomicWallet.svg",
-        description: "Multi-crypto wallet"
-      },
-      {
-        name: "Exodus",
-        url: "https://www.exodus.com/",
-        logo: "/lovable-uploads/Clubs/Exodus.svg",
-        description: "Beautiful crypto wallet"
-      },
-      {
-        name: "Ledger",
-        url: "https://www.ledger.com/",
-        logo: "/lovable-uploads/Clubs/Ledger.jpg",
-        description: "Hardware wallet security"
-      },
-      {
-        name: "MetaMask",
-        url: "https://metamask.io/",
-        logo: "/lovable-uploads/Clubs/MetaMask.svg",
-        description: "Web3 wallet"
-      },
-      {
-        name: "Phantom",
-        url: "https://phantom.app/",
-        logo: "/lovable-uploads/Clubs/PhantomLogo.svg",
-        description: "Solana wallet"
-      },
-      {
-        name: "SafePal",
-        url: "https://www.safepal.com/",
-        logo: "/lovable-uploads/Clubs/SafePal.png",
-        description: "Secure crypto wallet"
-      },
-      {
-        name: "Trezor",
-        url: "https://trezor.io/",
-        logo: "/lovable-uploads/Clubs/Trezor.svg",
-        description: "Hardware wallet pioneer"
-      },
-      {
-        name: "Trust Wallet",
-        url: "https://trustwallet.com/",
-        logo: "/lovable-uploads/Clubs/Trust Wallet.svg",
-        description: "Multi-chain wallet"
-      }
-    ],
-    gameFlow: [
-      {
-        name: "Arena.gg",
-        url: "https://www.arenagg.com/",
-        logo: "/lovable-uploads/Clubs/ArenaGG.png",
-        description: "eSports tournaments"
-      },
-      {
-        name: "Battlefy",
-        url: "https://battlefy.com/",
-        logo: "/lovable-uploads/Clubs/Battlefy.svg",
-        description: "Tournament platform"
-      },
-      {
-        name: "Blitz.gg",
-        url: "https://blitz.gg/",
-        logo: "/lovable-uploads/Clubs/BlitzGG.svg",
-        description: "Gaming performance"
-      },
-      {
-        name: "ESL Gaming",
-        url: "https://esl.com/",
-        logo: "/lovable-uploads/Clubs/ESL.svg",
-        description: "eSports organization"
-      },
-      {
-        name: "LVP Global",
-        url: "https://lvp.global/",
-        logo: "/lovable-uploads/Clubs/LVP.PNG",
-        description: "eSports leagues"
-      },
-      {
-        name: "ZEBEDEE",
-        url: "https://zbd.link/hcHi/invite?af_sub1=S2S7IY",
-        logo: "/lovable-uploads/Clubs/ZBD.svg",
-        description: "Bitcoin gaming platform"
-      }
-    ],
-    metaFlow: [
-      {
-        name: "YouTube",
-        url: "https://www.youtube.com/",
-        logo: "/lovable-uploads/Clubs/YouTube.svg",
-        description: "Video streaming platform"
-      },
-      {
-        name: "Spotify",
-        url: "https://www.spotify.com/",
-        logo: "/lovable-uploads/Clubs/Spotify.svg",
-        description: "Music streaming"
-      },
-      {
-        name: "Soundcloud",
-        url: "https://soundcloud.com/",
-        logo: "/lovable-uploads/Clubs/Soundcloud.svg",
-        description: "Audio distribution"
-      }
-    ],
-    dataFlow: [
-      {
-        name: "CoinGecko",
-        url: "https://www.coingecko.com/",
-        logo: "/lovable-uploads/CoinGeckoLogo.svg",
-        description: "Crypto data platform"
-      },
-      {
-        name: "CoinGlass",
-        url: "https://www.coinglass.com/",
-        logo: "/lovable-uploads/CoinGlassLogo.jpeg",
-        description: "Crypto derivatives data"
-      },
-      {
-        name: "CoinMarketCap",
-        url: "https://coinmarketcap.com/",
-        logo: "/lovable-uploads/CoinMarketCapLogo.jpeg",
-        description: "Crypto market data"
-      },
-      {
-        name: "DappRadar",
-        url: "https://dappradar.com/",
-        logo: "/lovable-uploads/DappRadarLogo.jpeg",
-        description: "DApp analytics"
-      }
-    ],
-    quantumFlow: [
-      {
-        name: "Aragon DAO",
-        url: "https://www.aragon.org/",
-        logo: "/lovable-uploads/AragonDAOLogo.svg",
-        description: "DAO governance platform"
-      },
-      {
-        name: "Pi Network",
-        url: "https://minepi.com/Aitor69Alien",
-        logo: "/lovable-uploads/Clubs/PiNetwork.svg",
-        description: "Mobile crypto mining"
-      }
-    ],
+    // ArtFlow - Web3 music platforms (alphabetical)
     artFlow: [
-      {
-        name: "Audius",
-        url: "https://audius.co/",
-        logo: "/lovable-uploads/Clubs/Audius.svg",
-        description: "Decentralized music streaming"
-      },
-      {
-        name: "Sound.xyz",
-        url: "https://www.sound.xyz/",
-        logo: "/lovable-uploads/Clubs/SoundXYZ.svg",
-        description: "Music NFT platform"
-      }
+      { name: "Audius", url: "https://audius.co/", logo: "/lovable-uploads/Clubs/Audius.svg", description: "Decentralized music streaming" },
+      { name: "Sound.xyz", url: "https://www.sound.xyz/", logo: "/lovable-uploads/Clubs/SoundXYZ.svg", description: "Music NFT platform" }
     ],
-    ecoFlow: [],
-    healthFlow: [],
-    weedFlow: [
-      {
-        name: "Leafly",
-        url: "https://www.leafly.com/",
-        logo: "/lovable-uploads/Clubs/Leafly.svg",
-        description: "Cannabis marketplace"
-      },
-      {
-        name: "Weedmaps",
-        url: "https://weedmaps.com/",
-        logo: "/lovable-uploads/Clubs/Weedmaps.svg",
-        description: "Cannabis directory"
-      }
+    // CashFlow - Exchanges & Wallets (alphabetical)
+    cashFlow: [
+      { name: "Atomic Wallet", url: "https://atomicwallet.io/", logo: "/lovable-uploads/Clubs/AtomicWallet.svg", description: "Multi-crypto wallet" },
+      { name: "Binance", url: "https://binance.com/", logo: "/lovable-uploads/Clubs/Binance.svg", description: "Leading crypto exchange" },
+      { name: "BingX", url: "https://bingx.com/referral-program/QCXRKM", logo: "/lovable-uploads/Clubs/BingX.png", description: "Crypto trading platform" },
+      { name: "Bitget", url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N", logo: "/lovable-uploads/Clubs/Bitget.png", description: "Crypto derivatives exchange" },
+      { name: "Bybit", url: "https://www.bybit.com/invite?ref=Q15Q4M", logo: "/lovable-uploads/Clubs/Bybit.png", description: "Crypto trading platform" },
+      { name: "Coinbase", url: "https://www.coinbase.com/join/EC2PSZT?src", logo: "/lovable-uploads/Clubs/Coinbase.svg", description: "Trusted crypto exchange" },
+      { name: "Crypto.com", url: "https://crypto.com/app/una5xskncn", logo: "/lovable-uploads/Clubs/Cryptocom.svg", description: "Crypto platform with card" },
+      { name: "Exodus", url: "https://www.exodus.com/", logo: "/lovable-uploads/Clubs/Exodus.svg", description: "Beautiful crypto wallet" },
+      { name: "Kraken", url: "https://www.kraken.com/", logo: "/lovable-uploads/Clubs/Kraken.svg", description: "Secure crypto exchange" },
+      { name: "Ledger", url: "https://www.ledger.com/", logo: "/lovable-uploads/Clubs/Ledger.jpg", description: "Hardware wallet security" },
+      { name: "Material Bitcoin", url: "https://materialbitcoin.com/AlienFlowSpace", logo: "/lovable-uploads/Clubs/MaterialBitcoin.png", description: "Physical Bitcoin storage" },
+      { name: "MetaMask", url: "https://metamask.io/", logo: "/lovable-uploads/Clubs/MetaMask.svg", description: "Web3 wallet" },
+      { name: "Nexo", url: "https://nexo.com/ref/x6ts3r0kb2?src", logo: "/lovable-uploads/Clubs/NexoLogo.svg", description: "Crypto banking platform" },
+      { name: "OKX", url: "https://www.okx.com/", logo: "/lovable-uploads/Clubs/OKX.svg", description: "Global crypto exchange" },
+      { name: "Phantom", url: "https://phantom.app/", logo: "/lovable-uploads/Clubs/PhantomLogo.svg", description: "Solana wallet" },
+      { name: "Pionex", url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7", logo: "/lovable-uploads/Clubs/PionexLogo.svg", description: "Crypto trading bot platform" },
+      { name: "SafePal", url: "https://www.safepal.com/", logo: "/lovable-uploads/Clubs/SafePal.png", description: "Secure crypto wallet" },
+      { name: "Trezor", url: "https://trezor.io/", logo: "/lovable-uploads/Clubs/Trezor.svg", description: "Hardware wallet pioneer" },
+      { name: "Trust Wallet", url: "https://trustwallet.com/", logo: "/lovable-uploads/Clubs/Trust Wallet.svg", description: "Multi-chain wallet" }
     ],
-    xFlow: [
-      {
-        name: "OnlyFans",
-        url: "https://onlyfans.com/",
-        logo: "/lovable-uploads/Clubs/OnlyFans.svg",
-        description: "Content creator platform"
-      },
-      {
-        name: "Fansly",
-        url: "https://fansly.com/",
-        logo: "/lovable-uploads/Clubs/Fansly.svg",
-        description: "Creator monetization"
-      },
-      {
-        name: "Pornhub",
-        url: "https://www.pornhub.com/",
-        logo: "/lovable-uploads/Clubs/Pornhub.svg",
-        description: "Adult entertainment"
-      },
-      {
-        name: "XHamster",
-        url: "https://xhamster.com/",
-        logo: "/lovable-uploads/Clubs/XHamster.svg",
-        description: "Adult content platform"
-      },
-      {
-        name: "YouPorn",
-        url: "https://www.youporn.com/",
-        logo: "/lovable-uploads/Clubs/YouPorn.svg",
-        description: "Adult video site"
-      }
+    // DataFlow - Crypto data & analytics (alphabetical)
+    dataFlow: [
+      { name: "CoinGecko", url: "https://www.coingecko.com/", logo: "/lovable-uploads/CoinGeckoLogo.svg", description: "Crypto data platform" },
+      { name: "CoinGlass", url: "https://www.coinglass.com/", logo: "/lovable-uploads/CoinGlassLogo.jpeg", description: "Crypto derivatives data" },
+      { name: "CoinMarketCap", url: "https://coinmarketcap.com/", logo: "/lovable-uploads/CoinMarketCapLogo.jpeg", description: "Crypto market data" },
+      { name: "DappRadar", url: "https://dappradar.com/", logo: "/lovable-uploads/DappRadarLogo.jpeg", description: "DApp analytics" }
     ],
+    // EcoFlow - Sustainability & ReFi (alphabetical)
+    ecoFlow: [
+      { name: "Celo", url: "https://celo.org/", logo: "https://cryptologos.cc/logos/celo-celo-logo.svg", description: "Carbon-negative blockchain" },
+      { name: "Gitcoin", url: "https://gitcoin.co/", logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/5765.png", description: "Open-source funding" },
+      { name: "KlimaDAO", url: "https://www.klimadao.finance/", logo: "https://cryptologos.cc/logos/klima-dao-klima-logo.svg", description: "Carbon offset DAO" },
+      { name: "Moss.Earth", url: "https://moss.earth/", logo: "https://www.moss.earth/wp-content/uploads/2021/07/moss-logo-green.svg", description: "Carbon credits trading" },
+      { name: "Toucan Protocol", url: "https://toucan.earth/", logo: "https://assets.coingecko.com/coins/images/21176/large/download_%281%29.png", description: "On-chain carbon credits" }
+    ],
+    // GameFlow - Gaming & eSports (alphabetical)
+    gameFlow: [
+      { name: "Arena.gg", url: "https://www.arenagg.com/", logo: "/lovable-uploads/Clubs/ArenaGG.png", description: "eSports tournaments" },
+      { name: "Battlefy", url: "https://battlefy.com/", logo: "/lovable-uploads/Clubs/Battlefy.svg", description: "Tournament platform" },
+      { name: "Blitz.gg", url: "https://blitz.gg/", logo: "/lovable-uploads/Clubs/BlitzGG.svg", description: "Gaming performance" },
+      { name: "ESL Gaming", url: "https://esl.com/", logo: "/lovable-uploads/Clubs/ESL.svg", description: "eSports organization" },
+      { name: "LVP Global", url: "https://lvp.global/", logo: "/lovable-uploads/Clubs/LVP.PNG", description: "eSports leagues" },
+      { name: "ZEBEDEE", url: "https://zbd.link/hcHi/invite?af_sub1=S2S7IY", logo: "/lovable-uploads/Clubs/ZBD.svg", description: "Bitcoin gaming platform" }
+    ],
+    // HealthFlow - Health & Wellness (alphabetical)
+    healthFlow: [
+      { name: "Fitbit", url: "https://www.fitbit.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/6/60/Fitbit_logo.svg", description: "Fitness tracking" },
+      { name: "Headspace", url: "https://www.headspace.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/Headspace_app_logo.png", description: "Meditation & mindfulness" },
+      { name: "MyFitnessPal", url: "https://www.myfitnesspal.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/MyFitnessPal_logo.svg", description: "Nutrition tracking" },
+      { name: "Strava", url: "https://www.strava.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Strava_Logo.svg", description: "Athletic tracking" },
+      { name: "Whoop", url: "https://www.whoop.com/", logo: "https://cdn.worldvectorlogo.com/logos/whoop-2.svg", description: "Health performance" }
+    ],
+    // MetaFlow - Streaming platforms (alphabetical)
+    metaFlow: [
+      { name: "Soundcloud", url: "https://soundcloud.com/", logo: "/lovable-uploads/Clubs/Soundcloud.svg", description: "Audio distribution" },
+      { name: "Spotify", url: "https://www.spotify.com/", logo: "/lovable-uploads/Clubs/Spotify.svg", description: "Music streaming" },
+      { name: "YouTube", url: "https://www.youtube.com/", logo: "/lovable-uploads/Clubs/YouTube.svg", description: "Video streaming platform" }
+    ],
+    // QuantumFlow - Innovative tech (alphabetical)
+    quantumFlow: [
+      { name: "Aragon DAO", url: "https://www.aragon.org/", logo: "/lovable-uploads/AragonDAOLogo.svg", description: "DAO governance platform" },
+      { name: "Pi Network", url: "https://minepi.com/Aitor69Alien", logo: "/lovable-uploads/Clubs/PiNetwork.svg", description: "Mobile crypto mining" }
+    ],
+    // SpaceFlow - Space science & research (alphabetical)
     spaceFlow: [
-      {
-        name: "ESA",
-        url: "https://www.esa.int/",
-        logo: "/lovable-uploads/Academy/ESA.svg",
-        description: "European Space Agency"
-      },
-      {
-        name: "LIGO",
-        url: "https://www.ligo.caltech.edu/",
-        logo: "/lovable-uploads/Academy/LIGO.png",
-        description: "Gravitational wave detection"
-      },
-      {
-        name: "KAGRA",
-        url: "https://gwcenter.icrr.u-tokyo.ac.jp/en/",
-        logo: "/lovable-uploads/Academy/KAGRA.svg",
-        description: "Japanese gravitational wave"
-      },
-      {
-        name: "Virgo",
-        url: "https://www.virgo-gw.eu/",
-        logo: "/lovable-uploads/Academy/Virgo.svg",
-        description: "European gravitational wave"
-      },
-      {
-        name: "LSC",
-        url: "https://www.ligo.org/",
-        logo: "/lovable-uploads/Academy/LSC.png",
-        description: "LIGO Scientific Collaboration"
-      }
+      { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg", description: "European Space Agency" },
+      { name: "KAGRA", url: "https://gwcenter.icrr.u-tokyo.ac.jp/en/", logo: "/lovable-uploads/Academy/KAGRA.svg", description: "Japanese gravitational wave" },
+      { name: "LIGO", url: "https://www.ligo.caltech.edu/", logo: "/lovable-uploads/Academy/LIGO.png", description: "Gravitational wave research" },
+      { name: "LSC", url: "https://www.ligo.org/", logo: "/lovable-uploads/Academy/LSC.png", description: "LIGO Scientific Collaboration" },
+      { name: "Map of the Universe", url: "https://mapoftheuniverse.net/", logo: "/lovable-uploads/Academy/Universe.jpg", description: "Interactive cosmic map" },
+      { name: "NASA Eyes", url: "https://eyes.nasa.gov/apps/solar-system/#/home", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", description: "Solar system explorer" },
+      { name: "Virgo", url: "https://www.virgo-gw.eu/", logo: "/lovable-uploads/Academy/Virgo.svg", description: "European gravitational wave" }
+    ],
+    // WeedFlow - Cannabis industry (alphabetical)
+    weedFlow: [
+      { name: "Leafly", url: "https://www.leafly.com/", logo: "/lovable-uploads/Clubs/Leafly.svg", description: "Cannabis marketplace" },
+      { name: "Weedmaps", url: "https://weedmaps.com/", logo: "/lovable-uploads/Clubs/Weedmaps.svg", description: "Cannabis directory" }
+    ],
+    // XFlow - Adult content (alphabetical)
+    xFlow: [
+      { name: "Fansly", url: "https://fansly.com/", logo: "/lovable-uploads/Clubs/Fansly.svg", description: "Creator monetization" },
+      { name: "OnlyFans", url: "https://onlyfans.com/", logo: "/lovable-uploads/Clubs/OnlyFans.svg", description: "Content creator platform" },
+      { name: "Pornhub", url: "https://www.pornhub.com/", logo: "/lovable-uploads/Clubs/Pornhub.svg", description: "Adult entertainment" },
+      { name: "XHamster", url: "https://xhamster.com/", logo: "/lovable-uploads/Clubs/XHamster.svg", description: "Adult content platform" },
+      { name: "YouPorn", url: "https://www.youporn.com/", logo: "/lovable-uploads/Clubs/YouPorn.svg", description: "Adult video site" }
     ]
   };
   const officialPartners = [{
@@ -754,11 +539,6 @@ const CoNetWorKing: React.FC = () => {
             </div>
           </div>
 
-          {/* DAO Dashboard */}
-          <div className="mb-20">
-            <DAODashboard />
-          </div>
-
           {/* Services Grid */}
           <div className="mb-20">
             <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
@@ -774,7 +554,7 @@ const CoNetWorKing: React.FC = () => {
             <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
               Decentralized Autonomous Organization
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {/* Governance */}
               <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300">
                 <CardHeader>
@@ -891,9 +671,12 @@ const CoNetWorKing: React.FC = () => {
                 </CardContent>
               </Card>
             </div>
+            
+            {/* DAO Dashboard - Integrated into DAO Section */}
+            <DAODashboard />
           </div>
 
-          {/* Partners Section - Organized by Categories */}
+          {/* Partners Section - Organized by Categories (Alphabetical) */}
           <div className="mb-20">
             <h2 className="text-4xl font-bold text-alien-gold mb-4 text-center font-[Atomic Age]">
               Our Partners Ecosystem
@@ -910,74 +693,74 @@ const CoNetWorKing: React.FC = () => {
               delay={0}
             />
 
-            {/* Clubs - CashFlow */}
-            <PartnerSection 
-              title="CashFlow" 
-              partners={clubsPartners.cashFlow} 
-              color="alien-green"
-              delay={0.1}
-            />
-
-            {/* Clubs - GameFlow */}
-            <PartnerSection 
-              title="GameFlow" 
-              partners={clubsPartners.gameFlow} 
-              color="purple"
-              delay={0.2}
-            />
-
-            {/* Clubs - MetaFlow */}
-            <PartnerSection 
-              title="MetaFlow" 
-              partners={clubsPartners.metaFlow} 
-              color="cyan"
-              delay={0.3}
-            />
-
-            {/* Clubs - DataFlow */}
-            <PartnerSection 
-              title="DataFlow" 
-              partners={clubsPartners.dataFlow} 
-              color="blue"
-              delay={0.4}
-            />
-
-            {/* Clubs - QuantumFlow */}
-            <PartnerSection 
-              title="QuantumFlow" 
-              partners={clubsPartners.quantumFlow} 
-              color="indigo"
-              delay={0.5}
-            />
-
-            {/* Clubs - ArtFlow */}
+            {/* ArtFlow - Web3 music */}
             <PartnerSection 
               title="ArtFlow" 
               partners={clubsPartners.artFlow} 
               color="pink"
               icon={<Palette className="h-6 w-6" />}
-              delay={0.6}
+              delay={0.1}
             />
 
-            {/* Clubs - EcoFlow */}
+            {/* CashFlow - Exchanges & Wallets */}
+            <PartnerSection 
+              title="CashFlow" 
+              partners={clubsPartners.cashFlow} 
+              color="alien-green"
+              delay={0.2}
+            />
+
+            {/* DataFlow - Analytics */}
+            <PartnerSection 
+              title="DataFlow" 
+              partners={clubsPartners.dataFlow} 
+              color="blue"
+              delay={0.3}
+            />
+
+            {/* EcoFlow - Sustainability */}
             <PartnerSection 
               title="EcoFlow" 
               partners={clubsPartners.ecoFlow} 
               color="green"
               icon={<Leaf className="h-6 w-6" />}
-              delay={0.7}
+              delay={0.4}
             />
 
-            {/* Clubs - HealthFlow */}
+            {/* GameFlow - Gaming */}
+            <PartnerSection 
+              title="GameFlow" 
+              partners={clubsPartners.gameFlow} 
+              color="purple"
+              delay={0.5}
+            />
+
+            {/* HealthFlow - Health & Wellness */}
             <PartnerSection 
               title="HealthFlow" 
               partners={clubsPartners.healthFlow} 
               color="red"
               icon={<Heart className="h-6 w-6" />}
+              delay={0.6}
+            />
+
+            {/* MetaFlow - Streaming */}
+            <PartnerSection 
+              title="MetaFlow" 
+              partners={clubsPartners.metaFlow} 
+              color="cyan"
+              delay={0.7}
+            />
+
+            {/* QuantumFlow - Innovative tech */}
+            <PartnerSection 
+              title="QuantumFlow" 
+              partners={clubsPartners.quantumFlow} 
+              color="indigo"
               delay={0.8}
             />
 
-            {/* Clubs - SpaceFlow */}
+            {/* SpaceFlow - Space science */}
             <PartnerSection 
               title="SpaceFlow" 
               partners={clubsPartners.spaceFlow} 
@@ -986,7 +769,7 @@ const CoNetWorKing: React.FC = () => {
               delay={0.9}
             />
 
-            {/* Clubs - WeedFlow */}
+            {/* WeedFlow - Cannabis */}
             <PartnerSection 
               title="WeedFlow" 
               partners={clubsPartners.weedFlow} 
@@ -995,7 +778,7 @@ const CoNetWorKing: React.FC = () => {
               delay={1.0}
             />
 
-            {/* Clubs - XFlow */}
+            {/* XFlow - Adult content */}
             <PartnerSection 
               title="XFlow" 
               partners={clubsPartners.xFlow} 
