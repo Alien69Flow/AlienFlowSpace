@@ -214,20 +214,40 @@ const CoNetWorKing: React.FC = () => {
   }];
   // Partner categories for classification
   const academyPartners = [
-    {
-      name: "Climate Reanalyzer",
-      url: "https://climatereanalyzer.org/",
-      logo: "/lovable-uploads/ClimateReanalyzerLogo.svg",
-      description: "Climate data & analytics",
-      category: "Academy"
-    },
-    {
-      name: "Unity Learn",
-      url: "https://learn.unity.com/",
-      logo: "/lovable-uploads/UnityLearnLogo.svg",
-      description: "Game development education",
-      category: "Academy"
-    }
+    { name: "Academia", url: "https://www.academia.edu/", logo: "/lovable-uploads/Academy/Academia.svg", description: "Academic research network" },
+    { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png", description: "Web3 development platform" },
+    { name: "AulaFacil", url: "https://www.aulafacil.com/", logo: "/lovable-uploads/Academy/AulaFacil.png", description: "Free online courses (ES)" },
+    { name: "Climate Reanalyzer", url: "https://climatereanalyzer.org/", logo: "/lovable-uploads/Academy/ClimateReanalyzer.svg", description: "Climate data & analytics" },
+    { name: "Coursera", url: "https://www.coursera.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg", description: "Online university courses" },
+    { name: "Cursa", url: "https://cursa.app/", logo: "/lovable-uploads/Academy/Cursa.webp", description: "Free education platform" },
+    { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png", description: "University-level courses" },
+    { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg", description: "European Space Agency" },
+    { name: "Explore", url: "https://explore.org/", logo: "/lovable-uploads/Academy/Explore.png", description: "Nature & animal cams" },
+    { name: "FutureLearn", url: "https://www.futurelearn.com/", logo: "https://www.futurelearn.com/favicon.ico", description: "UK online courses" },
+    { name: "Google for Education", url: "https://edu.google.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", description: "Educational tools" },
+    { name: "Google Growth", url: "https://grow.google/", logo: "/lovable-uploads/Academy/GrowGoogle.png", description: "Skills development" },
+    { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg", description: "Coding challenges" },
+    { name: "HackMD", url: "https://hackmd.io/", logo: "/lovable-uploads/Academy/HackMD.svg", description: "Collaborative markdown" },
+    { name: "Hotmart", url: "https://www.hotmart.com/", logo: "/lovable-uploads/Academy/Hotmart.png", description: "Digital products platform" },
+    { name: "KAGRA", url: "https://gwcenter.icrr.u-tokyo.ac.jp/", logo: "/lovable-uploads/Academy/KAGRA.svg", description: "Gravitational wave observatory" },
+    { name: "Khan Academy", url: "https://khanacademy.org/", logo: "https://cdn.kastatic.org/images/khan-logo-dark-background.png", description: "Free world-class education" },
+    { name: "LIGO", url: "https://www.ligo.caltech.edu/", logo: "/lovable-uploads/Academy/LIGO.png", description: "Gravitational wave research" },
+    { name: "LSC-Canfranc", url: "https://lsc-canfranc.es/", logo: "/lovable-uploads/Academy/LSC.png", description: "Underground physics lab" },
+    { name: "Map of the Universe", url: "https://mapoftheuniverse.net/", logo: "/lovable-uploads/Academy/Universe.jpg", description: "Interactive cosmic map" },
+    { name: "MasterClass", url: "https://masterclass.com/", logo: "/lovable-uploads/Academy/MasterClass.jpeg", description: "Learn from the best" },
+    { name: "MOOC", url: "https://mooc.org/", logo: "/lovable-uploads/Academy/Mooc.png", description: "Massive open online courses" },
+    { name: "NASA Eyes", url: "https://eyes.nasa.gov/apps/solar-system/#/home", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg", description: "Solar system explorer" },
+    { name: "OEGlobal", url: "https://oeglobal.org/", logo: "/lovable-uploads/OEGlobalLogo.jpeg", description: "Open education network" },
+    { name: "OpenUpEd", url: "https://openuped.eu/", logo: "/lovable-uploads/OpenUpEdLogo.jpeg", description: "European MOOCs" },
+    { name: "Skillshare", url: "https://www.skillshare.com/", logo: "/lovable-uploads/SkillShareLogo.jpeg", description: "Creative skills platform" },
+    { name: "Udacity", url: "https://www.udacity.com/", logo: "/lovable-uploads/UdacityLogo.svg", description: "Tech nanodegrees" },
+    { name: "Udemy", url: "https://www.udemy.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg", description: "Online courses marketplace" },
+    { name: "UNED", url: "https://iedra.uned.es/", logo: "/lovable-uploads/Academy/UNED.png", description: "Spanish distance university" },
+    { name: "UNESCO", url: "https://www.unesco.org/", logo: "/lovable-uploads/UnescoLogo.svg", description: "UN education & culture" },
+    { name: "Unity Learn", url: "https://learn.unity.com/", logo: "/lovable-uploads/UnityLearnLogo.svg", description: "Game development education" },
+    { name: "Unreal Engine", url: "https://www.unrealengine.com/en-US/learn", logo: "https://upload.wikimedia.org/wikipedia/commons/d/da/Unreal_Engine_Logo.svg", description: "Game engine education" },
+    { name: "UNSSC", url: "https://unssc.org/", logo: "/lovable-uploads/UNSSCLogo.png", description: "UN staff college" },
+    { name: "Virgo-GW", url: "https://www.virgo-gw.eu/", logo: "/lovable-uploads/VirgoLogo.svg", description: "Gravitational wave detector" }
   ];
 
   const clubsPartners = {
