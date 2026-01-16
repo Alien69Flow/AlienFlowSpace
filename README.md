@@ -42,7 +42,7 @@ Accede a las diferentes capas y espacios del ecosistema AlienFlow desde estos pu
 
 <div align="center">
 
-| Portal Principal | Ai Tor (Core) | Alien DEX Play | AlienTrip Explorer |
+| Portal Principal | Ai Tor (Core) | Alien DEX (Play) | AlienTrip (Explorer) |
 | :---: | :---: | :---: | :---: |
 | [**AlienFlow.Space**](https://AlienFlow.Space) | [**Aitor.lovable.app**](https://aitorlovable.gptengineer.run/) | [**AlienDEX.lovable.app**](https://aliendexplay.gptengineer.run/) | [**AlienTrip.lovable.app**](https://alientrip.gptengineer.run/) |
 | 🛸 | 🤖 | 💎 | 🚀 |
@@ -55,11 +55,15 @@ Accede a las diferentes capas y espacios del ecosistema AlienFlow desde estos pu
 
 <div align="center">
 
-[<img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" />](https://discord.gg/alienflowspace)
-[<img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" />](https://t.me/AlienFlow)
-[<img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" />](https://x.com/alien69flow)
-[<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />](https://www.instagram.com/alien69flow/)
 [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />](https://linkedin.com/company/alienflowspace)
+[<img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" />](https://discord.gg/alienflowspace)
+[<img src="https://img.shields.io/badge/ProtonMail-6D4AFF?style=for-the-badge&logo=protonmail&logoColor=white" />](mailto:alien69flow@proton.me)
+[<img src="https://img.shields.io/badge/GitBook-3884FF?style=for-the-badge&logo=gitbook&logoColor=white" />](https://alienflowspace.gitbook.io/DAO)
+[<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />](https://www.instagram.com/alien69flow/)
+[<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />](https://linkedin.com/in/alienflow)
+[<img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" />](https://t.me/AlienFlow)
+[<img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" />](https://threads.net/@alien69flow)
+[<img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" />](https://x.com/alien69flow)
 
 <br />
 
@@ -74,9 +78,9 @@ Accede a las diferentes capas y espacios del ecosistema AlienFlow desde estos pu
 <br />
 
 <img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/AlienGang.gif" width="23%" />
-<img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/AlienNation.gif" width="23%" />
-<img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/AlienTools.gif" width="23%" />
 <img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/AlienLabs.gif" width="23%" />
+<img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/Alien Nation.gif" width="23%" />
+<img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/AlienTools.gif" width="23%" />
 
 <br />
 
