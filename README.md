@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/NETWORK-WEB3--4--5-blueviolet?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/LOGIC-Φ_π_3--6--9_TESLA-FFD700?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/CONETWORKING-WEB3-/4-/5-blueviolet?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/LOGIC-Φ_π_3-/6-/9_TESLA-FFD700?style=for-the-badge" />
   <img src="https://img.shields.io/badge/BENEFITS-MUTUAL_PROFITS-00FF00?style=for-the-badge" />
 </p>
 
