@@ -83,6 +83,11 @@
     "vite": "^5.4.11"
   },
   "overrides": {
-    "h3": "1.15.5"
+    "h3": "1.15.5",
+    "vite": "^5.4.11",
+    "nanoid": "^3.3.8",
+    "@babel/runtime": "^7.26.0",
+    "react-router": "^6.28.0",
+    "@remix-run/router": "^1.21.0"
   }
 }
