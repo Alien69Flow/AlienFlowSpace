@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -13,11 +13,21 @@ const PROACTIVE_MESSAGES = [
 ];
 
 const AIChatbot = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [showProactive, setShowProactive] = React.useState(false);
-  const [proactiveMessage, setProactiveMessage] = React.useState('');
-  const [hasInteracted, setHasInteracted] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showProactive, setShowProactive] = useState(false);
+  const [proactiveMessage, setProactiveMessage] = useState('');
+  const [hasInteracted, setHasInteracted] = useState(false);
+  // Nuevo estado para cargar el iframe solo tras el primer render de la DApp
+  const [shouldLoadIframe, setShouldLoadIframe] = useState(false);
+
+  // EFICIENCIA: Cargamos el iframe 2 segundos después para no bloquear el hilo principal de la DApp
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldLoadIframe(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Proactive engagement - show after 45 seconds of inactivity
   useEffect(() => {
@@ -51,6 +61,7 @@ const AIChatbot = () => {
     setIsLoading(true);
     setShowProactive(false);
     setHasInteracted(true);
+    setShouldLoadIframe(true); // Aseguramos carga si el usuario hace clic rápido
     toast.info('AI Assistant Loading', {
       description: 'Opening AI Tor Assistant...'
     });
@@ -160,7 +171,6 @@ const AIChatbot = () => {
                   </h3>
                   <p className="text-xs text-alien-green font-exo">AI Tor</p>
                 </div>
-                {/* Status indicator with typing animation when loading */}
                 <div className="flex items-center gap-1.5 ml-2">
                   {isLoading ? (
                     <div className="flex items-center gap-1">
@@ -185,7 +195,7 @@ const AIChatbot = () => {
               </button>
             </div>
 
-            {/* Loading State */}
+            {/* Loading State Overlay */}
             <AnimatePresence>
               {isLoading && (
                 <motion.div
@@ -205,31 +215,25 @@ const AIChatbot = () => {
                     </div>
                     <Loader2 className="absolute -bottom-1 -right-1 h-8 w-8 text-alien-gold animate-spin" />
                   </div>
-                  <p className="text-alien-gold font-nasalization text-sm mt-4">Loading AI Tor...</p>
-                  {/* Typing indicator animation */}
-                  <div className="flex gap-1.5 mt-3">
-                    <span className="typing-dot-lg" />
-                    <span className="typing-dot-lg" style={{ animationDelay: '0.15s' }} />
-                    <span className="typing-dot-lg" style={{ animationDelay: '0.3s' }} />
-                  </div>
+                  <p className="text-alien-gold font-nasalization text-sm mt-4 uppercase tracking-tighter">Establishing Link...</p>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* iframe Content */}
-            <iframe
-              src="https://aitor.lovable.app/"
-              className="w-full h-[calc(100%-3.5rem)] sm:h-[calc(100%-4rem)] border-none bg-alien-space-dark"
-              title="AI Tor Assistant"
-              allow="microphone; camera"
-              onLoad={handleIframeLoad}
-              onError={() => {
-                setIsLoading(false);
-                toast.error('AI Assistant Error', {
-                  description: 'Failed to load AI assistant. Please try again.'
-                });
-              }}
-            />
+            {/* iframe Content con carga diferida */}
+            {shouldLoadIframe && (
+              <iframe
+                src="https://aitor.lovable.app/"
+                className="w-full h-[calc(100%-3.5rem)] sm:h-[calc(100%-4rem)] border-none bg-alien-space-dark"
+                title="AI Tor Assistant"
+                allow="microphone; camera"
+                onLoad={handleIframeLoad}
+                onError={() => {
+                  setIsLoading(false);
+                  toast.error('AI Assistant Error');
+                }}
+              />
+            )}
           </motion.div>
         )}
       </AnimatePresence>
