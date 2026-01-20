@@ -1,207 +1,294 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen, Users } from 'lucide-react';
-const Contact: React.FC = () => {
-  return <div className="relative flex flex-col flex-1">
+import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen, Users, Terminal, Shield, Scale, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import aiTorAvatar from '@/assets/ai-tor-avatar.jpg';
 
+const Contact: React.FC = () => {
+  const [terminalInput, setTerminalInput] = useState('');
+  const [terminalHistory, setTerminalHistory] = useState<Array<{ type: 'user' | 'system' | 'ai'; text: string }>>([
+    { type: 'system', text: '> AlienFlowSpace Communication Terminal v2.0' },
+    { type: 'system', text: '> Establishing secure connection...' },
+    { type: 'ai', text: '¡Hola, viajero cósmico! Soy AI Tor. ¿En qué puedo ayudarte hoy?' },
+  ]);
+  const [isTyping, setIsTyping] = useState(false);
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-scroll terminal
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [terminalHistory]);
+
+  const handleTerminalSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!terminalInput.trim()) return;
+
+    // Add user message
+    setTerminalHistory(prev => [...prev, { type: 'user', text: terminalInput }]);
+    const userMessage = terminalInput.toLowerCase();
+    setTerminalInput('');
+    setIsTyping(true);
+
+    // Simulate AI response
+    setTimeout(() => {
+      let response = '';
+      
+      if (userMessage.includes('dao') || userMessage.includes('gobernanza') || userMessage.includes('votar')) {
+        response = 'La DAO de AlienFlowSpace opera en Polygon. Puedes participar en votaciones y propuestas a través de Aragon. ¿Quieres que te envíe el enlace directo?';
+      } else if (userMessage.includes('nft') || userMessage.includes('colección')) {
+        response = 'Nuestras colecciones NFT están disponibles en OpenSea: Alien69Flow y AlienFlowSpace. Son tu pasaporte al ecosistema. ¿Te interesa más información sobre los beneficios?';
+      } else if (userMessage.includes('ayuda') || userMessage.includes('soporte')) {
+        response = 'Estoy aquí para ayudarte. Puedes preguntarme sobre: DAO, NFTs, tokenomics, roadmap, partners o cualquier duda técnica. También puedes contactar al equipo por Telegram: @AlienFlow';
+      } else if (userMessage.includes('legal') || userMessage.includes('términos')) {
+        response = 'Para consultas legales, revisa nuestra política de privacidad en /privacy-policy. Para asuntos específicos, contacta: alien69flow@proton.me';
+      } else if (userMessage.includes('token') || userMessage.includes('afs') || userMessage.includes('a69')) {
+        response = 'Los tokens principales son $AFS (AlienFlowSpace) y $A69 (Alien69Flow), ambos en la red Polygon. ¿Quieres información sobre tokenomics o cómo adquirirlos?';
+      } else if (userMessage.includes('hola') || userMessage.includes('hi') || userMessage.includes('hello')) {
+        response = '¡Bienvenido a bordo! 👽 ¿Qué te gustaría saber sobre AlienFlowSpace? Puedo ayudarte con información sobre la DAO, NFTs, tokens, roadmap y mucho más.';
+      } else {
+        response = 'Interesante consulta. Déjame procesar... Para asistencia detallada, te sugiero contactar directamente por Telegram (@AlienFlow) o email. ¿Hay algo específico sobre el ecosistema que pueda explicarte?';
+      }
+
+      setTerminalHistory(prev => [...prev, { type: 'ai', text: response }]);
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  const socialLinks = [
+    { icon: Disc, name: 'Discord', link: '', text: 'discord.gg/alienflow', comingSoon: true },
+    { icon: Mail, name: 'Email', link: 'mailto:alien69flow@proton.me', text: 'alien69flow@proton.me' },
+    { icon: Facebook, name: 'Facebook', link: 'https://www.facebook.com/Alien69Flow', text: 'facebook.com/Alien69Flow' },
+    { icon: BookOpen, name: 'GitBook', link: 'https://alienflowspace.gitbook.io/DAO', text: 'alienflowspace.gitbook.io' },
+    { icon: Github, name: 'GitHub', link: 'https://github.com/Alien69Flow', text: 'github.com/Alien69Flow' },
+    { icon: Instagram, name: 'Instagram', link: 'https://www.instagram.com/alien69flow/', text: '@alien69flow' },
+    { icon: Linkedin, name: 'LinkedIn', link: 'https://linkedin.com/company/alienflowspace', text: 'alienflowspace' },
+    { icon: Users, name: 'Telegram', link: 'https://t.me/AlienFlow', text: 't.me/AlienFlow' },
+    { icon: MessageSquare, name: 'Threads', link: 'https://threads.net/@alien69flow', text: '@alien69flow' },
+    { icon: X, name: 'X', link: 'https://x.com/alien69flow', text: '@alien69flow' },
+  ];
+
+  return (
+    <div className="relative flex flex-col flex-1 min-h-screen">
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
         <div className="max-w-6xl mx-auto">
-          <div className="relative mb-12 py-8">
+          {/* Hero */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative mb-12 py-8"
+          >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-nasalization text-center font-extrabold relative">
-              <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_30px_rgba(57,255,20,0.5)]">
-                Contact Us
+              <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(57,255,20,0.5)]">
+                Space Terminal
               </span>
-              <div className="absolute inset-0 blur-xl opacity-50 bg-gradient-to-r from-alien-green/30 via-alien-gold/30 to-alien-green/30 -z-10"></div>
             </h1>
-            <div className="flex justify-center items-center gap-2 mt-4">
-              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-green to-transparent"></div>
-              <div className="w-2 h-2 rounded-full bg-alien-green animate-pulse shadow-[0_0_10px_rgba(57,255,20,0.8)]"></div>
-              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-gold to-transparent"></div>
-            </div>
-          </div>
-          
-          <div className="flex flex-col items-center space-y-8 max-w-5xl mx-auto">
-            {/* Message Section with Animation */}
-            <div className="relative w-full max-w-3xl animate-fade-in">
-              <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-8 shadow-lg shadow-alien-green/10 hover:shadow-alien-green/20 transition-all duration-300 hover:scale-[1.02]">
-                <p className="text-lg md:text-xl font-[Exo] font-semibold leading-relaxed text-alien-gold text-center">
-                  Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
-                </p>
-              </div>
-              {/* Chat bubble pointer */}
-              <div className="absolute -top-2 left-8 w-4 h-4 bg-alien-green/20 border-l-2 border-t-2 border-alien-green/40 transform rotate-45"></div>
-            </div>
-            
-            {/* Social Media Channels Grid */}
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Disc className="h-5 w-5 text-alien-space-dark" />
+            <p className="text-center text-gray-400 font-exo mt-4 max-w-2xl mx-auto">
+              Centro de comunicaciones intergaláctico. Conecta con el equipo y la comunidad.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Terminal Interface */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-gradient-to-br from-alien-space-dark/95 to-black border-2 border-alien-green/40 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(57,255,20,0.15)]"
+            >
+              {/* Terminal Header */}
+              <div className="bg-gradient-to-r from-alien-green/20 to-alien-gold/10 border-b border-alien-green/30 px-4 py-3 flex items-center gap-3">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-alien-gold font-[Exo]">Community Discord</h3>
-                    <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
-                  </div>
-                  <span className="text-gray-500 font-[Exo]">discord.gg/alienflow</span>
+                <div className="flex items-center gap-2 flex-1">
+                  <Terminal className="w-4 h-4 text-alien-green" />
+                  <span className="text-alien-green font-mono text-sm">ai-tor@alienflowspace:~</span>
+                </div>
+                <div className="w-8 h-8 rounded-full overflow-hidden border border-alien-gold/50">
+                  <img src={aiTorAvatar} alt="AI Tor" className="w-full h-full object-cover" />
                 </div>
               </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Mail className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Email</h3>
-                  <a href="mailto:info@alienflow.space" className="text-gray-300 font-[Exo] hover:text-alien-green">alien69flow@proton.me</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Facebook className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Facebook</h3>
-                  <a href="https://www.facebook.com/Alien69Flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">facebook.com/Alien69Flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <BookOpen className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">GitBook</h3>
-                  <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">alienflowspace.gitbook.io</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Github className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">GitHub</h3>
-                  <a href="https://github.com/Alien69Flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">github.com/Alien69Flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Instagram className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Instagram</h3>
-                  <a href="https://www.instagram.com/alien69flow/" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Linkedin className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn Personal</h3>
-                  <a href="https://linkedin.com/in/alienflow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/in/alien69flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Linkedin className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Company LinkedIn</h3>
-                  <a href="https://linkedin.com/company/alienflowspace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/company/alienflowspace</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <svg className="h-5 w-5 text-alien-space-dark" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Reddit</h3>
-                  <a href="https://www.reddit.com/user/Alien69Flow/" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">reddit.com/user/Alien69Flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Users className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Group Telegram</h3>
-                  <a href="https://t.me/AlienFlow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <svg className="h-5 w-5 text-alien-space-dark" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-alien-gold font-[Exo]">TikTok</h3>
-                    <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
-                  </div>
-                  <span className="text-gray-500 font-[Exo]">@alien69flow</span>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <MessageSquare className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Threads</h3>
-                  <a href="https://threads.net/@alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <X className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">X</h3>
-                  <a href="https://x.com/alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
-                </div>
-              </div>
-            </div>
-            
-            {/* Contact Form */}
-            <div className="w-full max-w-2xl bg-gradient-to-br from-alien-space-dark/90 to-alien-space-dark/70 p-8 rounded-2xl backdrop-blur-md border-2 border-alien-green/30 shadow-[0_0_30px_rgba(57,255,20,0.15)] hover:shadow-[0_0_40px_rgba(57,255,20,0.25)] transition-all duration-300">
-              <h2 className="text-2xl md:text-3xl font-semibold text-alien-green mb-6 font-nasalization text-center">Send us a message</h2>
-              <form className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-alien-gold mb-2 font-[Exo]" htmlFor="name">Name</label>
-                  <input type="text" id="name" className="w-full px-4 py-3 bg-alien-space-light/50 rounded-lg border-2 border-gray-600 text-gray-200 focus:border-alien-green focus:outline-none font-[Exo] transition-colors" placeholder="Your name" />
-                </div>
+
+              {/* Terminal Body */}
+              <div 
+                ref={terminalRef}
+                className="h-[400px] overflow-y-auto p-4 font-mono text-sm space-y-2 scrollbar-thin scrollbar-thumb-alien-green/30 scrollbar-track-transparent"
+                onClick={() => inputRef.current?.focus()}
+              >
+                <AnimatePresence>
+                  {terminalHistory.map((entry, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`${
+                        entry.type === 'user' 
+                          ? 'text-alien-gold' 
+                          : entry.type === 'system' 
+                          ? 'text-gray-500' 
+                          : 'text-alien-green'
+                      }`}
+                    >
+                      {entry.type === 'user' && <span className="text-gray-500">{'>'} </span>}
+                      {entry.type === 'ai' && <span className="text-purple-400">[AI Tor] </span>}
+                      {entry.text}
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
                 
-                <div>
-                  <label className="block text-sm font-medium text-alien-gold mb-2 font-[Exo]" htmlFor="email">Email</label>
-                  <input type="email" id="email" className="w-full px-4 py-3 bg-alien-space-light/50 rounded-lg border-2 border-gray-600 text-gray-200 focus:border-alien-green focus:outline-none font-[Exo] transition-colors" placeholder="your@email.com" />
+                {isTyping && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-alien-green flex items-center gap-2"
+                  >
+                    <span className="text-purple-400">[AI Tor]</span>
+                    <span className="flex gap-1">
+                      <span className="w-2 h-2 bg-alien-green rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                      <span className="w-2 h-2 bg-alien-green rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
+                      <span className="w-2 h-2 bg-alien-green rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
+                    </span>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Terminal Input */}
+              <form onSubmit={handleTerminalSubmit} className="border-t border-alien-green/30 p-4">
+                <div className="flex items-center gap-2">
+                  <ChevronRight className="w-5 h-5 text-alien-green" />
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={terminalInput}
+                    onChange={(e) => setTerminalInput(e.target.value)}
+                    placeholder="Escribe tu mensaje..."
+                    className="flex-1 bg-transparent border-none outline-none text-alien-gold font-mono placeholder:text-gray-600"
+                    disabled={isTyping}
+                  />
+                  <Button
+                    type="submit"
+                    size="sm"
+                    disabled={isTyping || !terminalInput.trim()}
+                    className="bg-alien-green/20 hover:bg-alien-green/30 text-alien-green border border-alien-green/50"
+                  >
+                    <Send className="w-4 h-4" />
+                  </Button>
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-alien-gold mb-2 font-[Exo]" htmlFor="message">Message</label>
-                  <textarea id="message" rows={5} className="w-full px-4 py-3 bg-alien-space-light/50 rounded-lg border-2 border-gray-600 text-gray-200 focus:border-alien-green focus:outline-none font-[Exo] resize-none transition-colors" placeholder="Your message"></textarea>
-                </div>
-                
-                <Button className="w-full bg-alien-green hover:bg-alien-green-light text-alien-space-dark font-[Exo] font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(57,255,20,0.5)]">
-                  <Send size={18} className="mr-2" /> Send Message
-                </Button>
               </form>
+            </motion.div>
+
+            {/* Support & Social Links */}
+            <div className="space-y-6">
+              {/* Quick Support Cards */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="grid grid-cols-2 gap-4"
+              >
+                <a 
+                  href="https://alienflowspace.gitbook.io/DAO" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-4 bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/40 rounded-xl hover:border-blue-500/60 transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <BookOpen className="w-5 h-5 text-blue-400" />
+                    <span className="text-blue-400 font-nasalization font-semibold">Documentación</span>
+                  </div>
+                  <p className="text-gray-400 text-sm font-exo">Guías técnicas y roadmap</p>
+                </a>
+                <a 
+                  href="/privacy-policy"
+                  className="p-4 bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/40 rounded-xl hover:border-purple-500/60 transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <Scale className="w-5 h-5 text-purple-400" />
+                    <span className="text-purple-400 font-nasalization font-semibold">Legal</span>
+                  </div>
+                  <p className="text-gray-400 text-sm font-exo">Política de privacidad</p>
+                </a>
+                <a 
+                  href="mailto:alien69flow@proton.me"
+                  className="p-4 bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/40 rounded-xl hover:border-green-500/60 transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <Shield className="w-5 h-5 text-green-400" />
+                    <span className="text-green-400 font-nasalization font-semibold">Soporte Técnico</span>
+                  </div>
+                  <p className="text-gray-400 text-sm font-exo">alien69flow@proton.me</p>
+                </a>
+                <a 
+                  href="https://t.me/AlienFlow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/40 rounded-xl hover:border-cyan-500/60 transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <Users className="w-5 h-5 text-cyan-400" />
+                    <span className="text-cyan-400 font-nasalization font-semibold">Comunidad</span>
+                  </div>
+                  <p className="text-gray-400 text-sm font-exo">Telegram @AlienFlow</p>
+                </a>
+              </motion.div>
+
+              {/* Social Links Grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-alien-space-dark/80 border border-alien-gold/30 rounded-xl p-6"
+              >
+                <h3 className="text-alien-gold font-nasalization text-lg mb-4 flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5" />
+                  Canales de Comunicación
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {socialLinks.map((social, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 + idx * 0.05 }}
+                    >
+                      {social.comingSoon ? (
+                        <div className="flex items-center gap-3 p-3 bg-alien-space-light/20 rounded-lg border border-gray-700/50 opacity-60">
+                          <social.icon className="w-5 h-5 text-gray-500" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-gray-500 font-exo text-sm truncate">{social.name}</p>
+                            <span className="text-[10px] text-orange-400">Coming Soon</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          href={social.link}
+                          target={social.link.startsWith('http') ? '_blank' : undefined}
+                          rel={social.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          className="flex items-center gap-3 p-3 bg-alien-space-light/20 rounded-lg border border-alien-gold/20 hover:border-alien-green/40 hover:bg-alien-space-light/30 transition-all group"
+                        >
+                          <social.icon className="w-5 h-5 text-alien-gold group-hover:text-alien-green transition-colors" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-gray-300 font-exo text-sm truncate group-hover:text-alien-green transition-colors">
+                              {social.text}
+                            </p>
+                          </div>
+                        </a>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </main>
-    </div>;
+    </div>
+  );
 };
+
 export default Contact;
