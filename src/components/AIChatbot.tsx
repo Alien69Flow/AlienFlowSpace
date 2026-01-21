@@ -1,10 +1,11 @@
 import React, { useEffect, useCallback, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2, Shield, Zap, HeadphonesIcon, Bot } from 'lucide-react';
+import { X, Loader2, Shield, Zap, HeadphonesIcon, Bot, Sparkles, Rocket } from 'lucide-react';
 import { toast } from 'sonner';
 import aiTorAvatar from '@/assets/ai-tor-avatar.jpg';
 
 // AI Personalities with unique messages and slight visual variations
+// Now includes promotional messages integrated into personalities
 const AI_PERSONALITIES = [
   {
     id: 'support',
@@ -61,6 +62,34 @@ const AI_PERSONALITIES = [
       "¿Buscas algo específico en el ecosistema?",
       "Déjame mostrarte lo que puedes hacer aquí.",
     ]
+  },
+  {
+    id: 'promo',
+    name: 'AI Tor',
+    role: 'Promociones',
+    icon: Sparkles,
+    color: 'from-pink-500 to-rose-500',
+    borderColor: 'border-pink-500/50',
+    messages: [
+      "🚀 ¡Únete a AlienFlowSpace DAO y obtén NFTs exclusivos!",
+      "🎁 Descubre los beneficios de ser miembro de la DAO",
+      "💎 Colecciona NFTs únicos en nuestro ecosistema",
+      "🌟 ¡Nuevas propuestas en la DAO! Tu voto cuenta",
+      "🔥 Explora Academy, Clubs y CoNetWorKing - ¡Todo te espera!",
+    ]
+  },
+  {
+    id: 'welcome',
+    name: 'AI Tor',
+    role: 'Bienvenida',
+    icon: Rocket,
+    color: 'from-orange-500 to-amber-500',
+    borderColor: 'border-orange-500/50',
+    messages: [
+      "👽 ¡Bienvenido viajero! ¿Primera vez aquí? Te ayudo a explorar",
+      "🌌 El universo AlienFlowSpace te espera. ¿Qué quieres descubrir?",
+      "✨ ¿Listo para tu viaje cósmico? Pregúntame lo que quieras",
+    ]
   }
 ];
 
@@ -72,6 +101,7 @@ const AIChatbot = () => {
   const [shouldLoadIframe, setShouldLoadIframe] = useState(false);
   const [currentPersonality, setCurrentPersonality] = useState(0);
   const [proactiveMessage, setProactiveMessage] = useState('');
+  const [messageCount, setMessageCount] = useState(0);
 
   // Get current personality
   const personality = useMemo(() => AI_PERSONALITIES[currentPersonality], [currentPersonality]);
@@ -85,10 +115,13 @@ const AIChatbot = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Proactive engagement with rotating personalities
+  // Proactive engagement with rotating personalities - shorter initial delay
   useEffect(() => {
     if (hasInteracted || isOpen) return;
 
+    // First message after 30 seconds
+    const initialDelay = messageCount === 0 ? 30000 : 120000; // 30s first, then 2min
+    
     const timer = setTimeout(() => {
       // Pick random personality and message
       const randomPersonalityIndex = Math.floor(Math.random() * AI_PERSONALITIES.length);
@@ -98,21 +131,31 @@ const AIChatbot = () => {
       setCurrentPersonality(randomPersonalityIndex);
       setProactiveMessage(randomMessage);
       setShowProactive(true);
+      setMessageCount(prev => prev + 1);
       
-      // Auto-hide after 10 seconds
-      setTimeout(() => setShowProactive(false), 10000);
-    }, 45000);
+      // Auto-hide after 12 seconds
+      setTimeout(() => setShowProactive(false), 12000);
+    }, initialDelay);
 
     return () => clearTimeout(timer);
-  }, [hasInteracted, isOpen]);
+  }, [hasInteracted, isOpen, messageCount]);
 
-  // Track user interaction
+  // Track user interaction - only on meaningful interactions
   useEffect(() => {
-    const handleInteraction = () => setHasInteracted(true);
-    window.addEventListener('click', handleInteraction, { once: true });
-    window.addEventListener('scroll', handleInteraction, { once: true });
+    const handleInteraction = () => {
+      // Don't mark as interacted if just scrolling slightly
+      if (window.scrollY > 200) {
+        setHasInteracted(true);
+      }
+    };
+    
+    const handleClick = () => setHasInteracted(true);
+    
+    window.addEventListener('click', handleClick, { once: true });
+    window.addEventListener('scroll', handleInteraction);
+    
     return () => {
-      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('click', handleClick);
       window.removeEventListener('scroll', handleInteraction);
     };
   }, []);
@@ -144,7 +187,7 @@ const AIChatbot = () => {
         )}
       </AnimatePresence>
 
-      {/* Proactive Engagement Bubble with Personality */}
+      {/* Proactive Engagement Bubble with Personality - FIXED: Right side */}
       <AnimatePresence>
         {showProactive && !isOpen && (
           <motion.div
@@ -152,11 +195,11 @@ const AIChatbot = () => {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 20, scale: 0.8 }}
             className="fixed bottom-36 right-4 sm:bottom-40 sm:right-8 z-40 
-              max-w-[280px] rounded-2xl rounded-br-sm overflow-hidden
+              max-w-[300px] rounded-2xl rounded-br-sm overflow-hidden
               backdrop-blur-xl border shadow-2xl cursor-pointer"
             style={{
               background: 'linear-gradient(135deg, rgba(17,17,25,0.95) 0%, rgba(30,30,40,0.95) 100%)',
-              borderColor: `rgba(${personality.id === 'support' ? '57,255,20' : personality.id === 'dao' ? '240,216,130' : personality.id === 'sentinel' ? '168,85,247' : '34,211,238'},0.4)`
+              borderColor: `rgba(${personality.id === 'support' ? '57,255,20' : personality.id === 'dao' ? '240,216,130' : personality.id === 'sentinel' ? '168,85,247' : personality.id === 'promo' ? '236,72,153' : personality.id === 'welcome' ? '249,115,22' : '34,211,238'},0.4)`
             }}
             onClick={handleOpen}
           >
@@ -175,7 +218,9 @@ const AIChatbot = () => {
                   style={{
                     filter: personality.id === 'sentinel' ? 'hue-rotate(270deg)' : 
                            personality.id === 'guide' ? 'hue-rotate(180deg)' : 
-                           personality.id === 'dao' ? 'sepia(30%)' : 'none'
+                           personality.id === 'dao' ? 'sepia(30%)' : 
+                           personality.id === 'promo' ? 'hue-rotate(320deg)' :
+                           personality.id === 'welcome' ? 'hue-rotate(30deg)' : 'none'
                   }}
                 />
               </div>
@@ -185,6 +230,12 @@ const AIChatbot = () => {
               <p className="text-gray-200 font-exo text-sm leading-relaxed">
                 {proactiveMessage}
               </p>
+              {/* CTA for promo messages */}
+              {personality.id === 'promo' && (
+                <span className="inline-block mt-2 text-xs text-alien-gold font-nasalization hover:text-alien-green transition-colors">
+                  Descubre más →
+                </span>
+              )}
             </div>
             {/* Close button */}
             <button
@@ -199,7 +250,7 @@ const AIChatbot = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Button with pulsing ring */}
+      {/* Floating Button - FIXED: Positioned at bottom RIGHT */}
       <motion.button
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
