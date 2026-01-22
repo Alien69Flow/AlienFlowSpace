@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, ChevronDown, ArrowLeftRight } from 'lucide-react';
+import { Globe, ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,11 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { translateTo } from '@/lib/translator';
 
-interface DesktopNavProps {
-  isCompact?: boolean;
-}
-
-const DesktopNav: React.FC<DesktopNavProps> = ({ isCompact = false }) => {
+const DesktopNav = () => {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
@@ -43,16 +40,14 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ isCompact = false }) => {
   };
 
   return (
-    <nav className="hidden lg:flex items-center gap-6">
-      <div className={`flex items-center ${isCompact ? 'space-x-4' : 'space-x-6'}`}>
+    <nav className="hidden lg:flex items-center gap-8">
+      <div className="flex items-center space-x-6">
         {/* Main Navigation */}
         {navLinks.map((link) => (
           <Link 
             key={link.to}
             to={link.to} 
-            className={`text-alien-gold hover:text-alien-green font-nasalization transition-all duration-300 hover:scale-105 relative group ${
-              isCompact ? 'text-sm px-2 py-1' : 'px-3 py-2'
-            }`}
+            className="text-alien-gold hover:text-alien-green px-3 py-2 font-nasalization transition-all duration-300 hover:scale-105 relative group"
           >
             {link.label}
             <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-alien-green scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
@@ -64,12 +59,10 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ isCompact = false }) => {
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
-              className={`text-alien-gold hover:text-alien-green bg-transparent hover:bg-alien-space-light/20 rounded-lg flex items-center group font-nasalization transition-all duration-300 hover:scale-105 ${
-                isCompact ? 'text-sm px-2 py-1' : 'px-3 py-2'
-              }`}
+              className="text-alien-gold hover:text-alien-green bg-transparent hover:bg-alien-space-light/20 px-3 py-2 rounded-lg flex items-center group font-nasalization transition-all duration-300 hover:scale-105"
             >
-              <span>{isCompact ? 'Spaces' : 'Explore Spaces'}</span>
-              <ChevronDown className={`ml-1 transform transition-transform duration-300 group-data-[state=open]:rotate-180 ${isCompact ? 'h-3 w-3' : 'h-4 w-4'}`} />
+              <span>Explore Spaces</span>
+              <ChevronDown className="ml-2 h-4 w-4 transform transition-transform duration-300 group-data-[state=open]:rotate-180" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
@@ -95,31 +88,16 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ isCompact = false }) => {
             </div>
           </DropdownMenuContent>
         </DropdownMenu>
-
-        {/* DEX Button */}
-        <a
-          href="https://app.uniswap.org/swap"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`flex items-center gap-1.5 bg-gradient-to-r from-alien-green/20 to-alien-gold/20 hover:from-alien-green/30 hover:to-alien-gold/30 border border-alien-green/40 hover:border-alien-green/60 rounded-full font-nasalization text-alien-green hover:text-alien-gold transition-all duration-300 hover:scale-105 ${
-            isCompact ? 'text-xs px-2.5 py-1' : 'text-sm px-3 py-1.5'
-          }`}
-        >
-          <ArrowLeftRight className={isCompact ? 'w-3 h-3' : 'w-4 h-4'} />
-          <span>DEX</span>
-        </a>
         
         {/* Language Selector Dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
-              className={`flex items-center text-alien-gold hover:text-alien-green focus:outline-none group hover:bg-alien-space-light/20 rounded-lg transition-all duration-300 hover:scale-105 ${
-                isCompact ? 'p-1.5' : 'p-2'
-              }`}
+              className="flex items-center text-alien-gold hover:text-alien-green focus:outline-none group p-2 hover:bg-alien-space-light/20 rounded-lg transition-all duration-300 hover:scale-105"
             >
-              <Globe className={isCompact ? 'h-4 w-4' : 'h-5 w-5'} />
-              <ChevronDown className={`ml-1 transform transition-transform duration-300 group-data-[state=open]:rotate-180 ${isCompact ? 'h-3 w-3' : 'h-4 w-4'}`} />
+              <Globe className="h-5 w-5" />
+              <ChevronDown className="ml-1 h-4 w-4 transform transition-transform duration-300 group-data-[state=open]:rotate-180" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
