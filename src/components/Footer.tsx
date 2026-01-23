@@ -2,169 +2,98 @@ import React from 'react';
 import { X, Facebook, Instagram, Mail, Disc, Send, Github, Linkedin, MessageSquare, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCurrentChineseYear } from '@/lib/chineseCalendar';
+
 const Footer = () => {
   const chineseYear = getCurrentChineseYear();
   const currentYear = new Date().getFullYear();
   
-  return <footer className="bg-gradient-to-br from-alien-space-dark/95 to-alien-space/90 backdrop-blur-sm border-t-2 border-alien-gold/30 py-6 lg:py-8 mt-auto relative z-20">
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {/* Logo and description */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
+  // 1. Redes Sociales Ordenadas Alfabéticamente
+  const socialLinks = [
+    { href: "https://discord.gg/alienflowspace", icon: Disc, label: "Discord", color: "#5865F2" },
+    { href: "mailto:info@alienflow.space", icon: Mail, label: "Email", color: "#F0D882" },
+    { href: "https://www.facebook.com/Alien69Flow", icon: Facebook, label: "Facebook", color: "#1877F2" },
+    { href: "https://alienflowspace.gitbook.io/DAO", icon: BookOpen, label: "GitBook", color: "#22C55E" },
+    { href: "https://github.com/Alien69Flow", icon: Github, label: "Github", color: "#22C55E" },
+    { href: "https://www.instagram.com/alien69flow/", icon: Instagram, label: "Instagram", color: "#E4405F" },
+    { href: "https://linkedin.com/in/alienflow", icon: Linkedin, label: "LinkedIn", color: "#0A66C2" },
+    { href: "https://t.me/AlienFlow", icon: Send, label: "Telegram", color: "#0088CC" },
+    { href: "https://threads.net/@alien69flow", icon: MessageSquare, label: "Threads", color: "#000" },
+    { href: "https://x.com/alien69flow", icon: X, label: "X (Twitter)", color: "#1DA1F2" }
+  ].sort((a, b) => a.label.localeCompare(b.label));
+
+  // 2. Navegación Ordenada Alfabéticamente (Sin duplicar Home si no quieres)
+  const navLinks = [
+    { to: "/about", label: "About" },
+    { to: "/academy", label: "Academy" },
+    { to: "/alien-trip", label: "AlienTrip" },
+    { to: "/clubs", label: "Clubs" },
+    { to: "/conetworking", label: "CoNetWorKing" },
+    { to: "/contact", label: "Contact" },
+    { to: "/", label: "Home" }
+  ].sort((a, b) => a.label.localeCompare(b.label));
+
+  return (
+    <footer className="bg-gradient-to-br from-alien-space-dark/95 to-alien-space/90 backdrop-blur-md border-t-2 border-alien-gold/30 py-8 mt-auto relative z-30">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <div className="lg:col-span-2 flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <img src="/lovable-uploads/ALogo.png" alt="AlienFlowSpaceDAO Logo" className="h-8 w-auto object-contain gold-glow" />
-              <span className="text-lg font-bold font-nasalization text-glow text-alien-green">
-                AlienFlowSpace DAO
-              </span>
+              <img src="/lovable-uploads/ALogo.png" alt="Logo" className="h-10 w-auto object-contain gold-glow" />
+              <span className="text-xl font-bold font-nasalization text-alien-green">AlienFlowSpace DAO</span>
             </div>
-            <p className="text-alien-green/90 text-sm font-[Exo] leading-relaxed max-w-md">
+            <p className="text-alien-green/80 text-sm font-exo leading-relaxed max-w-md">
               Uniting diverse blockchain domains under a cosmic governance structure. 
-              Building the future of decentralized finance and sustainable technology across the multiverse.
+              Building the future of decentralized finance across the multiverse.
             </p>
-            <div className="flex gap-2 pt-1 flex-wrap">
-              {[{
-              href: "https://discord.gg/alienflowspace",
-              icon: Disc,
-              label: "Discord",
-              color: "#5865F2"
-            }, {
-              href: "mailto:info@alienflow.space",
-              icon: Mail,
-              label: "Email",
-              color: "#F0D882"
-            }, {
-              href: "https://www.facebook.com/Alien69Flow",
-              icon: Facebook,
-              label: "Facebook",
-              color: "#1877F2"
-            }, {
-              href: "https://alienflowspace.gitbook.io/DAO",
-              icon: BookOpen,
-              label: "GitBook",
-              color: "#22C55E"
-            }, {
-              href: "https://github.com/Alien69Flow",
-              icon: Github,
-              label: "Github",
-              color: "#22C55E"
-            }, {
-              href: "https://www.instagram.com/alien69flow/",
-              icon: Instagram,
-              label: "Instagram",
-              color: "#E4405F"
-            }, {
-              href: "https://linkedin.com/in/alienflow",
-              icon: Linkedin,
-              label: "LinkedIn",
-              color: "#0A66C2"
-            }, {
-              href: "https://t.me/AlienFlow",
-              icon: Send,
-              label: "Telegram",
-              color: "#0088CC"
-            }, {
-              href: "https://threads.net/@alien69flow",
-              icon: MessageSquare,
-              label: "Threads",
-              color: "#000"
-            }, {
-              href: "https://x.com/alien69flow",
-              icon: X,
-              label: "X (Twitter)",
-              color: "#1DA1F2"
-            }].map((social, index) => <a key={index} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="p-1.5 transition-all duration-300 hover:scale-110 hover:bg-alien-space-light/20 rounded-lg border border-alien-gold/20 hover:border-alien-green/40" style={{
-              color: social.color
-            }}>
-                  <social.icon size={16} />
-                </a>)}
+            <div className="flex gap-2 pt-2 flex-wrap">
+              {socialLinks.map((social, i) => (
+                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="p-2 transition-all hover:scale-110 border border-alien-gold/20 rounded-lg bg-black/20" style={{ color: social.color }}>
+                  <social.icon size={18} />
+                </a>
+              ))}
             </div>
           </div>
-          
-          {/* Navigation Links */}
+
           <div>
-            <h4 className="text-alien-gold font-nasalization font-bold mb-3 text-base text-glow">Navigation</h4>
-            <ul className="space-y-2 font-[Exo]">
-              {[{
-              to: "/",
-              label: "Home"
-            }, {
-              to: "/about",
-              label: "About"
-            }, {
-              to: "/alien-trip",
-              label: "AlienTrip"
-            }, {
-              to: "/contact",
-              label: "Contact"
-            }, {
-              to: "/academy",
-              label: "Academy"
-            }, {
-              to: "/clubs",
-              label: "Clubs"
-            }, {
-              to: "/conetworking",
-              label: "CoNetWorKing"
-            }].map((link, index) => <li key={index}>
-                  <Link to={link.to} className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
+            <h4 className="text-alien-gold font-nasalization font-bold mb-4 text-glow">Navigation</h4>
+            <ul className="space-y-2">
+              {navLinks.map((link, i) => (
+                <li key={i}>
+                  <Link to={link.to} className="text-sm text-alien-green/70 hover:text-alien-gold transition-all hover:translate-x-1 inline-block">
                     {link.label}
                   </Link>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
-          
-          {/* Legal & Resources */}
+
           <div>
-            <h4 className="text-alien-gold font-nasalization font-bold mb-3 text-base text-glow">Resources</h4>
-            <ul className="space-y-2 font-[Exo]">
-              <li>
-                <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <Link to="/privacy-policy" className="text-sm text-alien-green/80 hover:text-alien-gold transition-all duration-300 hover:translate-x-1 inline-block border-b border-transparent hover:border-alien-gold/30">
-                  Privacy & Cookie Policy
-                </Link>
-              </li>
+            <h4 className="text-alien-gold font-nasalization font-bold mb-4 text-glow">Resources</h4>
+            <ul className="space-y-2">
+              <li><a href="https://alienflowspace.gitbook.io/DAO" className="text-sm text-alien-green/70 hover:text-alien-gold">Documentation</a></li>
+              <li><Link to="/privacy-policy" className="text-sm text-alien-green/70 hover:text-alien-gold">Privacy Policy</Link></li>
+              <li><a href="https://alienflowspace.gitbook.io/DAO" className="text-sm text-alien-green/70 hover:text-alien-gold">Terms of Service</a></li>
             </ul>
           </div>
         </div>
-        
-        <div className="border-t-2 border-alien-gold/30 mt-6 pt-4 bg-gradient-to-r from-alien-space-dark/50 to-alien-space/30 rounded-lg px-4 py-3">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-3">
-            <p className="text-xs text-alien-green/70 font-[Exo] text-center lg:text-left">
-              © {currentYear} AlienFlowSpace DAO. All rights reserved across the multiverse.
-            </p>
-            
-            {/* Chinese Calendar Display */}
-            <div className="flex items-center gap-2 bg-alien-space-dark/40 px-3 py-1.5 rounded-lg border border-alien-gold/20">
-              <span className="text-2xl" style={{ filter: `drop-shadow(0 0 6px ${chineseYear.color})` }}>
-                {chineseYear.icon}
-              </span>
-              <div className="text-left">
-                <p className="text-alien-gold font-bold text-xs font-nasalization">
-                  {currentYear} / {chineseYear.year}
-                </p>
-                <p className="text-[10px] font-[Exo]" style={{ color: chineseYear.color }}>
-                  {chineseYear.element} {chineseYear.animal}
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-1 text-xs text-alien-gold/80">
-              <span>Made with</span>
-              <span className="text-alien-green text-base">💚</span>
-              <span>for the cosmic community</span>
+
+        <div className="border-t border-alien-gold/20 mt-8 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
+          <p className="text-[10px] font-nasalization text-alien-green/50 uppercase tracking-widest">
+            © {currentYear} AlienFlowSpace DAO • Cosmic Governance Enabled
+          </p>
+          
+          <div className="flex items-center gap-3 bg-black/40 px-4 py-2 rounded-2xl border border-alien-gold/30">
+            <span className="text-2xl animate-pulse" style={{ filter: `drop-shadow(0 0 8px ${chineseYear.color})` }}>{chineseYear.icon}</span>
+            <div className="text-left leading-none">
+              <p className="text-alien-gold font-bold text-xs">{currentYear} / {chineseYear.year}</p>
+              <p className="text-[9px] uppercase tracking-tighter" style={{ color: chineseYear.color }}>{chineseYear.element} {chineseYear.animal}</p>
             </div>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
