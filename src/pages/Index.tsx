@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import StarBackground from '@/components/StarBackground';
 import LoadingScreen from '@/components/LoadingScreen';
-import PromoBanner from '@/components/PromoBanner';
 
 // Lazy loading de secciones
 const Hero = lazy(() => import('@/components/Hero'));
@@ -11,16 +10,6 @@ const FeaturesSection = lazy(() => import('@/components/FeaturesSection'));
 const FinancialFreedomSection = lazy(() => import('@/components/FinancialFreedomSection'));
 const ParticipationSection = lazy(() => import('@/components/ParticipationSection'));
 const NewsletterSubscription = lazy(() => import('@/components/NewsletterSubscription'));
-
-const Index: React.FC = () => {
-  return (
-    <div className="relative z-10 min-h-screen bg-alien-space-dark/10">
-      {/* Promo Banner */}
-      <PromoBanner 
-        message="🚀 Join the AlienFlowSpace DAO and get exclusive NFTs & benefits!"
-        link="/conetworking"
-        linkText="Join Now"
-      />
 
       {/* Hero con efecto Star Wars + estrellas */}
       <div className="relative pt-10">
