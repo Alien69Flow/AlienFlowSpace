@@ -14,9 +14,9 @@ const AI_DAPP_ROLES = [
     color: 'from-alien-green to-emerald-500',
     borderColor: 'rgba(57,255,20,0.5)', 
     messages: [
-      "👽 ¡Conexión establecida! Soy AI Tor. ¿Exploramos el ecosistema juntos?",
+      "👽 ¡Conexión establecida! Soy AI Tor. ¿Exploramos el ecosistema juntas?",
       "✨ ¿Buscas algo específico en la DAO? Estoy sincronizado y listo.",
-      "🌌 El viaje cósmico empieza aquí. Pregúntame lo que necesites."
+      "🌌 Tu viaje cósmico empieza aquí. Pregúntame lo que necesites."
     ]
   },
   {
@@ -29,7 +29,7 @@ const AI_DAPP_ROLES = [
     messages: [
       "🚀 ¡Misión Especial! Únete a la DAO y desbloquea NFTs exclusivos.",
       "🔥 Academy, Clubs y CoNetWorKing... todo a tu alcance.",
-      "💎 Coleccionables únicos detectados. ¿Quieres verlos?"
+      "💎 Coleccionables únicos detectados. ¿Quieres verlas?"
     ]
   },
   {
@@ -41,8 +41,8 @@ const AI_DAPP_ROLES = [
     borderColor: 'rgba(240,216,130,0.6)',
     messages: [
       "⚖️ Alerta de Gobernanza: ¡Hay nuevas propuestas! Tu voto es tu poder.",
-      "🏛️ ¿Listo para influir en el futuro? Mira cómo participar en la DAO.",
-      "🌟 Formar parte de AlienFlowSpace es decidir el futuro."
+      "🏛️ ¿Listo para influir en el presente? Mira cómo participar en la DAO.",
+      "🌟 Formar parte de la DAO es decidir el presente."
     ]
   }
 ];
