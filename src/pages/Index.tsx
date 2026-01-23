@@ -11,6 +11,10 @@ const FinancialFreedomSection = lazy(() => import('@/components/FinancialFreedom
 const ParticipationSection = lazy(() => import('@/components/ParticipationSection'));
 const NewsletterSubscription = lazy(() => import('@/components/NewsletterSubscription'));
 
+const Index: React.FC = () => {
+  return (
+    <div className="relative z-10 min-h-screen bg-alien-space-dark/10">
+      
       {/* Hero con efecto Star Wars + estrellas */}
       <div className="relative pt-10">
         <div className="absolute inset-0 -z-10">
