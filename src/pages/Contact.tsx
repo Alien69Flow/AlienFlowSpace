@@ -1,207 +1,230 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Send, Mail, MessageSquare, X, Facebook, Instagram, Disc, Github, Linkedin, BookOpen, Users } from 'lucide-react';
-const Contact: React.FC = () => {
-  return <div className="relative flex flex-col flex-1">
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { 
+  Send, Mail, ChevronRight, Terminal, Loader2, 
+  Twitter, Github, Disc, Instagram, Linkedin, 
+  MessageCircle, BookOpen, Facebook, Share2, 
+  Globe, Cpu, ShieldCheck
+} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
+import { z } from 'zod';
 
-      <main className="relative z-10 flex-grow container mx-auto px-4 pt-4 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative mb-12 py-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-nasalization text-center font-extrabold relative">
-              <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_30px_rgba(57,255,20,0.5)]">
-                Contact Us
-              </span>
-              <div className="absolute inset-0 blur-xl opacity-50 bg-gradient-to-r from-alien-green/30 via-alien-gold/30 to-alien-green/30 -z-10"></div>
-            </h1>
-            <div className="flex justify-center items-center gap-2 mt-4">
-              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-green to-transparent"></div>
-              <div className="w-2 h-2 rounded-full bg-alien-green animate-pulse shadow-[0_0_10px_rgba(57,255,20,0.8)]"></div>
-              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-alien-gold to-transparent"></div>
-            </div>
+// Validación con Zod para asegurar datos limpios
+const contactFormSchema = z.object({
+  name: z.string().trim().min(2, "Mínimo 2 caracteres"),
+  email: z.string().trim().email("Email inválido"),
+  subject: z.string().trim().min(3, "Asunto requerido"),
+  message: z.string().trim().min(10, "Mensaje demasiado corto")
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState<ContactFormData>({ name: '', email: '', subject: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formErrors, setFormErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
+  const [honeypot, setHoneypot] = useState(''); // Protección anti-spam
+  
+  const [terminalInput, setTerminalInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [terminalHistory, setTerminalHistory] = useState([
+    { type: 'ai', text: '[SISTEMA]: Enlace neuronal con AI Tor establecido.' },
+    { type: 'ai', text: '[AI-TOR]: Canal de soporte DAO listo. ¿En qué puedo ayudarte?' }
+  ]);
+  
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (terminalRef.current) terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+  }, [terminalHistory, isTyping]);
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (honeypot) return; // Bloqueo silencioso de bots
+
+    const result = contactFormSchema.safeParse(formData);
+    if (!result.success) {
+      const errors: any = {};
+      result.error.errors.forEach(err => { errors[err.path[0]] = err.message; });
+      setFormErrors(errors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Envío a Supabase Edge Function (Configurada para alien69flow@proton.me)
+      const { error } = await supabase.functions.invoke('send-contact-email', { 
+        body: { ...formData, destination: 'alien69flow@proton.me' } 
+      });
+      
+      if (error) throw error;
+
+      toast.success('SEÑAL TRANSMITIDA', {
+        description: 'Mensaje enviado con éxito a la red Proton.',
+        style: { background: '#0a0a0a', border: '1px solid #39FF14', color: '#39FF14' }
+      });
+
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormErrors({});
+    } catch (error) {
+      toast.error('FALLO DE TRANSMISIÓN', { description: 'Reintenta o contacta vía RRSS.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleTerminalSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!terminalInput.trim()) return;
+    setTerminalHistory(prev => [...prev, { type: 'user', text: terminalInput }]);
+    const userMsg = terminalInput.toLowerCase();
+    setTerminalInput('');
+    setIsTyping(true);
+
+    setTimeout(() => {
+      let response = "[SISTEMA]: Comando no reconocido. Escriba 'ayuda'.";
+      if (userMsg.includes('ayuda')) response = "[AI-TOR]: Comandos disponibles: status, dao, seguridad.";
+      if (userMsg.includes('status')) response = "[LOG]: Todos los sistemas operativos. Latencia mínima.";
+      if (userMsg.includes('dao')) response = "[AI-TOR]: La gobernanza se ejecuta on-chain mediante contratos inteligentes.";
+      if (userMsg.includes('seguridad')) response = "[INFO]: Encriptación end-to-end activa via Proton.";
+      
+      setTerminalHistory(prev => [...prev, { type: 'ai', text: response }]);
+      setIsTyping(false);
+    }, 600);
+  };
+
+  // REDES ORDENADAS ALFABÉTICAMENTE
+  const socialLinks = [
+    { name: 'Discord', icon: Disc, link: '', comingSoon: true },
+    { name: 'Facebook', icon: Facebook, link: 'https://www.facebook.com/Alien69Flow', comingSoon: false },
+    { name: 'GitBook', icon: BookOpen, link: 'https://alienflowspace.gitbook.io/DAO', comingSoon: false },
+    { name: 'GitHub', icon: Github, link: 'https://github.com/Alien69Flow', comingSoon: false },
+    { name: 'Instagram', icon: Instagram, link: 'https://www.instagram.com/alien69flow/', comingSoon: false },
+    { name: 'LinkedIn', icon: Linkedin, link: 'https://linkedin.com/company/alienflowspace', comingSoon: false },
+    { name: 'Telegram', icon: MessageCircle, link: 'https://t.me/AlienFlow', comingSoon: false },
+    { name: 'Threads', icon: Share2, link: 'https://threads.net/@alien69flow', comingSoon: false },
+    { name: 'TikTok', icon: Globe, link: '', comingSoon: true },
+    { name: 'X (Twitter)', icon: Twitter, link: 'https://x.com/alien69flow', comingSoon: false },
+  ];
+
+  return (
+    <div className="min-h-screen bg-transparent pb-24 px-4 md:px-12 font-exo overflow-hidden">
+      <main className="max-w-7xl mx-auto pt-16">
+        
+        {/* Header Seccion */}
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-16 text-center lg:text-left">
+          <h1 className="text-5xl md:text-8xl font-nasalization bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+            COMMUNICATIONS
+          </h1>
+          <div className="flex items-center justify-center lg:justify-start gap-4 mt-4 text-gray-500 font-mono text-[10px] tracking-[0.4em]">
+            <Cpu className="w-3 h-3 text-alien-gold animate-spin-slow" />
+            <span>ALPHABETICAL_ORDER_INDEX // ENCRYPTED_LINK</span>
           </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20 items-stretch">
           
-          <div className="flex flex-col items-center space-y-8 max-w-5xl mx-auto">
-            {/* Message Section with Animation */}
-            <div className="relative w-full max-w-3xl animate-fade-in">
-              <div className="bg-gradient-to-br from-alien-green/20 to-alien-green/5 backdrop-blur-md border-2 border-alien-green/40 rounded-2xl rounded-tl-sm p-8 shadow-lg shadow-alien-green/10 hover:shadow-alien-green/20 transition-all duration-300 hover:scale-[1.02]">
-                <p className="text-lg md:text-xl font-[Exo] font-semibold leading-relaxed text-alien-gold text-center">
-                  Have questions or want to join the AlienFlowSpace DAO? Reach out through any of these cosmic channels:
-                </p>
-              </div>
-              {/* Chat bubble pointer */}
-              <div className="absolute -top-2 left-8 w-4 h-4 bg-alien-green/20 border-l-2 border-t-2 border-alien-green/40 transform rotate-45"></div>
+          {/* FORMULARIO DE CONTACTO */}
+          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} className="bg-white/[0.02] backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
+            <div className="absolute inset-0 bg-alien-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+            <div className="flex justify-between items-center mb-10 relative z-10">
+              <h2 className="text-xl font-nasalization text-alien-green flex items-center gap-3 tracking-tighter">
+                <ShieldCheck className="w-5 h-5" /> PROTOCOLO DE ENVÍO
+              </h2>
+              <span className="text-[9px] text-gray-500 font-mono">DEST: PROTON.ME</span>
             </div>
-            
-            {/* Social Media Channels Grid */}
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Disc className="h-5 w-5 text-alien-space-dark" />
+
+            <form onSubmit={handleFormSubmit} className="space-y-6 relative z-10">
+              {/* Honeypot invisible */}
+              <input type="text" className="hidden" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label className="text-[10px] text-alien-green/60 uppercase ml-1">Alias / Nombre</Label>
+                  <Input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="bg-black/60 border-white/5 focus:border-alien-green/50 h-14 rounded-2xl" placeholder="Identidad" />
+                  {formErrors.name && <p className="text-red-500 text-[10px] ml-1">{formErrors.name}</p>}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-alien-gold font-[Exo]">Community Discord</h3>
-                    <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
-                  </div>
-                  <span className="text-gray-500 font-[Exo]">discord.gg/alienflow</span>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Mail className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Email</h3>
-                  <a href="mailto:info@alienflow.space" className="text-gray-300 font-[Exo] hover:text-alien-green">alien69flow@proton.me</a>
+                <div className="space-y-2">
+                  <Label className="text-[10px] text-alien-green/60 uppercase ml-1">Nodo de Respuesta</Label>
+                  <Input type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="bg-black/60 border-white/5 focus:border-alien-green/50 h-14 rounded-2xl" placeholder="email@dominio.com" />
                 </div>
               </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Facebook className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Facebook</h3>
-                  <a href="https://www.facebook.com/Alien69Flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">facebook.com/Alien69Flow</a>
-                </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] text-alien-green/60 uppercase ml-1">Etiqueta de Asunto</Label>
+                <Input value={formData.subject} onChange={(e) => setFormData({...formData, subject: e.target.value})} className="bg-black/60 border-white/5 focus:border-alien-green/50 h-14 rounded-2xl" />
               </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <BookOpen className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">GitBook</h3>
-                  <a href="https://alienflowspace.gitbook.io/DAO" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">alienflowspace.gitbook.io</a>
-                </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] text-alien-green/60 uppercase ml-1">Cuerpo del Mensaje</Label>
+                <Textarea value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} rows={5} className="bg-black/60 border-white/5 focus:border-alien-green/50 rounded-2xl resize-none" />
               </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Github className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">GitHub</h3>
-                  <a href="https://github.com/Alien69Flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">github.com/Alien69Flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Instagram className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Instagram</h3>
-                  <a href="https://www.instagram.com/alien69flow/" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Linkedin className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">LinkedIn Personal</h3>
-                  <a href="https://linkedin.com/in/alienflow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/in/alien69flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Linkedin className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Company LinkedIn</h3>
-                  <a href="https://linkedin.com/company/alienflowspace" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">linkedin.com/company/alienflowspace</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <svg className="h-5 w-5 text-alien-space-dark" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Reddit</h3>
-                  <a href="https://www.reddit.com/user/Alien69Flow/" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">reddit.com/user/Alien69Flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <Users className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Group Telegram</h3>
-                  <a href="https://t.me/AlienFlow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">t.me/AlienFlow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <svg className="h-5 w-5 text-alien-space-dark" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-alien-gold font-[Exo]">TikTok</h3>
-                    <span className="px-2 py-0.5 text-[10px] bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30 font-[Exo]">Coming Soon</span>
-                  </div>
-                  <span className="text-gray-500 font-[Exo]">@alien69flow</span>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <MessageSquare className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">Threads</h3>
-                  <a href="https://threads.net/@alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
-                </div>
-              </div>
-              
-              <div className="flex items-center p-4 bg-alien-space-dark/80 rounded-lg backdrop-blur-md hover:bg-alien-space-dark/90 transition-all duration-300 hover:scale-105 border border-alien-gold/20 hover:border-alien-green/40">
-                <div className="w-10 h-10 rounded-full bg-alien-green flex items-center justify-center mr-4">
-                  <X className="h-5 w-5 text-alien-space-dark" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-alien-gold font-[Exo]">X</h3>
-                  <a href="https://x.com/alien69flow" target="_blank" rel="noopener noreferrer" className="text-gray-300 font-[Exo] hover:text-alien-green">@alien69flow</a>
-                </div>
-              </div>
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-gradient-to-r from-alien-green to-alien-gold text-black font-black h-16 rounded-2xl hover:brightness-125 transition-all shadow-lg shadow-alien-green/10">
+                {isSubmitting ? <Loader2 className="animate-spin" /> : 'DESPLEGAR PAQUETE DE DATOS'}
+              </Button>
+            </form>
+          </motion.div>
+
+          {/* TERMINAL AI TOR */}
+          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} className="flex flex-col bg-black/80 border-2 border-white/5 rounded-[2.5rem] overflow-hidden group">
+            <div className="bg-white/5 p-5 border-b border-white/5 flex justify-between items-center">
+              <span className="text-[10px] font-mono text-alien-gold flex items-center gap-3 tracking-[0.2em]">
+                <Terminal className="w-4 h-4" /> AI-TOR CONSOLE v2.0
+              </span>
+              <div className="w-2 h-2 rounded-full bg-alien-green animate-pulse shadow-[0_0_10px_#39FF14]" />
             </div>
-            
-            {/* Contact Form */}
-            <div className="w-full max-w-2xl bg-gradient-to-br from-alien-space-dark/90 to-alien-space-dark/70 p-8 rounded-2xl backdrop-blur-md border-2 border-alien-green/30 shadow-[0_0_30px_rgba(57,255,20,0.15)] hover:shadow-[0_0_40px_rgba(57,255,20,0.25)] transition-all duration-300">
-              <h2 className="text-2xl md:text-3xl font-semibold text-alien-green mb-6 font-nasalization text-center">Send us a message</h2>
-              <form className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-alien-gold mb-2 font-[Exo]" htmlFor="name">Name</label>
-                  <input type="text" id="name" className="w-full px-4 py-3 bg-alien-space-light/50 rounded-lg border-2 border-gray-600 text-gray-200 focus:border-alien-green focus:outline-none font-[Exo] transition-colors" placeholder="Your name" />
+            <div ref={terminalRef} className="flex-1 p-8 font-mono text-[11px] space-y-4 overflow-y-auto max-h-[450px] scrollbar-hide">
+              {terminalHistory.map((m, i) => (
+                <div key={i} className={m.type === 'ai' ? 'text-alien-green' : 'text-alien-gold/70'}>
+                  <span className="opacity-40">{m.type === 'ai' ? '>>>' : 'USR>'}</span> {m.text}
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-alien-gold mb-2 font-[Exo]" htmlFor="email">Email</label>
-                  <input type="email" id="email" className="w-full px-4 py-3 bg-alien-space-light/50 rounded-lg border-2 border-gray-600 text-gray-200 focus:border-alien-green focus:outline-none font-[Exo] transition-colors" placeholder="your@email.com" />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-alien-gold mb-2 font-[Exo]" htmlFor="message">Message</label>
-                  <textarea id="message" rows={5} className="w-full px-4 py-3 bg-alien-space-light/50 rounded-lg border-2 border-gray-600 text-gray-200 focus:border-alien-green focus:outline-none font-[Exo] resize-none transition-colors" placeholder="Your message"></textarea>
-                </div>
-                
-                <Button className="w-full bg-alien-green hover:bg-alien-green-light text-alien-space-dark font-[Exo] font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(57,255,20,0.5)]">
-                  <Send size={18} className="mr-2" /> Send Message
-                </Button>
-              </form>
+              ))}
+              {isTyping && <div className="text-alien-green animate-pulse">_Sincronizando...</div>}
             </div>
-          </div>
+            <form onSubmit={handleTerminalSubmit} className="p-6 bg-white/5 flex gap-4 border-t border-white/5">
+              <ChevronRight className="text-alien-gold w-5 h-5" />
+              <input value={terminalInput} onChange={(e) => setTerminalInput(e.target.value)} className="bg-transparent border-none outline-none flex-1 text-alien-gold text-xs font-mono" placeholder="Ingresar comando de sistema..." />
+            </form>
+          </motion.div>
         </div>
+
+        {/* REDES SOCIALES ORDENADAS ALFABÉTICAMENTE */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          {socialLinks.map((item, i) => (
+            <motion.a
+              key={item.name}
+              href={item.comingSoon ? '#' : item.link}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              whileHover={!item.comingSoon ? { scale: 1.05, borderColor: '#39FF14' } : {}}
+              className={`p-6 rounded-[2rem] border flex flex-col items-center justify-center gap-4 transition-all ${
+                item.comingSoon 
+                ? 'bg-white/[0.01] border-white/5 opacity-20 cursor-not-allowed' 
+                : 'bg-white/[0.04] border-white/10 group'
+              }`}
+            >
+              <item.icon className={`w-6 h-6 transition-all duration-500 ${
+                item.comingSoon ? 'text-gray-700' : 'text-gray-400 group-hover:text-alien-green group-hover:rotate-[360deg]'
+              }`} />
+              <div className="text-center">
+                <p className={`text-[9px] font-nasalization uppercase tracking-widest ${
+                  item.comingSoon ? 'text-gray-700' : 'text-gray-300 group-hover:text-white'
+                }`}>
+                  {item.name}
+                </p>
+                {item.comingSoon && <span className="text-[7px] text-alien-gold font-bold block mt-1 tracking-tighter">SOON</span>}
+              </div>
+            </motion.a>
+          ))}
+        </div>
+
       </main>
-    </div>;
+    </div>
+  );
 };
+
 export default Contact;
