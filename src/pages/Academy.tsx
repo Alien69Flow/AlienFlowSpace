@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, Coins, Leaf, Brain, Fingerprint, 
-  Globe, Star, Zap, Award, Microscope 
+  Globe, Star, Award, Zap, Sparkles 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -65,7 +65,7 @@ const Academy = () => {
           <div className="flex items-center gap-2 mb-4 text-[#39FF14] opacity-40 text-[9px] font-mono tracking-[0.5em]">
             <ShieldCheck className="w-4 h-4" /> SECURE_ARCHIVE_v7.0_FINAL
           </div>
-          <h1 className="text-7xl md:text-9xl font-nasalization tracking-tighter mb-6 uppercase">Academy</h1>
+          <h1 className="text-6xl md:text-8xl font-nasalization tracking-tighter mb-6 uppercase text-glow">Academy</h1>
           <p className="max-w-3xl text-gray-500 italic text-lg border-l border-white/10 pl-6">Unified field science and biological optimization.</p>
         </header>
 
@@ -74,7 +74,7 @@ const Academy = () => {
             <div 
               key={item.id}
               onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
-              className={`p-8 md:p-12 rounded-[3rem] border transition-all duration-700 cursor-pointer ${
+              className={`p-8 md:p-12 rounded-[3.5rem] border transition-all duration-700 cursor-pointer ${
                 expandedId === item.id ? 'bg-white/[0.08] border-[#39FF14]' : 'bg-white/[0.02] border-white/5 hover:border-[#D4AF37]/40'
               }`}
             >
@@ -85,7 +85,7 @@ const Academy = () => {
                   </div>
                   <div>
                     <span className="text-[9px] font-mono text-[#D4AF37] tracking-[0.6em] uppercase mb-2 block">{item.tag}</span>
-                    <h2 className="text-2xl md:text-6xl font-nasalization tracking-tight">{item.title}</h2>
+                    <h2 className="text-2xl md:text-5xl font-nasalization tracking-tight">{item.title}</h2>
                   </div>
                 </div>
                 <Fingerprint className={`w-10 h-10 md:w-20 md:h-20 ${expandedId === item.id ? 'text-[#39FF14]' : 'text-gray-900'}`} />
@@ -116,24 +116,47 @@ const Academy = () => {
           ))}
         </div>
 
-        {/* POINT 2: ACADEMY NFT COLLECTION (MIDDLE) */}
-        <section className="mb-40 p-12 rounded-[4rem] bg-white/[0.02] border border-white/10 text-center relative overflow-hidden">
-          <Star className="w-16 h-16 text-[#D4AF37] mx-auto mb-12 animate-pulse" />
-          <h2 className="text-5xl md:text-7xl font-nasalization tracking-[0.2em] mb-16 uppercase italic">Artifact Collection</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 font-nasalization">
-            {['Flow Master', 'Bio Sovereign', 'Tesla Pioneer'].map((nft, i) => (
-              <div key={i} className="group">
-                <div className="aspect-[3/4] bg-black/60 rounded-[3rem] mb-6 border border-white/5 group-hover:border-[#39FF14] transition-all flex items-center justify-center">
-                   <Award className="w-20 h-20 text-white/5 group-hover:text-alien-gold transition-colors" />
-                </div>
-                <h4 className="text-xs tracking-[0.5em] text-gray-500 group-hover:text-white transition-colors">{nft}</h4>
-              </div>
-            ))}
+        {/* POINT 2: ACADEMY NFT COLLECTION & TRANSCENDENTAL MASTER (MIDDLE) */}
+        <section className="mb-40 relative">
+          {/* Transcendental Master Design Integration */}
+          <div className="absolute -top-24 right-0 opacity-10 pointer-events-none">
+             <Sparkles className="w-64 h-64 text-[#D4AF37]" />
           </div>
-          <Button className="bg-[#D4AF37] text-black font-black px-16 h-20 rounded-[2.5rem] tracking-[0.5em] text-xs">MINT CREDENTIAL</Button>
+
+          <div className="p-12 md:p-24 rounded-[4rem] bg-white/[0.02] border border-white/10 text-center overflow-hidden">
+            <div className="mb-12 inline-block p-4 rounded-full bg-alien-gold/10 border border-alien-gold/20">
+               <Award className="w-12 h-12 text-[#D4AF37]" />
+            </div>
+            
+            <h2 className="text-4xl md:text-7xl font-nasalization tracking-[0.1em] mb-6 uppercase italic">Artifact Collection</h2>
+            <p className="text-alien-gold font-mono text-[10px] tracking-[0.8em] mb-20 uppercase">Transcendent Self-Realization Mastery</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 font-nasalization">
+              {['Flow Master', 'Bio Sovereign', 'Tesla Pioneer'].map((nft, i) => (
+                <div key={i} className="group">
+                  <div className="aspect-[3/4] bg-black/60 rounded-[3rem] mb-6 border border-white/5 group-hover:border-[#39FF14] transition-all flex items-center justify-center relative group overflow-hidden">
+                     {/* Imagen del Artefacto (Asegúrate de que la ruta coincida con tu repo) */}
+                     <img 
+                        src={`/assets/academy/nft-${i+1}.png`} 
+                        alt={nft} 
+                        className="w-full h-full object-cover opacity-20 group-hover:opacity-60 transition-opacity" 
+                        onError={(e) => e.currentTarget.src = "/placeholder-nft.png"}
+                     />
+                     <div className="absolute inset-0 flex items-center justify-center">
+                        <Star className="w-12 h-12 text-white/5 group-hover:text-alien-gold transition-colors" />
+                     </div>
+                  </div>
+                  <h4 className="text-[10px] tracking-[0.5em] text-gray-500 group-hover:text-white transition-colors uppercase">{nft}</h4>
+                </div>
+              ))}
+            </div>
+            <Button className="bg-[#D4AF37] text-black font-black px-16 h-20 rounded-[2.5rem] tracking-[0.5em] text-xs hover:bg-[#39FF14] transition-colors">
+              MINT CREDENTIAL
+            </Button>
+          </div>
         </section>
 
-        {/* POINT 3: PARTNER CATEGORIES (END) */}
+        {/* POINT 3: PARTNER CATEGORIES WITH OFFICIAL LOGOS (END) */}
         <section className="space-y-32">
           <div className="text-center">
             <Globe className="w-16 h-16 text-[#D4AF37] mx-auto mb-8 opacity-20" />
@@ -148,7 +171,19 @@ const Academy = () => {
                   {cat.partners.map((p, idx) => (
                     <div key={idx} className="flex flex-col items-center gap-5 group">
                       <div className="w-16 h-16 md:w-24 md:h-24 bg-white/5 rounded-full flex items-center justify-center border border-white/5 group-hover:border-[#D4AF37] transition-all overflow-hidden p-4">
-                        <span className="text-alien-gold font-bold text-lg group-hover:scale-125 transition-transform">{p[0]}</span>
+                        {/* LÓGICA DE IMAGEN OFICIAL:
+                          Busca el archivo en /assets/partners/nombre-del-partner.png 
+                        */}
+                        <img 
+                          src={`/assets/partners/${p.toLowerCase().replace(/\s+/g, '-')}.png`} 
+                          alt={p} 
+                          className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"
+                          onError={(e) => {
+                            // Fallback si la imagen no existe: muestra la inicial
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.parentElement!.innerHTML = `<span class="text-alien-gold font-bold text-lg">${p[0]}</span>`;
+                          }}
+                        />
                       </div>
                       <span className="text-[9px] md:text-[11px] font-mono text-gray-600 group-hover:text-white uppercase text-center italic">{p}</span>
                     </div>
