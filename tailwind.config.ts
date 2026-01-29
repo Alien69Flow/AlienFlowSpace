@@ -117,6 +117,15 @@ export default {
         'shimmer': {
           '0%': { backgroundPosition: '-40rem 0' },
           '100%': { backgroundPosition: '40rem 0' }
+        },
+        'scanning': {
+          '0%': { transform: 'translateY(-100%)', opacity: '0.4' },
+          '50%': { opacity: '0.8' },
+          '100%': { transform: 'translateY(100vh)', opacity: '0.4' }
+        },
+        'pulse-waitlist': {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(34,197,94,0.4), 0 0 40px rgba(240,216,130,0.2)' },
+          '50%': { boxShadow: '0 0 30px rgba(34,197,94,0.7), 0 0 60px rgba(240,216,130,0.4)' }
         }
       },
       animation: {
