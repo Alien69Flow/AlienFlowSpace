@@ -90,22 +90,6 @@ Accede a las diferentes capas y espacios del ecosistema AlienFlow desde estos pu
 
 ---
 
-## 🚀 Despliegue del Nodo | Local Installation | Clone the Simulation
-
-```sh
-# 1. Sincronizar el nodo
-git clone [https://github.com/Alien69Flow/AlienFlowSpace.git](https://github.com/Alien69Flow/AlienFlowSpace.git)
-
-# 2. Entrar en la frecuencia del proyecto
-cd AlienFlowSpace
-
-# 3. Instalar catalizadores (dependencias)
-npm i
-
-# 4. Iniciar el reactor de desarrollo
-npm run dev
----
-
 ## ⚖️ Copyright & License
 
 <div align="center">
@@ -142,3 +126,20 @@ Este proyecto está protegido bajo la **Licencia Pública General GNU v3.0**.
 <p align="center">
   <i>"Coding the frequency of freedom since 2026, projected to 4723."</i> 🛸🔋
 </p>
+---
+
+## 🚀 Despliegue del Nodo | Local Installation | Clone the Simulation
+
+```sh
+# 1. Sincronizar el nodo
+git clone [https://github.com/Alien69Flow/AlienFlowSpace.git](https://github.com/Alien69Flow/AlienFlowSpace.git)
+
+# 2. Entrar en la frecuencia del proyecto
+cd AlienFlowSpace
+
+# 3. Instalar catalizadores (dependencias)
+npm i
+
+# 4. Iniciar el reactor de desarrollo
+npm run dev
+---
