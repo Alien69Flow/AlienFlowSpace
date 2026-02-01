@@ -104,3 +104,41 @@ npm i
 
 # 4. Iniciar el reactor de desarrollo
 npm run dev
+---
+
+## ⚖️ Copyright & License
+
+<div align="center">
+
+| 📜 License Status | 🛡️ Protection | 🌍 Jurisdiction |
+| :---: | :---: | :---: |
+| **GNU GPL v3.0** | **Open Source / Copyleft** | **Universal / Decentralized** |
+
+</div>
+
+### 🌐 ENGLISH (Official)
+**Copyright (c) 4723 Alien69Flow and ΔlieπFlΦw $pac€ DAO**
+
+This project is licensed under the **GNU General Public License v3.0**. 
+* **Freedom:** You are free to use, study, and share this software.
+* **Attribution:** Any derivative work must credit **Alien69Flow** and the **DAO**.
+* **Reciprocity:** If you modify or build upon this code, you **must** distribute your contributions under the same GPLv3 license.
+
+*The English version of the GPLv3 is the only legally binding document. For the full legal text, please refer to the `LICENSE` file in this repository.*
+
+---
+
+### 🇪🇸 ESPAÑOL (Informativo)
+**Copyright (c) 4723 Alien69Flow y ΔlieπFlΦw $pac€ DAO**
+
+Este proyecto está protegido bajo la **Licencia Pública General GNU v3.0**.
+* **Soberanía:** Tienes la libertad de usar, estudiar y compartir este software.
+* **Reconocimiento:** Cualquier obra derivada debe otorgar crédito a **Alien69Flow** y a la **DAO**.
+* **Efecto Espejo:** Si modificas o mejoras este código, **estás obligado** a compartir tus cambios bajo esta misma licencia GPLv3.
+
+*Esta traducción es solo para fines informativos. El documento legal vinculante es la licencia original en inglés contenida en el archivo `LICENSE`.*
+
+---
+<p align="center">
+  <i>"Coding the frequency of freedom since 2026, projected to 4723."</i> 🛸🔋
+</p>
