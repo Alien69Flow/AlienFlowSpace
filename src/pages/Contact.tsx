@@ -115,14 +115,14 @@ const Contact: React.FC = () => {
   };
 
   const socialLinks = [
-    { name: 'Discord', icon: BrandLogos.Discord, link: 'https://discord.gg/alienflowspace', handle: '@AlienFlowSpace', status: 'Active' },
+    { name: 'Discord', icon: BrandLogos.Discord, link: '#', handle: '@AlienFlowSpace', status: 'Coming Soon' },
     { name: 'DoraHacks', icon: BrandLogos.DoraHacks, link: 'https://dorahacks.io/hacker/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
     { name: 'Facebook', icon: BrandLogos.Facebook, link: 'https://www.facebook.com/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
     { name: 'GitBook', icon: BrandLogos.GitBook, link: 'https://alienflowspace.gitbook.io', handle: 'Docs', status: 'Active' },
     { name: 'GitHub', icon: BrandLogos.GitHub, link: 'https://github.com/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
     { name: 'HackMD', icon: BrandLogos.HackMD, link: 'https://hackmd.io/@Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
     { name: 'Instagram', icon: BrandLogos.Instagram, link: 'https://www.instagram.com/alien69flow/', handle: '@alien69flow', status: 'Active' },
-    { name: 'LinkedIn Co.', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', handle: 'AlienFlowSpace', status: 'Active' },
+    { name: 'LinkedIn', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', handle: 'Co & @alien69flow', status: 'Active', secondaryLink: 'https://linkedin.com/in/alien69flow' },
     { name: 'Reddit', icon: BrandLogos.Reddit, link: 'https://reddit.com/user/Alien69Flow', handle: 'u/Alien69Flow', status: 'Active' },
     { name: 'Telegram', icon: BrandLogos.Telegram, link: 'https://t.me/AlienFlow', handle: '@AlienFlow', status: 'Active' },
     { name: 'Threads', icon: BrandLogos.Threads, link: 'https://threads.net/@alien69flow', handle: '@alien69flow', status: 'Active' },
@@ -135,87 +135,94 @@ const Contact: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 pt-16">
         
         {/* ═══════════════════════════════════════════════════════════════════
-            HERO SECTION - Original design with green/gold cosmic effects
+            HERO SECTION - Original cosmic green/gold design restored
         ═══════════════════════════════════════════════════════════════════ */}
         <motion.section 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
-          transition={{ duration: 1 }}
-          className="relative flex flex-col items-center text-center mb-20 py-16"
+          transition={{ duration: 1.2 }}
+          className="relative flex flex-col items-center text-center mb-24 py-20"
         >
-          {/* Cosmic glow background */}
+          {/* Multi-layer cosmic glow background */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-alien-green/10 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-alien-gold/10 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-alien-green/20 via-alien-green/5 to-transparent rounded-full blur-[100px] animate-pulse" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-alien-gold/15 via-alien-gold/5 to-transparent rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '1.5s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-alien-green/10 rounded-full blur-[60px] animate-pulse" style={{ animationDelay: '0.7s' }} />
           </div>
 
-          {/* Title with official characters */}
+          {/* Main Title */}
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative text-5xl sm:text-6xl md:text-8xl font-nasalization mb-6 drop-shadow-[0_0_40px_rgba(57,255,20,0.3)]"
+            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2, type: 'spring', stiffness: 100 }}
+            className="relative text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-nasalization mb-8 tracking-wider"
           >
-            <span className="text-alien-green drop-shadow-[0_0_20px_rgba(57,255,20,0.5)]">Contact</span>
-            <span className="text-white mx-4">Us</span>
+            <span className="text-alien-green drop-shadow-[0_0_30px_rgba(57,255,20,0.6)] [text-shadow:0_0_60px_rgba(57,255,20,0.4)]">
+              Contact
+            </span>
+            <span className="text-white mx-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              Us
+            </span>
           </motion.h1>
 
-          {/* Brand name with official characters */}
+          {/* Subtitle with original text */}
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl font-nasalization mb-8"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed font-exo px-4"
           >
-            <span className="text-alien-green">Δlieπ</span>
-            <span className="text-alien-gold">FlΦw</span>
-            <span className="text-alien-green"> $pac€</span>
-            <span className="text-alien-gold"> DAO</span>
+            <span className="text-muted-foreground">Have questions or want to join the </span>
+            <span className="text-alien-green font-nasalization drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]">Δlieπ</span>
+            <span className="text-alien-gold font-nasalization drop-shadow-[0_0_10px_rgba(240,216,130,0.5)]">FlΦw</span>
+            <span className="text-alien-green font-nasalization drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]"> $pac€</span>
+            <span className="text-alien-gold font-nasalization drop-shadow-[0_0_10px_rgba(240,216,130,0.5)]"> DAO</span>
+            <span className="text-muted-foreground">?</span>
+            <br className="hidden sm:block" />
+            <span className="text-muted-foreground"> Reach out through any of these cosmic channels:</span>
           </motion.p>
 
-          {/* Subtitle */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-muted-foreground max-w-2xl text-sm sm:text-base font-exo"
-          >
-            Connect with our cosmic community through multiple channels. 
-            We're here to help you navigate the Web3 universe.
-          </motion.p>
-
-          {/* Decorative node with lines */}
+          {/* Decorative cosmic node with radiating lines */}
           <motion.div 
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="relative mt-12"
+            transition={{ duration: 1, delay: 0.9, type: 'spring', stiffness: 120 }}
+            className="relative mt-16"
           >
-            {/* Central node */}
+            {/* Central glowing node */}
             <div className="relative">
-              <div className="w-4 h-4 bg-alien-green rounded-full shadow-[0_0_20px_rgba(57,255,20,0.8),0_0_40px_rgba(57,255,20,0.4)]" />
-              <div className="absolute inset-0 w-4 h-4 bg-alien-green/50 rounded-full animate-ping" />
+              <div className="w-5 h-5 bg-gradient-to-br from-alien-green via-alien-gold to-alien-green rounded-full shadow-[0_0_30px_rgba(57,255,20,0.9),0_0_60px_rgba(57,255,20,0.5),0_0_100px_rgba(240,216,130,0.3)]" />
+              <div className="absolute inset-0 w-5 h-5 bg-alien-green/60 rounded-full animate-ping" />
+              <div className="absolute -inset-2 w-9 h-9 border border-alien-green/30 rounded-full animate-pulse" />
             </div>
             
-            {/* Lines radiating from node */}
+            {/* Radiating lines - green and gold alternating */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              {[...Array(8)].map((_, i) => (
+              {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scaleX: 0 }}
-                  animate={{ opacity: 0.6, scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 1 + i * 0.1 }}
-                  className="absolute h-[1px] origin-left"
+                  animate={{ opacity: 0.7, scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: 1.2 + i * 0.08 }}
+                  className="absolute h-[2px] origin-left"
                   style={{
-                    width: `${60 + i * 10}px`,
-                    transform: `rotate(${i * 45}deg)`,
+                    width: `${80 + i * 12}px`,
+                    transform: `rotate(${i * 30}deg)`,
                     background: i % 2 === 0 
-                      ? 'linear-gradient(90deg, hsl(var(--alien-green)), transparent)'
-                      : 'linear-gradient(90deg, hsl(var(--alien-gold)), transparent)'
+                      ? 'linear-gradient(90deg, rgba(57,255,20,0.8), rgba(57,255,20,0.1), transparent)'
+                      : 'linear-gradient(90deg, rgba(240,216,130,0.8), rgba(240,216,130,0.1), transparent)'
                   }}
                 />
               ))}
             </div>
+            
+            {/* Outer decorative ring */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 0.4, scale: 1 }}
+              transition={{ duration: 1.2, delay: 1.5 }}
+              className="absolute -inset-20 border border-dashed border-alien-green/20 rounded-full"
+            />
           </motion.div>
         </motion.section>
 
@@ -267,9 +274,10 @@ const Contact: React.FC = () => {
               </div>
             </motion.a>
 
-            <motion.div 
+            <motion.a 
+              href="mailto:alien69flow@proton.me?subject=Support%20Request"
               whileHover={{ scale: 1.02, y: -4 }}
-              className="group relative p-8 bg-gradient-to-br from-alien-gold/10 to-alien-gold/5 border border-alien-gold/20 rounded-3xl hover:border-alien-gold/50 transition-all overflow-hidden cursor-pointer"
+              className="group relative p-8 bg-gradient-to-br from-alien-gold/10 to-alien-gold/5 border border-alien-gold/20 rounded-3xl hover:border-alien-gold/50 transition-all overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center">
@@ -277,9 +285,9 @@ const Contact: React.FC = () => {
                   <LifeBuoy className="w-6 h-6 text-alien-gold" />
                 </div>
                 <h3 className="text-white font-nasalization text-lg mb-2">Support Center</h3>
-                <p className="text-muted-foreground text-sm">Get help from our team</p>
+                <p className="text-muted-foreground text-sm">Email: alien69flow@proton.me</p>
               </div>
-            </motion.div>
+            </motion.a>
           </div>
         </motion.section>
 
