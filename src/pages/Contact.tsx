@@ -2,49 +2,73 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, Terminal, Loader2, ShieldAlert, LifeBuoy } from 'lucide-react';
+import { Send, Terminal, Loader2, ShieldAlert, LifeBuoy, FileText, MessageSquare, Globe, Users, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
+import NewsletterSubscription from '@/components/NewsletterSubscription';
 
+/**
+ * BRAND LOGOS - Official colors for each platform
+ */
 const BrandLogos = {
   Discord: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#5865F2" className="w-6 h-6"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
   ),
   DoraHacks: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm8.66 16.75L12 21.75l-8.66-5V7.25L12 2.25l8.66 5v9.5zM12 5.5l5.5 3.2v6.6l-5.5 3.2-5.5-3.2v-6.6L12 5.5z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#FF6B35" className="w-6 h-6"><path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm8.66 16.75L12 21.75l-8.66-5V7.25L12 2.25l8.66 5v9.5zM12 5.5l5.5 3.2v6.6l-5.5 3.2-5.5-3.2v-6.6L12 5.5z"/></svg>
   ),
   Facebook: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#1877F2" className="w-6 h-6"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
   ),
   GitBook: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M19.13 11.83l-5.35-5.35c-.39-.39-1.01-.39-1.4 0l-5.35 5.35c-.39.39-.39 1.02 0 1.41l5.35 5.35c.39.39 1.01.39 1.4 0l5.35-5.35c.39-.4.39-1.02 0-1.41zm-6.05 3.86l-2.45-2.45 2.45-2.45 2.45 2.45-2.45 2.45zM21 1h-6.18C13.4.45 11.74 0 10 0 4.48 0 0 4.48 0 10s4.48 10 10 10c1.74 0 3.4-.45 4.82-1.25L19.5 23l1.41-1.41-4.24-4.24C19.06 15.65 20.46 13.5 20.91 11h2.09V9h-2.09c-.19-1.05-.54-2.03-1.01-2.91L21.36 4.64 19.95 3.23l-1.45 1.45C17.62 4.21 16.63 3.86 15.58 3.67V1h-2v2.67c-1.14.21-2.22.61-3.21 1.17L8.91 3.39 7.5 4.8l1.45 1.45c-.56.99-.96 2.07-1.17 3.21H5.11v2h2.67c.21 1.14.61 2.22 1.17 3.21l-1.45 1.45 1.41 1.41 1.45-1.45c.99.56 2.07.96 3.21 1.17V21h2v-2.67c1.05-.19 2.03-.54 2.91-1.01l1.45 1.45 1.41 1.41-1.45-1.45c.47-.88.82-1.86 1.01-2.91H21v-2z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#3884FF" className="w-6 h-6"><path d="M10.802 17.77a.703.703 0 11-.002 1.406.703.703 0 01.002-1.406m11.024-4.347a.703.703 0 11.001-1.406.703.703 0 01-.001 1.406m0-2.876a2.176 2.176 0 00-2.174 2.174c0 .233.039.465.115.691l-7.181 3.823a2.165 2.165 0 00-1.784-.937c-.829 0-1.584.475-1.95 1.216l-6.451-3.402c-.682-.358-1.192-1.48-1.138-2.502.028-.533.212-.947.493-1.107.178-.1.392-.092.62.027l.042.023c1.71.9 7.304 3.847 7.54 3.956.363.169.565.237 1.185-.057l11.564-6.014c.17-.064.368-.227.368-.474 0-.342-.354-.477-.355-.477-.658-.315-1.669-.788-2.655-1.25-2.108-.987-4.497-2.105-5.546-2.655-.906-.474-1.635-.074-1.765.006l-.252.125C7.78 6.048 1.46 9.178 1.1 9.397.457 9.789.058 10.57.006 11.539c-.08 1.537.703 3.14 1.824 3.727l6.822 3.518a2.175 2.175 0 002.15 1.862 2.177 2.177 0 002.173-2.14l7.514-4.073c.38.298.853.461 1.337.461A2.176 2.176 0 0024 12.72a2.176 2.176 0 00-2.174-2.174"/></svg>
   ),
   GitHub: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
   ),
   HackMD: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M14.28 1.984c.32 0 .584.264.584.584V21.43c0 .32-.264.584-.584.584h-4.56c-.32 0-.584-.264-.584-.584V2.568c0-.32.264-.584.584-.584h4.56zM5.38 5.744c.32 0 .584.264.584.584V17.67c0 .32-.264.584-.584.584h-4.8c-.32 0-.584-.264-.584-.584V6.328c0-.32.264-.584.584-.584h4.8zm18.04 0c.32 0 .584.264.584.584V17.67c0 .32-.264.584-.584.584h-4.8c-.32 0-.584-.264-.584-.584V6.328c0-.32.264-.584.584-.584h4.8z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#6DB33F" className="w-6 h-6"><path d="M14.28 1.984c.32 0 .584.264.584.584V21.43c0 .32-.264.584-.584.584h-4.56c-.32 0-.584-.264-.584-.584V2.568c0-.32.264-.584.584-.584h4.56zM5.38 5.744c.32 0 .584.264.584.584V17.67c0 .32-.264.584-.584.584h-4.8c-.32 0-.584-.264-.584-.584V6.328c0-.32.264-.584.584-.584h4.8zm18.04 0c.32 0 .584.264.584.584V17.67c0 .32-.264.584-.584.584h-4.8c-.32 0-.584-.264-.584-.584V6.328c0-.32.264-.584.584-.584h4.8z"/></svg>
   ),
   Instagram: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608C2.024 15.581 2.012 15.201 2.012 12s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    <svg viewBox="0 0 24 24" className="w-6 h-6">
+      <defs>
+        <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#FFDC80"/>
+          <stop offset="25%" stopColor="#FCAF45"/>
+          <stop offset="50%" stopColor="#F77737"/>
+          <stop offset="75%" stopColor="#C13584"/>
+          <stop offset="100%" stopColor="#833AB4"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#instagram-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608C2.024 15.581 2.012 15.201 2.012 12s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+    </svg>
   ),
   LinkedIn: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.729V1.729C24 .774 23.206 0 22.225 0z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#0A66C2" className="w-6 h-6"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.729V1.729C24 .774 23.206 0 22.225 0z"/></svg>
   ),
   Reddit: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.057 1.597.047.282.067.559.067.845 0 2.911-3.544 5.275-7.917 5.275s-7.917-2.364-7.917-5.275c0-.272.02-.539.06-.809C4.57 13.379 4.132 12.76 4.132 12c0-.968.786-1.754 1.754-1.754.463 0 .875.18 1.185.472 1.201-.86 2.87-1.426 4.71-1.487l.934-4.388 2.3.485c-.053.133-.083.277-.083.425zm-4.362 9.157c-.652 0-1.18.528-1.18 1.18 0 .652.528 1.18 1.18 1.18.652 0 1.18-.528 1.18-1.18 0-.652-.528-1.18-1.18-1.18zm4.476 0c-.652 0-1.18.528-1.18 1.18 0 .652.528 1.18 1.18 1.18.652 0 1.18-.528 1.18-1.18 0-.652-.528-1.18-1.18-1.18zm-3.959 3.377c-.116 0-.232.044-.319.131-.418.417-1.098.417-1.516 0-.087-.087-.203-.131-.319-.131a.451.451 0 0 0-.321.77c.77.77 2.03.77 2.8 0a.451.451 0 0 0-.325-.77z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#FF4500" className="w-6 h-6"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.057 1.597.047.282.067.559.067.845 0 2.911-3.544 5.275-7.917 5.275s-7.917-2.364-7.917-5.275c0-.272.02-.539.06-.809C4.57 13.379 4.132 12.76 4.132 12c0-.968.786-1.754 1.754-1.754.463 0 .875.18 1.185.472 1.201-.86 2.87-1.426 4.71-1.487l.934-4.388 2.3.485c-.053.133-.083.277-.083.425zm-4.362 9.157c-.652 0-1.18.528-1.18 1.18 0 .652.528 1.18 1.18 1.18.652 0 1.18-.528 1.18-1.18 0-.652-.528-1.18-1.18-1.18zm4.476 0c-.652 0-1.18.528-1.18 1.18 0 .652.528 1.18 1.18 1.18.652 0 1.18-.528 1.18-1.18 0-.652-.528-1.18-1.18-1.18zm-3.959 3.377c-.116 0-.232.044-.319.131-.418.417-1.098.417-1.516 0-.087-.087-.203-.131-.319-.131a.451.451 0 0 0-.321.77c.77.77 2.03.77 2.8 0a.451.451 0 0 0-.325-.77z"/></svg>
   ),
   Telegram: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zM17.5 8.083l-2.013 9.491c-.15.672-.548.836-1.111.519l-3.07-2.262-1.482 1.426c-.164.164-.301.302-.617.302l.221-3.12 5.679-5.128c.247-.22-.054-.341-.383-.122l-7.018 4.418-3.024-.946c-.657-.206-.67-.657.137-.972l11.815-4.553c.547-.199 1.026.128.886 1.002z"/></svg>
+    <svg viewBox="0 0 24 24" fill="#26A5E4" className="w-6 h-6"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zM17.5 8.083l-2.013 9.491c-.15.672-.548.836-1.111.519l-3.07-2.262-1.482 1.426c-.164.164-.301.302-.617.302l.221-3.12 5.679-5.128c.247-.22-.054-.341-.383-.122l-7.018 4.418-3.024-.946c-.657-.206-.67-.657.137-.972l11.815-4.553c.547-.199 1.026.128.886 1.002z"/></svg>
   ),
   Threads: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12 24c-6.627 0-12-5.373-12-12s5.373-12 12-12 12 5.373 12 12-5.373 12-12 12zm.126-16.142c-2.316 0-3.692 1.341-3.692 3.524v2.793c0 2.183 1.376 3.524 3.692 3.524 1.724 0 2.896-.78 3.24-2.126h-1.424c-.26.544-.816.896-1.816.896-1.288 0-2.052-.776-2.052-2.294v-2.793c0-1.518.764-2.294 2.052-2.294 1 0 1.556.352 1.816.896h1.424c-.344-1.346-1.516-2.126-3.24-2.126z"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.182.408-2.256 1.333-3.022.812-.672 1.927-1.073 3.222-1.161 1.009-.068 1.94.004 2.792.178-.065-1.203-.453-2.12-1.162-2.732-.812-.699-1.993-1.048-3.508-1.031l-.043.001c-1.271.014-2.347.376-3.2 1.076l-1.327-1.564C8.396 4.088 9.94 3.59 11.78 3.568h.058c2.073.025 3.715.58 4.878 1.652 1.11 1.024 1.725 2.46 1.825 4.26.493.126.963.282 1.405.47 1.314.556 2.373 1.418 3.06 2.494.858 1.345 1.12 3.122.74 5.005-.477 2.373-1.803 4.212-3.833 5.319-1.73.942-3.894 1.41-6.44 1.393a14.126 14.126 0 01-.287-.16l.011-.001zm.674-9.053c-1.097.075-1.873.358-2.31.838-.371.408-.545.888-.518 1.428.034.601.319 1.108.804 1.428.548.36 1.31.525 2.143.48.982-.054 1.76-.435 2.314-1.131.328-.411.559-.938.7-1.585a9.803 9.803 0 00-3.133-.458z"/></svg>
   ),
   TikTok: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12.525.02c1.31 0 2.59.32 3.72.93a6.45 6.45 0 0 1-3.1 5.36 6.47 6.47 0 0 1-1.14.51v4.35a10.87 10.87 0 0 0 6.41-2.29c.14-.1.27-.21.4-.33V12.7c-1.35.43-2.76.65-4.18.65h-.05a6.47 6.47 0 0 1-6.47-6.47c0-3.57 2.9-6.47 6.47-6.47h.34z"/></svg>
+    <svg viewBox="0 0 24 24" className="w-6 h-6">
+      <defs>
+        <linearGradient id="tiktok-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#25F4EE"/>
+          <stop offset="50%" stopColor="#FE2C55"/>
+          <stop offset="100%" stopColor="#000000"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#tiktok-gradient)" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+    </svg>
   ),
   X: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
   ),
 };
 
@@ -61,15 +85,15 @@ const Contact: React.FC = () => {
 
   const [terminalHistory, setTerminalHistory] = useState([
     { type: 'ai', text: '>>> [SYS]: Ai Tor ΔlieπFlΦw $pac€ DAO Link Established.' },
-    { type: 'ai', text: '>>> [AiTor]: Conexión neuronal activa.' }
+    { type: 'ai', text: '>>> [AiTor]: Neural connection active. Ready to assist.' }
   ]);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const mailtoLink = `mailto:alien69flow@proton.me?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`FROM: ${formData.name}\n\n${formData.message}`)}`;
+    const mailtoLink = `mailto:alien69flow@proton.me?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`FROM: ${formData.name}\nEMAIL: ${formData.email}\n\n${formData.message}`)}`;
     window.location.href = mailtoLink;
-    toast.success('TRANSMISSION INITIATED');
+    toast.success('Transmission initiated!', { description: 'Your message is being processed...' });
     setTimeout(() => setIsSubmitting(false), 2000);
   };
 
@@ -81,101 +105,384 @@ const Contact: React.FC = () => {
     setTerminalInput('');
     setIsTyping(true);
     setTimeout(() => {
-      let res = ">>> [AiTor]: Comando ejecutado con éxito.";
-      if (input.toLowerCase().includes('tesla')) res = ">>> [AiTor]: Unificando neutrinos en frecuencia 3-6-9.";
+      let res = ">>> [AiTor]: Command executed successfully. How can I assist you further?";
+      if (input.toLowerCase().includes('help')) res = ">>> [AiTor]: Available commands: help, dao, tokenomics, roadmap, community";
+      if (input.toLowerCase().includes('dao')) res = ">>> [AiTor]: AlienFlowSpace DAO is a decentralized autonomous organization focused on Web3 innovation.";
+      if (input.toLowerCase().includes('tesla') || input.toLowerCase().includes('369')) res = ">>> [AiTor]: Unifying neutrinos at 3-6-9 frequency. Tesla's cosmic code activated.";
       setTerminalHistory(prev => [...prev, { type: 'ai', text: res }]);
       setIsTyping(false);
-    }, 600);
+    }, 800);
   };
 
   const socialLinks = [
-    { name: 'Discord', icon: BrandLogos.Discord, link: 'https://discord.gg/alienflowspace', color: 'hover:text-[#5865F2]', status: 'Active' },
-    { name: 'DoraHacks', icon: BrandLogos.DoraHacks, link: 'https://dorahacks.io/hacker/Alien69Flow', color: 'hover:text-[#ffaa00]', status: 'Active' },
-    { name: 'Facebook', icon: BrandLogos.Facebook, link: 'https://www.facebook.com/Alien69Flow', color: 'hover:text-[#1877F2]', status: 'Active' },
-    { name: 'GitBook', icon: BrandLogos.GitBook, link: 'https://alienflowspace.gitbook.io', color: 'hover:text-[#3B82F6]', status: 'Active' },
-    { name: 'GitHub', icon: BrandLogos.GitHub, link: 'https://github.com/Alien69Flow', color: 'hover:text-white', status: 'Active' },
-    { name: 'HackMD', icon: BrandLogos.HackMD, link: 'https://hackmd.io/@Alien69Flow', color: 'hover:text-gray-200', status: 'Active' },
-    { name: 'Instagram', icon: BrandLogos.Instagram, link: 'https://www.instagram.com/alien69flow/', color: 'hover:text-[#E4405F]', status: 'Active' },
-    { name: 'LinkedIn Co.', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', color: 'hover:text-[#0A66C2]', status: 'Active' },
-    { name: 'LinkedIn Personal', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', color: 'hover:text-[#0A66C2]', status: 'Active' },
-    { name: 'Reddit', icon: BrandLogos.Reddit, link: 'https://reddit.com/user/Alien69Flow', color: 'hover:text-[#FF4500]', status: 'Active' },
-    { name: 'Telegram', icon: BrandLogos.Telegram, link: 'https://t.me/AlienFlow', color: 'hover:text-[#0088cc]', status: 'Active' },
-    { name: 'Threads', icon: BrandLogos.Threads, link: 'https://threads.net/@alien69flow', color: 'hover:text-white', status: 'Active' },
-    { name: 'TikTok', icon: BrandLogos.TikTok, link: '#', color: 'hover:text-[#ff0050]', status: 'Coming Soon' },
-    { name: 'X', icon: BrandLogos.X, link: 'https://x.com/alien69flow', color: 'hover:text-white', status: 'Active' }
+    { name: 'Discord', icon: BrandLogos.Discord, link: 'https://discord.gg/alienflowspace', handle: '@AlienFlowSpace', status: 'Active' },
+    { name: 'DoraHacks', icon: BrandLogos.DoraHacks, link: 'https://dorahacks.io/hacker/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
+    { name: 'Facebook', icon: BrandLogos.Facebook, link: 'https://www.facebook.com/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
+    { name: 'GitBook', icon: BrandLogos.GitBook, link: 'https://alienflowspace.gitbook.io', handle: 'Docs', status: 'Active' },
+    { name: 'GitHub', icon: BrandLogos.GitHub, link: 'https://github.com/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
+    { name: 'HackMD', icon: BrandLogos.HackMD, link: 'https://hackmd.io/@Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
+    { name: 'Instagram', icon: BrandLogos.Instagram, link: 'https://www.instagram.com/alien69flow/', handle: '@alien69flow', status: 'Active' },
+    { name: 'LinkedIn Co.', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', handle: 'AlienFlowSpace', status: 'Active' },
+    { name: 'Reddit', icon: BrandLogos.Reddit, link: 'https://reddit.com/user/Alien69Flow', handle: 'u/Alien69Flow', status: 'Active' },
+    { name: 'Telegram', icon: BrandLogos.Telegram, link: 'https://t.me/AlienFlow', handle: '@AlienFlow', status: 'Active' },
+    { name: 'Threads', icon: BrandLogos.Threads, link: 'https://threads.net/@alien69flow', handle: '@alien69flow', status: 'Active' },
+    { name: 'TikTok', icon: BrandLogos.TikTok, link: '#', handle: '@alien69flow', status: 'Coming Soon' },
+    { name: 'X', icon: BrandLogos.X, link: 'https://x.com/alien69flow', handle: '@alien69flow', status: 'Active' }
   ];
 
   return (
-    <div className="min-h-screen bg-transparent pb-24 px-4 font-exo overflow-x-hidden selection:bg-alien-green selection:text-black">
-      <main className="max-w-7xl mx-auto pt-20">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center mb-16 text-center">
-          <h1 className="text-6xl md:text-8xl font-nasalization mb-8 text-white drop-shadow-[0_0_30px_rgba(57,255,20,0.2)]">
-            Contact <span className="text-alien-green">Us</span>
-          </h1>
-        </motion.div>
-
-        {/* TOP CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <a href="https://alienflowspace.gitbook.io" target="_blank" rel="noreferrer" className="p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-blue-500/50 transition-all flex flex-col items-center">
-            <div className="p-3 bg-blue-500/10 rounded-xl mb-4"><BrandLogos.GitBook /></div>
-            <h3 className="text-white font-bold">Documentation</h3>
-          </a>
-          <a href="https://www.alienflow.space/privacy-policy" target="_blank" rel="noreferrer" className="p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-alien-green/50 transition-all flex flex-col items-center">
-            <div className="p-3 bg-alien-green/10 rounded-xl mb-4"><ShieldAlert className="text-alien-green" /></div>
-            <h3 className="text-white font-bold">Privacy Policy</h3>
-          </a>
-          <div className="p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-alien-gold/50 transition-all flex flex-col items-center">
-            <div className="p-3 bg-alien-gold/10 rounded-xl mb-4"><LifeBuoy className="text-alien-gold" /></div>
-            <h3 className="text-white font-bold">Support</h3>
-          </div>
-        </div>
-
-        {/* SOCIAL GRID A-Z */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4 mb-24">
-          {socialLinks.map((item, i) => (
-            <motion.a key={item.name} href={item.link} target="_blank" rel="noreferrer"
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-              className={`flex flex-col items-center p-6 rounded-2xl border bg-white/[0.02] transition-all hover:-translate-y-1 ${item.status === 'Coming Soon' ? 'opacity-30 grayscale cursor-not-allowed border-white/5' : 'border-white/10 hover:border-alien-green/40 hover:bg-white/[0.05]'}`}>
-              <div className={`mb-3 transition-colors ${item.status !== 'Coming Soon' ? item.color : 'text-gray-600'}`}><item.icon /></div>
-              <span className="text-[10px] uppercase font-mono font-bold text-gray-500">{item.name}</span>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* FORM & TERMINAL */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
-          <div className="lg:col-span-5 bg-black/40 border border-white/10 p-8 rounded-[2rem]">
-            <h2 className="text-xl font-nasalization text-alien-green mb-8 flex items-center gap-3"><Send className="w-5 h-5" /> Secure Form</h2>
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <Input placeholder="Identity" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="bg-zinc-900/50 border-white/10 text-white" />
-              <Input placeholder="Email" type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="bg-zinc-900/50 border-white/10 text-white" />
-              <Input placeholder="Subject" value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="bg-zinc-900/50 border-white/10 text-white" />
-              <Textarea placeholder="Message..." rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="bg-zinc-900/50 border-white/10 text-white" />
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-alien-green hover:bg-alien-gold text-black font-extrabold h-14 rounded-xl transition-all shadow-[0_0_20px_rgba(57,255,20,0.3)]">
-                {isSubmitting ? <Loader2 className="animate-spin" /> : 'ESTABLISH LINK'}
-              </Button>
-            </form>
+    <div className="min-h-screen bg-transparent pb-24 font-exo overflow-x-hidden selection:bg-alien-green/30 selection:text-alien-green">
+      <main className="max-w-7xl mx-auto px-4 pt-16">
+        
+        {/* ═══════════════════════════════════════════════════════════════════
+            HERO SECTION - Original design with green/gold cosmic effects
+        ═══════════════════════════════════════════════════════════════════ */}
+        <motion.section 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 1 }}
+          className="relative flex flex-col items-center text-center mb-20 py-16"
+        >
+          {/* Cosmic glow background */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-alien-green/10 rounded-full blur-[120px] animate-pulse" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-alien-gold/10 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '1s' }} />
           </div>
 
-          <div className="lg:col-span-7 flex flex-col h-[550px] bg-black border border-alien-green/20 rounded-[2rem] overflow-hidden">
-            <div className="bg-zinc-900/80 p-4 border-b border-white/5 flex justify-between items-center px-8 text-alien-green">
-              <span className="text-[10px] font-mono uppercase opacity-70">AiTor_Core_v6.9</span>
-              <Terminal className="w-4 h-4" />
+          {/* Title with official characters */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative text-5xl sm:text-6xl md:text-8xl font-nasalization mb-6 drop-shadow-[0_0_40px_rgba(57,255,20,0.3)]"
+          >
+            <span className="text-alien-green drop-shadow-[0_0_20px_rgba(57,255,20,0.5)]">Contact</span>
+            <span className="text-white mx-4">Us</span>
+          </motion.h1>
+
+          {/* Brand name with official characters */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg sm:text-xl md:text-2xl font-nasalization mb-8"
+          >
+            <span className="text-alien-green">Δlieπ</span>
+            <span className="text-alien-gold">FlΦw</span>
+            <span className="text-alien-green"> $pac€</span>
+            <span className="text-alien-gold"> DAO</span>
+          </motion.p>
+
+          {/* Subtitle */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-muted-foreground max-w-2xl text-sm sm:text-base font-exo"
+          >
+            Connect with our cosmic community through multiple channels. 
+            We're here to help you navigate the Web3 universe.
+          </motion.p>
+
+          {/* Decorative node with lines */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="relative mt-12"
+          >
+            {/* Central node */}
+            <div className="relative">
+              <div className="w-4 h-4 bg-alien-green rounded-full shadow-[0_0_20px_rgba(57,255,20,0.8),0_0_40px_rgba(57,255,20,0.4)]" />
+              <div className="absolute inset-0 w-4 h-4 bg-alien-green/50 rounded-full animate-ping" />
             </div>
-            <div ref={terminalRef} className="flex-1 p-8 font-mono text-[11px] space-y-4 overflow-y-auto text-alien-green/90 leading-relaxed">
-              {terminalHistory.map((m, i) => (
-                <div key={i} className={m.type === 'ai' ? 'opacity-100' : 'text-alien-gold font-bold'}>
-                  <span className="mr-3 opacity-30">{m.type === 'ai' ? '➜' : 'u:/>'}</span>{m.text}
-                </div>
+            
+            {/* Lines radiating from node */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 0.6, scaleX: 1 }}
+                  transition={{ duration: 0.6, delay: 1 + i * 0.1 }}
+                  className="absolute h-[1px] origin-left"
+                  style={{
+                    width: `${60 + i * 10}px`,
+                    transform: `rotate(${i * 45}deg)`,
+                    background: i % 2 === 0 
+                      ? 'linear-gradient(90deg, hsl(var(--alien-green)), transparent)'
+                      : 'linear-gradient(90deg, hsl(var(--alien-gold)), transparent)'
+                  }}
+                />
               ))}
-              {/* CORRECCIÓN VERCEL: Caracteres > escapados */}
-              {isTyping && <div className="animate-pulse opacity-40">{" >>> "} Procesando señal neuronal...</div>}
             </div>
-            <form onSubmit={handleTerminalSubmit} className="p-5 bg-zinc-900/30 border-t border-white/5 flex items-center">
-              <input value={terminalInput} onChange={e => setTerminalInput(e.target.value)} className="bg-transparent border-none outline-none flex-1 text-alien-green font-mono text-sm" placeholder="Ejecutar comando..." />
-            </form>
+          </motion.div>
+        </motion.section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            QUICK ACCESS - Documentation & Support Cards
+        ═══════════════════════════════════════════════════════════════════ */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <FileText className="w-6 h-6 text-alien-gold" />
+            <h2 className="text-2xl font-nasalization text-alien-gold">Quick Access</h2>
           </div>
-        </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.a 
+              href="https://alienflowspace.gitbook.io" 
+              target="_blank" 
+              rel="noreferrer" 
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group relative p-8 bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-3xl hover:border-blue-500/50 transition-all overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex flex-col items-center text-center">
+                <div className="p-4 bg-blue-500/20 rounded-2xl mb-4 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-shadow">
+                  <BrandLogos.GitBook />
+                </div>
+                <h3 className="text-white font-nasalization text-lg mb-2">Documentation</h3>
+                <p className="text-muted-foreground text-sm">Complete guides & tutorials</p>
+              </div>
+            </motion.a>
+
+            <motion.a 
+              href="/privacy-policy" 
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group relative p-8 bg-gradient-to-br from-alien-green/10 to-alien-green/5 border border-alien-green/20 rounded-3xl hover:border-alien-green/50 transition-all overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-alien-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex flex-col items-center text-center">
+                <div className="p-4 bg-alien-green/20 rounded-2xl mb-4 group-hover:shadow-[0_0_30px_rgba(57,255,20,0.3)] transition-shadow">
+                  <ShieldAlert className="w-6 h-6 text-alien-green" />
+                </div>
+                <h3 className="text-white font-nasalization text-lg mb-2">Privacy Policy</h3>
+                <p className="text-muted-foreground text-sm">Data protection & transparency</p>
+              </div>
+            </motion.a>
+
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group relative p-8 bg-gradient-to-br from-alien-gold/10 to-alien-gold/5 border border-alien-gold/20 rounded-3xl hover:border-alien-gold/50 transition-all overflow-hidden cursor-pointer"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex flex-col items-center text-center">
+                <div className="p-4 bg-alien-gold/20 rounded-2xl mb-4 group-hover:shadow-[0_0_30px_rgba(240,216,130,0.3)] transition-shadow">
+                  <LifeBuoy className="w-6 h-6 text-alien-gold" />
+                </div>
+                <h3 className="text-white font-nasalization text-lg mb-2">Support Center</h3>
+                <p className="text-muted-foreground text-sm">Get help from our team</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            SOCIAL CHANNELS - Official icons with platform colors
+        ═══════════════════════════════════════════════════════════════════ */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <Globe className="w-6 h-6 text-alien-green" />
+            <h2 className="text-2xl font-nasalization text-alien-green">Official Channels</h2>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {socialLinks.map((item, i) => (
+              <motion.a 
+                key={item.name} 
+                href={item.link} 
+                target="_blank" 
+                rel="noreferrer"
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className={`relative flex flex-col items-center p-6 rounded-2xl border bg-white/[0.02] backdrop-blur-sm transition-all group
+                  ${item.status === 'Coming Soon' 
+                    ? 'opacity-40 grayscale cursor-not-allowed border-white/5' 
+                    : 'border-white/10 hover:border-alien-green/40 hover:bg-white/[0.05] hover:shadow-[0_8px_32px_rgba(57,255,20,0.1)]'
+                  }`}
+              >
+                {item.status === 'Coming Soon' && (
+                  <span className="absolute top-2 right-2 text-[8px] font-mono bg-white/10 px-1.5 py-0.5 rounded-full">Soon</span>
+                )}
+                <div className="mb-3 transition-transform group-hover:scale-110">
+                  <item.icon />
+                </div>
+                <span className="text-xs font-nasalization text-white/80 mb-1">{item.name}</span>
+                <span className="text-[10px] font-mono text-muted-foreground">{item.handle}</span>
+              </motion.a>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            CONTACT FORM & TERMINAL - Communication Hub
+        ═══════════════════════════════════════════════════════════════════ */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <MessageSquare className="w-6 h-6 text-alien-gold" />
+            <h2 className="text-2xl font-nasalization text-alien-gold">Communication Hub</h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Contact Form */}
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="lg:col-span-5 relative bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl border border-alien-green/20 p-8 rounded-[2rem] overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-alien-green/5 to-transparent pointer-events-none" />
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-8">
+                  <Send className="w-5 h-5 text-alien-green" />
+                  <h3 className="text-xl font-nasalization text-alien-green">Secure Transmission</h3>
+                </div>
+                
+                <form onSubmit={handleFormSubmit} className="space-y-5">
+                  <div className="relative">
+                    <Input 
+                      placeholder="Your Name" 
+                      value={formData.name} 
+                      onChange={e => setFormData({...formData, name: e.target.value})} 
+                      className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-12 placeholder:text-muted-foreground/60" 
+                    />
+                  </div>
+                  <Input 
+                    placeholder="Email Address" 
+                    type="email" 
+                    value={formData.email} 
+                    onChange={e => setFormData({...formData, email: e.target.value})} 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-12 placeholder:text-muted-foreground/60" 
+                  />
+                  <Input 
+                    placeholder="Subject" 
+                    value={formData.subject} 
+                    onChange={e => setFormData({...formData, subject: e.target.value})} 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-12 placeholder:text-muted-foreground/60" 
+                  />
+                  <Textarea 
+                    placeholder="Your message to the cosmos..." 
+                    rows={5} 
+                    value={formData.message} 
+                    onChange={e => setFormData({...formData, message: e.target.value})} 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl placeholder:text-muted-foreground/60 resize-none" 
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    className="w-full bg-gradient-to-r from-alien-green to-alien-green/80 hover:from-alien-gold hover:to-alien-gold/80 text-black font-nasalization h-14 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(57,255,20,0.3)] hover:shadow-[0_0_40px_rgba(240,216,130,0.4)]"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="animate-spin mr-2" />
+                    ) : (
+                      <Send className="mr-2 w-4 h-4" />
+                    )}
+                    {isSubmitting ? 'Transmitting...' : 'Establish Link'}
+                  </Button>
+                </form>
+              </div>
+            </motion.div>
+
+            {/* AI Terminal */}
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="lg:col-span-7 flex flex-col h-[580px] bg-black/80 backdrop-blur-xl border border-alien-gold/20 rounded-[2rem] overflow-hidden shadow-[0_0_60px_rgba(240,216,130,0.1)]"
+            >
+              {/* Terminal Header */}
+              <div className="bg-gradient-to-r from-zinc-900/90 to-zinc-800/90 p-4 border-b border-alien-gold/20 flex justify-between items-center px-8">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 bg-red-500/80 rounded-full" />
+                    <div className="w-3 h-3 bg-yellow-500/80 rounded-full" />
+                    <div className="w-3 h-3 bg-green-500/80 rounded-full" />
+                  </div>
+                  <span className="text-[10px] font-mono uppercase text-alien-gold/70 ml-4">AiTor_Neural_Core_v6.9</span>
+                </div>
+                <Terminal className="w-4 h-4 text-alien-gold/50" />
+              </div>
+
+              {/* Terminal Content */}
+              <div ref={terminalRef} className="flex-1 p-8 font-mono text-[12px] space-y-4 overflow-y-auto text-alien-green/90 leading-relaxed bg-gradient-to-b from-black/50 to-black/80">
+                {terminalHistory.map((m, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className={m.type === 'ai' ? 'text-alien-green' : 'text-alien-gold font-bold'}
+                  >
+                    <span className="mr-3 opacity-50">{m.type === 'ai' ? '➜' : 'u:/>'}</span>
+                    {m.text}
+                  </motion.div>
+                ))}
+                {isTyping && (
+                  <div className="flex items-center gap-2 text-alien-gold/60">
+                    <span className="mr-3 opacity-50">➜</span>
+                    <span>Processing neural signal</span>
+                    <span className="flex gap-1">
+                      <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Terminal Input */}
+              <form onSubmit={handleTerminalSubmit} className="p-5 bg-zinc-900/50 border-t border-alien-gold/10 flex items-center gap-4">
+                <span className="text-alien-gold/50 font-mono text-sm">{'>'}</span>
+                <input 
+                  value={terminalInput} 
+                  onChange={e => setTerminalInput(e.target.value)} 
+                  className="bg-transparent border-none outline-none flex-1 text-alien-green font-mono text-sm placeholder:text-alien-green/30" 
+                  placeholder="Enter command or ask a question..." 
+                />
+                <Button type="submit" size="sm" variant="ghost" className="text-alien-gold hover:text-alien-gold hover:bg-alien-gold/10">
+                  <Send className="w-4 h-4" />
+                </Button>
+              </form>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            NEWSLETTER SECTION
+        ═══════════════════════════════════════════════════════════════════ */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <Sparkles className="w-6 h-6 text-alien-gold" />
+            <h2 className="text-2xl font-nasalization text-alien-gold">Stay Connected</h2>
+          </div>
+
+          <div className="max-w-xl mx-auto">
+            <NewsletterSubscription />
+          </div>
+        </motion.section>
+
       </main>
     </div>
   );
