@@ -2,23 +2,46 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, Terminal, Loader2, ShieldAlert, LifeBuoy, FileText, MessageSquare, Globe, Users, Sparkles } from 'lucide-react';
+import { Send, Terminal, Loader2, ShieldAlert, LifeBuoy, FileText, MessageSquare, Globe, Sparkles, ExternalLink, Building2, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 
 /**
- * BRAND LOGOS - Official colors for each platform
+ * BRAND LOGOS - Official colors and icons for each platform
+ * Alphabetically organized for maintainability
  */
 const BrandLogos = {
   Discord: () => (
     <svg viewBox="0 0 24 24" fill="#5865F2" className="w-6 h-6"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
   ),
   DoraHacks: () => (
-    <svg viewBox="0 0 24 24" fill="#FF6B35" className="w-6 h-6"><path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm8.66 16.75L12 21.75l-8.66-5V7.25L12 2.25l8.66 5v9.5zM12 5.5l5.5 3.2v6.6l-5.5 3.2-5.5-3.2v-6.6L12 5.5z"/></svg>
+    <svg viewBox="0 0 200 200" className="w-6 h-6">
+      <defs>
+        <linearGradient id="dorahacks-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#00D4AA"/>
+          <stop offset="50%" stopColor="#00B4D8"/>
+          <stop offset="100%" stopColor="#7B2CBF"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#dorahacks-gradient)" d="M100 0L183.3 50v100L100 200L16.7 150V50L100 0zm0 20L33.3 60v80L100 180l66.7-40V60L100 20zm0 30l40 24v48l-40 24-40-24V74l40-24z"/>
+    </svg>
   ),
   Facebook: () => (
     <svg viewBox="0 0 24 24" fill="#1877F2" className="w-6 h-6"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  ),
+  Farcaster: () => (
+    <svg viewBox="0 0 1000 1000" className="w-6 h-6">
+      <defs>
+        <linearGradient id="farcaster-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#8B5CF6"/>
+          <stop offset="100%" stopColor="#6366F1"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#farcaster-gradient)" d="M257.778 155.556H742.222V844.444H671.111V528.889H670.414C662.554 441.677 589.258 373.333 500 373.333C410.742 373.333 337.446 441.677 329.586 528.889H328.889V844.444H257.778V155.556Z"/>
+      <path fill="url(#farcaster-gradient)" d="M128.889 253.333L157.778 351.111H182.222V746.667C169.949 746.667 160 756.616 160 768.889V795.556H155.556C143.283 795.556 133.333 805.505 133.333 817.778V844.444H382.222V817.778C382.222 805.505 372.273 795.556 360 795.556H355.556V768.889C355.556 756.616 345.606 746.667 333.333 746.667H306.667V351.111H331.111L360 253.333H128.889Z"/>
+      <path fill="url(#farcaster-gradient)" d="M640 253.333L668.889 351.111H693.333V746.667C681.06 746.667 671.111 756.616 671.111 768.889V795.556H666.667C654.394 795.556 644.444 805.505 644.444 817.778V844.444H893.333V817.778C893.333 805.505 883.384 795.556 871.111 795.556H866.667V768.889C866.667 756.616 856.717 746.667 844.444 746.667H817.778V351.111H842.222L871.111 253.333H640Z"/>
+    </svg>
   ),
   GitBook: () => (
     <svg viewBox="0 0 24 24" fill="#3884FF" className="w-6 h-6"><path d="M10.802 17.77a.703.703 0 11-.002 1.406.703.703 0 01.002-1.406m11.024-4.347a.703.703 0 11.001-1.406.703.703 0 01-.001 1.406m0-2.876a2.176 2.176 0 00-2.174 2.174c0 .233.039.465.115.691l-7.181 3.823a2.165 2.165 0 00-1.784-.937c-.829 0-1.584.475-1.95 1.216l-6.451-3.402c-.682-.358-1.192-1.48-1.138-2.502.028-.533.212-.947.493-1.107.178-.1.392-.092.62.027l.042.023c1.71.9 7.304 3.847 7.54 3.956.363.169.565.237 1.185-.057l11.564-6.014c.17-.064.368-.227.368-.474 0-.342-.354-.477-.355-.477-.658-.315-1.669-.788-2.655-1.25-2.108-.987-4.497-2.105-5.546-2.655-.906-.474-1.635-.074-1.765.006l-.252.125C7.78 6.048 1.46 9.178 1.1 9.397.457 9.789.058 10.57.006 11.539c-.08 1.537.703 3.14 1.824 3.727l6.822 3.518a2.175 2.175 0 002.15 1.862 2.177 2.177 0 002.173-2.14l7.514-4.073c.38.298.853.461 1.337.461A2.176 2.176 0 0024 12.72a2.176 2.176 0 00-2.174-2.174"/></svg>
@@ -27,7 +50,15 @@ const BrandLogos = {
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
   ),
   HackMD: () => (
-    <svg viewBox="0 0 24 24" fill="#6DB33F" className="w-6 h-6"><path d="M14.28 1.984c.32 0 .584.264.584.584V21.43c0 .32-.264.584-.584.584h-4.56c-.32 0-.584-.264-.584-.584V2.568c0-.32.264-.584.584-.584h4.56zM5.38 5.744c.32 0 .584.264.584.584V17.67c0 .32-.264.584-.584.584h-4.8c-.32 0-.584-.264-.584-.584V6.328c0-.32.264-.584.584-.584h4.8zm18.04 0c.32 0 .584.264.584.584V17.67c0 .32-.264.584-.584.584h-4.8c-.32 0-.584-.264-.584-.584V6.328c0-.32.264-.584.584-.584h4.8z"/></svg>
+    <svg viewBox="0 0 24 24" className="w-6 h-6">
+      <defs>
+        <linearGradient id="hackmd-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#39FF14"/>
+          <stop offset="100%" stopColor="#00D4AA"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#hackmd-gradient)" d="M2 4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm3 1v14h3V5H5zm5 0v14h4V5h-4zm6 0v14h3V5h-3z"/>
+    </svg>
   ),
   Instagram: () => (
     <svg viewBox="0 0 24 24" className="w-6 h-6">
@@ -114,20 +145,22 @@ const Contact: React.FC = () => {
     }, 800);
   };
 
+  // Alphabetically organized social links
   const socialLinks = [
     { name: 'Discord', icon: BrandLogos.Discord, link: '#', handle: '@AlienFlowSpace', status: 'Coming Soon' },
-    { name: 'DoraHacks', icon: BrandLogos.DoraHacks, link: 'https://dorahacks.io/hacker/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
-    { name: 'Facebook', icon: BrandLogos.Facebook, link: 'https://www.facebook.com/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
-    { name: 'GitBook', icon: BrandLogos.GitBook, link: 'https://alienflowspace.gitbook.io', handle: 'Docs', status: 'Active' },
-    { name: 'GitHub', icon: BrandLogos.GitHub, link: 'https://github.com/Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
-    { name: 'HackMD', icon: BrandLogos.HackMD, link: 'https://hackmd.io/@Alien69Flow', handle: '@Alien69Flow', status: 'Active' },
-    { name: 'Instagram', icon: BrandLogos.Instagram, link: 'https://www.instagram.com/alien69flow/', handle: '@alien69flow', status: 'Active' },
-    { name: 'LinkedIn', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', handle: 'Co & @alien69flow', status: 'Active', secondaryLink: 'https://linkedin.com/in/alien69flow' },
-    { name: 'Reddit', icon: BrandLogos.Reddit, link: 'https://reddit.com/user/Alien69Flow', handle: 'u/Alien69Flow', status: 'Active' },
-    { name: 'Telegram', icon: BrandLogos.Telegram, link: 'https://t.me/AlienFlow', handle: '@AlienFlow', status: 'Active' },
-    { name: 'Threads', icon: BrandLogos.Threads, link: 'https://threads.net/@alien69flow', handle: '@alien69flow', status: 'Active' },
+    { name: 'DoraHacks', icon: BrandLogos.DoraHacks, link: 'https://dorahacks.io/hacker/Alien69Flow', handle: '@Alien69Flow' },
+    { name: 'Facebook', icon: BrandLogos.Facebook, link: 'https://www.facebook.com/Alien69Flow', handle: '@Alien69Flow' },
+    { name: 'Farcaster', icon: BrandLogos.Farcaster, link: 'https://farcaster.xyz/alien69flow', handle: '@alien69flow' },
+    { name: 'GitBook', icon: BrandLogos.GitBook, link: 'https://alienflowspace.gitbook.io', handle: 'Docs' },
+    { name: 'GitHub', icon: BrandLogos.GitHub, link: 'https://github.com/Alien69Flow', handle: '@Alien69Flow' },
+    { name: 'HackMD', icon: BrandLogos.HackMD, link: 'https://hackmd.io/@Alien69Flow', handle: '@Alien69Flow' },
+    { name: 'Instagram', icon: BrandLogos.Instagram, link: 'https://www.instagram.com/alien69flow/', handle: '@alien69flow' },
+    { name: 'LinkedIn', icon: BrandLogos.LinkedIn, link: 'https://linkedin.com/company/alienflowspace', handle: 'Co & Founder', secondaryLink: 'https://linkedin.com/in/alien69flow' },
+    { name: 'Reddit', icon: BrandLogos.Reddit, link: 'https://reddit.com/user/Alien69Flow', handle: 'u/Alien69Flow' },
+    { name: 'Telegram', icon: BrandLogos.Telegram, link: 'https://t.me/AlienFlow', handle: '@AlienFlow' },
+    { name: 'Threads', icon: BrandLogos.Threads, link: 'https://threads.net/@alien69flow', handle: '@alien69flow' },
     { name: 'TikTok', icon: BrandLogos.TikTok, link: '#', handle: '@alien69flow', status: 'Coming Soon' },
-    { name: 'X', icon: BrandLogos.X, link: 'https://x.com/alien69flow', handle: '@alien69flow', status: 'Active' }
+    { name: 'X', icon: BrandLogos.X, link: 'https://x.com/alien69flow', handle: '@alien69flow' }
   ];
 
   return (
@@ -135,94 +168,61 @@ const Contact: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 pt-16">
         
         {/* ═══════════════════════════════════════════════════════════════════
-            HERO SECTION - Original cosmic green/gold design restored
+            HERO SECTION - Quantum High-Tech Aesthetic
         ═══════════════════════════════════════════════════════════════════ */}
         <motion.section 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
-          transition={{ duration: 1.2 }}
-          className="relative flex flex-col items-center text-center mb-24 py-20"
+          transition={{ duration: 1 }}
+          className="relative flex flex-col items-center text-center mb-20 py-16"
         >
-          {/* Multi-layer cosmic glow background */}
+          {/* Multi-layer quantum glow background */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-alien-green/20 via-alien-green/5 to-transparent rounded-full blur-[100px] animate-pulse" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-alien-gold/15 via-alien-gold/5 to-transparent rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '1.5s' }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-alien-green/10 rounded-full blur-[60px] animate-pulse" style={{ animationDelay: '0.7s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-alien-green/15 via-alien-green/5 to-transparent rounded-full blur-[80px] animate-pulse" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-alien-gold/12 via-alien-gold/3 to-transparent rounded-full blur-[60px] animate-pulse" style={{ animationDelay: '1s' }} />
           </div>
 
-          {/* Main Title */}
+          {/* Main Title - Refined sizing */}
           <motion.h1 
-            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2, type: 'spring', stiffness: 100 }}
-            className="relative text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-nasalization mb-8 tracking-wider"
+            transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 120 }}
+            className="relative text-4xl md:text-5xl lg:text-6xl font-nasalization mb-6 tracking-wide"
           >
-            <span className="text-alien-green drop-shadow-[0_0_30px_rgba(57,255,20,0.6)] [text-shadow:0_0_60px_rgba(57,255,20,0.4)]">
-              Contact
-            </span>
-            <span className="text-white mx-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-              Us
+            <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_25px_rgba(57,255,20,0.5)]">
+              Contact Us
             </span>
           </motion.h1>
 
-          {/* Subtitle with original text */}
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed font-exo px-4"
-          >
-            <span className="text-muted-foreground">Have questions or want to join the </span>
-            <span className="text-alien-green font-nasalization drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]">Δlieπ</span>
-            <span className="text-alien-gold font-nasalization drop-shadow-[0_0_10px_rgba(240,216,130,0.5)]">FlΦw</span>
-            <span className="text-alien-green font-nasalization drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]"> $pac€</span>
-            <span className="text-alien-gold font-nasalization drop-shadow-[0_0_10px_rgba(240,216,130,0.5)]"> DAO</span>
-            <span className="text-muted-foreground">?</span>
-            <br className="hidden sm:block" />
-            <span className="text-muted-foreground"> Reach out through any of these cosmic channels:</span>
-          </motion.p>
-
-          {/* Decorative cosmic node with radiating lines */}
+          {/* Separator: Central dot with gradient lines */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.9, type: 'spring', stiffness: 120 }}
-            className="relative mt-16"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center justify-center gap-0 mb-8"
           >
-            {/* Central glowing node */}
-            <div className="relative">
-              <div className="w-5 h-5 bg-gradient-to-br from-alien-green via-alien-gold to-alien-green rounded-full shadow-[0_0_30px_rgba(57,255,20,0.9),0_0_60px_rgba(57,255,20,0.5),0_0_100px_rgba(240,216,130,0.3)]" />
-              <div className="absolute inset-0 w-5 h-5 bg-alien-green/60 rounded-full animate-ping" />
-              <div className="absolute -inset-2 w-9 h-9 border border-alien-green/30 rounded-full animate-pulse" />
-            </div>
-            
-            {/* Radiating lines - green and gold alternating */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={{ opacity: 0.7, scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 1.2 + i * 0.08 }}
-                  className="absolute h-[2px] origin-left"
-                  style={{
-                    width: `${80 + i * 12}px`,
-                    transform: `rotate(${i * 30}deg)`,
-                    background: i % 2 === 0 
-                      ? 'linear-gradient(90deg, rgba(57,255,20,0.8), rgba(57,255,20,0.1), transparent)'
-                      : 'linear-gradient(90deg, rgba(240,216,130,0.8), rgba(240,216,130,0.1), transparent)'
-                  }}
-                />
-              ))}
-            </div>
-            
-            {/* Outer decorative ring */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 0.4, scale: 1 }}
-              transition={{ duration: 1.2, delay: 1.5 }}
-              className="absolute -inset-20 border border-dashed border-alien-green/20 rounded-full"
-            />
+            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-alien-green/60 to-alien-green/80" />
+            <div className="w-2 h-2 rounded-full bg-gradient-to-br from-alien-green to-alien-gold shadow-[0_0_12px_rgba(57,255,20,0.8)] mx-2" />
+            <div className="w-24 h-[1px] bg-gradient-to-l from-transparent via-alien-gold/60 to-alien-gold/80" />
+          </motion.div>
+
+          {/* Welcome Message Bubble - Compact & Sophisticated */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="relative max-w-2xl px-6 py-4 rounded-2xl backdrop-blur-md bg-black/30 border border-alien-green/40 shadow-[0_0_30px_rgba(57,255,20,0.1)]"
+          >
+            <p className="text-base lg:text-lg leading-relaxed font-exo">
+              <span className="text-muted-foreground">Have questions or want to join the </span>
+              <span className="text-alien-green font-nasalization drop-shadow-[0_0_8px_rgba(57,255,20,0.6)]">Δlieπ</span>
+              <span className="text-alien-gold font-nasalization drop-shadow-[0_0_8px_rgba(240,216,130,0.6)]">FlΦw</span>
+              <span className="text-alien-green font-nasalization drop-shadow-[0_0_8px_rgba(57,255,20,0.6)]"> $pac€</span>
+              <span className="text-alien-gold font-nasalization drop-shadow-[0_0_8px_rgba(240,216,130,0.6)]"> DAO</span>
+              <span className="text-muted-foreground">?</span>
+              <br />
+              <span className="text-muted-foreground">Reach out through any of these cosmic channels:</span>
+            </p>
           </motion.div>
         </motion.section>
 
@@ -233,107 +233,154 @@ const Contact: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <FileText className="w-6 h-6 text-alien-gold" />
-            <h2 className="text-2xl font-nasalization text-alien-gold">Quick Access</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <FileText className="w-5 h-5 text-alien-gold" />
+            <h2 className="text-xl font-nasalization text-alien-gold">Quick Access</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <motion.a 
               href="https://alienflowspace.gitbook.io" 
               target="_blank" 
               rel="noreferrer" 
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="group relative p-8 bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-3xl hover:border-blue-500/50 transition-all overflow-hidden"
+              whileHover={{ scale: 1.01, y: -2 }}
+              className="group relative p-6 bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl hover:border-blue-500/50 transition-all overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center">
-                <div className="p-4 bg-blue-500/20 rounded-2xl mb-4 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-shadow">
+                <div className="p-3 bg-blue-500/20 rounded-xl mb-3 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-shadow">
                   <BrandLogos.GitBook />
                 </div>
-                <h3 className="text-white font-nasalization text-lg mb-2">Documentation</h3>
-                <p className="text-muted-foreground text-sm">Complete guides & tutorials</p>
+                <h3 className="text-white font-nasalization text-base mb-1">Documentation</h3>
+                <p className="text-muted-foreground text-xs">Complete guides & tutorials</p>
               </div>
             </motion.a>
 
             <motion.a 
               href="/privacy-policy" 
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="group relative p-8 bg-gradient-to-br from-alien-green/10 to-alien-green/5 border border-alien-green/20 rounded-3xl hover:border-alien-green/50 transition-all overflow-hidden"
+              whileHover={{ scale: 1.01, y: -2 }}
+              className="group relative p-6 bg-gradient-to-br from-alien-green/10 to-alien-green/5 border border-alien-green/20 rounded-2xl hover:border-alien-green/50 transition-all overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-alien-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center">
-                <div className="p-4 bg-alien-green/20 rounded-2xl mb-4 group-hover:shadow-[0_0_30px_rgba(57,255,20,0.3)] transition-shadow">
+                <div className="p-3 bg-alien-green/20 rounded-xl mb-3 group-hover:shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-shadow">
                   <ShieldAlert className="w-6 h-6 text-alien-green" />
                 </div>
-                <h3 className="text-white font-nasalization text-lg mb-2">Privacy Policy</h3>
-                <p className="text-muted-foreground text-sm">Data protection & transparency</p>
+                <h3 className="text-white font-nasalization text-base mb-1">Privacy Policy</h3>
+                <p className="text-muted-foreground text-xs">Data protection & transparency</p>
               </div>
             </motion.a>
 
             <motion.a 
               href="mailto:alien69flow@proton.me?subject=Support%20Request"
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="group relative p-8 bg-gradient-to-br from-alien-gold/10 to-alien-gold/5 border border-alien-gold/20 rounded-3xl hover:border-alien-gold/50 transition-all overflow-hidden"
+              whileHover={{ scale: 1.01, y: -2 }}
+              className="group relative p-6 bg-gradient-to-br from-alien-gold/10 to-alien-gold/5 border border-alien-gold/20 rounded-2xl hover:border-alien-gold/50 transition-all overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-alien-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center">
-                <div className="p-4 bg-alien-gold/20 rounded-2xl mb-4 group-hover:shadow-[0_0_30px_rgba(240,216,130,0.3)] transition-shadow">
+                <div className="p-3 bg-alien-gold/20 rounded-xl mb-3 group-hover:shadow-[0_0_20px_rgba(240,216,130,0.3)] transition-shadow">
                   <LifeBuoy className="w-6 h-6 text-alien-gold" />
                 </div>
-                <h3 className="text-white font-nasalization text-lg mb-2">Support Center</h3>
-                <p className="text-muted-foreground text-sm">Email: alien69flow@proton.me</p>
+                <h3 className="text-white font-nasalization text-base mb-1">Support Center</h3>
+                <p className="text-muted-foreground text-xs">alien69flow@proton.me</p>
               </div>
             </motion.a>
           </div>
         </motion.section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SOCIAL CHANNELS - Official icons with platform colors
+            SOCIAL CHANNELS - Alphabetically organized with official icons
         ═══════════════════════════════════════════════════════════════════ */}
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <Globe className="w-6 h-6 text-alien-green" />
-            <h2 className="text-2xl font-nasalization text-alien-green">Official Channels</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <Globe className="w-5 h-5 text-alien-green" />
+            <h2 className="text-xl font-nasalization text-alien-green">Official Channels</h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {socialLinks.map((item, i) => (
-              <motion.a 
-                key={item.name} 
-                href={item.link} 
-                target="_blank" 
-                rel="noreferrer"
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                className={`relative flex flex-col items-center p-6 rounded-2xl border bg-white/[0.02] backdrop-blur-sm transition-all group
-                  ${item.status === 'Coming Soon' 
-                    ? 'opacity-40 grayscale cursor-not-allowed border-white/5' 
-                    : 'border-white/10 hover:border-alien-green/40 hover:bg-white/[0.05] hover:shadow-[0_8px_32px_rgba(57,255,20,0.1)]'
-                  }`}
-              >
-                {item.status === 'Coming Soon' && (
-                  <span className="absolute top-2 right-2 text-[8px] font-mono bg-white/10 px-1.5 py-0.5 rounded-full">Soon</span>
-                )}
-                <div className="mb-3 transition-transform group-hover:scale-110">
-                  <item.icon />
-                </div>
-                <span className="text-xs font-nasalization text-white/80 mb-1">{item.name}</span>
-                <span className="text-[10px] font-mono text-muted-foreground">{item.handle}</span>
-              </motion.a>
-            ))}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+            {socialLinks.map((item, i) => {
+              const isComingSoon = item.status === 'Coming Soon';
+              const isLinkedIn = item.name === 'LinkedIn';
+              
+              // LinkedIn special card with dual buttons
+              if (isLinkedIn) {
+                return (
+                  <motion.div 
+                    key={item.name}
+                    initial={{ opacity: 0, y: 15 }} 
+                    whileInView={{ opacity: 1, y: 0 }} 
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.03 }}
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    className="relative flex flex-col items-center p-4 rounded-xl border bg-white/[0.02] backdrop-blur-sm border-white/10 hover:border-[#0A66C2]/40 hover:bg-white/[0.04] transition-all group col-span-2 sm:col-span-1"
+                  >
+                    <div className="mb-2 transition-transform group-hover:scale-105">
+                      <item.icon />
+                    </div>
+                    <span className="text-xs font-nasalization text-white/80 mb-2">{item.name}</span>
+                    
+                    {/* Dual buttons for LinkedIn */}
+                    <div className="flex gap-1.5 w-full">
+                      <a 
+                        href={item.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-[#0A66C2]/20 hover:bg-[#0A66C2]/40 border border-[#0A66C2]/30 transition-all text-[9px] font-mono text-white/80 hover:text-white"
+                      >
+                        <Building2 className="w-3 h-3" />
+                        Company
+                      </a>
+                      <a 
+                        href={item.secondaryLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-alien-gold/10 hover:bg-alien-gold/25 border border-alien-gold/30 transition-all text-[9px] font-mono text-white/80 hover:text-white"
+                      >
+                        <User className="w-3 h-3" />
+                        Founder
+                      </a>
+                    </div>
+                  </motion.div>
+                );
+              }
+              
+              return (
+                <motion.a 
+                  key={item.name} 
+                  href={isComingSoon ? undefined : item.link}
+                  target={isComingSoon ? undefined : "_blank"}
+                  rel="noreferrer"
+                  initial={{ opacity: 0, y: 15 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.03 }}
+                  whileHover={isComingSoon ? {} : { scale: 1.01, y: -2 }}
+                  className={`relative flex flex-col items-center p-4 rounded-xl border bg-white/[0.02] backdrop-blur-sm transition-all group
+                    ${isComingSoon 
+                      ? 'opacity-50 grayscale cursor-not-allowed border-white/5' 
+                      : 'border-white/10 hover:border-alien-green/30 hover:bg-white/[0.04] hover:shadow-[0_4px_20px_rgba(57,255,20,0.08)]'
+                    }`}
+                >
+                  {isComingSoon && (
+                    <span className="absolute top-1.5 right-1.5 text-[7px] font-mono bg-white/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">Soon</span>
+                  )}
+                  <div className="mb-2 transition-transform group-hover:scale-105">
+                    <item.icon />
+                  </div>
+                  <span className="text-xs font-nasalization text-white/80 mb-0.5">{item.name}</span>
+                  <span className="text-[9px] font-mono text-muted-foreground">{item.handle}</span>
+                </motion.a>
+              );
+            })}
           </div>
         </motion.section>
 
@@ -344,63 +391,61 @@ const Contact: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <MessageSquare className="w-6 h-6 text-alien-gold" />
-            <h2 className="text-2xl font-nasalization text-alien-gold">Communication Hub</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <MessageSquare className="w-5 h-5 text-alien-gold" />
+            <h2 className="text-xl font-nasalization text-alien-gold">Communication Hub</h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Contact Form */}
             <motion.div 
-              whileHover={{ scale: 1.01 }}
-              className="lg:col-span-5 relative bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl border border-alien-green/20 p-8 rounded-[2rem] overflow-hidden"
+              whileHover={{ scale: 1.005 }}
+              className="lg:col-span-5 relative bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl border border-alien-green/20 p-6 rounded-2xl overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-alien-green/5 to-transparent pointer-events-none" />
               <div className="relative">
-                <div className="flex items-center gap-3 mb-8">
-                  <Send className="w-5 h-5 text-alien-green" />
-                  <h3 className="text-xl font-nasalization text-alien-green">Secure Transmission</h3>
+                <div className="flex items-center gap-2 mb-6">
+                  <Send className="w-4 h-4 text-alien-green" />
+                  <h3 className="text-lg font-nasalization text-alien-green">Secure Transmission</h3>
                 </div>
                 
-                <form onSubmit={handleFormSubmit} className="space-y-5">
-                  <div className="relative">
-                    <Input 
-                      placeholder="Your Name" 
-                      value={formData.name} 
-                      onChange={e => setFormData({...formData, name: e.target.value})} 
-                      className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-12 placeholder:text-muted-foreground/60" 
-                    />
-                  </div>
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <Input 
+                    placeholder="Your Name" 
+                    value={formData.name} 
+                    onChange={e => setFormData({...formData, name: e.target.value})} 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
+                  />
                   <Input 
                     placeholder="Email Address" 
                     type="email" 
                     value={formData.email} 
                     onChange={e => setFormData({...formData, email: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-12 placeholder:text-muted-foreground/60" 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
                   />
                   <Input 
                     placeholder="Subject" 
                     value={formData.subject} 
                     onChange={e => setFormData({...formData, subject: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-12 placeholder:text-muted-foreground/60" 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
                   />
                   <Textarea 
                     placeholder="Your message to the cosmos..." 
-                    rows={5} 
+                    rows={4} 
                     value={formData.message} 
                     onChange={e => setFormData({...formData, message: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl placeholder:text-muted-foreground/60 resize-none" 
+                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl placeholder:text-muted-foreground/60 resize-none text-sm" 
                   />
                   <Button 
                     type="submit" 
                     disabled={isSubmitting} 
-                    className="w-full bg-gradient-to-r from-alien-green to-alien-green/80 hover:from-alien-gold hover:to-alien-gold/80 text-black font-nasalization h-14 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(57,255,20,0.3)] hover:shadow-[0_0_40px_rgba(240,216,130,0.4)]"
+                    className="w-full bg-gradient-to-r from-alien-green to-alien-green/80 hover:from-alien-gold hover:to-alien-gold/80 text-black font-nasalization h-12 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(57,255,20,0.25)] hover:shadow-[0_0_25px_rgba(240,216,130,0.35)]"
                   >
                     {isSubmitting ? (
-                      <Loader2 className="animate-spin mr-2" />
+                      <Loader2 className="animate-spin mr-2 w-4 h-4" />
                     ) : (
                       <Send className="mr-2 w-4 h-4" />
                     )}
@@ -412,50 +457,50 @@ const Contact: React.FC = () => {
 
             {/* AI Terminal */}
             <motion.div 
-              whileHover={{ scale: 1.01 }}
-              className="lg:col-span-7 flex flex-col h-[580px] bg-black/80 backdrop-blur-xl border border-alien-gold/20 rounded-[2rem] overflow-hidden shadow-[0_0_60px_rgba(240,216,130,0.1)]"
+              whileHover={{ scale: 1.005 }}
+              className="lg:col-span-7 flex flex-col h-[500px] bg-black/80 backdrop-blur-xl border border-alien-gold/20 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(240,216,130,0.08)]"
             >
               {/* Terminal Header */}
-              <div className="bg-gradient-to-r from-zinc-900/90 to-zinc-800/90 p-4 border-b border-alien-gold/20 flex justify-between items-center px-8">
+              <div className="bg-gradient-to-r from-zinc-900/90 to-zinc-800/90 p-3 border-b border-alien-gold/20 flex justify-between items-center px-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 bg-red-500/80 rounded-full" />
-                    <div className="w-3 h-3 bg-yellow-500/80 rounded-full" />
-                    <div className="w-3 h-3 bg-green-500/80 rounded-full" />
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 bg-red-500/80 rounded-full" />
+                    <div className="w-2.5 h-2.5 bg-yellow-500/80 rounded-full" />
+                    <div className="w-2.5 h-2.5 bg-green-500/80 rounded-full" />
                   </div>
-                  <span className="text-[10px] font-mono uppercase text-alien-gold/70 ml-4">AiTor_Neural_Core_v6.9</span>
+                  <span className="text-[9px] font-mono uppercase text-alien-gold/70 ml-3">AiTor_Neural_Core_v6.9</span>
                 </div>
-                <Terminal className="w-4 h-4 text-alien-gold/50" />
+                <Terminal className="w-3.5 h-3.5 text-alien-gold/50" />
               </div>
 
               {/* Terminal Content */}
-              <div ref={terminalRef} className="flex-1 p-8 font-mono text-[12px] space-y-4 overflow-y-auto text-alien-green/90 leading-relaxed bg-gradient-to-b from-black/50 to-black/80">
+              <div ref={terminalRef} className="flex-1 p-5 font-mono text-[11px] space-y-3 overflow-y-auto text-alien-green/90 leading-relaxed bg-gradient-to-b from-black/50 to-black/80">
                 {terminalHistory.map((m, i) => (
                   <motion.div 
                     key={i} 
-                    initial={{ opacity: 0, x: -10 }}
+                    initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     className={m.type === 'ai' ? 'text-alien-green' : 'text-alien-gold font-bold'}
                   >
-                    <span className="mr-3 opacity-50">{m.type === 'ai' ? '➜' : 'u:/>'}</span>
+                    <span className="mr-2 opacity-50">{m.type === 'ai' ? '➜' : 'u:/>'}</span>
                     {m.text}
                   </motion.div>
                 ))}
                 {isTyping && (
                   <div className="flex items-center gap-2 text-alien-gold/60">
-                    <span className="mr-3 opacity-50">➜</span>
+                    <span className="mr-2 opacity-50">➜</span>
                     <span>Processing neural signal</span>
-                    <span className="flex gap-1">
-                      <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <span className="flex gap-0.5">
+                      <span className="w-1 h-1 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1 h-1 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1 h-1 bg-alien-gold rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </span>
                   </div>
                 )}
               </div>
 
               {/* Terminal Input */}
-              <form onSubmit={handleTerminalSubmit} className="p-5 bg-zinc-900/50 border-t border-alien-gold/10 flex items-center gap-4">
+              <form onSubmit={handleTerminalSubmit} className="p-4 bg-zinc-900/50 border-t border-alien-gold/10 flex items-center gap-3">
                 <span className="text-alien-gold/50 font-mono text-sm">{'>'}</span>
                 <input 
                   value={terminalInput} 
@@ -463,8 +508,8 @@ const Contact: React.FC = () => {
                   className="bg-transparent border-none outline-none flex-1 text-alien-green font-mono text-sm placeholder:text-alien-green/30" 
                   placeholder="Enter command or ask a question..." 
                 />
-                <Button type="submit" size="sm" variant="ghost" className="text-alien-gold hover:text-alien-gold hover:bg-alien-gold/10">
-                  <Send className="w-4 h-4" />
+                <Button type="submit" size="sm" variant="ghost" className="text-alien-gold hover:text-alien-gold hover:bg-alien-gold/10 h-8 w-8 p-0">
+                  <Send className="w-3.5 h-3.5" />
                 </Button>
               </form>
             </motion.div>
@@ -478,12 +523,12 @@ const Contact: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <Sparkles className="w-6 h-6 text-alien-gold" />
-            <h2 className="text-2xl font-nasalization text-alien-gold">Stay Connected</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <Sparkles className="w-5 h-5 text-alien-gold" />
+            <h2 className="text-xl font-nasalization text-alien-gold">Stay Connected</h2>
           </div>
 
           <div className="max-w-xl mx-auto">
