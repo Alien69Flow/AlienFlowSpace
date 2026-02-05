@@ -206,13 +206,18 @@ const Contact: React.FC = () => {
             <div className="w-24 h-[1px] bg-gradient-to-l from-transparent via-alien-gold/60 to-alien-gold/80" />
           </motion.div>
 
-          {/* Welcome Message Bubble - Compact & Sophisticated */}
+          {/* Welcome Message Bubble - Comic-style with triangular pointer */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="relative max-w-2xl px-6 py-4 rounded-2xl backdrop-blur-md bg-black/30 border border-alien-green/40 shadow-[0_0_30px_rgba(57,255,20,0.1)]"
           >
+            {/* Comic-style triangular pointer */}
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2">
+              <div className="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-alien-green/40" />
+              <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-black/30" />
+            </div>
             <p className="text-base lg:text-lg leading-relaxed font-exo">
               <span className="text-muted-foreground">Have questions or want to join the </span>
               <span className="text-alien-green font-nasalization drop-shadow-[0_0_8px_rgba(57,255,20,0.6)]">Δlieπ</span>
