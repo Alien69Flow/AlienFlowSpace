@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { CircleDollarSign, Calendar, MessagesSquare, Database, Globe } from 'lucide-react';
+import { CircleDollarSign, Calendar, MessagesSquare } from 'lucide-react';
 
 const features = [{
   icon: <CircleDollarSign className="h-6 w-6 text-alien-gold" />,
