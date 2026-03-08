@@ -562,7 +562,7 @@ const CoNetWorKing: React.FC = () => {
                     <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full">
                       <Shield className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Governance</CardTitle>
+                    <CardTitle className="text-alien-gold font-nasalization text-2xl">Governance</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
