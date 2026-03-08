@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const LUCIDE_ICON_MAP: Record<string, React.ElementType> = { Heart, Activity, Dna };
+
 
 // --- DATA DEFINITIVA: 3 MÓDULOS CON 4 BLOQUES CADA UNO ---
 const academyModules = [
