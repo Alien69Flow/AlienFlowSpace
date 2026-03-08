@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, Coins, Leaf, Brain, GraduationCap, 
-  Zap, ExternalLink, ChevronDown, Award, CheckCircle2,
-  Heart, Activity, Dna
+  Zap, ExternalLink, ChevronDown, Award, CheckCircle2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
