@@ -2,12 +2,12 @@ import React from 'react';
 import { X, Facebook, Instagram, Mail, Disc, Send, Github, Linkedin, MessageSquare, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCurrentChineseYear } from '@/lib/chineseCalendar';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 
 const Footer = () => {
   const chineseYear = getCurrentChineseYear();
   const currentYear = new Date().getFullYear();
   
-  // 1. Redes Sociales Ordenadas Alfabéticamente
   const socialLinks = [
     { href: "https://discord.gg/alienflowspace", icon: Disc, label: "Discord", color: "#5865F2" },
     { href: "mailto:info@alienflow.space", icon: Mail, label: "Email", color: "#F0D882" },
@@ -21,7 +21,6 @@ const Footer = () => {
     { href: "https://x.com/alien69flow", icon: X, label: "X (Twitter)", color: "#1DA1F2" }
   ].sort((a, b) => a.label.localeCompare(b.label));
 
-  // 2. Navegación Ordenada Alfabéticamente (Sin duplicar Home si no quieres)
   const navLinks = [
     { to: "/about", label: "About" },
     { to: "/academy", label: "Academy" },
@@ -32,8 +31,18 @@ const Footer = () => {
     { to: "/", label: "Home" }
   ].sort((a, b) => a.label.localeCompare(b.label));
 
+  const poweredBy = [
+    { name: 'Polygon', logo: 'https://cryptologos.cc/logos/polygon-matic-logo.svg', url: 'https://polygon.technology/' },
+    { name: 'Aragon', logo: '/lovable-uploads/AragonDAOLogo.svg', url: 'https://aragon.org/' },
+    { name: 'Ethereum', logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg', url: 'https://ethereum.org/' },
+    { name: 'IPFS', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Ipfs-logo-1024-ice-text.png', url: 'https://ipfs.tech/' },
+  ];
+
   return (
-    <footer className="bg-gradient-to-br from-alien-space-dark/95 to-alien-space/90 backdrop-blur-md border-t-2 border-alien-gold/30 py-8 mt-auto relative z-30">
+    <footer className="relative bg-gradient-to-br from-alien-space-dark/95 to-alien-space/90 backdrop-blur-md border-t-0 py-8 mt-auto z-30">
+      {/* Gradient separator */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-alien-gold to-alien-green opacity-60" />
+
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
@@ -46,13 +55,22 @@ const Footer = () => {
               Uniting diverse blockchain domains under a cosmic governance structure. 
               Building the future of decentralized finance across the multiverse.
             </p>
-            <div className="flex gap-2 pt-2 flex-wrap">
-              {socialLinks.map((social, i) => (
-                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="p-2 transition-all hover:scale-110 border border-alien-gold/20 rounded-lg bg-black/20" style={{ color: social.color }}>
-                  <social.icon size={18} />
-                </a>
-              ))}
-            </div>
+            <TooltipProvider delayDuration={200}>
+              <div className="flex gap-2 pt-2 flex-wrap">
+                {socialLinks.map((social, i) => (
+                  <Tooltip key={i}>
+                    <TooltipTrigger asChild>
+                      <a href={social.href} target="_blank" rel="noopener noreferrer" className="p-2 transition-all hover:scale-110 border border-alien-gold/20 rounded-lg bg-black/20 hover:bg-black/40" style={{ color: social.color }}>
+                        <social.icon size={18} />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="bg-alien-space-dark border-alien-gold/30 text-alien-gold text-xs">
+                      {social.label}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+            </TooltipProvider>
           </div>
 
           <div>
@@ -78,7 +96,26 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-alien-gold/20 mt-8 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
+        {/* Powered By row */}
+        <div className="mt-8 pt-6 border-t border-alien-gold/10">
+          <p className="text-center text-xs text-muted-foreground font-nasalization mb-4 uppercase tracking-widest">Powered By</p>
+          <div className="flex justify-center items-center gap-6 flex-wrap">
+            {poweredBy.map((tech) => (
+              <a
+                key={tech.name}
+                href={tech.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300"
+              >
+                <img src={tech.logo} alt={tech.name} className="h-6 w-6 object-contain" />
+                <span className="text-xs text-muted-foreground font-nasalization hidden sm:inline">{tech.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-alien-gold/10 mt-6 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
           <p className="text-[10px] font-nasalization text-alien-green/50 uppercase tracking-widest">
             © {currentYear} AlienFlowSpace DAO • Cosmic Governance Enabled
           </p>

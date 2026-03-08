@@ -36,7 +36,7 @@ const ServiceCard = ({
       <div className={`mx-auto mb-4 p-3 rounded-full ${service.color}`}>
         {service.icon}
       </div>
-      <CardTitle className="text-alien-gold font-[Atomic Age] text-xl">{service.title}</CardTitle>
+      <CardTitle className="text-alien-gold font-nasalization text-xl">{service.title}</CardTitle>
     </CardHeader>
     <CardContent>
       <CardDescription className="text-gray-300 font-[Exo] text-center leading-relaxed">
@@ -76,7 +76,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color,
         <div className={`h-px bg-gradient-to-r ${colors.gradient} flex-1`}></div>
         <div className="flex items-center gap-2">
           {icon && <span className={colors.text}>{icon}</span>}
-          <h3 className={`text-2xl font-bold ${colors.text} font-[Atomic Age] px-4`}>{title}</h3>
+          <h3 className={`text-2xl font-bold ${colors.text} font-nasalization px-4`}>{title}</h3>
         </div>
         <div className={`h-px bg-gradient-to-r ${colors.gradient} flex-1`}></div>
       </div>
@@ -104,7 +104,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color,
                     <img src={partner.logo} alt={partner.name} className="w-full h-full object-contain p-1" />
                   </a>
                 </motion.div>
-                <CardTitle className={`${colors.text} font-[Atomic Age] text-lg`}>
+                <CardTitle className={`${colors.text} font-nasalization text-lg`}>
                   <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                     {partner.name}
                   </a>
@@ -459,7 +459,7 @@ const CoNetWorKing: React.FC = () => {
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing Official Logo" className="h-16 w-16 object-contain" />
             </div>
-            <h1 className="md:text-7xl font-bold text-alien-green mb-8 font-[Atomic Age, Star Wars] drop-shadow-[0_0_30px_rgba(3,255,25,0.6)] text-4xl">
+            <h1 className="md:text-7xl font-bold text-alien-green mb-8 font-nasalization drop-shadow-[0_0_30px_rgba(3,255,25,0.6)] text-4xl">
               CoNetWorKing
             </h1>
             <p className="text-2xl text-alien-gold max-w-4xl mx-auto font-[Exo] leading-relaxed drop-shadow-[0_0_20px_rgba(255,215,0,0.4)]">
@@ -478,7 +478,7 @@ const CoNetWorKing: React.FC = () => {
                       <div className="p-3 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl shadow-lg">
                         <Coins className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="font-[Atomic Age] text-glow text-lg text-alien-green">Bitcoin Rank Real-Time Price | Market Cap &amp; Volume</CardTitle>
+                      <CardTitle className="font-nasalization text-glow text-lg text-alien-green">Bitcoin Rank Real-Time Price | Market Cap &amp; Volume</CardTitle>
                     </div>
                     <div className="bg-alien-space-light/20 p-6 rounded-xl border border-alien-gold/20">
                       <div className="coinmarketcap-currency-widget" data-currencyid="1" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
@@ -492,7 +492,7 @@ const CoNetWorKing: React.FC = () => {
                       <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl shadow-lg">
                         <TrendingUp className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="font-[Atomic Age] text-xl text-glow text-alien-green">
+                      <CardTitle className="font-nasalization text-xl text-glow text-alien-green">
                         Market Sentiment
                       </CardTitle>
                     </div>
@@ -524,7 +524,7 @@ const CoNetWorKing: React.FC = () => {
                       ) : (
                         <IconComponent className="h-8 w-8 text-alien-green mx-auto mb-4 animate-pulse" />
                       )}
-                      <div className="text-2xl font-bold text-alien-gold font-[Atomic Age] mb-2">
+                      <div className="text-2xl font-bold text-alien-gold font-nasalization mb-2">
                         {stat.value}
                       </div>
                       <div className="text-gray-300 font-[Exo] text-sm mb-2">
@@ -541,7 +541,7 @@ const CoNetWorKing: React.FC = () => {
 
           {/* Services Grid */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-nasalization">
               DAO | DAPP | DEX
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -551,7 +551,7 @@ const CoNetWorKing: React.FC = () => {
 
           {/* DAO Section */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-nasalization">
               Decentralized Autonomous Organization
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -562,7 +562,7 @@ const CoNetWorKing: React.FC = () => {
                     <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full">
                       <Shield className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Governance</CardTitle>
+                    <CardTitle className="text-alien-gold font-nasalization text-2xl">Governance</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -609,7 +609,7 @@ const CoNetWorKing: React.FC = () => {
                     <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full">
                       <Zap className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Proposals</CardTitle>
+                    <CardTitle className="text-alien-gold font-nasalization text-2xl">Proposals</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -678,7 +678,7 @@ const CoNetWorKing: React.FC = () => {
 
           {/* Partners Section - Organized by Categories (Alphabetical) */}
           <div className="mb-20">
-            <h2 className="text-4xl font-bold text-alien-gold mb-4 text-center font-[Atomic Age]">
+            <h2 className="text-4xl font-bold text-alien-gold mb-4 text-center font-nasalization">
               Our Partners Ecosystem
             </h2>
             <p className="text-center text-gray-300 font-[Exo] mb-12 max-w-3xl mx-auto">
@@ -795,7 +795,7 @@ const CoNetWorKing: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-nasalization">
               Global Community
             </h2>
             
@@ -821,7 +821,7 @@ const CoNetWorKing: React.FC = () => {
                             <img src={partner.avatar} alt={partner.name} className="w-full h-full object-contain p-1" />
                           </a>
                         </motion.div>
-                        <CardTitle className="text-alien-gold font-[Atomic Age] text-base">
+                        <CardTitle className="text-alien-gold font-nasalization text-base">
                           <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light transition-colors">
                             {partner.name}
                           </a>
@@ -843,7 +843,7 @@ const CoNetWorKing: React.FC = () => {
 
             {/* Community Members */}
             <div>
-              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-[Atomic Age]">
+              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-nasalization">
                 Community Members
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -866,7 +866,7 @@ const CoNetWorKing: React.FC = () => {
                             <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                           </Avatar>
                         </motion.div>
-                        <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                        <CardTitle className="text-alien-gold font-nasalization text-lg">
                           {member.name}
                         </CardTitle>
                         <CardDescription className="text-alien-green font-[Exo]">
@@ -888,7 +888,7 @@ const CoNetWorKing: React.FC = () => {
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-alien-green/20 to-alien-gold/20 rounded-xl p-12 text-center backdrop-blur-md border border-alien-gold/30">
             <Network className="h-16 w-16 text-alien-gold mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-alien-gold mb-4 font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-4 font-nasalization">
               Ready to Join the Network?
             </h2>
             <p className="text-gray-200 max-w-2xl mx-auto mb-8 font-[Exo] text-lg">
