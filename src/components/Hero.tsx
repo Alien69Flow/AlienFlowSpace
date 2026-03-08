@@ -84,18 +84,19 @@ const Hero: React.FC = () => {
           />
         </div>
 
-        {/* Main title */}
-        <motion.h1
+        {/* Tagline */}
+        <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-6 sm:mb-8 md:mb-12 tracking-tight sm:tracking-normal"
+          className="text-lg sm:text-xl md:text-2xl font-nasalization font-bold text-center mb-6 sm:mb-8 md:mb-10 tracking-wide"
         >
-          <span className="text-alien-green">Δlieπ</span>
-          <span className="text-alien-gold">FlΦw</span>
-          <span className="text-alien-green"> $pac€</span>
-          <span className="text-alien-gold"> DAO</span>
-        </motion.h1>
+          <span className="text-alien-green">Decentralized</span>
+          <span className="text-alien-gold"> · </span>
+          <span className="text-alien-gold">Autonomous</span>
+          <span className="text-alien-green"> · </span>
+          <span className="text-alien-green">Organization</span>
+        </motion.p>
 
         {/* Star Wars inspired description */}
         <motion.div 
@@ -141,6 +142,19 @@ const Hero: React.FC = () => {
           </Button>
         </motion.div>
       </div>
+
+      {/* Scroll down indicator */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        onClick={scrollToSpaces}
+      >
+        <span className="text-xs font-nasalization text-alien-gold/60 tracking-widest uppercase">Scroll</span>
+        <svg width="20" height="12" viewBox="0 0 20 12" className="text-alien-green/50">
+          <path d="M2 2L10 10L18 2" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+        </svg>
+      </motion.div>
     </section>
   );
 };

@@ -56,6 +56,11 @@ const FeaturesSection = () => {
           once: true,
           margin: "-50px"
         }} className="card-border p-6 relative overflow-hidden group">
+              {/* Number badge */}
+              <span className="absolute top-4 right-4 text-4xl font-nasalization font-bold text-alien-gold/10 group-hover:text-alien-green/15 transition-colors duration-300 select-none">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
               <div className="mb-6 p-4 rounded-full bg-gradient-to-br from-alien-gold-dark/20 to-alien-green-dark/20 w-fit">
                 <div className="text-alien-gold group-hover:text-alien-green transition-colors duration-300">
                   {feature.icon}
