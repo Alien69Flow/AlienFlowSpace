@@ -1,2 +1,27 @@
 
-Aquí tienes el plan de acción corregido y ultra-detallado. He inyectado tus instrucciones de jerarquía, la nueva categoría estratégica CashFlow, el orden alfabético y la restauración estética del día 23.Copia este texto y pégalo directamente en el botón "Edit Plan" de Lovable antes de darle a "Approve".Academy Page Redesign Plan: Quantum Restoration & Strategic Expansion1. Hero Header: 23rd Jan RestorationPriority: Restore the high-tech visual identity exactly as it was on January 23rd.Circular Logo Frame: Restore the double-ring circular frame with depth shadows and the "Quantum Glow" (pulsating animation).Typography: Reset title to 'Nasalization' font with the original green/gold gradient and drop-shadow.Subtitle/Quote: Restore the italicized, wide-spaced subtitle with the original golden-muted color palette.Spacing: Do not over-compact. Maintain the original vertical breathing room that felt premium.2. Partners: Logical & Institutional RestructuringOrganize all partners ALPHABETICALLY within these specific categories:CategoryIncluded PartnersACADEMY PARTNERSAcademia, AulaFacil, Coursera, Cursa, edX, GrowGoogle, Hotmart, MasterClass, Mooc, SkillShare, Udacity, UNED.CASHFLOWAzrael Codex (Bitget), Predik.HEALTHFLOWMeslo Ltd, Motus DAO, My DNA Bank, Proton, Yazio.DATAFLOWAlchemy, HackMD, HackerRank.ECOFLOWClimateReanalyzer, OEGlobal, OpenUpEd.GAMEFLOWExplore, Unity Learn.SPACEFLOWESA, KAGRA, LIGO, LSC, NASA, UNESCO, UNSSC, Virgo.3. Asset & Logo IntegrityPriority 1: Use all files from /lovable-uploads/Academy/ (matching the GitHub repository).Priority 2: For missing official logos (NASA, Coursera, Proton, etc.), use high-resolution official Wiki/External URLs as previously implemented.Visuals: Maintain the grayscale to color filter on hover.Links: Ensure every partner has its functional external link.4. UI/UX Polish (Contact Us & Global)Contact Page: Fix the H1 separator by adding horizontal gradient lines (transparent -> alien-green -> transparent) to the sides of the center dot.Chat Bubble: Add the triangular "comic-style" pointer to the message bubble in the Contact section to make it look like a real chat.Interactions: Ensure all cards use the scale-[1.01] transition with a 300ms duration.5. Technical ImplementationUpdate src/pages/Academy.tsx as a single, clean file.Ensure the partnerCategories constant reflects the alphabetical order and the new CashFlow category.6. Proactive ExpansionIntegrate 2 or 3 additional high-prestige institutions in SpaceFlow or HealthFlow (e.g., SpaceX, CERN, or major BioTech labs) if high-quality logos are available, to enhance institutional weight.
+
+# Fix Chinese Calendar Calculation
+
+## Problem
+Two bugs in `src/lib/chineseCalendar.ts`:
+
+1. **Wrong epoch**: Uses `+ 2697`, giving 4723 for 2026. User expects 4724 → change to `+ 2698`.
+2. **Wrong element formula**: The offset math `(effectiveYear - 2024 + 4) % 10` yields Metal for 2026, but 2026 is Fire Horse. The correct formula uses the standard Heavenly Stems cycle: `(year - 4) % 10`, where pairs map to Wood/Fire/Earth/Metal/Water.
+
+## Correct Formula (standard Chinese astronomy)
+- **Animal**: `(effectiveYear - 4) % 12` → index into `[Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig]`
+- **Element**: `Math.floor(((effectiveYear - 4) % 10) / 2)` → index into `[Wood, Fire, Earth, Metal, Water]`
+- **Year number**: `effectiveYear + 2698`
+
+Verification:
+- 2024 → (2020%12)=4=Dragon, (2020%10)/2=0=Wood, 4722 ✓
+- 2025 → (2021%12)=5=Snake, (2021%10)/2=0=Wood, 4723 ✓  
+- 2026 → (2022%12)=6=Horse, (2022%10)/2=1=Fire, 4724 ✓
+
+## Auto-update at CNY midnight
+Add a `useEffect` timer in the Footer that schedules recalculation at the next CNY date, avoiding polling.
+
+## Changes
+- `src/lib/chineseCalendar.ts` — fix formulas and epoch
+- `src/components/Footer.tsx` — add CNY midnight auto-update via `setTimeout`
+
