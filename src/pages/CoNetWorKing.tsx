@@ -459,7 +459,7 @@ const CoNetWorKing: React.FC = () => {
             <div className="inline-flex items-center justify-center w-24 h-24 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing Official Logo" className="h-16 w-16 object-contain" />
             </div>
-            <h1 className="md:text-7xl font-bold text-alien-green mb-8 font-[Atomic Age, Star Wars] drop-shadow-[0_0_30px_rgba(3,255,25,0.6)] text-4xl">
+            <h1 className="md:text-7xl font-bold text-alien-green mb-8 font-nasalization drop-shadow-[0_0_30px_rgba(3,255,25,0.6)] text-4xl">
               CoNetWorKing
             </h1>
             <p className="text-2xl text-alien-gold max-w-4xl mx-auto font-[Exo] leading-relaxed drop-shadow-[0_0_20px_rgba(255,215,0,0.4)]">
