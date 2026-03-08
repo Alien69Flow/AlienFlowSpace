@@ -541,7 +541,7 @@ const CoNetWorKing: React.FC = () => {
 
           {/* Services Grid */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-nasalization">
               DAO | DAPP | DEX
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
