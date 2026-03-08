@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, Coins, Leaf, Brain, GraduationCap, 
-  Zap, ExternalLink, ChevronDown, Award, CheckCircle2,
-  Heart, Activity, Dna
+  Zap, ExternalLink, ChevronDown, Award, CheckCircle2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const LUCIDE_ICON_MAP: Record<string, React.ElementType> = { Heart, Activity, Dna };
+
 
 // --- DATA DEFINITIVA: 3 MÓDULOS CON 4 BLOQUES CADA UNO ---
 const academyModules = [
@@ -104,11 +103,8 @@ const partnerCategories = [
   { 
     label: 'HEALTHFLOW', 
     partners: [
-      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "", lucideIcon: "Heart" },
-      { name: "Motus DAO", url: "https://motusdao.io/", logo: "", lucideIcon: "Activity" },
-      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "", lucideIcon: "Dna" },
       { name: "Proton", url: "https://proton.me/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Proton_Technologies_AG_logo.svg" },
-      { name: "Yazio", url: "https://www.yazio.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5c/YAZIO_Logo.svg" }
+      { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" }
     ] 
   },
   { 
@@ -304,19 +300,15 @@ const Academy = () => {
                     className="flex items-center gap-3 group hover:scale-[1.01] transition-all duration-300"
                   >
                     <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 p-1.5 border border-white/10 group-hover:border-alien-green/50 group-hover:bg-alien-green/10 transition-all duration-300 flex items-center justify-center overflow-hidden">
-                      {(p as any).lucideIcon && LUCIDE_ICON_MAP[(p as any).lucideIcon] ? (
-                        (() => { const Icon = LUCIDE_ICON_MAP[(p as any).lucideIcon]; return <Icon className="w-6 h-6 text-gray-400 group-hover:text-alien-green transition-colors duration-300" />; })()
-                      ) : (
-                        <img 
-                          src={p.logo} 
-                          alt={p.name} 
-                          className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 scale-90 group-hover:scale-100"
-                          onError={(e) => { 
-                            e.currentTarget.style.opacity = '0.3'; 
-                            e.currentTarget.style.filter = 'none';
-                          }} 
-                        />
-                      )}
+                      <img 
+                        src={p.logo} 
+                        alt={p.name} 
+                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 scale-90 group-hover:scale-100"
+                        onError={(e) => { 
+                          e.currentTarget.style.opacity = '0.3'; 
+                          e.currentTarget.style.filter = 'none';
+                        }} 
+                      />
                     </div>
                     <span className="text-[11px] md:text-[12px] text-gray-500 group-hover:text-white transition-colors duration-300 tracking-tight font-medium truncate max-w-[100px]">
                       {p.name}

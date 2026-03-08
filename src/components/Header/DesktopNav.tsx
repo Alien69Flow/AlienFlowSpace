@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles, Gamepad2, Rocket } from 'lucide-react';
+import { Globe, ChevronDown, Sparkles } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +17,7 @@ const DesktopNav = () => {
 
   const navLinks = [
     { to: "/about", label: "About" },
+    { to: "/alien-trip", label: "AlienTrip" },
     { to: "/contact", label: "Contact" }
   ];
 
@@ -25,11 +26,6 @@ const DesktopNav = () => {
     { to: "/clubs", label: "Clubs", desc: "Join specialized communities focused on interests" },
     { to: "/conetworking", label: "CoNetWorKing", desc: "Connect with like-minded profits across the multiverse" }
   ].sort((a, b) => a.label.localeCompare(b.label));
-
-  const appLinks = [
-    { href: "https://t.me/AlienFlowBot", label: "ACE AGameFlow", desc: "Telegram MiniApp — Play & Earn in the multiverse", icon: Gamepad2, external: true },
-    { to: "/alien-trip", label: "AlienTrip", desc: "Explore the cosmic journey experience", icon: Rocket, external: false }
-  ];
 
   const languages = [
     { code: 'us', name: 'English', lang: 'en' },
@@ -96,45 +92,6 @@ const DesktopNav = () => {
             </DropdownMenuItem>
           ))}
 
-          <DropdownMenuSeparator className="bg-white/10 my-2" />
-          
-          <div className="px-4 py-1">
-            <span className="text-[9px] font-nasalization text-alien-gold/50 tracking-[0.3em] uppercase">Apps</span>
-          </div>
-
-          {appLinks.map((app) => (
-            <DropdownMenuItem key={app.label} asChild>
-              {app.external ? (
-                <a
-                  href={app.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl hover:bg-alien-green/10 group transition-all"
-                >
-                  <app.icon className="w-5 h-5 text-alien-gold group-hover:text-alien-green transition-colors" />
-                  <div>
-                    <h3 className="text-alien-gold group-hover:text-alien-green font-nasalization text-sm transition-colors">
-                      {app.label}
-                    </h3>
-                    <p className="text-[10px] text-gray-400 leading-relaxed mt-0.5">{app.desc}</p>
-                  </div>
-                </a>
-              ) : (
-                <Link
-                  to={app.to!}
-                  className="flex items-center gap-3 p-4 rounded-xl hover:bg-alien-green/10 group transition-all"
-                >
-                  <app.icon className="w-5 h-5 text-alien-gold group-hover:text-alien-green transition-colors" />
-                  <div>
-                    <h3 className="text-alien-gold group-hover:text-alien-green font-nasalization text-sm transition-colors">
-                      {app.label}
-                    </h3>
-                    <p className="text-[10px] text-gray-400 leading-relaxed mt-0.5">{app.desc}</p>
-                  </div>
-                </Link>
-              )}
-            </DropdownMenuItem>
-          ))}
         </DropdownMenuContent>
       </DropdownMenu>
 

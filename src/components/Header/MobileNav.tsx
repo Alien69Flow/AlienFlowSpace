@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles, Gamepad2, Rocket } from 'lucide-react';
+import { Globe, ChevronDown, Sparkles } from 'lucide-react';
 import ConnectButton from '@/components/Header/ConnectButton';
 import { translateTo } from '@/lib/translator';
 
@@ -103,34 +103,6 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
                     </Link>
                   ))}
 
-                  {/* APPS Section */}
-                  <div className="border-t border-white/10 mt-2 pt-2">
-                    <span className="text-[9px] font-nasalization text-alien-gold/50 tracking-[0.3em] uppercase px-4 block mb-2">Apps</span>
-                    <a
-                      href="https://t.me/AlienFlowBot"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 border-b border-white/5 hover:bg-alien-green/10"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <Gamepad2 className="w-5 h-5 text-alien-gold" />
-                      <div>
-                        <h4 className="text-alien-gold font-nasalization text-sm">ACE AGameFlow</h4>
-                        <p className="text-[10px] text-gray-500 mt-1">Telegram MiniApp — Play & Earn</p>
-                      </div>
-                    </a>
-                    <Link
-                      to="/alien-trip"
-                      className="flex items-center gap-3 p-4 hover:bg-alien-green/10"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <Rocket className="w-5 h-5 text-alien-gold" />
-                      <div>
-                        <h4 className="text-alien-gold font-nasalization text-sm">AlienTrip</h4>
-                        <p className="text-[10px] text-gray-500 mt-1">Cosmic journey experience</p>
-                      </div>
-                    </Link>
-                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
