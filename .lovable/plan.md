@@ -1,2 +1,49 @@
 
-Aquí tienes el plan de acción corregido y ultra-detallado. He inyectado tus instrucciones de jerarquía, la nueva categoría estratégica CashFlow, el orden alfabético y la restauración estética del día 23.Copia este texto y pégalo directamente en el botón "Edit Plan" de Lovable antes de darle a "Approve".Academy Page Redesign Plan: Quantum Restoration & Strategic Expansion1. Hero Header: 23rd Jan RestorationPriority: Restore the high-tech visual identity exactly as it was on January 23rd.Circular Logo Frame: Restore the double-ring circular frame with depth shadows and the "Quantum Glow" (pulsating animation).Typography: Reset title to 'Nasalization' font with the original green/gold gradient and drop-shadow.Subtitle/Quote: Restore the italicized, wide-spaced subtitle with the original golden-muted color palette.Spacing: Do not over-compact. Maintain the original vertical breathing room that felt premium.2. Partners: Logical & Institutional RestructuringOrganize all partners ALPHABETICALLY within these specific categories:CategoryIncluded PartnersACADEMY PARTNERSAcademia, AulaFacil, Coursera, Cursa, edX, GrowGoogle, Hotmart, MasterClass, Mooc, SkillShare, Udacity, UNED.CASHFLOWAzrael Codex (Bitget), Predik.HEALTHFLOWMeslo Ltd, Motus DAO, My DNA Bank, Proton, Yazio.DATAFLOWAlchemy, HackMD, HackerRank.ECOFLOWClimateReanalyzer, OEGlobal, OpenUpEd.GAMEFLOWExplore, Unity Learn.SPACEFLOWESA, KAGRA, LIGO, LSC, NASA, UNESCO, UNSSC, Virgo.3. Asset & Logo IntegrityPriority 1: Use all files from /lovable-uploads/Academy/ (matching the GitHub repository).Priority 2: For missing official logos (NASA, Coursera, Proton, etc.), use high-resolution official Wiki/External URLs as previously implemented.Visuals: Maintain the grayscale to color filter on hover.Links: Ensure every partner has its functional external link.4. UI/UX Polish (Contact Us & Global)Contact Page: Fix the H1 separator by adding horizontal gradient lines (transparent -> alien-green -> transparent) to the sides of the center dot.Chat Bubble: Add the triangular "comic-style" pointer to the message bubble in the Contact section to make it look like a real chat.Interactions: Ensure all cards use the scale-[1.01] transition with a 300ms duration.5. Technical ImplementationUpdate src/pages/Academy.tsx as a single, clean file.Ensure the partnerCategories constant reflects the alphabetical order and the new CashFlow category.6. Proactive ExpansionIntegrate 2 or 3 additional high-prestige institutions in SpaceFlow or HealthFlow (e.g., SpaceX, CERN, or major BioTech labs) if high-quality logos are available, to enhance institutional weight.
+
+# Plan: Fix Navigation, Apps Buttons, Academy Partners & Wallet Config
+
+## Issues Found
+
+1. **AlienTrip missing from DesktopNav** — It was removed from `navLinks` in DesktopNav (only exists inside the APPS dropdown). MobileNav still has it in navLinks.
+
+2. **Apps placement** — You want AGameFlow and AlienTrip as icon buttons next to the wallet/portal buttons in the header bar (ConnectButton area), not inside the Explore Spaces dropdown.
+
+3. **Academy partners** — Some logos use external URLs that may be broken (CORS), HEALTHFLOW partners use Lucide fallback icons instead of real logos. Categories can be improved.
+
+4. **Wallet "Invalid App Configuration"** — The console shows `WebSocket connection closed abnormally with code: 3000 (Unauthorized: origin not allowed)`. This means the Reown/WalletConnect project (ID: `ced40e4d52234c471808977208586c7e`) does not have the Lovable preview domain (`*.lovable.app` / `*.lovableproject.com`) whitelisted in its allowed origins. **This must be fixed in the Reown Cloud dashboard** at https://cloud.reown.com — you need to add these domains to the project's allowed origins:
+   - `alienflowspace.lovable.app`
+   - `*.lovableproject.com`
+   - `id-preview--83ea2c39-5424-4ac2-b26f-e00df7bb6c06.lovable.app`
+
+## Changes
+
+### 1. `src/components/Header/ConnectButton.tsx`
+Add two new icon buttons (AGameFlow + AlienTrip) next to the existing wallet and portal buttons:
+- **AGameFlow** → external link to `https://agameflow.lovable.app` with Gamepad2 icon
+- **AlienTrip** → external link to `https://alientrip.lovable.app` with Rocket icon
+- Same circular button styling as wallet/portal buttons
+
+### 2. `src/components/Header/DesktopNav.tsx`
+- Remove the APPS section from the Explore Spaces dropdown (keep only Academy, Clubs, CoNetWorKing)
+- Remove the `DropdownMenuSeparator` and apps rendering code
+
+### 3. `src/components/Header/MobileNav.tsx`
+- Remove the APPS section from inside the Explore Spaces accordion
+- Keep AlienTrip in main navLinks (it's already there)
+
+### 4. `src/pages/Academy.tsx` — Partners cleanup
+- Fix HEALTHFLOW: remove partners without real logos (Meslo Ltd, Motus DAO, My DNA Bank) or replace with verifiable partners that have real logos
+- Remove external Wikipedia URLs for logos (CORS issues) — use text-based fallbacks or verified local assets
+- Ensure all categories have correct partner assignments
+
+### 5. Wallet fix
+- **User action required**: Go to https://cloud.reown.com, open project `ced40e4d52234c471808977208586c7e`, and add the Lovable domains to allowed origins. This cannot be fixed from code.
+
+## Files Modified
+| File | Change |
+|------|--------|
+| `src/components/Header/ConnectButton.tsx` | Add AGameFlow + AlienTrip icon buttons |
+| `src/components/Header/DesktopNav.tsx` | Remove APPS section from dropdown |
+| `src/components/Header/MobileNav.tsx` | Remove APPS section from accordion |
+| `src/pages/Academy.tsx` | Fix broken partner logos, clean categories |
+
