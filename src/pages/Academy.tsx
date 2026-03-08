@@ -63,9 +63,12 @@ const partnerCategories = [
       { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png" }, 
       { name: "GrowGoogle", url: "https://grow.google/", logo: "/lovable-uploads/Academy/GrowGoogle.png" },
       { name: "Hotmart", url: "https://www.hotmart.com/", logo: "/lovable-uploads/Academy/Hotmart.png" },
+      { name: "Khan Academy", url: "https://www.khanacademy.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/Khan_Academy_Logo_Old_version_2015.svg" },
       { name: "MasterClass", url: "https://www.masterclass.com/", logo: "/lovable-uploads/Academy/MasterClass.jpeg" },
+      { name: "MIT OCW", url: "https://ocw.mit.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/MIT_OpenCourseWare_logo.svg" },
       { name: "Mooc", url: "https://www.mooc.org/", logo: "/lovable-uploads/Academy/Mooc.png" },
       { name: "SkillShare", url: "https://www.skillshare.com/", logo: "/lovable-uploads/Academy/SkillShare.jpeg" },
+      { name: "Stanford Online", url: "https://online.stanford.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg" },
       { name: "Udacity", url: "https://www.udacity.com/", logo: "/lovable-uploads/Academy/Udacity.svg" },
       { name: "UNED", url: "https://www.uned.es/", logo: "/lovable-uploads/Academy/UNED.png" }
     ] 
@@ -74,6 +77,8 @@ const partnerCategories = [
     label: 'CASHFLOW', 
     partners: [
       { name: "Azrael Codex", url: "https://www.bitget.com/", logo: "/lovable-uploads/Clubs/Bitget.png" },
+      { name: "CoinGecko", url: "https://www.coingecko.com/", logo: "/lovable-uploads/CoinGeckoLogo.svg" },
+      { name: "CoinMarketCap", url: "https://coinmarketcap.com/", logo: "/lovable-uploads/CoinMarketCapLogo.jpeg" },
       { name: "Predik", url: "https://predik.io/", logo: "https://predik.io/assets/images/logo-predik.svg" }
     ] 
   },
@@ -81,6 +86,8 @@ const partnerCategories = [
     label: 'DATAFLOW', 
     partners: [
       { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png" }, 
+      { name: "DappRadar", url: "https://dappradar.com/", logo: "/lovable-uploads/DappRadarLogo.jpeg" },
+      { name: "GitBook", url: "https://www.gitbook.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Gitbook.svg" },
       { name: "HackMD", url: "https://hackmd.io/", logo: "/lovable-uploads/Academy/HackMD.svg" },
       { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg" }
     ] 
@@ -89,6 +96,7 @@ const partnerCategories = [
     label: 'ECOFLOW', 
     partners: [
       { name: "ClimateReanalyzer", url: "https://climatereanalyzer.org/", logo: "/lovable-uploads/Academy/ClimateReanalyzer.svg" },
+      { name: "Explore", url: "https://explore.org/", logo: "/lovable-uploads/Academy/Explore.png" },
       { name: "OEGlobal", url: "https://www.oeglobal.org/", logo: "/lovable-uploads/Academy/OEGlobal.jpeg" },
       { name: "OpenUpEd", url: "https://www.openuped.eu/", logo: "/lovable-uploads/Academy/OpenUpEd.jpeg" }
     ] 
@@ -96,15 +104,22 @@ const partnerCategories = [
   { 
     label: 'GAMEFLOW', 
     partners: [
-      { name: "Explore", url: "https://explore.org/", logo: "/lovable-uploads/Academy/Explore.png" },
+      { name: "ArenaGG", url: "https://arenagg.com/", logo: "/lovable-uploads/Clubs/ArenaGG.png" },
+      { name: "Battlefy", url: "https://battlefy.com/", logo: "/lovable-uploads/Clubs/Battlefy.svg" },
+      { name: "BlitzGG", url: "https://blitz.gg/", logo: "/lovable-uploads/Clubs/BlitzGG.svg" },
+      { name: "ESL", url: "https://www.eslgaming.com/", logo: "/lovable-uploads/Clubs/ESL.svg" },
       { name: "Unity Learn", url: "https://learn.unity.com/", logo: "/lovable-uploads/Academy/UnityLearn.svg" }
     ] 
   },
   { 
     label: 'HEALTHFLOW', 
     partners: [
+      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://meslo.com/logo.svg" },
+      { name: "Motus DAO", url: "https://motusdao.io/", logo: "https://motusdao.io/logo.svg" },
+      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "https://mydnabank.com/logo.svg" },
       { name: "Proton", url: "https://proton.me/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Proton_Technologies_AG_logo.svg" },
-      { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" }
+      { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" },
+      { name: "Yazio", url: "https://www.yazio.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Yazio-app-logo.svg" }
     ] 
   },
   { 
