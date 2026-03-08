@@ -58,15 +58,19 @@ const partnerCategories = [
     partners: [
       { name: "Academia", url: "https://www.academia.edu/", logo: "/lovable-uploads/Academy/Academia.svg" }, 
       { name: "AulaFacil", url: "https://www.aulafacil.com/", logo: "/lovable-uploads/Academy/AulaFacil.png" },
+      { name: "Codecademy", url: "https://www.codecademy.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Codecademy.svg" },
       { name: "Coursera", url: "https://www.coursera.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" }, 
       { name: "Cursa", url: "https://cursa.app/", logo: "/lovable-uploads/Academy/Cursa.webp" },
       { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png" }, 
+      { name: "FreeCodeCamp", url: "https://www.freecodecamp.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.svg" },
       { name: "GrowGoogle", url: "https://grow.google/", logo: "/lovable-uploads/Academy/GrowGoogle.png" },
+      { name: "Harvard Online", url: "https://www.harvardonline.harvard.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Harvard_University_coat_of_arms.svg" },
       { name: "Hotmart", url: "https://www.hotmart.com/", logo: "/lovable-uploads/Academy/Hotmart.png" },
       { name: "Khan Academy", url: "https://www.khanacademy.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/Khan_Academy_Logo_Old_version_2015.svg" },
       { name: "MasterClass", url: "https://www.masterclass.com/", logo: "/lovable-uploads/Academy/MasterClass.jpeg" },
       { name: "MIT OCW", url: "https://ocw.mit.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/MIT_OpenCourseWare_logo.svg" },
       { name: "Mooc", url: "https://www.mooc.org/", logo: "/lovable-uploads/Academy/Mooc.png" },
+      { name: "Pluralsight", url: "https://www.pluralsight.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pluralsight_logo_2021.svg" },
       { name: "SkillShare", url: "https://www.skillshare.com/", logo: "/lovable-uploads/Academy/SkillShare.jpeg" },
       { name: "Stanford Online", url: "https://online.stanford.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg" },
       { name: "Udacity", url: "https://www.udacity.com/", logo: "/lovable-uploads/Academy/Udacity.svg" },
@@ -77,8 +81,11 @@ const partnerCategories = [
     label: 'CASHFLOW', 
     partners: [
       { name: "Azrael Codex", url: "https://www.bitget.com/", logo: "/lovable-uploads/Clubs/Bitget.png" },
+      { name: "Binance Academy", url: "https://academy.binance.com/", logo: "/lovable-uploads/Clubs/Binance.svg" },
       { name: "CoinGecko", url: "https://www.coingecko.com/", logo: "/lovable-uploads/CoinGeckoLogo.svg" },
+      { name: "CoinGlass", url: "https://www.coinglass.com/", logo: "/lovable-uploads/CoinGlassLogo.jpeg" },
       { name: "CoinMarketCap", url: "https://coinmarketcap.com/", logo: "/lovable-uploads/CoinMarketCapLogo.jpeg" },
+      { name: "DefiLlama", url: "https://defillama.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/DefiLlama_logo.svg" },
       { name: "Predik", url: "https://predik.io/", logo: "https://predik.io/assets/images/logo-predik.svg" }
     ] 
   },
@@ -88,8 +95,10 @@ const partnerCategories = [
       { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png" }, 
       { name: "DappRadar", url: "https://dappradar.com/", logo: "/lovable-uploads/DappRadarLogo.jpeg" },
       { name: "GitBook", url: "https://www.gitbook.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Gitbook.svg" },
+      { name: "GitHub", url: "https://github.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" },
       { name: "HackMD", url: "https://hackmd.io/", logo: "/lovable-uploads/Academy/HackMD.svg" },
-      { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg" }
+      { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg" },
+      { name: "Kaggle", url: "https://www.kaggle.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Kaggle_logo.png" }
     ] 
   },
   { 
@@ -98,7 +107,8 @@ const partnerCategories = [
       { name: "ClimateReanalyzer", url: "https://climatereanalyzer.org/", logo: "/lovable-uploads/Academy/ClimateReanalyzer.svg" },
       { name: "Explore", url: "https://explore.org/", logo: "/lovable-uploads/Academy/Explore.png" },
       { name: "OEGlobal", url: "https://www.oeglobal.org/", logo: "/lovable-uploads/Academy/OEGlobal.jpeg" },
-      { name: "OpenUpEd", url: "https://www.openuped.eu/", logo: "/lovable-uploads/Academy/OpenUpEd.jpeg" }
+      { name: "OpenUpEd", url: "https://www.openuped.eu/", logo: "/lovable-uploads/Academy/OpenUpEd.jpeg" },
+      { name: "WWF", url: "https://www.worldwildlife.org/", logo: "https://upload.wikimedia.org/wikipedia/en/2/24/WWF_logo.svg" }
     ] 
   },
   { 
@@ -108,12 +118,14 @@ const partnerCategories = [
       { name: "Battlefy", url: "https://battlefy.com/", logo: "/lovable-uploads/Clubs/Battlefy.svg" },
       { name: "BlitzGG", url: "https://blitz.gg/", logo: "/lovable-uploads/Clubs/BlitzGG.svg" },
       { name: "ESL", url: "https://www.eslgaming.com/", logo: "/lovable-uploads/Clubs/ESL.svg" },
+      { name: "LVP", url: "https://lvp.global/", logo: "/lovable-uploads/Clubs/LVP.PNG" },
       { name: "Unity Learn", url: "https://learn.unity.com/", logo: "/lovable-uploads/Academy/UnityLearn.svg" }
     ] 
   },
   { 
     label: 'HEALTHFLOW', 
     partners: [
+      { name: "Headspace", url: "https://www.headspace.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Headspace_logo.svg" },
       { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://meslo.com/logo.svg" },
       { name: "Motus DAO", url: "https://motusdao.io/", logo: "https://motusdao.io/logo.svg" },
       { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "https://mydnabank.com/logo.svg" },
@@ -127,6 +139,7 @@ const partnerCategories = [
     partners: [
       { name: "CERN", url: "https://home.cern/", logo: "https://upload.wikimedia.org/wikipedia/en/a/ae/CERN_logo.svg" },
       { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg" }, 
+      { name: "JAXA", url: "https://www.jaxa.jp/", logo: "https://upload.wikimedia.org/wikipedia/commons/8/85/Jaxa_logo.svg" },
       { name: "KAGRA", url: "https://gwcenter.icrr.u-tokyo.ac.jp/en/", logo: "/lovable-uploads/Academy/KAGRA.svg" },
       { name: "LIGO", url: "https://www.ligo.org/", logo: "/lovable-uploads/Academy/LIGO.png" },
       { name: "LSC", url: "https://www.ligo.org/", logo: "/lovable-uploads/Academy/LSC.png" },
