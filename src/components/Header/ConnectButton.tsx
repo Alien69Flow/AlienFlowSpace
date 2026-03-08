@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useAppKit } from '@reown/appkit/react';
-import { Copy, CheckCircle } from 'lucide-react';
+import { Copy, CheckCircle, Gamepad2, Rocket } from 'lucide-react';
 import { useWalletConnection } from '@/hooks/useWalletConnection';
 import { toast } from 'sonner';
 
