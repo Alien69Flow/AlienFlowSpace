@@ -104,11 +104,8 @@ const partnerCategories = [
   { 
     label: 'HEALTHFLOW', 
     partners: [
-      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "", lucideIcon: "Heart" },
-      { name: "Motus DAO", url: "https://motusdao.io/", logo: "", lucideIcon: "Activity" },
-      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "", lucideIcon: "Dna" },
       { name: "Proton", url: "https://proton.me/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Proton_Technologies_AG_logo.svg" },
-      { name: "Yazio", url: "https://www.yazio.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5c/YAZIO_Logo.svg" }
+      { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" }
     ] 
   },
   { 

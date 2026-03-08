@@ -28,7 +28,39 @@ const ConnectButton = () => {
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
+      {/* App Buttons */}
+      <a
+        href="https://agameflow.lovable.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline"
+        title="ACE AGameFlow"
+        aria-label="ACE AGameFlow"
+      >
+        <Button
+          className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
+          type="button"
+        >
+          <Gamepad2 className={`${ICON_SIZE}`} />
+        </Button>
+      </a>
+      <a
+        href="https://alientrip.lovable.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline"
+        title="AlienTrip"
+        aria-label="AlienTrip"
+      >
+        <Button
+          className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
+          type="button"
+        >
+          <Rocket className={`${ICON_SIZE}`} />
+        </Button>
+      </a>
+
       {isConnected && address ? (
         <>
           {/* Connected state: address + optional AI key copy + manage */}
