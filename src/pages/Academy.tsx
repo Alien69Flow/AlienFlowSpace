@@ -101,9 +101,9 @@ const partnerCategories = [
   { 
     label: 'HEALTHFLOW', 
     partners: [
-      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://meslo.com/logo.svg" },
-      { name: "Motus DAO", url: "https://motusdao.io/", logo: "https://motusdao.io/logo.svg" },
-      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "https://mydnabank.com/logo.png" },
+      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "", lucideIcon: "Heart" },
+      { name: "Motus DAO", url: "https://motusdao.io/", logo: "", lucideIcon: "Activity" },
+      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "", lucideIcon: "Dna" },
       { name: "Proton", url: "https://proton.me/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Proton_Technologies_AG_logo.svg" },
       { name: "Yazio", url: "https://www.yazio.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5c/YAZIO_Logo.svg" }
     ] 
