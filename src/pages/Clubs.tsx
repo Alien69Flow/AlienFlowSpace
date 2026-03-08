@@ -576,12 +576,24 @@ const Clubs: React.FC = () => {
     }
   ];
 
+  const filteredFeatured = featuredClubs.filter(c => {
+    const matchesSearch = !searchQuery || c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCat = !activeCategory || c.category === activeCategory;
+    return matchesSearch && matchesCat;
+  });
+
+  const filteredOther = otherClubs.filter(c => {
+    const matchesSearch = !searchQuery || c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCat = !activeCategory || c.category === activeCategory;
+    return matchesSearch && matchesCat;
+  });
+
   return (
     <div className="relative flex flex-col flex-1">
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-20 pb-16">
         <div className="max-w-6xl mx-auto">
           {/* Page Header with Logo */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
               <img 
                 src="/lovable-uploads/ClubLogo.png" 
@@ -593,27 +605,76 @@ const Clubs: React.FC = () => {
               Clubs
             </h1>
           </div>
-          <section id="featured" className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization text-alien-green text-center">
-              Featured Clubs
-            </h2>
-            <div className="space-y-8">
-              {featuredClubs.map((club, index) => (
-                <FeaturedClubCard key={index} club={club} />
-              ))}
-            </div>
-          </section>
 
-          <section id="other" className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
-              Other Clubs
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {otherClubs.map((club, index) => (
-                <ClubCard key={index} club={club} />
+          {/* Search & Filter Bar */}
+          <div className="mb-12 space-y-4">
+            <div className="relative max-w-md mx-auto">
+              <input
+                type="text"
+                placeholder="Search clubs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-5 py-3 bg-alien-space-dark/80 backdrop-blur-md border border-alien-gold/30 rounded-full text-alien-gold placeholder:text-alien-gold/40 font-exo focus:outline-none focus:border-alien-green/60 focus:ring-1 focus:ring-alien-green/30 transition-all"
+              />
+            </div>
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                onClick={() => setActiveCategory(null)}
+                className={`px-3 py-1.5 rounded-full text-xs font-nasalization transition-all border ${
+                  !activeCategory
+                    ? 'bg-alien-green/20 border-alien-green/60 text-alien-green'
+                    : 'border-alien-gold/20 text-alien-gold/60 hover:border-alien-gold/40'
+                }`}
+              >
+                All
+              </button>
+              {allCategories.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-nasalization transition-all border ${
+                    activeCategory === cat
+                      ? 'bg-alien-green/20 border-alien-green/60 text-alien-green'
+                      : 'border-alien-gold/20 text-alien-gold/60 hover:border-alien-gold/40'
+                  }`}
+                >
+                  {cat}
+                </button>
               ))}
             </div>
-          </section>
+          </div>
+
+          {filteredFeatured.length > 0 && (
+            <section id="featured" className="mb-16">
+              <h2 className="text-3xl font-bold mb-8 font-nasalization text-alien-green text-center">
+                Featured Clubs
+              </h2>
+              <div className="space-y-8">
+                {filteredFeatured.map((club, index) => (
+                  <FeaturedClubCard key={index} club={club} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {filteredOther.length > 0 && (
+            <section id="other" className="mb-16">
+              <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
+                Other Clubs
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredOther.map((club, index) => (
+                  <ClubCard key={index} club={club} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {filteredFeatured.length === 0 && filteredOther.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-alien-gold/60 font-nasalization text-lg">No clubs match your search</p>
+            </div>
+          )}
 
           <section id="eco-products">
             <h2 className="text-2xl font-bold mb-8 font-nasalization text-alien-green text-center">
