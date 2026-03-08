@@ -76,7 +76,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color,
         <div className={`h-px bg-gradient-to-r ${colors.gradient} flex-1`}></div>
         <div className="flex items-center gap-2">
           {icon && <span className={colors.text}>{icon}</span>}
-          <h3 className={`text-2xl font-bold ${colors.text} font-[Atomic Age] px-4`}>{title}</h3>
+          <h3 className={`text-2xl font-bold ${colors.text} font-nasalization px-4`}>{title}</h3>
         </div>
         <div className={`h-px bg-gradient-to-r ${colors.gradient} flex-1`}></div>
       </div>
