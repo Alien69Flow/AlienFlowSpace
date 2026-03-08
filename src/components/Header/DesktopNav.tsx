@@ -27,11 +27,6 @@ const DesktopNav = () => {
     { to: "/conetworking", label: "CoNetWorKing", desc: "Connect with like-minded profits across the multiverse" }
   ].sort((a, b) => a.label.localeCompare(b.label));
 
-  const appLinks = [
-    { href: "https://t.me/AlienFlowBot", label: "ACE AGameFlow", desc: "Telegram MiniApp — Play & Earn in the multiverse", icon: Gamepad2, external: true },
-    { to: "/alien-trip", label: "AlienTrip", desc: "Explore the cosmic journey experience", icon: Rocket, external: false }
-  ];
-
   const languages = [
     { code: 'us', name: 'English', lang: 'en' },
     { code: 'es', name: 'Español', lang: 'es' },
