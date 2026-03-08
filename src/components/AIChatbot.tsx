@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2, Sparkles, Rocket, Zap } from 'lucide-react';
+import { X, Loader2, Sparkles, Rocket, Zap, ExternalLink } from 'lucide-react';
 import aiTorAvatar from '@/assets/ai-tor-avatar.jpg';
 
 const AI_DAPP_ROLES = [
@@ -18,7 +18,6 @@ const AIChatbot = () => {
 
   const currentRole = useMemo(() => AI_DAPP_ROLES[currentRoleIndex], [currentRoleIndex]);
 
-  // Gestión Proactiva (Tiempos 18s / 33s)
   useEffect(() => {
     if (hasInteracted || isOpen) return;
     const timer = setTimeout(() => {
@@ -29,7 +28,6 @@ const AIChatbot = () => {
     return () => clearTimeout(timer);
   }, [hasInteracted, isOpen]);
 
-  // Tracking de interacción (Escucha si el usuario mueve el mouse o tecla)
   useEffect(() => {
     const handleInteraction = () => setHasInteracted(true);
     const events = ['mousedown', 'keydown', 'touchstart'];
@@ -39,7 +37,7 @@ const AIChatbot = () => {
 
   return (
     <>
-      {/* Botón Avatar con entrada desde el Hiperespacio */}
+      {/* Botón Avatar */}
       <motion.button
         initial={{ scale: 0, rotate: -180, filter: "blur(20px)" }}
         animate={{ scale: 1, rotate: 0, filter: "blur(0px)" }}
@@ -71,7 +69,7 @@ const AIChatbot = () => {
         )}
       </AnimatePresence>
 
-      {/* Interfaz de Chat Adaptable (Móvil/Tablet/PC) */}
+      {/* Chat Window - Enlarged with Open Full button */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -79,9 +77,9 @@ const AIChatbot = () => {
             animate={{ opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0, x: 150, y: 150, filter: "blur(20px)" }}
             transition={{ duration: 0.5, ease: "circOut" }}
-            className="fixed z-[9999] bottom-6 right-6 left-6 sm:left-auto sm:w-[380px] md:w-[420px] h-[75vh] max-h-[600px] bg-alien-space-dark rounded-[2.5rem] border-2 border-alien-gold/30 shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col"
+            className="fixed z-[9999] bottom-6 right-6 left-6 sm:left-auto sm:w-[420px] md:w-[480px] h-[80vh] max-h-[700px] bg-alien-space-dark rounded-[2.5rem] border-2 border-alien-gold/30 shadow-[0_0_80px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col"
           >
-            {/* Header Interface */}
+            {/* Header with Open Full button */}
             <div className="p-5 bg-black/60 border-b border-white/10 flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full border border-alien-green/50 p-0.5">
@@ -92,12 +90,23 @@ const AIChatbot = () => {
                   <span className="text-alien-green text-[8px] font-exo uppercase animate-pulse">Online • Quantum Link</span>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-full text-white/50 hover:text-alien-green transition-all">
-                <X size={22} />
-              </button>
+              <div className="flex items-center gap-1">
+                <a
+                  href="https://aitor.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 hover:bg-white/10 rounded-full text-white/50 hover:text-alien-green transition-all"
+                  title="Open Full AI Tor"
+                >
+                  <ExternalLink size={18} />
+                </a>
+                <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-full text-white/50 hover:text-alien-green transition-all">
+                  <X size={22} />
+                </button>
+              </div>
             </div>
 
-            {/* Iframe & Radar de Carga */}
+            {/* Iframe */}
             <div className="flex-1 bg-black relative">
               {isLoading && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-alien-space-dark z-10">
