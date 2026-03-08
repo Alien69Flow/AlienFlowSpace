@@ -821,7 +821,7 @@ const CoNetWorKing: React.FC = () => {
                             <img src={partner.avatar} alt={partner.name} className="w-full h-full object-contain p-1" />
                           </a>
                         </motion.div>
-                        <CardTitle className="text-alien-gold font-[Atomic Age] text-base">
+                        <CardTitle className="text-alien-gold font-nasalization text-base">
                           <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:text-alien-gold-light transition-colors">
                             {partner.name}
                           </a>
