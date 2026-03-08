@@ -478,7 +478,7 @@ const CoNetWorKing: React.FC = () => {
                       <div className="p-3 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl shadow-lg">
                         <Coins className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="font-[Atomic Age] text-glow text-lg text-alien-green">Bitcoin Rank Real-Time Price | Market Cap &amp; Volume</CardTitle>
+                      <CardTitle className="font-nasalization text-glow text-lg text-alien-green">Bitcoin Rank Real-Time Price | Market Cap &amp; Volume</CardTitle>
                     </div>
                     <div className="bg-alien-space-light/20 p-6 rounded-xl border border-alien-gold/20">
                       <div className="coinmarketcap-currency-widget" data-currencyid="1" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
