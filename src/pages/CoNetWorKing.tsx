@@ -104,7 +104,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color,
                     <img src={partner.logo} alt={partner.name} className="w-full h-full object-contain p-1" />
                   </a>
                 </motion.div>
-                <CardTitle className={`${colors.text} font-[Atomic Age] text-lg`}>
+                <CardTitle className={`${colors.text} font-nasalization text-lg`}>
                   <a href={partner.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                     {partner.name}
                   </a>
