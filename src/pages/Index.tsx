@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import StarBackground from '@/components/StarBackground';
 import LoadingScreen from '@/components/LoadingScreen';
 
-// Lazy loading de secciones
 const Hero = lazy(() => import('@/components/Hero'));
+const StatsSection = lazy(() => import('@/components/StatsSection'));
 const ExploreSpacesSection = lazy(() => import('@/components/ExploreSpacesSection'));
 const EcosystemSection = lazy(() => import('@/components/EcosystemSection'));
 const FeaturesSection = lazy(() => import('@/components/FeaturesSection'));
@@ -15,7 +15,7 @@ const Index: React.FC = () => {
   return (
     <div className="relative z-10 min-h-screen bg-alien-space-dark/10">
       
-      {/* Hero con efecto Star Wars + estrellas */}
+      {/* Hero con estrellas */}
       <div className="relative pt-10">
         <div className="absolute inset-0 -z-10">
           <StarBackground />
@@ -25,7 +25,11 @@ const Index: React.FC = () => {
         </Suspense>
       </div>
 
-      {/* Secciones con lazy loading */}
+      {/* Stats Section */}
+      <Suspense fallback={<LoadingScreen />}>
+        <StatsSection />
+      </Suspense>
+
       <Suspense fallback={<LoadingScreen />}>
         <FinancialFreedomSection />
       </Suspense>
@@ -48,7 +52,6 @@ const Index: React.FC = () => {
         </div>
       </Suspense>
 
-      {/* Newsletter Section */}
       <Suspense fallback={<LoadingScreen />}>
         <div className="py-16 px-4">
           <div className="max-w-lg mx-auto">
