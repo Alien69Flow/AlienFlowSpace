@@ -795,7 +795,7 @@ const CoNetWorKing: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-12 text-center font-nasalization">
               Global Community
             </h2>
             
