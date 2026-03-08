@@ -142,6 +142,19 @@ const Hero: React.FC = () => {
           </Button>
         </motion.div>
       </div>
+
+      {/* Scroll down indicator */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        onClick={scrollToSpaces}
+      >
+        <span className="text-xs font-nasalization text-alien-gold/60 tracking-widest uppercase">Scroll</span>
+        <svg width="20" height="12" viewBox="0 0 20 12" className="text-alien-green/50">
+          <path d="M2 2L10 10L18 2" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+        </svg>
+      </motion.div>
     </section>
   );
 };

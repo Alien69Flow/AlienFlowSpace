@@ -25,17 +25,17 @@ const Index: React.FC = () => {
         </Suspense>
       </div>
 
-      {/* Stats Section */}
-      <Suspense fallback={<LoadingScreen />}>
-        <StatsSection />
-      </Suspense>
-
       <Suspense fallback={<LoadingScreen />}>
         <FinancialFreedomSection />
       </Suspense>
 
       <Suspense fallback={<LoadingScreen />}>
         <ExploreSpacesSection />
+      </Suspense>
+
+      {/* Stats Section — after Explore for better narrative */}
+      <Suspense fallback={<LoadingScreen />}>
+        <StatsSection />
       </Suspense>
 
       <Suspense fallback={<LoadingScreen />}>

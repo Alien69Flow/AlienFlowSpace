@@ -103,8 +103,25 @@ const EcosystemSection = () => {
           <p className="max-w-3xl mx-auto font-bold text-alien-gold text-[alien-gold-dark]">ΔlieπFlΦw $pac€ bridges diverse decentralized domains into a coherent, interoperable ecosystem.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {ecosystems.map((ecosystem, index) => <EcosystemCard key={ecosystem.id} ecosystem={ecosystem} index={index} />)}
+        {/* Connected nodes visual */}
+        <div className="relative">
+          {/* SVG connection lines (desktop only) */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" style={{ zIndex: 0 }}>
+            <defs>
+              <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(142 67% 45% / 0.15)" />
+                <stop offset="50%" stopColor="hsl(48 83% 72% / 0.2)" />
+                <stop offset="100%" stopColor="hsl(142 67% 45% / 0.15)" />
+              </linearGradient>
+            </defs>
+            {/* Horizontal lines connecting columns */}
+            {[0, 1, 2, 3].map(i => (
+              <line key={`h-${i}`} x1={`${10 + i * 20}%`} y1="50%" x2={`${30 + i * 20}%`} y2="50%" stroke="url(#lineGrad)" strokeWidth="1" strokeDasharray="6 4" />
+            ))}
+          </svg>
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {ecosystems.map((ecosystem, index) => <EcosystemCard key={ecosystem.id} ecosystem={ecosystem} index={index} />)}
+          </div>
         </div>
       </div>
     </section>;

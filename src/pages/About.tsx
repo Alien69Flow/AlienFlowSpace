@@ -59,48 +59,94 @@ const About: React.FC = () => {
 
           <div className="space-y-12 text-gray-200 font-[Exo]">
             {/* Web technologies section with enhanced design */}
+            {/* Horizontal Timeline: Web 3 → Web 4 → Web 5 */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
             >
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl hover:border-alien-gold/50 transition-all duration-500">
-                <CardContent className="p-8">
-                <div className="space-y-8">
-                  <div className="text-center">
-                    <h3 className="text-3xl font-semibold mb-2 font-nasalization text-glow text-alien-green">
-                      Web 5 (Quantum Computing)
-                    </h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-4"></div>
-                    <p className="text-base text-gray-300 leading-relaxed mb-6 max-w-3xl mx-auto">
-                      Harnessing quantum mechanics for ultra-secure communications and exponentially faster computations. Web 5 represents the pinnacle of decentralized identity and data sovereignty, powered by quantum-resistant cryptography that future-proofs the entire ecosystem.
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-3xl font-semibold text-alien-green mb-2 font-nasalization">
-                      Web 4 (A.I. Neural Networks)
-                    </h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-alien-green to-alien-gold mx-auto mb-4"></div>
-                    <p className="text-base text-gray-300 leading-relaxed mb-6 max-w-3xl mx-auto">
-                      Intelligent, adaptive systems that learn and evolve with user behavior. Advanced neural networks power predictive analytics, automated decision-making, and personalized experiences that anticipate needs before they arise. AI agents work seamlessly across the ecosystem.
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-3xl font-semibold text-alien-gold mb-4 font-nasalization">
-                      Web 3 (Blockchain)
-                    </h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-6"></div>
-                    <p className="text-base text-gray-300 leading-relaxed mb-6 max-w-3xl mx-auto">
-                      The foundation of true digital ownership and trustless transactions. Blockchain technology enables transparent, immutable records and smart contracts that execute automatically. Experience decentralized governance, NFT ownership, and peer-to-peer value exchange without intermediaries.
-                    </p>
-                  </div>
-                  <p className="text-lg leading-relaxed">
-                    AlienFlowSpace DAO (Decentralized Autonomous Organization) is a revolutionary space that empowers users to seamlessly access, acquire, redeem, buy, sell, and exchange cryptocurrencies and NFTs in a secure, transparent environment. We leverage cutting-edge Web 5 quantum computing, Web 4 AI neural networks, and Web 3 blockchain technology to create an unparalleled ecosystem of innovation and sustainability.
-                  </p>
+              {/* Desktop horizontal timeline */}
+              <div className="hidden md:block relative py-12">
+                {/* Connection line */}
+                <div className="absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-alien-gold/40 via-alien-green/60 to-alien-gold/40 -translate-y-1/2" />
+                
+                <div className="flex justify-between items-start relative px-[5%]">
+                  {[
+                    { label: 'Web 3', subtitle: 'Blockchain', color: 'alien-gold', description: 'The foundation of true digital ownership and trustless transactions. Blockchain enables transparent, immutable records and smart contracts that execute automatically.' },
+                    { label: 'Web 4', subtitle: 'A.I. Neural Networks', color: 'alien-green', description: 'Intelligent, adaptive systems that learn and evolve. Advanced neural networks power predictive analytics, automated decision-making, and personalized experiences.' },
+                    { label: 'Web 5', subtitle: 'Quantum Computing', color: 'alien-gold', description: 'Harnessing quantum mechanics for ultra-secure communications. Quantum-resistant cryptography future-proofs the entire ecosystem with exponential computing power.' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      className="flex flex-col items-center w-1/3 px-4"
+                      initial={{ opacity: 0, y: i % 2 === 0 ? 30 : -30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: i * 0.2 }}
+                    >
+                      {/* Node dot */}
+                      <div className={`relative z-10 w-5 h-5 rounded-full bg-${item.color} shadow-[0_0_16px_rgba(34,197,94,0.4)] mb-6 ring-4 ring-alien-space-dark`} />
+                      
+                      <Card className="bg-alien-space-dark/60 backdrop-blur-xl border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-500 w-full">
+                        <CardContent className="p-6 text-center">
+                          <h3 className={`text-2xl font-semibold mb-1 font-nasalization text-glow text-${item.color}`}>
+                            {item.label}
+                          </h3>
+                          <p className="text-sm text-alien-green/70 font-nasalization mb-3">{item.subtitle}</p>
+                          <div className={`w-16 h-0.5 bg-gradient-to-r from-${item.color} to-alien-green mx-auto mb-3`} />
+                          <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+
+              {/* Mobile vertical timeline */}
+              <div className="md:hidden relative pl-8">
+                {/* Vertical line */}
+                <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-alien-gold/40 via-alien-green/60 to-alien-gold/40" />
+                
+                <div className="space-y-8">
+                  {[
+                    { label: 'Web 3', subtitle: 'Blockchain', color: 'alien-gold', description: 'The foundation of true digital ownership and trustless transactions. Blockchain enables transparent, immutable records and smart contracts.' },
+                    { label: 'Web 4', subtitle: 'A.I. Neural Networks', color: 'alien-green', description: 'Intelligent, adaptive systems powered by neural networks for predictive analytics and automated decision-making.' },
+                    { label: 'Web 5', subtitle: 'Quantum Computing', color: 'alien-gold', description: 'Quantum mechanics for ultra-secure communications and exponentially faster computations with quantum-resistant cryptography.' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      className="relative"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.15 }}
+                    >
+                      {/* Node dot */}
+                      <div className={`absolute -left-[22px] top-6 w-4 h-4 rounded-full bg-${item.color} ring-4 ring-alien-space-dark shadow-[0_0_12px_rgba(34,197,94,0.3)]`} />
+                      
+                      <Card className="bg-alien-space-dark/60 backdrop-blur-xl border-alien-gold/30">
+                        <CardContent className="p-5">
+                          <h3 className={`text-xl font-semibold font-nasalization text-${item.color} mb-1`}>{item.label}</h3>
+                          <p className="text-xs text-alien-green/70 font-nasalization mb-2">{item.subtitle}</p>
+                          <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Summary paragraph */}
+              <motion.p
+                className="text-lg leading-relaxed mt-8 text-gray-200 font-[Exo] text-center max-w-4xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                AlienFlowSpace DAO is a revolutionary space that empowers users to seamlessly access, acquire, redeem, buy, sell, and exchange cryptocurrencies and NFTs. We leverage cutting-edge Web 5 quantum computing, Web 4 AI neural networks, and Web 3 blockchain technology to create an unparalleled ecosystem of innovation and sustainability.
+              </motion.p>
             </motion.div>
 
             {/* Four pillars section with improved grid and cards */}

@@ -70,55 +70,9 @@ const ParticipationSection = () => {
             </motion.div>)}
         </div>
         {/* Botón */}
-        <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-medium px-8 py-6 text-lg rounded-full mb-12 font-nasalization">
+        <Button className="bg-alien-gold hover:bg-alien-gold-light text-alien-space-dark font-medium px-8 py-6 text-lg rounded-full font-nasalization">
           Connect & Participate
         </Button>
-        {/* Stats Grid - MORE TRANSPARENT */}
-        <div className="flex justify-center mt-12 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center max-w-5xl w-full">
-            {stats.map((stat, index) => <motion.div key={index} initial={{
-            opacity: 0,
-            y: 20
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.5,
-            delay: index * 0.1
-          }} viewport={{
-            once: true
-          }} className="bg-alien-space-dark/30 backdrop-blur-sm p-6 rounded-xl border border-alien-gold/20 hover:border-alien-gold/40 transition-all duration-300">
-                <div className="mx-auto mb-4">
-                  {stat.planetIcon ? (
-                    <div className="h-16 w-16 mx-auto">
-                      <img 
-                        src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=150&h=150&fit=crop" 
-                        alt="Planet Earth" 
-                        className="w-full h-full object-cover rounded-full animate-pulse"
-                        style={{ filter: 'drop-shadow(0 0 12px rgba(34, 197, 94, 0.6))' }}
-                      />
-                    </div>
-                  ) : (
-                    <stat.icon className={`h-16 w-16 ${stat.color} mx-auto`} />
-                  )}
-                </div>
-                <motion.div initial={{
-              scale: 0.8
-            }} whileInView={{
-              scale: 1
-            }} transition={{
-              type: "spring",
-              stiffness: 100,
-              delay: index * 0.1 + 0.2
-            }} viewport={{
-              once: true
-            }} className={`text-3xl font-bold mb-2 ${stat.color} font-nasalization`}>
-                  {stat.value}
-                </motion.div>
-                <div className="text-gray-300 text-sm font-[Exo]">{stat.label}</div>
-              </motion.div>)}
-          </div>
-        </div>
       </div>
     </section>;
 };
