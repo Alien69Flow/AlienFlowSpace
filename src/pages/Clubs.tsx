@@ -465,7 +465,7 @@ const Clubs: React.FC = () => {
     }
   ];
 
-  const otherClubs = [
+  const otherClubs: ClubProps[] = [
     {
       name: 'Δ AIFlow',
       description: 'Advancing artificial intelligence through decentralized computing, neural networks, and collaborative AI model development.',
