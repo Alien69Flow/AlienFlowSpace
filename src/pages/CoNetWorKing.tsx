@@ -609,7 +609,7 @@ const CoNetWorKing: React.FC = () => {
                     <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full">
                       <Zap className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-alien-gold font-[Atomic Age] text-2xl">Proposals</CardTitle>
+                    <CardTitle className="text-alien-gold font-nasalization text-2xl">Proposals</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
