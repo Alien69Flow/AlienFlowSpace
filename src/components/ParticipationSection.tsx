@@ -17,28 +17,6 @@ const features = [{
   description: "Contribute to ongoing discussions and knowledge sharing in our decentralized forums."
 }];
 
-const stats = [{
-  value: "195",
-  label: "Countries - DAO Members",
-  icon: Globe,
-  color: "text-alien-green",
-  planetIcon: true
-}, {
-  value: "161 YB",
-  label: "Data Storage",
-  icon: Database,
-  color: "text-alien-gold"
-}, {
-  value: "$125M",
-  label: "Total Value Locked",
-  icon: CircleDollarSign,
-  color: "text-alien-gold"
-}, {
-  value: "99.99%",
-  label: "DAO Uptime",
-  icon: Calendar,
-  color: "text-alien-green"
-}];
 
 const ParticipationSection = () => {
   return <section id="participate" className="py-20 relative">
