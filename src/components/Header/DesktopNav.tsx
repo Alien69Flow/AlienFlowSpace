@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles, Gamepad2, Rocket } from 'lucide-react';
+import { Globe, ChevronDown, Sparkles } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
