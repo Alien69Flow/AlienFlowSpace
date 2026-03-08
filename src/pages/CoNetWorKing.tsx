@@ -36,7 +36,7 @@ const ServiceCard = ({
       <div className={`mx-auto mb-4 p-3 rounded-full ${service.color}`}>
         {service.icon}
       </div>
-      <CardTitle className="text-alien-gold font-[Atomic Age] text-xl">{service.title}</CardTitle>
+      <CardTitle className="text-alien-gold font-nasalization text-xl">{service.title}</CardTitle>
     </CardHeader>
     <CardContent>
       <CardDescription className="text-gray-300 font-[Exo] text-center leading-relaxed">
