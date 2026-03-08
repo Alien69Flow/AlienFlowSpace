@@ -843,7 +843,7 @@ const CoNetWorKing: React.FC = () => {
 
             {/* Community Members */}
             <div>
-              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-[Atomic Age]">
+              <h3 className="text-2xl font-bold text-alien-green mb-8 text-center font-nasalization">
                 Community Members
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
