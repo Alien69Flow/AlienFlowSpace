@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles } from 'lucide-react';
+import { Globe, ChevronDown, Sparkles, Gamepad2, Rocket } from 'lucide-react';
 import ConnectButton from '@/components/Header/ConnectButton';
 import { translateTo } from '@/lib/translator';
 
