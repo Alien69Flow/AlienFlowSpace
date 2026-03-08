@@ -84,18 +84,19 @@ const Hero: React.FC = () => {
           />
         </div>
 
-        {/* Main title */}
-        <motion.h1
+        {/* Tagline */}
+        <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-nasalization font-extrabold leading-tight text-center hero-title mb-6 sm:mb-8 md:mb-12 tracking-tight sm:tracking-normal"
+          className="text-lg sm:text-xl md:text-2xl font-nasalization font-bold text-center mb-6 sm:mb-8 md:mb-10 tracking-wide"
         >
-          <span className="text-alien-green">Δlieπ</span>
-          <span className="text-alien-gold">FlΦw</span>
-          <span className="text-alien-green"> $pac€</span>
-          <span className="text-alien-gold"> DAO</span>
-        </motion.h1>
+          <span className="text-alien-green">Decentralized</span>
+          <span className="text-alien-gold"> · </span>
+          <span className="text-alien-gold">Autonomous</span>
+          <span className="text-alien-green"> · </span>
+          <span className="text-alien-green">Organization</span>
+        </motion.p>
 
         {/* Star Wars inspired description */}
         <motion.div 
