@@ -678,7 +678,7 @@ const CoNetWorKing: React.FC = () => {
 
           {/* Partners Section - Organized by Categories (Alphabetical) */}
           <div className="mb-20">
-            <h2 className="text-4xl font-bold text-alien-gold mb-4 text-center font-[Atomic Age]">
+            <h2 className="text-4xl font-bold text-alien-gold mb-4 text-center font-nasalization">
               Our Partners Ecosystem
             </h2>
             <p className="text-center text-gray-300 font-[Exo] mb-12 max-w-3xl mx-auto">
