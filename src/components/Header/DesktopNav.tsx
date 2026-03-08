@@ -17,6 +17,7 @@ const DesktopNav = () => {
 
   const navLinks = [
     { to: "/about", label: "About" },
+    { to: "/alien-trip", label: "AlienTrip" },
     { to: "/contact", label: "Contact" }
   ];
 
