@@ -524,7 +524,7 @@ const CoNetWorKing: React.FC = () => {
                       ) : (
                         <IconComponent className="h-8 w-8 text-alien-green mx-auto mb-4 animate-pulse" />
                       )}
-                      <div className="text-2xl font-bold text-alien-gold font-[Atomic Age] mb-2">
+                      <div className="text-2xl font-bold text-alien-gold font-nasalization mb-2">
                         {stat.value}
                       </div>
                       <div className="text-gray-300 font-[Exo] text-sm mb-2">
