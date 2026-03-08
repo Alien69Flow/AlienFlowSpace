@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Facebook, Instagram, Mail, Disc, Send, Github, Linkedin, MessageSquare, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCurrentChineseYear } from '@/lib/chineseCalendar';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 
+// CNY dates for auto-update scheduling
+const cnyDates: Record<number, string> = {
+  2025: '2025-01-29', 2026: '2026-02-17', 2027: '2027-02-06',
+  2028: '2028-01-26', 2029: '2029-02-13', 2030: '2030-02-03',
+};
+
 const Footer = () => {
-  const chineseYear = getCurrentChineseYear();
+  const [chineseYear, setChineseYear] = useState(getCurrentChineseYear());
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    const now = new Date();
+    const yr = now.getFullYear();
+    const cnyStr = cnyDates[yr] || cnyDates[yr + 1];
+    if (!cnyStr) return;
+    const cnyDate = new Date(cnyStr);
+    if (cnyDate <= now) {
+      // Already past this year's CNY, schedule for next year
+      const nextCny = cnyDates[yr + 1];
+      if (!nextCny) return;
+      const ms = new Date(nextCny).getTime() - now.getTime();
+      if (ms > 0) {
+        const timer = setTimeout(() => setChineseYear(getCurrentChineseYear()), ms);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      const ms = cnyDate.getTime() - now.getTime();
+      const timer = setTimeout(() => setChineseYear(getCurrentChineseYear()), ms);
+      return () => clearTimeout(timer);
+    }
+  }, [chineseYear]);
   
   const socialLinks = [
     { href: "https://discord.gg/alienflowspace", icon: Disc, label: "Discord", color: "#5865F2" },

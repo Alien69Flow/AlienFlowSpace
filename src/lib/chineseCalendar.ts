@@ -56,18 +56,15 @@ export function getChineseYear(gregorianYear: number, currentDate?: Date): Chine
     }
   }
   
-  // Chinese calendar year (started 2697 BCE)
-  const chineseYear = effectiveYear + 2697;
+  const chineseYear = effectiveYear + 2698;
   
-  // Calculate animal (12-year cycle)
-  // 2024 is Year of the Dragon (starting Feb 10, 2024)
-  const animalIndex = (effectiveYear - 2024 + 4) % 12;
-  const animal = animals[animalIndex < 0 ? animalIndex + 12 : animalIndex];
+  // Standard Heavenly Branches: (year - 4) % 12
+  const animalIndex = (effectiveYear - 4) % 12;
+  const animal = animals[animalIndex];
   
-  // Calculate element (10-year cycle, 2 years per element)
-  // 2024 is Wood Dragon
-  const elementIndex = Math.floor(((effectiveYear - 2024 + 4) % 10) / 2);
-  const element = elements[elementIndex < 0 ? elementIndex + 5 : elementIndex];
+  // Standard Heavenly Stems: pairs map to Wood/Fire/Earth/Metal/Water
+  const elementIndex = Math.floor(((effectiveYear - 4) % 10) / 2);
+  const element = elements[elementIndex];
   
   return {
     year: chineseYear,
