@@ -492,7 +492,7 @@ const CoNetWorKing: React.FC = () => {
                       <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl shadow-lg">
                         <TrendingUp className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="font-[Atomic Age] text-xl text-glow text-alien-green">
+                      <CardTitle className="font-nasalization text-xl text-glow text-alien-green">
                         Market Sentiment
                       </CardTitle>
                     </div>
