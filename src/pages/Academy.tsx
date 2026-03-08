@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, Coins, Leaf, Brain, GraduationCap, 
-  Zap, ExternalLink, ChevronDown, Award, CheckCircle2 
+  Zap, ExternalLink, ChevronDown, Award, CheckCircle2,
+  Heart, Activity, Dna
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+const LUCIDE_ICON_MAP: Record<string, React.ElementType> = { Heart, Activity, Dna };
 
 // --- DATA DEFINITIVA: 3 MÓDULOS CON 4 BLOQUES CADA UNO ---
 const academyModules = [
