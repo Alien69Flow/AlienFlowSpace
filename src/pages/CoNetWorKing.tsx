@@ -866,7 +866,7 @@ const CoNetWorKing: React.FC = () => {
                             <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                           </Avatar>
                         </motion.div>
-                        <CardTitle className="text-alien-gold font-[Atomic Age] text-lg">
+                        <CardTitle className="text-alien-gold font-nasalization text-lg">
                           {member.name}
                         </CardTitle>
                         <CardDescription className="text-alien-green font-[Exo]">
