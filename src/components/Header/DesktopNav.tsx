@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles } from 'lucide-react';
+import { Globe, ChevronDown, Sparkles, Gamepad2, Rocket } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { translateTo } from '@/lib/translator';
@@ -14,19 +15,21 @@ import { motion } from 'framer-motion';
 const DesktopNav = () => {
   const location = useLocation();
 
-  // Links principales en orden alfabético
   const navLinks = [
     { to: "/about", label: "About" },
-    { to: "/alien-trip", label: "AlienTrip" },
     { to: "/contact", label: "Contact" }
   ];
 
-  // Espacios ordenados alfabéticamente
   const spaceLinks = [
     { to: "/academy", label: "Academy", desc: "Unlock cosmic knowledge through educational resources" },
     { to: "/clubs", label: "Clubs", desc: "Join specialized communities focused on interests" },
     { to: "/conetworking", label: "CoNetWorKing", desc: "Connect with like-minded profits across the multiverse" }
   ].sort((a, b) => a.label.localeCompare(b.label));
+
+  const appLinks = [
+    { href: "https://t.me/AlienFlowBot", label: "ACE AGameFlow", desc: "Telegram MiniApp — Play & Earn in the multiverse", icon: Gamepad2, external: true },
+    { to: "/alien-trip", label: "AlienTrip", desc: "Explore the cosmic journey experience", icon: Rocket, external: false }
+  ];
 
   const languages = [
     { code: 'us', name: 'English', lang: 'en' },
@@ -41,7 +44,6 @@ const DesktopNav = () => {
   return (
     <nav className="hidden lg:flex items-center gap-8 bg-black/20 backdrop-blur-xl border border-white/10 px-6 py-1.5 rounded-full shadow-[0_0_40px_rgba(0,0,0,0.3)]">
       
-      {/* Navegación Principal */}
       <div className="flex items-center space-x-2">
         {navLinks.map((link) => (
           <Link
@@ -62,7 +64,7 @@ const DesktopNav = () => {
         ))}
       </div>
 
-      {/* BOTÓN OVNI: EXPLORE SPACES */}
+      {/* EXPLORE SPACES + APPS */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -93,10 +95,50 @@ const DesktopNav = () => {
               </Link>
             </DropdownMenuItem>
           ))}
+
+          <DropdownMenuSeparator className="bg-white/10 my-2" />
+          
+          <div className="px-4 py-1">
+            <span className="text-[9px] font-nasalization text-alien-gold/50 tracking-[0.3em] uppercase">Apps</span>
+          </div>
+
+          {appLinks.map((app) => (
+            <DropdownMenuItem key={app.label} asChild>
+              {app.external ? (
+                <a
+                  href={app.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-xl hover:bg-alien-green/10 group transition-all"
+                >
+                  <app.icon className="w-5 h-5 text-alien-gold group-hover:text-alien-green transition-colors" />
+                  <div>
+                    <h3 className="text-alien-gold group-hover:text-alien-green font-nasalization text-sm transition-colors">
+                      {app.label}
+                    </h3>
+                    <p className="text-[10px] text-gray-400 leading-relaxed mt-0.5">{app.desc}</p>
+                  </div>
+                </a>
+              ) : (
+                <Link
+                  to={app.to!}
+                  className="flex items-center gap-3 p-4 rounded-xl hover:bg-alien-green/10 group transition-all"
+                >
+                  <app.icon className="w-5 h-5 text-alien-gold group-hover:text-alien-green transition-colors" />
+                  <div>
+                    <h3 className="text-alien-gold group-hover:text-alien-green font-nasalization text-sm transition-colors">
+                      {app.label}
+                    </h3>
+                    <p className="text-[10px] text-gray-400 leading-relaxed mt-0.5">{app.desc}</p>
+                  </div>
+                </Link>
+              )}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/* Selector de Idioma con Banderas */}
+      {/* Language Selector */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="text-alien-gold hover:text-alien-green p-2 h-9 w-9 rounded-full transition-transform hover:rotate-12">
