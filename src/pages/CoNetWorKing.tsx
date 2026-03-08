@@ -888,7 +888,7 @@ const CoNetWorKing: React.FC = () => {
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-alien-green/20 to-alien-gold/20 rounded-xl p-12 text-center backdrop-blur-md border border-alien-gold/30">
             <Network className="h-16 w-16 text-alien-gold mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-alien-gold mb-4 font-[Atomic Age]">
+            <h2 className="text-3xl font-bold text-alien-gold mb-4 font-nasalization">
               Ready to Join the Network?
             </h2>
             <p className="text-gray-200 max-w-2xl mx-auto mb-8 font-[Exo] text-lg">
