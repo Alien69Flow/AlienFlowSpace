@@ -119,8 +119,25 @@ const Contact: React.FC = () => {
     { type: 'ai', text: '>>> [AiTor]: Neural connection active. Ready to assist.' }
   ]);
 
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2) errors.name = 'Name must be at least 2 characters';
+    if (formData.name.length > 100) errors.name = 'Name must be less than 100 characters';
+    if (!emailRegex.test(formData.email)) errors.email = 'Please enter a valid email address';
+    if (formData.subject.length > 200) errors.subject = 'Subject must be less than 200 characters';
+    if (!formData.message.trim() || formData.message.trim().length < 10) errors.message = 'Message must be at least 10 characters';
+    if (formData.message.length > 2000) errors.message = 'Message must be less than 2000 characters';
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setIsSubmitting(true);
     const mailtoLink = `mailto:alien69flow@proton.me?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`FROM: ${formData.name}\nEMAIL: ${formData.email}\n\n${formData.message}`)}`;
     window.location.href = mailtoLink;
