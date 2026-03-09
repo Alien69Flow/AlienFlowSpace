@@ -670,7 +670,7 @@ const Clubs: React.FC = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredOther.map((club, index) => (
-                  <ClubCard key={index} club={club} />
+                  <ClubCard key={index} club={club} index={index} />
                 ))}
               </div>
             </section>
