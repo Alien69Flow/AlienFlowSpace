@@ -231,7 +231,11 @@ const Academy = () => {
           <motion.div 
             key={module.id}
             layout
-            className="flex flex-col bg-black/40 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 hover:border-alien-gold/40 transition-all duration-300 shadow-2xl relative overflow-hidden group hover:scale-[1.01]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: module.id * 0.1 }}
+            className="flex flex-col bg-black/50 backdrop-blur-md rounded-[2.5rem] border border-white/10 hover:border-alien-gold/50 transition-all duration-300 shadow-2xl relative overflow-hidden group hover:scale-[1.01]"
           >
             <div 
               onClick={() => setExpandedModule(expandedModule === module.id ? null : module.id)}

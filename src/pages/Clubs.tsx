@@ -1,7 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import FeaturedClubCard from '@/components/FeaturedClubCard';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
-import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical } from 'lucide-react';
+import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 type ClubProps = {
@@ -14,13 +15,18 @@ type ClubProps = {
   bgColor: string;
 };
 
-const ClubCard = ({ club }: { club: ClubProps }) => (
-  <div className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:transform hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
+const ClubCard = ({ club, index }: { club: ClubProps; index: number }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4, delay: index * 0.08 }}
+    className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/50`}
+  >
     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-alien-space-dark/60 to-alien-space-dark/90 z-0"></div>
     
     <div className="relative z-10">
       <div className="flex justify-between items-start mb-6">
-        <div className="p-4 bg-alien-space-dark/80 rounded-xl backdrop-blur-md border border-alien-gold/30 group-hover:border-alien-gold/50 transition-all duration-300">
+        <div className="p-4 bg-black/50 rounded-xl backdrop-blur-md border border-alien-gold/30 group-hover:border-alien-gold/50 transition-all duration-300">
           {club.icon}
         </div>
         <span className={`px-3 py-1 text-xs ${club.categoryColor} rounded-full font-medium backdrop-blur-sm`}>
@@ -36,7 +42,7 @@ const ClubCard = ({ club }: { club: ClubProps }) => (
       </p>
 
       <div className="flex justify-between items-center">
-        <div className="flex items-center bg-alien-space-dark/60 px-3 py-2 rounded-full backdrop-blur-sm">
+        <div className="flex items-center bg-black/50 px-3 py-2 rounded-full backdrop-blur-sm">
           <Users className="h-4 w-4 text-alien-green mr-2" />
           <span className="text-sm text-alien-green font-medium">
             {club.members.toLocaleString()} members
@@ -47,7 +53,7 @@ const ClubCard = ({ club }: { club: ClubProps }) => (
         </Button>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const Clubs: React.FC = () => {
@@ -607,14 +613,20 @@ const Clubs: React.FC = () => {
           </div>
 
           {/* Search & Filter Bar */}
-          <div className="mb-12 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12 space-y-4"
+          >
             <div className="relative max-w-md mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-alien-gold/50" />
               <input
                 type="text"
                 placeholder="Search clubs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-5 py-3 bg-alien-space-dark/80 backdrop-blur-md border border-alien-gold/30 rounded-full text-alien-gold placeholder:text-alien-gold/40 font-exo focus:outline-none focus:border-alien-green/60 focus:ring-1 focus:ring-alien-green/30 transition-all"
+                className="w-full pl-11 pr-5 py-3 bg-black/50 backdrop-blur-md border border-alien-gold/30 rounded-full text-alien-gold placeholder:text-alien-gold/40 font-exo focus:outline-none focus:border-alien-green/60 focus:ring-1 focus:ring-alien-green/30 focus:shadow-[0_0_15px_rgba(57,255,20,0.15)] transition-all"
               />
             </div>
             <div className="flex flex-wrap justify-center gap-2">
@@ -622,8 +634,8 @@ const Clubs: React.FC = () => {
                 onClick={() => setActiveCategory(null)}
                 className={`px-3 py-1.5 rounded-full text-xs font-nasalization transition-all border ${
                   !activeCategory
-                    ? 'bg-alien-green/20 border-alien-green/60 text-alien-green'
-                    : 'border-alien-gold/20 text-alien-gold/60 hover:border-alien-gold/40'
+                    ? 'bg-alien-green/20 border-alien-green/60 text-alien-green shadow-[0_0_10px_rgba(57,255,20,0.2)]'
+                    : 'border-alien-gold/20 text-alien-gold/60 hover:border-alien-gold/40 hover:bg-alien-gold/5'
                 }`}
               >
                 All
@@ -634,15 +646,15 @@ const Clubs: React.FC = () => {
                   onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
                   className={`px-3 py-1.5 rounded-full text-xs font-nasalization transition-all border ${
                     activeCategory === cat
-                      ? 'bg-alien-green/20 border-alien-green/60 text-alien-green'
-                      : 'border-alien-gold/20 text-alien-gold/60 hover:border-alien-gold/40'
+                      ? 'bg-alien-green/20 border-alien-green/60 text-alien-green shadow-[0_0_10px_rgba(57,255,20,0.2)]'
+                      : 'border-alien-gold/20 text-alien-gold/60 hover:border-alien-gold/40 hover:bg-alien-gold/5'
                   }`}
                 >
                   {cat}
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {filteredFeatured.length > 0 && (
             <section id="featured" className="mb-16">
@@ -664,7 +676,7 @@ const Clubs: React.FC = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredOther.map((club, index) => (
-                  <ClubCard key={index} club={club} />
+                  <ClubCard key={index} club={club} index={index} />
                 ))}
               </div>
             </section>

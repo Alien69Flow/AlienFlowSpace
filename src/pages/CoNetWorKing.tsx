@@ -28,22 +28,33 @@ type PartnerSectionProps = {
 };
 
 const ServiceCard = ({
-  service
+  service,
+  index
 }: {
   service: ServiceProps;
-}) => <Card className="bg-alien-space-dark/70 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/60 transition-all duration-300 hover:scale-105">
-    <CardHeader className="text-center">
-      <div className={`mx-auto mb-4 p-3 rounded-full ${service.color}`}>
-        {service.icon}
-      </div>
-      <CardTitle className="text-alien-gold font-nasalization text-xl">{service.title}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <CardDescription className="text-gray-300 font-[Exo] text-center leading-relaxed">
-        {service.description}
-      </CardDescription>
-    </CardContent>
-  </Card>;
+  index: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.4, delay: index * 0.05 }}
+  >
+    <Card className="bg-black/50 backdrop-blur-md border border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-300 hover:scale-[1.02]">
+      <CardHeader className="text-center">
+        <div className={`mx-auto mb-4 p-3 rounded-full ${service.color}`}>
+          {service.icon}
+        </div>
+        <CardTitle className="text-alien-gold font-nasalization text-xl">{service.title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription className="text-gray-300 font-[Exo] text-center leading-relaxed">
+          {service.description}
+        </CardDescription>
+      </CardContent>
+    </Card>
+  </motion.div>
+);
 
 const PartnerSection: React.FC<PartnerSectionProps> = ({ title, partners, color, icon, delay = 0 }) => {
   const getColorClasses = () => {
@@ -545,7 +556,7 @@ const CoNetWorKing: React.FC = () => {
               DAO | DAPP | DEX
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => <ServiceCard key={index} service={service} />)}
+              {services.map((service, index) => <ServiceCard key={index} service={service} index={index} />)}
             </div>
           </div>
 
