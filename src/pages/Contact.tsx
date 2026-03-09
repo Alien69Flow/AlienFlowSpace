@@ -435,32 +435,48 @@ const Contact: React.FC = () => {
                 </div>
                 
                 <form onSubmit={handleFormSubmit} className="space-y-4">
-                  <Input 
-                    placeholder="Your Name" 
-                    value={formData.name} 
-                    onChange={e => setFormData({...formData, name: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
-                  />
-                  <Input 
-                    placeholder="Email Address" 
-                    type="email" 
-                    value={formData.email} 
-                    onChange={e => setFormData({...formData, email: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
-                  />
-                  <Input 
-                    placeholder="Subject" 
-                    value={formData.subject} 
-                    onChange={e => setFormData({...formData, subject: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
-                  />
-                  <Textarea 
-                    placeholder="Your message to the cosmos..." 
-                    rows={4} 
-                    value={formData.message} 
-                    onChange={e => setFormData({...formData, message: e.target.value})} 
-                    className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl placeholder:text-muted-foreground/60 resize-none text-sm" 
-                  />
+                  <div>
+                    <Input 
+                      placeholder="Your Name" 
+                      value={formData.name} 
+                      onChange={e => setFormData({...formData, name: e.target.value})} 
+                      maxLength={100}
+                      className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
+                    />
+                    {formErrors.name && <p className="text-red-400 text-xs mt-1 font-exo">{formErrors.name}</p>}
+                  </div>
+                  <div>
+                    <Input 
+                      placeholder="Email Address" 
+                      type="email" 
+                      value={formData.email} 
+                      onChange={e => setFormData({...formData, email: e.target.value})} 
+                      maxLength={255}
+                      className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
+                    />
+                    {formErrors.email && <p className="text-red-400 text-xs mt-1 font-exo">{formErrors.email}</p>}
+                  </div>
+                  <div>
+                    <Input 
+                      placeholder="Subject" 
+                      value={formData.subject} 
+                      onChange={e => setFormData({...formData, subject: e.target.value})} 
+                      maxLength={200}
+                      className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl h-11 placeholder:text-muted-foreground/60 text-sm" 
+                    />
+                    {formErrors.subject && <p className="text-red-400 text-xs mt-1 font-exo">{formErrors.subject}</p>}
+                  </div>
+                  <div>
+                    <Textarea 
+                      placeholder="Your message to the cosmos..." 
+                      rows={4} 
+                      value={formData.message} 
+                      onChange={e => setFormData({...formData, message: e.target.value})} 
+                      maxLength={2000}
+                      className="bg-black/40 border-alien-green/20 text-white focus:border-alien-green/60 rounded-xl placeholder:text-muted-foreground/60 resize-none text-sm" 
+                    />
+                    {formErrors.message && <p className="text-red-400 text-xs mt-1 font-exo">{formErrors.message}</p>}
+                  </div>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting} 
