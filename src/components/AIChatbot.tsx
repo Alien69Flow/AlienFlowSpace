@@ -119,7 +119,7 @@ const AIChatbot = () => {
                   <p className="text-alien-green font-nasalization text-[8px] tracking-[0.4em]">SYNCHRONIZING...</p>
                 </div>
               )}
-              <iframe src="https://aitor.lovable.app/" className="w-full h-full border-none" onLoad={() => setIsLoading(false)} title="AI Tor" />
+              <iframe src="https://aitor.lovable.app/" sandbox="allow-scripts allow-same-origin allow-forms" className="w-full h-full border-none" onLoad={() => setIsLoading(false)} title="AI Tor" />
             </div>
           </motion.div>
         )}
