@@ -14,45 +14,25 @@ const NewsletterSubscription = lazy(() => import('@/components/NewsletterSubscri
 const Index: React.FC = () => {
   return (
     <div className="relative z-10 min-h-screen bg-alien-space-dark/10">
-      
-      {/* Hero con estrellas */}
-      <div className="relative pt-10">
-        <div className="absolute inset-0 -z-10">
-          <StarBackground />
-        </div>
-        <Suspense fallback={<LoadingScreen />}>
+      <Suspense fallback={<LoadingScreen />}>
+        {/* Hero con estrellas */}
+        <div className="relative pt-10">
+          <div className="absolute inset-0 -z-10">
+            <StarBackground />
+          </div>
           <Hero />
-        </Suspense>
-      </div>
+        </div>
 
-      <Suspense fallback={<LoadingScreen />}>
         <FinancialFreedomSection />
-      </Suspense>
-
-      <Suspense fallback={<LoadingScreen />}>
         <ExploreSpacesSection />
-      </Suspense>
-
-      {/* Stats Section — after Explore for better narrative */}
-      <Suspense fallback={<LoadingScreen />}>
         <StatsSection />
-      </Suspense>
-
-      <Suspense fallback={<LoadingScreen />}>
         <EcosystemSection />
-      </Suspense>
-
-      <Suspense fallback={<LoadingScreen />}>
         <FeaturesSection />
-      </Suspense>
-
-      <Suspense fallback={<LoadingScreen />}>
+        
         <div className="section-center">
           <ParticipationSection />
         </div>
-      </Suspense>
 
-      <Suspense fallback={<LoadingScreen />}>
         <div className="py-16 px-4">
           <div className="max-w-lg mx-auto">
             <NewsletterSubscription />
