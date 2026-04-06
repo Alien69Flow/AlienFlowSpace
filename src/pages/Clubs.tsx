@@ -134,7 +134,7 @@ const Clubs: React.FC = () => {
           description: 'Copy trading platform with crypto card'
         }, {
           name: 'Bitget',
-          url: 'https://www.bitgetapp.com/referral/register?clacCode=42E67C3N',
+          url: 'https://partner.bitget.com/bg/Alien',
           icon: '/lovable-uploads/Clubs/Bitget.png',
           description: 'Trading and rewards with crypto card'
         }, {
