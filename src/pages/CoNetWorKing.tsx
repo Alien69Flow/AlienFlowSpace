@@ -266,7 +266,7 @@ const CoNetWorKing: React.FC = () => {
       { name: "Atomic Wallet", url: "https://atomicwallet.io/", logo: "/lovable-uploads/Clubs/AtomicWallet.svg", description: "Multi-crypto wallet" },
       { name: "Binance", url: "https://binance.com/", logo: "/lovable-uploads/Clubs/Binance.svg", description: "Leading crypto exchange" },
       { name: "BingX", url: "https://bingx.com/referral-program/QCXRKM", logo: "/lovable-uploads/Clubs/BingX.png", description: "Crypto trading platform" },
-      { name: "Bitget", url: "https://www.bitgetapp.com/referral/register?clacCode=42E67C3N", logo: "/lovable-uploads/Clubs/Bitget.png", description: "Crypto derivatives exchange" },
+      { name: "Bitget", url: "https://partner.bitget.com/bg/Alien", logo: "/lovable-uploads/Clubs/Bitget.png", description: "Crypto derivatives exchange" },
       { name: "Bybit", url: "https://www.bybit.com/invite?ref=Q15Q4M", logo: "/lovable-uploads/Clubs/Bybit.png", description: "Crypto trading platform" },
       { name: "Coinbase", url: "https://www.coinbase.com/join/EC2PSZT?src", logo: "/lovable-uploads/Clubs/Coinbase.svg", description: "Trusted crypto exchange" },
       { name: "Crypto.com", url: "https://crypto.com/app/una5xskncn", logo: "/lovable-uploads/Clubs/Cryptocom.svg", description: "Crypto platform with card" },
