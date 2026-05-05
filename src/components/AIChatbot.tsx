@@ -92,7 +92,7 @@ const AIChatbot = () => {
               </div>
               <div className="flex items-center gap-1">
                 <a
-                  href="https://aitor.lovable.app/"
+                  href="https://aitor.alienflow.space/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 hover:bg-white/10 rounded-full text-white/50 hover:text-alien-green transition-all"
