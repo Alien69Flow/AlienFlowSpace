@@ -1,43 +1,52 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import StarBackground from '@/components/StarBackground';
-import Hero from '@/components/Hero';
-import StatsSection from '@/components/StatsSection';
-import ExploreSpacesSection from '@/components/ExploreSpacesSection';
-import EcosystemSection from '@/components/EcosystemSection';
-import FeaturesSection from '@/components/FeaturesSection';
-import FinancialFreedomSection from '@/components/FinancialFreedomSection';
-import ParticipationSection from '@/components/ParticipationSection';
-import NewsletterSubscription from '@/components/NewsletterSubscription';
+import LoadingScreen from '@/components/LoadingScreen';
+
+// Lazy loading de secciones
+const Hero = lazy(() => import('@/components/Hero'));
+const ExploreSpacesSection = lazy(() => import('@/components/ExploreSpacesSection'));
+const EcosystemSection = lazy(() => import('@/components/EcosystemSection'));
+const FeaturesSection = lazy(() => import('@/components/FeaturesSection'));
+const FinancialFreedomSection = lazy(() => import('@/components/FinancialFreedomSection'));
+const ParticipationSection = lazy(() => import('@/components/ParticipationSection'));
 
 const Index: React.FC = () => {
   return (
     <div className="relative z-10 min-h-screen bg-alien-space-dark/10">
-      {/* Hero con estrellas */}
-      <div className="relative pt-10">
+      {/* Hero con efecto Star Wars + estrellas */}
+      <div className="relative">
         <div className="absolute inset-0 -z-10">
           <StarBackground />
         </div>
-        <Hero />
+        <Suspense fallback={<LoadingScreen />}>
+          <Hero />
+        </Suspense>
       </div>
 
-      <FinancialFreedomSection />
-      <ExploreSpacesSection />
-      <StatsSection />
-      <EcosystemSection />
-      <FeaturesSection />
-      
-      <div className="section-center">
-        <ParticipationSection />
-      </div>
+      {/* Secciones con lazy loading */}
+      <Suspense fallback={<LoadingScreen />}>
+        <FinancialFreedomSection />
+      </Suspense>
 
-      <div className="py-16 px-4">
-        <div className="max-w-lg mx-auto">
-          <NewsletterSubscription />
+      <Suspense fallback={<LoadingScreen />}>
+        <ExploreSpacesSection />
+      </Suspense>
+
+      <Suspense fallback={<LoadingScreen />}>
+        <EcosystemSection />
+      </Suspense>
+
+      <Suspense fallback={<LoadingScreen />}>
+        <FeaturesSection />
+      </Suspense>
+
+      <Suspense fallback={<LoadingScreen />}>
+        <div className="section-center">
+          <ParticipationSection />
         </div>
-      </div>
+      </Suspense>
     </div>
   );
 };
 
 export default Index;
-

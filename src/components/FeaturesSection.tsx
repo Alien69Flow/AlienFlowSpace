@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Shield, Users, Box, BarChart4, Zap } from 'lucide-react';
+import { Globe, Shield, Users, Box, BarChart4 } from 'lucide-react';
 const features = [{
   icon: <Box className="h-10 w-10" />,
   title: "Cross-Chain Integration",
@@ -10,17 +10,13 @@ const features = [{
   title: "Interplanetary Governance",
   description: "Participate in decentralized decision-making across planetary boundaries with our advanced DAO structure."
 }, {
-  icon: <Zap className="h-10 w-10" />,
-  title: "Lightning Fast Transactions",
-  description: "Experience near instant transaction finality with our optimized consensus mechanisms and layer 2 scaling solutions."
+  icon: <Shield className="h-10 w-10" />,
+  title: "Quantum Security",
+  description: "Next-generation quantum-resistant cryptography ensures the safety of all transactions and governance actions."
 }, {
   icon: <Users className="h-10 w-10" />,
   title: "Multi-Species Collaboration",
   description: "Our platform is designed for collaboration between diverse entities, ensuring inclusive participation."
-}, {
-  icon: <Shield className="h-10 w-10" />,
-  title: "Quantum Security",
-  description: "Next-generation quantum-resistant cryptography ensures the safety of all transactions and governance actions."
 }, {
   icon: <BarChart4 className="h-10 w-10" />,
   title: "Transparent Analytics",
@@ -56,11 +52,6 @@ const FeaturesSection = () => {
           once: true,
           margin: "-50px"
         }} className="card-border p-6 relative overflow-hidden group">
-              {/* Number badge */}
-              <span className="absolute top-4 right-4 text-4xl font-nasalization font-bold text-alien-gold/10 group-hover:text-alien-green/15 transition-colors duration-300 select-none">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-
               <div className="mb-6 p-4 rounded-full bg-gradient-to-br from-alien-gold-dark/20 to-alien-green-dark/20 w-fit">
                 <div className="text-alien-gold group-hover:text-alien-green transition-colors duration-300">
                   {feature.icon}

@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles } from 'lucide-react';
+import { Globe, ChevronDown, ChevronUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import ConnectButton from '@/components/Header/ConnectButton';
 import { translateTo } from '@/lib/translator';
 
@@ -13,22 +15,21 @@ interface MobileNavProps {
 const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
   const [spacesExpanded, setSpacesExpanded] = useState(false);
   const [languageExpanded, setLanguageExpanded] = useState(false);
-
+  
   if (!isMenuOpen) return null;
 
-  // Navegación principal ordenada alfabéticamente (Home eliminado, se usa el Logo)
   const navLinks = [
+    { to: "/", label: "Home" },
     { to: "/about", label: "About" },
     { to: "/alien-trip", label: "AlienTrip" },
     { to: "/contact", label: "Contact" }
   ];
 
-  // Espacios ordenados alfabéticamente
   const spaceLinks = [
-    { to: "/academy", label: "Academy", desc: "Cosmic knowledge and Tesla science" },
-    { to: "/clubs", label: "Clubs", desc: "Specialized multiverse communities" },
-    { to: "/conetworking", label: "CoNetWorKing", desc: "Professional Bio-Networking" }
-  ].sort((a, b) => a.label.localeCompare(b.label));
+    { to: "/academy", label: "Academy", desc: "Unlock cosmic knowledge through educational resources" },
+    { to: "/clubs", label: "Clubs", desc: "Join specialized communities focused on interests" },
+    { to: "/conetworking", label: "CoNetWorKing", desc: "Connect with like-minded profits across the multiverse" }
+  ];
 
   const languages = [
     { code: 'us', name: 'English', lang: 'en' },
@@ -40,45 +41,53 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
     { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
   ];
 
+  const translatePage = (langCode: string) => {
+    translateTo(langCode);
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      className="bg-black/95 backdrop-blur-2xl absolute w-full z-50 top-full shadow-[0_20px_50px_rgba(0,0,0,0.7)] border-b border-alien-green/20"
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0 }}
+      className="bg-alien-space-dark/95 backdrop-blur-md absolute w-full z-50 top-full shadow-2xl border-b border-alien-gold/20"
     >
-      <div className="container mx-auto px-6 py-8 max-h-[80vh] overflow-y-auto">
-        <nav className="flex flex-col space-y-4">
-          
-          {/* Main Links */}
+      <div className="container mx-auto px-4 py-4 max-h-[70vh] overflow-y-auto">
+        <nav className="flex flex-col space-y-1">
+          {/* Main Navigation */}
           {navLinks.map((link, index) => (
             <motion.div
               key={link.to}
-              initial={{ opacity: 0, x: -10 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.05 }}
+              transition={{ delay: index * 0.1 }}
             >
               <Link 
                 to={link.to} 
-                className="text-alien-gold text-lg font-nasalization tracking-widest hover:text-alien-green transition-colors block py-2"
+                className="block text-alien-gold py-2 px-3 hover:text-alien-green hover:bg-alien-space-light/30 rounded-lg font-nasalization transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             </motion.div>
           ))}
-
-          {/* Explore Spaces (Acordeón UI) */}
-          <div className="py-2">
+          
+          {/* Explore Spaces Dropdown */}
+          <motion.div 
+            className="flex flex-col"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+          >
             <button
               onClick={() => setSpacesExpanded(!spacesExpanded)}
-              className="w-full flex justify-between items-center bg-alien-green/5 border border-alien-green/20 p-4 rounded-xl text-alien-green font-nasalization text-sm tracking-widest"
+              className="text-alien-gold py-2 px-3 hover:text-alien-green hover:bg-alien-space-light/30 rounded-lg flex justify-between items-center font-nasalization transition-all duration-300"
             >
-              <div className="flex items-center gap-2">
-                <Sparkles size={16} className="text-alien-gold" />
-                <span>EXPLORE SPACES</span>
-              </div>
-              <motion.div animate={{ rotate: spacesExpanded ? 180 : 0 }}>
+              <span>Explore Spaces</span>
+              <motion.div
+                animate={{ rotate: spacesExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 <ChevronDown size={18} />
               </motion.div>
             </button>
@@ -86,61 +95,97 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
             <AnimatePresence>
               {spacesExpanded && (
                 <motion.div 
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="overflow-hidden bg-white/5 rounded-b-xl mt-[-10px] pt-4"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="ml-2 mt-1 bg-alien-space-light/20 rounded-lg overflow-hidden"
                 >
-                  {spaceLinks.map((link) => (
-                    <Link 
-                      key={link.to} 
-                      to={link.to} 
-                      className="block p-4 border-b border-white/5 last:border-0 hover:bg-alien-green/10"
-                      onClick={() => setIsMenuOpen(false)}
+                  {spaceLinks.map((link, index) => (
+                    <motion.div
+                      key={link.to}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
                     >
-                      <h4 className="text-alien-gold font-nasalization text-sm">{link.label}</h4>
-                      <p className="text-[10px] text-gray-500 mt-1">{link.desc}</p>
-                    </Link>
+                      <Link 
+                        to={link.to} 
+                        className="block p-3 hover:bg-alien-space-light/30 text-alien-gold hover:text-alien-green transition-all duration-300"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <h3 className="font-nasalization font-semibold mb-1 text-sm">{link.label}</h3>
+                        <p className="text-xs text-gray-400 leading-tight">{link.desc}</p>
+                      </Link>
+                    </motion.div>
                   ))}
-
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
-
+          </motion.div>
+          
           {/* Language Selector */}
-          <div className="py-2">
+          <motion.div 
+            className="flex flex-col"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5 }}
+          >
             <button
               onClick={() => setLanguageExpanded(!languageExpanded)}
-              className="w-full flex justify-between items-center text-alien-gold/70 font-nasalization text-xs p-2"
+              className="text-alien-gold py-2 px-3 hover:text-alien-green hover:bg-alien-space-light/30 rounded-lg flex items-center justify-between font-nasalization transition-all duration-300"
             >
-              <div className="flex items-center gap-2 uppercase tracking-tighter">
-                <Globe size={14} />
-                <span>Select Language</span>
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4" />
+                <span>Language</span>
               </div>
-              <ChevronDown size={14} className={languageExpanded ? 'rotate-180' : ''} />
+              <motion.div
+                animate={{ rotate: languageExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown size={16} />
+              </motion.div>
             </button>
             
-            {languageExpanded && (
-              <div className="grid grid-cols-2 gap-2 mt-2">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => { translateTo(lang.lang); setIsMenuOpen(false); }}
-                    className="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-alien-green/20 transition-all"
-                  >
-                    <img src={`https://flagcdn.com/w20/${lang.code}.png`} className="w-4 h-auto rounded-sm" alt={lang.name} />
-                    <span className="text-[10px] text-alien-gold uppercase">{lang.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Web3 Connect */}
-          <div className="pt-6 border-t border-white/10 flex justify-center">
-            <ConnectButton />
-          </div>
+            <AnimatePresence>
+              {languageExpanded && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="ml-2 mt-1 bg-alien-space-light/20 rounded-lg overflow-hidden max-h-32 overflow-y-auto"
+                >
+                  {languages.map((lang, index) => (
+                    <motion.div
+                      key={lang.code}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="p-2 hover:bg-alien-space-light/30 cursor-pointer text-alien-gold hover:text-alien-green flex items-center gap-2 transition-all duration-300"
+                      onClick={() => translatePage(lang.lang)}
+                    >
+                      <img 
+                        src={`https://flagcdn.com/w20/${lang.code}.png`} 
+                        alt={`${lang.name} flag`} 
+                        className="w-4 h-3 rounded-sm" 
+                      />
+                      <span className="text-xs">{lang.name}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+          
+          {/* Connect Button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6 }}
+            className="pt-2"
+          >
+            <div className="w-full">
+              <ConnectButton />
+            </div>
+          </motion.div>
         </nav>
       </div>
     </motion.div>
