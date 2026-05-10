@@ -1,8 +1,14 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { GraduationCap, Users, Trophy, Shield, Zap, Globe, Leaf } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedText from "@/components/AnimatedText";
+import LoadingScreen from "@/components/LoadingScreen";
+
+const NFTGallery = lazy(() => import('@/components/NFTGallery'));
+
 const About: React.FC = () => {
   return <div className="relative flex flex-col flex-1 min-h-screen">
 
@@ -10,115 +16,223 @@ const About: React.FC = () => {
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-8 pb-16">
         <div className="max-w-6xl mx-auto">
           {/* Hero section with improved styling */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div 
+              className="inline-flex items-center justify-center w-20 h-20 bg-alien-gold/20 rounded-full mb-6 border-2 border-alien-gold/40 backdrop-blur-md"
+              whileHover={{ scale: 1.1, rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
               <img src="/lovable-uploads/ALogo.png" alt="About Official Logo" className="h-12 w-12 object-contain" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green">
+            </motion.div>
+            <AnimatedText
+              className="text-4xl md:text-5xl font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               About Us
-            </h1>
-            <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl rounded-3xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green md:text-5xl text-3xl">
-                  We offer INNOVATIVE SOLUTIONS with cutting-edge technologies
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <h2 className="md:text-2xl text-alien-green mb-8 font-[Exo] max-w-4xl mx-auto leading-relaxed text-lg">
-                  Improving Energy Efficiency and Environmental Sustainability, managing to professionally improve work flows and processes, this is WorkFlow.
-                </h2>
-              </CardContent>
-            </Card>
-          </div>
+            </AnimatedText>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl rounded-3xl hover:shadow-alien-gold/30 transition-all duration-500">
+                <CardHeader className="pb-4">
+                  <CardTitle className="font-bold mb-6 font-nasalization text-glow leading-tight text-alien-green md:text-5xl text-3xl">
+                    We offer INNOVATIVE SOLUTIONS with cutting-edge technologies
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <h2 className="md:text-2xl text-alien-green mb-8 font-[Exo] max-w-4xl mx-auto leading-relaxed text-lg">
+                    Improving Energy Efficiency and Environmental Sustainability, managing to professionally improve work flows and processes, this is WorkFlow.
+                  </h2>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
 
           <div className="space-y-12 text-gray-200 font-[Exo]">
             {/* Web technologies section with enhanced design */}
-            <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-2xl">
-              <CardContent className="p-8">
-                <div className="space-y-8">
-                  <div className="text-center">
-                    <h3 className="text-3xl font-semibold mb-2 font-nasalization text-glow text-alien-green">
-                      Web 5 (Quantum Computing)
-                    </h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-4"></div>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-3xl font-semibold text-alien-green mb-2 font-nasalization">
-                      Web 4 (A.I. Neural Networks)
-                    </h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-alien-green to-alien-gold mx-auto mb-4"></div>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-3xl font-semibold text-alien-gold mb-4 font-nasalization">
-                      Web 3 (Blockchain)
-                    </h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-alien-gold to-alien-green mx-auto mb-6"></div>
-                  </div>
-                  <p className="text-lg text-center leading-relaxed">
-                    AlienFlowSpace DAO = (Decentralized Autonomous Organization) is a space that allows users; access, acquire, redeem, buy, sell and exchange Cryptos, NFTs in an easy and secure way. [...]
-                  </p>
+            {/* Horizontal Timeline: Web 3 → Web 4 → Web 5 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Desktop horizontal timeline */}
+              <div className="hidden md:block relative py-12">
+                {/* Connection line */}
+                <div className="absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-alien-gold/40 via-alien-green/60 to-alien-gold/40 -translate-y-1/2" />
+                
+                <div className="flex justify-between items-start relative px-[5%]">
+                  {[
+                    { label: 'Web 3', subtitle: 'Blockchain', color: 'alien-gold', description: 'The foundation of true digital ownership and trustless transactions. Blockchain enables transparent, immutable records and smart contracts that execute automatically.' },
+                    { label: 'Web 4', subtitle: 'A.I. Neural Networks', color: 'alien-green', description: 'Intelligent, adaptive systems that learn and evolve. Advanced neural networks power predictive analytics, automated decision-making, and personalized experiences.' },
+                    { label: 'Web 5', subtitle: 'Quantum Computing', color: 'alien-gold', description: 'Harnessing quantum mechanics for ultra-secure communications. Quantum-resistant cryptography future-proofs the entire ecosystem with exponential computing power.' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      className="flex flex-col items-center w-1/3 px-4"
+                      initial={{ opacity: 0, y: i % 2 === 0 ? 30 : -30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: i * 0.2 }}
+                    >
+                      {/* Node dot */}
+                      <div className={`relative z-10 w-5 h-5 rounded-full bg-${item.color} shadow-[0_0_16px_rgba(34,197,94,0.4)] mb-6 ring-4 ring-alien-space-dark`} />
+                      
+                      <Card className="bg-alien-space-dark/60 backdrop-blur-xl border-alien-gold/30 hover:border-alien-gold/50 transition-all duration-500 w-full">
+                        <CardContent className="p-6 text-center">
+                          <h3 className={`text-2xl font-semibold mb-1 font-nasalization text-glow text-${item.color}`}>
+                            {item.label}
+                          </h3>
+                          <p className="text-sm text-alien-green/70 font-nasalization mb-3">{item.subtitle}</p>
+                          <div className={`w-16 h-0.5 bg-gradient-to-r from-${item.color} to-alien-green mx-auto mb-3`} />
+                          <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+
+              {/* Mobile vertical timeline */}
+              <div className="md:hidden relative pl-8">
+                {/* Vertical line */}
+                <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-alien-gold/40 via-alien-green/60 to-alien-gold/40" />
+                
+                <div className="space-y-8">
+                  {[
+                    { label: 'Web 3', subtitle: 'Blockchain', color: 'alien-gold', description: 'The foundation of true digital ownership and trustless transactions. Blockchain enables transparent, immutable records and smart contracts.' },
+                    { label: 'Web 4', subtitle: 'A.I. Neural Networks', color: 'alien-green', description: 'Intelligent, adaptive systems powered by neural networks for predictive analytics and automated decision-making.' },
+                    { label: 'Web 5', subtitle: 'Quantum Computing', color: 'alien-gold', description: 'Quantum mechanics for ultra-secure communications and exponentially faster computations with quantum-resistant cryptography.' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      className="relative"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.15 }}
+                    >
+                      {/* Node dot */}
+                      <div className={`absolute -left-[22px] top-6 w-4 h-4 rounded-full bg-${item.color} ring-4 ring-alien-space-dark shadow-[0_0_12px_rgba(34,197,94,0.3)]`} />
+                      
+                      <Card className="bg-alien-space-dark/60 backdrop-blur-xl border-alien-gold/30">
+                        <CardContent className="p-5">
+                          <h3 className={`text-xl font-semibold font-nasalization text-${item.color} mb-1`}>{item.label}</h3>
+                          <p className="text-xs text-alien-green/70 font-nasalization mb-2">{item.subtitle}</p>
+                          <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Summary paragraph */}
+              <motion.p
+                className="text-lg leading-relaxed mt-8 text-gray-200 font-[Exo] text-center max-w-4xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                AlienFlowSpace DAO is a revolutionary space that empowers users to seamlessly access, acquire, redeem, buy, sell, and exchange cryptocurrencies and NFTs. We leverage cutting-edge Web 5 quantum computing, Web 4 AI neural networks, and Web 3 blockchain technology to create an unparalleled ecosystem of innovation and sustainability.
+              </motion.p>
+            </motion.div>
 
             {/* Four pillars section with improved grid and cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
-                    <Shield className="h-8 w-8" />
-                    1st Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    We are committed to providing personalized solutions that address current challenges and needs.
-                  </p>
-                </CardContent>
-              </Card>
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, staggerChildren: 0.2 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
+                      <Shield className="h-8 w-8" />
+                      1st Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      We are committed to providing personalized solutions that address current challenges and needs.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
-                    <Zap className="h-8 w-8" />
-                    2nd Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    Greater security by being able to trust the management of data and transactions thanks to the use of cryptography, blockchain, and quantum computing.
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
+                      <Zap className="h-8 w-8" />
+                      2nd Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      Greater security by being able to trust the management of data and transactions thanks to the use of cryptography, blockchain, and quantum computing.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
-                    <Globe className="h-8 w-8" />
-                    3rd Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    Improvement in decision making thanks to advanced data analysis and the application of artificial intelligence, raising awareness about gestal consciousness, generating synergies, and more.
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-gold/30 shadow-xl hover:border-alien-gold/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold font-nasalization text-glow flex items-center gap-3 text-alien-green">
+                      <Globe className="h-8 w-8" />
+                      3rd Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      Improvement in decision making thanks to advanced data analysis and the application of artificial intelligence, raising awareness about gestal consciousness, generating synergies, and more.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
-                    <Leaf className="h-8 w-8" />
-                    4th Pillar
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="leading-relaxed">
-                    Optimization of WorkFlow (processes and work flows) promoting energy efficiency and environmental sustainability, in addition to adding value and reducing costs.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-alien-space-dark/80 backdrop-blur-lg border-alien-green/30 shadow-xl hover:border-alien-green/50 transition-all duration-300 h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-2xl font-semibold text-alien-green font-nasalization flex items-center gap-3">
+                      <Leaf className="h-8 w-8" />
+                      4th Pillar
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-relaxed">
+                      Optimization of WorkFlow (processes and work flows) promoting energy efficiency and environmental sustainability, in addition to adding value and reducing costs.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
 
             {/* Mission and Values section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -131,7 +245,7 @@ const About: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg leading-relaxed">
-                    We are dedicated to creating the best experiences and synergies that generate greater value for the planet and its beings, implementing efficiency and environmentally sustainable friendly solutions. We strive for continuous improvement, overcoming challenges to offer our best every day through our actions.
+                    We are dedicated to creating exceptional experiences and powerful synergies that generate greater value for the planet and all its beings. By implementing energy-efficient and environmentally sustainable solutions, we lead the charge toward a regenerative future. Through continuous improvement and unwavering commitment, we overcome challenges to deliver our best work every day. Our mission extends beyond technology—we're building a movement that harmonizes innovation with ecological responsibility, empowering communities worldwide to thrive in balance with nature.
                   </p>
                 </CardContent>
               </Card>
@@ -145,10 +259,10 @@ const About: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg leading-relaxed mb-4">
-                    Our vision is to help business professionals adapt and thrive in an ever-evolving digital and hybrid world by offering innovative solutions that optimize energy efficiency and promote environmental sustainability.
+                    Our vision is to empower business professionals and individuals to adapt and excel in an ever-evolving digital and hybrid world. We provide innovative solutions that optimize energy efficiency, promote environmental sustainability, and bridge the gap between traditional systems and decentralized technologies. By fostering technological literacy and accessibility, we enable everyone to participate in the next generation of the internet.
                   </p>
                   <p className="text-lg leading-relaxed">
-                    Our main objective is to disseminate knowledge to provide greater understanding of wisdom in different fields, promoting sustainable growth and development in harmony with the cosmos.
+                    Our core objective is to democratize knowledge and wisdom across diverse fields—from quantum computing and AI to blockchain and sustainable practices. We believe in holistic growth that harmonizes technological advancement with cosmic consciousness, creating a future where innovation serves the greater good of all beings and the planet we call home.
                   </p>
                 </CardContent>
               </Card>
@@ -157,20 +271,20 @@ const About: React.FC = () => {
             {/* Navigation Buttons */}
             <div className="flex flex-wrap justify-center gap-8 my-12">
               <Link to="/academy">
-                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-24 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
-                  <GraduationCap className="h-8 w-8 mb-2" />
+                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-32 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
+                  <img src="/lovable-uploads/AcademyLogo.png" alt="Academy Logo" className="h-12 w-12 mb-2 object-contain" />
                   <span className="font-semibold text-lg font-nasalization">Academy</span>
                 </Button>
               </Link>
               <Link to="/clubs">
-                <Button className="bg-gradient-to-br from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark p-8 rounded-2xl text-center w-56 h-24 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-green/30 transition-all duration-300 hover:transform hover:scale-110">
-                  <Trophy className="h-8 w-8 mb-2" />
+                <Button className="bg-gradient-to-br from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark p-8 rounded-2xl text-center w-56 h-32 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-green/30 transition-all duration-300 hover:transform hover:scale-110">
+                  <img src="/lovable-uploads/ClubLogo.png" alt="Clubs Logo" className="h-12 w-12 mb-2 object-contain" />
                   <span className="font-semibold text-lg font-nasalization">Clubs</span>
                 </Button>
               </Link>
               <Link to="/conetworking">
-                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-24 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
-                  <Users className="h-8 w-8 mb-2" />
+                <Button className="bg-gradient-to-br from-alien-gold to-alien-gold-light hover:from-alien-gold-light hover:to-alien-gold text-alien-space-dark p-8 rounded-2xl text-center w-56 h-32 flex flex-col items-center justify-center shadow-2xl hover:shadow-alien-gold/30 transition-all duration-300 hover:transform hover:scale-110">
+                  <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing Logo" className="h-12 w-12 mb-2 object-contain" />
                   <span className="font-semibold text-lg font-nasalization">CoNetWorKing</span>
                 </Button>
               </Link>
@@ -239,10 +353,13 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="text-center">
-                  <Button className="bg-gradient-to-r from-alien-green to-alien-green-light hover:from-alien-green-light hover:to-alien-green text-alien-space-dark font-semibold font-nasalization shadow-2xl hover:shadow-alien-green/40 transition-all duration-300 hover:transform hover:scale-105 px-0 py-0 rounded-xl text-alien-gold text-lg">
-                    Access Cryptotokens & NFTs
-                  </Button>
+                <div className="text-center mt-8">
+                  <h3 className="text-2xl font-semibold text-alien-gold mb-6 font-nasalization">
+                    Explore Our Digital Collectibles
+                  </h3>
+                  <Suspense fallback={<LoadingScreen />}>
+                    <NFTGallery />
+                  </Suspense>
                 </div>
               </CardContent>
             </Card>

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Rocket, Star, Clock, ScrollText, BookOpen, PieChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import LoadingScreen from '@/components/LoadingScreen';
+
+const NFTGallery = lazy(() => import('@/components/NFTGallery'));
+
 const AlienTrip: React.FC = () => {
   const roadmapEvents = [{
     quarter: "Q3 2025",
@@ -228,6 +232,25 @@ const AlienTrip: React.FC = () => {
                     View detailed tokenomics <Rocket className="ml-2 h-4 w-4" />
                   </a>
                 </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* NFT Gallery Section */}
+          <div className="mb-16">
+            <Card className="bg-alien-space-dark/50 backdrop-blur-md border-alien-gold/20">
+              <CardHeader>
+                <CardTitle className="text-3xl font-bold text-alien-gold text-center font-nasalization">
+                  Digital Collectibles
+                </CardTitle>
+                <p className="text-lg text-gray-300 font-[Exo] text-center mt-4">
+                  Explore our exclusive NFT collections on OpenSea. Own a piece of the AlienFlowSpace universe.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <Suspense fallback={<LoadingScreen />}>
+                  <NFTGallery />
+                </Suspense>
               </CardContent>
             </Card>
           </div>

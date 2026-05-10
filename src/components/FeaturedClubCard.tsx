@@ -123,12 +123,36 @@ const FeaturedClubCard = ({
               {/* Special handling for EcoFlow product carousel */}
               {club.name === 'Δ EcoFlow' && section.title === 'Eco Products Catalog' ? <div className="mt-4">
                   <EcoProductCarousel />
-                </div> : <div className="flex flex-wrap gap-2">
-                  {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => <Button key={pIndex} variant="ghost" size="sm" className={`${section.color} text-white hover:bg-white/20 text-xs h-auto py-2 justify-start font-[Exo]`} onClick={() => platform.url && window.open(platform.url, '_blank')} disabled={!platform.url}>
-                      {platform.icon && <img src={platform.icon} alt={platform.name} className="h-4 w-4 mr-2 flex-shrink-0 rounded" />}
-                      {!platform.icon && <ExternalLink className="h-4 w-4 mr-2 flex-shrink-0" />}
-                      <span className="truncate text-left">{platform.name}</span>
-                    </Button>)}
+                </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                  {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => <div key={pIndex} onClick={() => platform.url && window.open(platform.url, '_blank')} className={`${section.color} rounded-lg p-4 hover:bg-white/20 transition-all duration-300 cursor-pointer border border-white/10 hover:border-white/30 hover:scale-105 ${!platform.url && 'opacity-50 cursor-not-allowed'}`}>
+                      {/* Icon container - fixed size */}
+                      <div className="w-12 h-12 mb-3 flex items-center justify-center bg-white/10 rounded-lg overflow-hidden">
+                        {platform.icon ? (
+                          <img
+                            src={platform.icon}
+                            alt={platform.name}
+                            className="w-8 h-8 object-contain"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const fallback = target.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.classList.remove('hidden');
+                            }}
+                          />
+                        ) : null}
+                        <ExternalLink className={`h-6 w-6 text-white/70 ${platform.icon ? 'hidden' : ''}`} />
+                      </div>
+
+                      {/* Line 1: Name */}
+                      <h4 className="text-white font-semibold text-sm font-[Exo] mb-1 line-clamp-1">
+                        {platform.name}
+                      </h4>
+
+                      {/* Line 2: Brief description */}
+                      <p className="text-white/70 text-xs font-[Exo] line-clamp-2 leading-relaxed min-h-[2.5rem]">
+                        {platform.description || 'Crypto platform partner'}
+                      </p>
+                    </div>)}
                 </div>}
             </div>)}
         </div>
