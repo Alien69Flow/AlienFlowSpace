@@ -60,13 +60,6 @@ const Clubs: React.FC = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
 
-  const allCategories = React.useMemo(() => {
-    const cats = new Set<string>();
-    featuredClubs.forEach(c => cats.add(c.category));
-    otherClubs.forEach(c => cats.add(c.category));
-    return Array.from(cats).sort();
-  }, []);
-
   const featuredClubs = [
     {
       name: 'Δ ArtFlow',
