@@ -60,13 +60,6 @@ const Clubs: React.FC = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
 
-  const allCategories = React.useMemo(() => {
-    const cats = new Set<string>();
-    featuredClubs.forEach(c => cats.add(c.category));
-    otherClubs.forEach(c => cats.add(c.category));
-    return Array.from(cats).sort();
-  }, []);
-
   const featuredClubs = [
     {
       name: 'Δ ArtFlow',
@@ -581,6 +574,13 @@ const Clubs: React.FC = () => {
       bgColor: 'bg-gradient-to-br from-indigo-900/40 to-blue-900/40'
     }
   ];
+
+  const allCategories = React.useMemo(() => {
+    const cats = new Set<string>();
+    featuredClubs.forEach(c => cats.add(c.category));
+    otherClubs.forEach(c => cats.add(c.category));
+    return Array.from(cats).sort();
+  }, []);
 
   const filteredFeatured = featuredClubs.filter(c => {
     const matchesSearch = !searchQuery || c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.description.toLowerCase().includes(searchQuery.toLowerCase());
