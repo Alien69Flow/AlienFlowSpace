@@ -575,6 +575,13 @@ const Clubs: React.FC = () => {
     }
   ];
 
+  const allCategories = React.useMemo(() => {
+    const cats = new Set<string>();
+    featuredClubs.forEach(c => cats.add(c.category));
+    otherClubs.forEach(c => cats.add(c.category));
+    return Array.from(cats).sort();
+  }, []);
+
   const filteredFeatured = featuredClubs.filter(c => {
     const matchesSearch = !searchQuery || c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCat = !activeCategory || c.category === activeCategory;
