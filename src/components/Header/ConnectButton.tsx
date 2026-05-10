@@ -1,14 +1,19 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useAppKit } from '@reown/appkit/react';
-import { Copy, CheckCircle, Gamepad2, Rocket } from 'lucide-react';
+import { Copy, CheckCircle } from 'lucide-react';
 import { useWalletConnection } from '@/hooks/useWalletConnection';
 import { toast } from 'sonner';
 
 const WALLET_ICON = "/lovable-uploads/AW.png";
-const PORTAL_ICON_AVIF = "/lovable-uploads/AP1.avif";
-const PORTAL_ICON_JPG = "/lovable-uploads/AP.jpg";
-const ICON_SIZE = "h-7 w-7 sm:h-8 sm:w-8";
+
+// App icons - replace these files in /public/lovable-uploads/apps/ to update logos
+const ACE_ICON = "/lovable-uploads/apps/ace.png";
+const ADEX_ICON = "/lovable-uploads/apps/adex.png";
+const ATRIP_ICON = "/lovable-uploads/apps/atrip.png";
+
+const ICON_BTN = "bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-0 h-11 w-11 sm:h-12 sm:w-12 overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold";
+const APP_IMG = "h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover";
 
 const shortAddress = (addr: string) =>
   addr ? addr.slice(0, 6) + '...' + addr.slice(-4) : '';
@@ -29,41 +34,51 @@ const ConnectButton = () => {
 
   return (
     <div className="flex items-center gap-2 sm:gap-3">
-      {/* App Buttons */}
+      {/* 1. ACE AGameFlow */}
       <a
-        href="https://agameflow.lovable.app"
+        href="https://ACE.AlienFlow.Space"
         target="_blank"
         rel="noopener noreferrer"
         className="no-underline"
         title="ACE AGameFlow"
         aria-label="ACE AGameFlow"
       >
-        <Button
-          className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
-          type="button"
-        >
-          <Gamepad2 className={`${ICON_SIZE}`} />
+        <Button className={ICON_BTN} type="button">
+          <img src={ACE_ICON} alt="ACE AGameFlow" className={APP_IMG} draggable={false} />
         </Button>
       </a>
+
+      {/* 2. AlienDEX & Play (Connect Portal) */}
       <a
-        href="https://alientrip.lovable.app"
+        href="https://ADEX.AlienFlow.Space"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline"
+        title="AlienDEX & Play"
+        aria-label="AlienDEX & Play"
+      >
+        <Button className={ICON_BTN} type="button">
+          <img src={ADEX_ICON} alt="AlienDEX & Play" className={APP_IMG} draggable={false} />
+        </Button>
+      </a>
+
+      {/* 3. AlienTrip */}
+      <a
+        href="https://ATrip.AlienFlow.Space"
         target="_blank"
         rel="noopener noreferrer"
         className="no-underline"
         title="AlienTrip"
         aria-label="AlienTrip"
       >
-        <Button
-          className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
-          type="button"
-        >
-          <Rocket className={`${ICON_SIZE}`} />
+        <Button className={ICON_BTN} type="button">
+          <img src={ATRIP_ICON} alt="AlienTrip" className={APP_IMG} draggable={false} />
         </Button>
       </a>
 
+      {/* 4. Wallet (far right) */}
       {isConnected && address ? (
         <>
-          {/* Connected state: address + optional AI key copy + manage */}
           <div className="flex items-center gap-2">
             <span
               className="text-alien-gold font-mono text-xs bg-alien-green/20 px-3 py-1.5 rounded-full border border-alien-gold/30 shadow-sm select-all"
@@ -71,7 +86,6 @@ const ConnectButton = () => {
             >
               {shortAddress(address)}
             </span>
-            {/* Inline AI key copy button */}
             {aiKey && (
               <button
                 onClick={copyAIKey}
@@ -85,7 +99,7 @@ const ConnectButton = () => {
 
           <Button
             onClick={() => open({ view: "Account" })}
-            className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
+            className={ICON_BTN}
             title="Manage Wallet"
             aria-label="Manage Wallet"
             type="button"
@@ -98,34 +112,15 @@ const ConnectButton = () => {
         </>
       ) : (
         <Button
-          className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
+          className={ICON_BTN}
           onClick={() => open({ view: "Connect" })}
           title="Connect Wallet"
           aria-label="Connect Wallet"
           type="button"
         >
-          <img src={WALLET_ICON} alt="Wallet Logo" className={`${ICON_SIZE} rounded-full object-cover`} draggable={false} />
+          <img src={WALLET_ICON} alt="Wallet" className={APP_IMG} draggable={false} />
         </Button>
       )}
-      <a
-        href="https://aliendex.lovable.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="no-underline"
-        title="Connect Portal"
-        aria-label="Connect Portal"
-        tabIndex={-1}
-      >
-        <Button
-          className="bg-alien-green hover:bg-alien-green-light text-alien-gold rounded-full flex items-center justify-center p-2 sm:p-3 transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-alien-gold"
-          type="button"
-        >
-          <picture>
-            <source srcSet={PORTAL_ICON_AVIF} type="image/avif" />
-            <img src={PORTAL_ICON_JPG} alt="Portal Icon" className={`${ICON_SIZE} rounded-full object-cover`} draggable={false} />
-          </picture>
-        </Button>
-      </a>
     </div>
   );
 };
