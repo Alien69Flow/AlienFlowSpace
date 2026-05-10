@@ -70,7 +70,7 @@ const ConnectButton = () => {
         </Button>
       )}
       <a
-        href="https://aliendex.lovable.app/"
+        href="https://ADEX.AlienFlow.Space"
         target="_blank"
         rel="noopener noreferrer"
         className="no-underline"
