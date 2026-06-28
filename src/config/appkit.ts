@@ -40,8 +40,8 @@ const origin =
   typeof window !== 'undefined' ? window.location.origin : 'https://alienflow.space';
 
 createAppKit({
-  adapters: [wagmiAdapter, solanaAdapter, bitcoinAdapter],
-  networks,
+  adapters: [wagmiAdapter, solanaAdapter, bitcoinAdapter] as any,
+  networks: networks as any,
   defaultNetwork: polygon,
   projectId,
   metadata: {
