@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AppKitProvider } from '@reown/appkit/react';
-import { mainnet, arbitrum, polygon } from '@reown/appkit/networks';
+import Web3Provider from './providers/Web3Provider';
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
