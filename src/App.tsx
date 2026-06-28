@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AppKitProvider } from '@reown/appkit/react';
-import { mainnet, arbitrum, polygon } from '@reown/appkit/networks';
+import Web3Provider from './providers/Web3Provider';
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
@@ -11,20 +10,11 @@ import CoNetWorKing from './pages/CoNetWorKing';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
-import './index.css'; // Solo se importa el archivo final
+import './index.css';
 
 function App() {
   return (
-    <AppKitProvider
-      projectId="ced40e4d52234c471808977208586c7e"
-      networks={[mainnet, arbitrum, polygon]}
-      metadata={{
-        name: 'Alien World',
-        description: 'Alien World dApp',
-        url: window.location.origin,
-        icons: [`${window.location.origin}/lovable-uploads/ALogo.png`]
-      }}
-    >
+    <Web3Provider>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -40,7 +30,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </AppKitProvider>
+    </Web3Provider>
   );
 }
 
