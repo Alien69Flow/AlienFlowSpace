@@ -30,9 +30,6 @@ export const wagmiAdapter = new WagmiAdapter({
   projectId,
   ssr: false,
 });
-  projectId,
-  ssr: false,
-});
 
 export const solanaAdapter = new SolanaAdapter();
 export const bitcoinAdapter = new BitcoinAdapter({ projectId });
