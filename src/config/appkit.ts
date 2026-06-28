@@ -26,7 +26,7 @@ export const networks: [AppKitNetwork, ...AppKitNetwork[]] = [
 ];
 
 export const wagmiAdapter = new WagmiAdapter({
-  networks: [polygon, mainnet, arbitrum, base, bsc] as [AppKitNetwork, ...AppKitNetwork[]],
+  networks: [polygon, mainnet, arbitrum, base, bsc] as any,
   projectId,
   ssr: false,
 });
