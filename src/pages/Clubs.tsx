@@ -189,6 +189,11 @@ const Clubs: React.FC = () => {
           icon: '/lovable-uploads/Clubs/SafePal.png',
           description: 'Affordable hardware wallet solution'
         }, {
+          name: 'Tangem',
+          url: 'https://tangem.com/invite/AN85VR',
+          icon: '/lovable-uploads/Clubs/Tangem.png',
+          description: 'Card-shaped hardware wallet, NFC-powered'
+        }, {
           name: 'Trezor',
           url: 'https://trezor.io/',
           icon: '/lovable-uploads/Clubs/Trezor.svg',
