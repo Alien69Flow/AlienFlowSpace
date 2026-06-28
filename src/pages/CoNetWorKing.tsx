@@ -280,6 +280,7 @@ const CoNetWorKing: React.FC = () => {
       { name: "Phantom", url: "https://phantom.app/", logo: "/lovable-uploads/Clubs/PhantomLogo.svg", description: "Solana wallet" },
       { name: "Pionex", url: "https://www.pionex.com/es/signUp?r=0TTkucC3Gy7", logo: "/lovable-uploads/Clubs/PionexLogo.svg", description: "Crypto trading bot platform" },
       { name: "SafePal", url: "https://www.safepal.com/", logo: "/lovable-uploads/Clubs/SafePal.png", description: "Secure crypto wallet" },
+      { name: "Tangem", url: "https://tangem.com/invite/AN85VR", logo: "/lovable-uploads/Clubs/Tangem.png", description: "NFC card hardware wallet" },
       { name: "Trezor", url: "https://trezor.io/", logo: "/lovable-uploads/Clubs/Trezor.svg", description: "Hardware wallet pioneer" },
       { name: "Trust Wallet", url: "https://trustwallet.com/", logo: "/lovable-uploads/Clubs/Trust Wallet.svg", description: "Multi-chain wallet" }
     ],
