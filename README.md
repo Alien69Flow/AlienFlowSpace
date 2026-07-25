@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/Alien69Flow/Alien69Flow/main/AFSBanner.jpg" width="100%" alt="AlienFlowSpace Banner" />
 </p>
 
-<h1 align="center">🛸 AlienFlowSpace DAO | Unified Field Praxis</h1>
+<h1 align="center">🛸 AlienFlowSpace DAO (Web 3,4,5) | Unified Field Praxis</h1>
 
 <p align="center">
   <b>Access the DAO with Innovative Solutions | Unlock Energy Efficiency & Environmental Sustainability</b><br>
