@@ -22,8 +22,6 @@ export default defineConfig(({ mode }) => ({
   logLevel: "info", // Habilitar logs detallados
   optimizeDeps: {
     include: [
-      "@vercel/analytics/react",
-      "@vercel/speed-insights/react",
       "@reown/appkit/react",
       "@reown/appkit-adapter-wagmi",
       "@reown/appkit-adapter-solana",
