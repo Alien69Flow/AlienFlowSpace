@@ -20,4 +20,15 @@ export default defineConfig(({ mode }) => ({
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json"], // Extensiones explícitas
   },
   logLevel: "info", // Habilitar logs detallados
+  optimizeDeps: {
+    include: [
+      "@vercel/analytics/react",
+      "@vercel/speed-insights/react",
+      "@reown/appkit/react",
+      "@reown/appkit-adapter-wagmi",
+      "@reown/appkit-adapter-solana",
+      "@reown/appkit-adapter-bitcoin",
+      "@supabase/supabase-js",
+    ],
+  },
 }));
