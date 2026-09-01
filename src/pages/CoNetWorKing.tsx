@@ -256,6 +256,27 @@ const CoNetWorKing: React.FC = () => {
   ];
 
   const clubsPartners = {
+    // AIFlow - AI tools & assistants (alphabetical)
+    aiFlow: [
+      { name: "Bolt", url: "https://bolt.cello.so/3ULpYIYBm4L", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png", description: "AI-powered app builder" },
+      { name: "ChatGPT", url: "https://chatgpt.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg", description: "AI chatbot by OpenAI" },
+      { name: "Claude", url: "https://claude.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg", description: "AI assistant by Anthropic" },
+      { name: "GitHub Copilot", url: "https://github.com/features/copilot", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg", description: "AI code completion" },
+      { name: "Gemini", url: "https://gemini.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg", description: "AI by Google" },
+      { name: "Grok", url: "https://grok.x.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg", description: "AI by xAI" },
+      { name: "Lovable", url: "https://lovable.dev", logo: "https://lovable.dev/favicon.ico", description: "AI app builder" },
+      { name: "Suno", url: "https://suno.com", logo: "https://suno.com/favicon.ico", description: "AI music generation" }
+    ],
+    // AdsFlow - Advertising platforms (alphabetical)
+    adsFlow: [
+      { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://aads.com/favicon.ico", description: "Ad network platform" },
+      { name: "Google Ads", url: "https://ads.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg", description: "Search & display ads" },
+      { name: "Meta Ads", url: "https://www.facebook.com/business/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg", description: "Facebook & Instagram ads" },
+      { name: "LinkedIn Ads", url: "https://www.linkedin.com/ad-campaign", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg", description: "Professional ad network" },
+      { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg", description: "Community-based ads" },
+      { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg", description: "Short-video ads" },
+      { name: "X Ads", url: "https://ads.x.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg", description: "Social ads on X" }
+    ],
     // ArtFlow - Web3 music platforms (alphabetical)
     artFlow: [
       { name: "Audius", url: "https://audius.co/", logo: "/lovable-uploads/Clubs/Audius.svg", description: "Decentralized music streaming" },
@@ -703,6 +724,24 @@ const CoNetWorKing: React.FC = () => {
               partners={academyPartners} 
               color="alien-gold"
               delay={0}
+            />
+
+            {/* AIFlow - AI tools & assistants */}
+            <PartnerSection 
+              title="AIFlow" 
+              partners={clubsPartners.aiFlow} 
+              color="violet"
+              icon={<Zap className="h-6 w-6" />}
+              delay={0.05}
+            />
+
+            {/* AdsFlow - Advertising platforms */}
+            <PartnerSection 
+              title="AdsFlow" 
+              partners={clubsPartners.adsFlow} 
+              color="cyan"
+              icon={<TrendingUp className="h-6 w-6" />}
+              delay={0.07}
             />
 
             {/* ArtFlow - Web3 music */}

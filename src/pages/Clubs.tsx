@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import FeaturedClubCard from '@/components/FeaturedClubCard';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
-import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical, Search } from 'lucide-react';
+import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical, Search, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 type ClubProps = {
@@ -61,6 +61,113 @@ const Clubs: React.FC = () => {
   const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
 
   const featuredClubs = [
+    {
+      name: 'Δ AIFlow',
+      description: 'Advancing artificial intelligence through decentralized computing, neural networks, and collaborative AI model development with the most powerful AI tools and assistants.',
+      members: 11234,
+      icon: <Zap className="h-6 w-6 text-alien-gold" />,
+      category: 'AI',
+      categoryColor: 'bg-violet-500/80 text-white border border-violet-400/50',
+      bgColor: 'bg-gradient-to-br from-violet-900/40 to-purple-900/40',
+      sections: [{
+        title: 'AI Tools & Assistants',
+        description: 'AI-powered platforms for app building, coding, chat, music generation, and creative workflows',
+        icon: <Zap className="h-4 w-4" />,
+        color: 'bg-violet-600/80',
+        platforms: [{
+          name: 'Bolt',
+          url: 'https://bolt.cello.so/3ULpYIYBm4L',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png',
+          description: 'AI-powered app & website builder'
+        }, {
+          name: 'ChatGPT',
+          url: 'https://chatgpt.com',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg',
+          description: 'AI chatbot by OpenAI'
+        }, {
+          name: 'Claude',
+          url: 'https://claude.ai',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg',
+          description: 'AI assistant by Anthropic'
+        }, {
+          name: 'GitHub Copilot',
+          url: 'https://github.com/features/copilot',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg',
+          description: 'AI code completion tool'
+        }, {
+          name: 'Gemini',
+          url: 'https://gemini.google.com',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg',
+          description: 'AI assistant by Google'
+        }, {
+          name: 'Grok',
+          url: 'https://grok.x.ai',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg',
+          description: 'AI by xAI'
+        }, {
+          name: 'Lovable',
+          url: 'https://lovable.dev',
+          icon: 'https://lovable.dev/favicon.ico',
+          description: 'AI app builder platform'
+        }, {
+          name: 'Suno',
+          url: 'https://suno.com',
+          icon: 'https://suno.com/favicon.ico',
+          description: 'AI music generation'
+        }]
+      }]
+    },
+    {
+      name: 'Δ AdsFlow',
+      description: 'Maximizing reach and revenue through decentralized advertising networks, programmatic ad platforms, and community-driven marketing solutions.',
+      members: 8421,
+      icon: <TrendingUp className="h-6 w-6 text-alien-gold" />,
+      category: 'Ads',
+      categoryColor: 'bg-cyan-500/80 text-white border border-cyan-400/50',
+      bgColor: 'bg-gradient-to-br from-cyan-900/40 to-sky-900/40',
+      sections: [{
+        title: 'Advertising Platforms',
+        description: 'Ad networks and marketing platforms for targeted campaigns, programmatic ads, and revenue optimization',
+        icon: <TrendingUp className="h-4 w-4" />,
+        color: 'bg-cyan-600/80',
+        platforms: [{
+          name: 'AADS',
+          url: 'https://aads.com/advertise/?partner=2454032',
+          icon: 'https://aads.com/favicon.ico',
+          description: 'Ad network platform'
+        }, {
+          name: 'Google Ads',
+          url: 'https://ads.google.com',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg',
+          description: 'Search & display advertising'
+        }, {
+          name: 'Meta Ads',
+          url: 'https://www.facebook.com/business/ads',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg',
+          description: 'Facebook & Instagram ads'
+        }, {
+          name: 'LinkedIn Ads',
+          url: 'https://www.linkedin.com/ad-campaign',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg',
+          description: 'Professional ad network'
+        }, {
+          name: 'Reddit Ads',
+          url: 'https://ads.reddit.com',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg',
+          description: 'Community-based ads'
+        }, {
+          name: 'TikTok Ads',
+          url: 'https://ads.tiktok.com',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg',
+          description: 'Short-video ads'
+        }, {
+          name: 'X Ads',
+          url: 'https://ads.x.com',
+          icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg',
+          description: 'Social ads on X'
+        }]
+      }]
+    },
     {
       name: 'Δ ArtFlow',
       description: 'Harmonizing the multiverse through decentralized music creation, NFT releases, and community-driven audio experiences.',
@@ -470,15 +577,6 @@ const Clubs: React.FC = () => {
   ];
 
   const otherClubs: ClubProps[] = [
-    {
-      name: 'Δ AIFlow',
-      description: 'Advancing artificial intelligence through decentralized computing, neural networks, and collaborative AI model development.',
-      members: 11234,
-      icon: <Zap className="h-6 w-6 text-alien-gold" />,
-      category: 'AI',
-      categoryColor: 'bg-violet-500/80 text-white border border-violet-400/50',
-      bgColor: 'bg-gradient-to-br from-violet-900/40 to-purple-900/40'
-    },
     {
       name: 'Δ BioFlow',
       description: 'Advancing biotechnology and regenerative medicine through decentralized research, funding, and community-driven innovation.',

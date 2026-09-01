@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ShieldCheck, Coins, Leaf, Brain, GraduationCap, 
-  Zap, ExternalLink, ChevronDown, Award, CheckCircle2
-} from 'lucide-react';
+import { ShieldCheck, Coins, Leaf, Brain, GraduationCap, Zap, ExternalLink, ChevronDown, Award, CircleCheck as CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 
@@ -75,6 +72,31 @@ const partnerCategories = [
       { name: "Stanford Online", url: "https://online.stanford.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg" },
       { name: "Udacity", url: "https://www.udacity.com/", logo: "/lovable-uploads/Academy/Udacity.svg" },
       { name: "UNED", url: "https://www.uned.es/", logo: "/lovable-uploads/Academy/UNED.png" }
+    ] 
+  },
+  { 
+    label: 'AI FLOW', 
+    partners: [
+      { name: "Bolt", url: "https://bolt.cello.so/3ULpYIYBm4L", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png" },
+      { name: "ChatGPT", url: "https://chatgpt.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg" },
+      { name: "Claude", url: "https://claude.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg" },
+      { name: "GitHub Copilot", url: "https://github.com/features/copilot", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg" },
+      { name: "Gemini", url: "https://gemini.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg" },
+      { name: "Grok", url: "https://grok.x.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg" },
+      { name: "Lovable", url: "https://lovable.dev", logo: "https://lovable.dev/favicon.ico" },
+      { name: "Suno", url: "https://suno.com", logo: "https://suno.com/favicon.ico" }
+    ] 
+  },
+  { 
+    label: 'ADS FLOW', 
+    partners: [
+      { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://aads.com/favicon.ico" },
+      { name: "Google Ads", url: "https://ads.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg" },
+      { name: "Meta Ads", url: "https://www.facebook.com/business/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg" },
+      { name: "LinkedIn Ads", url: "https://www.linkedin.com/ad-campaign", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg" },
+      { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg" },
+      { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg" },
+      { name: "X Ads", url: "https://ads.x.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg" }
     ] 
   },
   { 
