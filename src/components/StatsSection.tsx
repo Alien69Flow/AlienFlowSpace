@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
-import { Users, Globe, TrendingUp, Vote } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Users, Globe, Vote } from 'lucide-react';
+import AlienTag from '@/components/alien/AlienTag';
 
 const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; suffix?: string; prefix?: string }) => {
   const [displayValue, setDisplayValue] = useState(0);
@@ -38,66 +38,74 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; s
   );
 };
 
-const stats = [
-  {
-    icon: Users,
-    value: 314159,
-    label: 'DAO Members',
-    suffix: '+',
-    color: 'text-alien-green',
-    glowColor: 'rgba(34, 197, 94, 0.3)',
-  },
-  {
-    icon: Globe,
-    value: 195,
-    label: 'Countries',
-    suffix: '',
-    color: 'text-alien-gold',
-    glowColor: 'rgba(240, 216, 130, 0.3)',
-  },
-  {
-    icon: TrendingUp,
-    value: 42,
-    label: 'TVL (ETH)',
-    suffix: '',
-    prefix: 'Ξ ',
-    color: 'text-alien-green',
-    glowColor: 'rgba(34, 197, 94, 0.3)',
-  },
-  {
-    icon: Vote,
-    value: 127,
-    label: 'Proposals Passed',
-    suffix: '',
-    color: 'text-alien-gold',
-    glowColor: 'rgba(240, 216, 130, 0.3)',
-  },
+const daoStats = [
+  { icon: Users, value: 314159, label: 'DAO Members', suffix: '+', color: 'text-alien-green', dotColor: 'bg-alien-green' },
+  { icon: Globe, value: 195, label: 'Countries', suffix: '', color: 'text-alien-gold', dotColor: 'bg-alien-gold' },
+  { icon: Vote, value: 127, label: 'Proposals Passed', suffix: '', color: 'text-alien-gold', dotColor: 'bg-alien-gold' },
 ];
 
 const StatsSection = () => {
   return (
-    <section className="py-16 relative">
+    <section className="af-hairline relative py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {stats.map((stat, index) => (
+
+        {/* Unified Financial/Asset Block — 420 ETH + 8 BTC */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-8"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <AlienTag color="gold">TREASURY RESERVE</AlienTag>
+            <AlienTag color="muted">ON-CHAIN</AlienTag>
+          </div>
+          <div className="border border-af-border bg-af-surface/30 p-6 md:p-8">
+            <div className="grid grid-cols-2 gap-0 border-l border-t border-af-border-hairline">
+              <div className="border-r border-b border-af-border-hairline p-5 md:p-6 text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className="af-status-dot bg-alien-green" />
+                  <span className="font-nasalization text-[10px] tracking-[0.2em] uppercase text-af-text-muted">Ethereum</span>
+                </div>
+                <div className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green mb-1">
+                  420 <span className="text-lg">ETH</span>
+                </div>
+              </div>
+              <div className="border-r border-b border-af-border-hairline p-5 md:p-6 text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className="af-status-dot bg-alien-gold" />
+                  <span className="font-nasalization text-[10px] tracking-[0.2em] uppercase text-af-text-muted">Bitcoin</span>
+                </div>
+                <div className="text-3xl md:text-4xl font-bold font-nasalization text-alien-gold mb-1">
+                  8 <span className="text-lg">BTC</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* DAO Stats — flat modules */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-l border-t border-af-border-hairline">
+          {daoStats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="card-border p-6 text-center group hover:scale-[1.03] transition-transform duration-300"
+              className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
             >
-              <div
-                className="mx-auto mb-3 w-12 h-12 rounded-full flex items-center justify-center bg-alien-space-dark/80 border border-alien-gold/20"
-                style={{ boxShadow: `0 0 20px ${stat.glowColor}` }}
-              >
-                <stat.icon className={`h-6 w-6 ${stat.color}`} />
+              <div className="flex items-center gap-2 mb-3">
+                <span className={`af-status-dot ${stat.dotColor}`} />
+                <stat.icon className={`h-4 w-4 ${stat.color}`} />
               </div>
               <div className={`text-2xl md:text-3xl font-bold font-nasalization ${stat.color} mb-1`}>
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ''} />
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-sm text-muted-foreground font-exo">{stat.label}</p>
+              <p className="text-xs font-nasalization tracking-wider uppercase text-af-text-muted">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>

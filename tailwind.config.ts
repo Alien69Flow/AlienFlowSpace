@@ -78,6 +78,22 @@ export default {
           'space-dark': '#050510',
           'space-darker': '#030308',
         },
+        af: {
+          'bg': 'var(--af-bg)',
+          'surface': 'var(--af-surface)',
+          'surface-2': 'var(--af-surface-2)',
+          'primary': 'var(--af-primary)',
+          'secondary': 'var(--af-secondary)',
+          'accent': 'var(--af-accent)',
+          'success': 'var(--af-success)',
+          'warning': 'var(--af-warning)',
+          'danger': 'var(--af-danger)',
+          'text': 'var(--af-text)',
+          'text-muted': 'var(--af-text-muted)',
+          'border': 'var(--af-border)',
+          'border-strong': 'var(--af-border-strong)',
+          'border-hairline': 'var(--af-border-hairline)',
+        },
         overlay: 'rgba(3, 3, 10, 0.8)'
       },
       borderRadius: {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ScrollText, Globe, Orbit } from 'lucide-react';
+import { Orbit, ScrollText, Globe, ArrowRight, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AlienButton from '@/components/alien/AlienButton';
+import AlienTag from '@/components/alien/AlienTag';
 
 const Hero: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -16,134 +17,124 @@ const Hero: React.FC = () => {
     if (spacesSection) spacesSection.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToEcosystem = () => {
+    const ecoSection = document.querySelector('[data-section="ecosystem"]');
+    if (ecoSection) ecoSection.scrollIntoView({ behavior: 'smooth' });
+  };
+
   if (!mounted) return null;
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12 sm:py-16 overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[120px]"
-          style={{ background: 'radial-gradient(circle, hsl(142 67% 45% / 0.4), transparent)' }}
-          animate={{ x: ['-20%', '20%', '-20%'], y: ['-10%', '15%', '-10%'] }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          initial={{ top: '10%', left: '10%' }}
-        />
-        <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full opacity-15 blur-[100px]"
-          style={{ background: 'radial-gradient(circle, hsl(48 83% 72% / 0.4), transparent)' }}
-          animate={{ x: ['15%', '-15%', '15%'], y: ['10%', '-20%', '10%'] }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-          initial={{ bottom: '20%', right: '10%' }}
-        />
-        <motion.div
-          className="absolute w-[300px] h-[300px] rounded-full opacity-10 blur-[80px]"
-          style={{ background: 'radial-gradient(circle, hsl(142 67% 45% / 0.3), transparent)' }}
-          animate={{ x: ['10%', '-10%', '10%'], y: ['-15%', '10%', '-15%'] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          initial={{ top: '50%', right: '30%' }}
-        />
-      </div>
+    <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12 sm:py-16 overflow-hidden af-grid-overlay">
+      {/* Subtle radial glow — single, restrained */}
+      <div className="absolute inset-0 pointer-events-none bg-glow-radial" />
 
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-glow-radial"></div>
-
-      <div className="container relative z-10 px-4 mx-auto text-center max-w-6xl">
-        {/* Logo with pulse ring */}
-        <div className="relative inline-block mb-6 sm:mb-8">
-          {/* Pulse rings */}
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-alien-green/30"
-            style={{ margin: '-16px' }}
-            animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
-          />
-          <motion.div
-            className="absolute inset-0 rounded-full border border-alien-gold/20"
-            style={{ margin: '-8px' }}
-            animate={{ scale: [1, 1.3, 1.3], opacity: [0.4, 0, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut', delay: 0.8 }}
-          />
+      <div className="container relative z-10 px-4 mx-auto max-w-6xl">
+        {/* Logo */}
+        <motion.div
+          className="flex justify-center mb-6"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <motion.img
             src="/lovable-uploads/ALogo.png"
             alt="AlienFlowSpaceDAO Logo"
             className="h-20 sm:h-24 md:h-28 logo-glow z-20 mx-auto"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{
-              scale: [1, 1.02, 1],
-              opacity: 1,
-              y: [0, -5, 0]
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity, 
-              repeatType: "reverse",
-              opacity: { duration: 0.8 }
-            }}
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             loading="lazy"
           />
-        </div>
+        </motion.div>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: -20 }}
+        {/* Technical label row */}
+        <motion.div
+          className="flex justify-center gap-3 mb-6 flex-wrap"
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="text-lg sm:text-xl md:text-2xl font-nasalization font-bold text-center mb-6 sm:mb-8 md:mb-10 tracking-wide"
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="text-alien-green">Decentralized</span>
-          <span className="text-alien-gold"> · </span>
-          <span className="text-alien-gold">Autonomous</span>
-          <span className="text-alien-green"> · </span>
-          <span className="text-alien-green">Organization</span>
-        </motion.p>
+          <AlienTag color="gold">Decentralized</AlienTag>
+          <AlienTag color="green">Autonomous</AlienTag>
+          <AlienTag color="gold">Organization</AlienTag>
+        </motion.div>
 
-        {/* Star Wars inspired description */}
-        <motion.div 
-          className="text-center px-2 py-4 readable-glow"
+        {/* Large wordmark with border underline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-center mb-8"
+        >
+          <h1 className="font-nasalization text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight af-heading-underline inline-block">
+            <span className="text-alien-green">Δlieπ</span>
+            <span className="text-alien-gold">FlΦw</span>
+            <span className="text-alien-green"> $pac€</span>
+            <span className="text-alien-gold"> DAO</span>
+          </h1>
+        </motion.div>
+
+        {/* Value proposition — left-aligned instrument readout style */}
+        <motion.div
+          className="max-w-2xl mx-auto mb-10 px-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          <div>
-            <p className="mb-4 text-lg font-nasalization text-alien-gold">
+          <div className="text-left space-y-3 readable-glow">
+            <p className="text-base sm:text-lg font-nasalization text-alien-gold leading-relaxed">
               Access the DAO with Innovative Solutions, Unlocks Energy Efficiency & Environmental Sustainability.
             </p>
-            <p className="text-base opacity-90 text-alien-green font-nasalization">
-              Advantages Boosting the BENEFITS, for Connecting you and Raise your QUALITY of LIFE, with Mutual PROFITS…
+            <p className="text-sm sm:text-base text-alien-green font-nasalization leading-relaxed">
+              Advantages Boosting the BENEFITS, for Connecting you and Raise your QUALITY of LIFE, with Mutual PROFITS...
             </p>
           </div>
         </motion.div>
 
-        {/* Action buttons with improved hierarchy */}
+        {/* CTA hierarchy: primary, secondary, tertiary text link */}
         <motion.div
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <Link to="/about" className="w-full sm:w-auto">
-            <Button className="w-full sm:w-auto bg-gradient-to-r from-alien-green to-alien-green-light text-alien-space-dark hover:from-alien-gold hover:to-alien-gold-light hover:text-alien-space-dark font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(240,216,130,0.4)] transition-all duration-300">
-              <Orbit className="mr-2 h-4 w-4" /> About Enter Portal
-            </Button>
-          </Link>
+          {/* Primary: ENTER ALIENFLOW */}
+          <AlienButton variant="primary" to="/about" className="!px-8 !py-3 !text-sm">
+            <Orbit className="h-4 w-4" /> ENTER ALIENFLOW
+          </AlienButton>
 
-          <Link to="/alien-trip" className="w-full sm:w-auto">
-            <Button className="w-full sm:w-auto border-2 border-alien-gold/60 bg-alien-space-dark/50 text-alien-gold hover:bg-alien-gold hover:text-alien-space-dark font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full backdrop-blur-sm transition-all duration-300">
-              <ScrollText className="mr-2 h-4 w-4" /> Alientrip Manifesto
-            </Button>
-          </Link>
+          {/* Secondary: EXPLORE ECOSYSTEM */}
+          <AlienButton variant="outline" onClick={scrollToEcosystem} className="!px-8 !py-3 !text-sm">
+            <Globe className="h-4 w-4" /> EXPLORE ECOSYSTEM
+          </AlienButton>
+        </motion.div>
 
-          <Button
-            onClick={scrollToSpaces}
-            className="w-full sm:w-auto border-2 border-alien-green/60 bg-alien-space-dark/50 text-alien-green hover:bg-alien-green hover:text-alien-space-dark font-nasalization px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full backdrop-blur-sm transition-all duration-300"
+        {/* Tertiary: Alien Manifesto / GitBook — text link */}
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.6 }}
+        >
+          <Link
+            to="/alien-trip"
+            className="inline-flex items-center gap-1.5 text-xs font-nasalization tracking-wider uppercase text-af-text-muted hover:text-alien-gold transition-colors border-b border-transparent hover:border-alien-gold/40 pb-0.5"
           >
-            <Globe className="mr-2 h-4 w-4" /> Join the Journey
-          </Button>
+            <ScrollText className="h-3.5 w-3.5" /> Alientrip Manifesto
+          </Link>
+          <span className="hidden sm:inline text-af-text-muted/30">|</span>
+          <a
+            href="https://alienflowspace.gitbook.io/DAO"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-nasalization tracking-wider uppercase text-af-text-muted hover:text-alien-green transition-colors border-b border-transparent hover:border-alien-green/40 pb-0.5"
+          >
+            <BookOpen className="h-3.5 w-3.5" /> GitBook Docs
+          </a>
         </motion.div>
       </div>
 
-      {/* Scroll down indicator */}
+      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer"
         animate={{ y: [0, 8, 0] }}

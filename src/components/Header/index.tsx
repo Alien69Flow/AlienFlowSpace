@@ -17,7 +17,7 @@ const Header = () => {
 
   if (isMobile === undefined) {
     return (
-      <div className="bg-alien-space-dark h-14 w-full flex items-center justify-center font-nasalization">
+      <div className="bg-af-bg h-14 w-full flex items-center justify-center font-nasalization border-b border-af-border-hairline">
         <div className="flex items-center gap-3">
           <img src="/lovable-uploads/ALogo.png" alt="AlienFlowSpace" className="h-8 w-8 animate-pulse" />
           <div className="flex gap-1">
@@ -32,13 +32,13 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? "py-0.5 bg-black/95 shadow-lg shadow-alien-gold/10" 
-          : "py-1 bg-black/90"
+          ? "py-0 bg-af-bg/98" 
+          : "py-0 bg-af-bg/95"
       }`}
     >
-      <div className="container mx-auto px-4 lg:px-6 flex justify-between items-center relative py-2">
+      <div className="container mx-auto px-4 lg:px-6 flex justify-between items-center relative py-2 border-b border-af-border-hairline">
         <Logo />
         <DesktopNav />
         <div className="flex items-center gap-2">
@@ -46,15 +46,15 @@ const Header = () => {
           {isMobile && (
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 text-alien-gold hover:text-alien-green transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-alien-gold/50 rounded-lg ${
-                isMenuOpen ? 'bg-alien-space-light/30' : 'hover:bg-alien-space-light/20'
+              className={`p-2 text-alien-gold hover:text-alien-green transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-alien-gold/50 rounded-lg ${
+                isMenuOpen ? 'bg-af-surface-2/40' : 'hover:bg-af-surface-2/20'
               }`}
               aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               data-state={isMenuOpen ? "open" : "closed"}
             >
-              <div className={`transition-transform duration-300 ${isMenuOpen ? 'rotate-180' : ''}`}>
+              <div className={`transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`}>
                 {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </div>
             </button>
@@ -68,7 +68,7 @@ const Header = () => {
         )}
       </AnimatePresence>
       
-      <div className="w-full border-t border-alien-gold/20 border-b border-alien-gold/20 bg-transparent">
+      <div className="w-full border-b border-af-border-hairline bg-transparent">
         <PriceTicker />
       </div>
     </header>

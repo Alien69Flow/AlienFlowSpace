@@ -1,129 +1,99 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Dna, Coins, Wifi, Beaker, Database, Shield, Leaf, Building, Share2, Landmark, ArrowRight } from 'lucide-react';
-const ecosystems = [{
-  id: 'biofi',
-  title: 'BioFi',
-  description: 'Decentralized biology financing and research initiatives.',
-  icon: <Dna className="h-8 w-8 text-alien-green" />
-}, {
-  id: 'defi',
-  title: 'DeFi',
-  description: 'Decentralized finance protocols and applications.',
-  icon: <Coins className="h-8 w-8 text-alien-gold" />
-}, {
-  id: 'depin',
-  title: 'DePin',
-  description: 'Decentralized physical infrastructure networks.',
-  icon: <Wifi className="h-8 w-8 text-alien-green" />
-}, {
-  id: 'desci',
-  title: 'DeSci',
-  description: 'Decentralized science research and funding.',
-  icon: <Beaker className="h-8 w-8 text-alien-gold" />
-}, {
-  id: 'ipfs',
-  title: 'IPFS',
-  description: 'InterPlanetary File System for decentralized storage.',
-  icon: <Database className="h-8 w-8 text-alien-green" />
-}, {
-  id: 'qfs',
-  title: 'QFS',
-  description: 'Quantum Financial System integration.',
-  icon: <Shield className="h-8 w-8 text-alien-gold" />
-}, {
-  id: 'refi',
-  title: 'ReFi',
-  description: 'Regenerative finance for environmental impact.',
-  icon: <Leaf className="h-8 w-8 text-alien-green" />
-}, {
-  id: 'rwa',
-  title: 'RWA',
-  description: 'Real-World Assets tokenization and management.',
-  icon: <Building className="h-8 w-8 text-alien-gold" />
-}, {
-  id: 'socialfi',
-  title: 'SocialFi',
-  description: 'Social finance for community-driven initiatives.',
-  icon: <Share2 className="h-8 w-8 text-alien-green" />
-}, {
-  id: 'tradfi',
-  title: 'TradFi',
-  description: 'Traditional finance integration and bridging.',
-  icon: <Landmark className="h-8 w-8 text-alien-gold" />
-}];
-const EcosystemCard = ({
-  ecosystem,
-  index
-}: {
-  ecosystem: typeof ecosystems[0];
-  index: number;
-}) => {
-  return <motion.div initial={{
-    opacity: 0,
-    y: 20
-  }} whileInView={{
-    opacity: 1,
-    y: 0
-  }} transition={{
-    duration: 0.5,
-    delay: index * 0.1
-  }} viewport={{
-    once: true,
-    margin: "-100px"
-  }} className="card-border p-6 h-full">
-      <div className="flex flex-col h-full">
-        <div className="mb-4 p-3 bg-alien-space-dark rounded-full w-fit">
-          {ecosystem.icon}
-        </div>
-        <h3 className="text-xl font-semibold mb-2 text-alien-gold font-nasalization">{ecosystem.title}</h3>
-        <p className="text-gray-300 flex-grow">{ecosystem.description}</p>
-        <div className="mt-4">
-          <a href={`#${ecosystem.id}`} className="text-alien-green hover:text-alien-green-light text-sm flex items-center">
-            Explore {ecosystem.title} <ArrowRight className="ml-1 h-4 w-4" />
-          </a>
-        </div>
-      </div>
-    </motion.div>;
-};
+import {
+  Dna, Coins, Wifi, Beaker, Database, Shield, Leaf,
+  Building, Share2, Landmark, Gamepad2, ArrowRight
+} from 'lucide-react';
+import AlienModule from '@/components/alien/AlienModule';
+import AlienTag from '@/components/alien/AlienTag';
+
+const ecosystems = [
+  { id: 'biofi', num: '01', title: 'BioFi', description: 'Decentralized biology financing and research initiatives.', icon: <Dna className="h-5 w-5 text-alien-green" /> },
+  { id: 'defi', num: '02', title: 'DeFi', description: 'Decentralized finance protocols and applications.', icon: <Coins className="h-5 w-5 text-alien-gold" /> },
+  { id: 'depin', num: '03', title: 'DePin', description: 'Decentralized physical infrastructure networks.', icon: <Wifi className="h-5 w-5 text-alien-green" /> },
+  { id: 'desci', num: '04', title: 'DeSci', description: 'Decentralized science research and funding.', icon: <Beaker className="h-5 w-5 text-alien-gold" /> },
+  { id: 'gamefi', num: '05', title: 'GameFi', description: 'Game finance and play-to-earn ecosystems.', icon: <Gamepad2 className="h-5 w-5 text-alien-green" /> },
+  { id: 'ipfs', num: '06', title: 'IPFS', description: 'InterPlanetary File System for decentralized storage.', icon: <Database className="h-5 w-5 text-alien-gold" /> },
+  { id: 'qfs', num: '07', title: 'QFS', description: 'Quantum Financial System integration.', icon: <Shield className="h-5 w-5 text-alien-green" /> },
+  { id: 'refi', num: '08', title: 'ReFi', description: 'Regenerative finance for environmental impact.', icon: <Leaf className="h-5 w-5 text-alien-gold" /> },
+  { id: 'rwa', num: '09', title: 'RWA', description: 'Real-World Assets tokenization and management.', icon: <Building className="h-5 w-5 text-alien-green" /> },
+  { id: 'socialfi', num: '10', title: 'SocialFi', description: 'Social finance for community-driven initiatives.', icon: <Share2 className="h-5 w-5 text-alien-gold" /> },
+  { id: 'tradfi', num: '11', title: 'TradFi', description: 'Traditional finance integration and bridging.', icon: <Landmark className="h-5 w-5 text-alien-green" /> },
+];
+
 const EcosystemSection = () => {
-  return <section id="ecosystem" className="relative overflow-hidden cosmic-grid py-[30px] my-[10px]">
+  return (
+    <section
+      id="ecosystem"
+      data-section="ecosystem"
+      className="af-hairline relative py-12 md:py-16 af-grid-overlay"
+    >
       <div className="container mx-auto px-4">
-        <motion.div initial={{
-        opacity: 0
-      }} whileInView={{
-        opacity: 1
-      }} transition={{
-        duration: 0.8
-      }} viewport={{
-        once: true,
-        margin: "-100px"
-      }} className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-glow font-nasalization text-alien-green">DAO Ecosystem</h2>
-          <p className="max-w-3xl mx-auto font-bold text-alien-gold text-[alien-gold-dark]">ΔlieπFlΦw $pac€ bridges diverse decentralized domains into a coherent, interoperable ecosystem.</p>
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-8 md:mb-12"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <AlienTag color="green">11 DOMAINS</AlienTag>
+            <AlienTag color="muted">INTEROPERABLE</AlienTag>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green tracking-tight af-heading-underline inline-block">
+            DAO Ecosystem
+          </h2>
+          <p className="max-w-2xl mt-4 text-sm text-af-text-muted font-nasalization">
+            ΔlieπFlΦw $pac€ bridges diverse decentralized domains into a coherent, interoperable ecosystem.
+          </p>
         </motion.div>
 
-        {/* Connected nodes visual */}
-        <div className="relative">
-          {/* SVG connection lines (desktop only) */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" style={{ zIndex: 0 }}>
-            <defs>
-              <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="hsl(142 67% 45% / 0.15)" />
-                <stop offset="50%" stopColor="hsl(48 83% 72% / 0.2)" />
-                <stop offset="100%" stopColor="hsl(142 67% 45% / 0.15)" />
-              </linearGradient>
-            </defs>
-            {/* Horizontal lines connecting columns */}
-            {[0, 1, 2, 3].map(i => (
-              <line key={`h-${i}`} x1={`${10 + i * 20}%`} y1="50%" x2={`${30 + i * 20}%`} y2="50%" stroke="url(#lineGrad)" strokeWidth="1" strokeDasharray="6 4" />
-            ))}
-          </svg>
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {ecosystems.map((ecosystem, index) => <EcosystemCard key={ecosystem.id} ecosystem={ecosystem} index={index} />)}
-          </div>
+        {/* Grid of numbered HUD modules */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 border-l border-t border-af-border-hairline">
+          {ecosystems.map((eco, index) => (
+            <motion.div
+              key={eco.id}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              viewport={{ once: true }}
+            >
+              <a
+                href={`#${eco.id}`}
+                className="group block border-r border-b border-af-border-hairline p-4 md:p-5 h-full bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200"
+              >
+                {/* Number + icon row */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50">
+                    {eco.num}
+                  </span>
+                  <span className="opacity-60 group-hover:opacity-100 transition-opacity">
+                    {eco.icon}
+                  </span>
+                </div>
+
+                {/* Large acronym — dominant typography */}
+                <h3 className="text-xl md:text-2xl font-nasalization font-bold text-alien-gold group-hover:text-alien-green transition-colors mb-2 tracking-tight">
+                  {eco.title}
+                </h3>
+
+                {/* Short description */}
+                <p className="text-xs text-af-text-muted leading-relaxed mb-3">
+                  {eco.description}
+                </p>
+
+                {/* Hover arrow */}
+                <div className="flex items-center gap-1 text-[10px] font-nasalization uppercase tracking-wider text-af-text-muted/50 group-hover:text-alien-green transition-colors">
+                  Explore <ArrowRight className="h-3 w-3" />
+                </div>
+              </a>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default EcosystemSection;
