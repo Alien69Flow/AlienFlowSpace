@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, Users, Gamepad2, Leaf, DollarSign, Music, Shield, Zap } from 'lucide-react';
+import { ExternalLink, Users } from 'lucide-react';
+import AlienTag from '@/components/alien/AlienTag';
+import AlienButton from '@/components/alien/AlienButton';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
+
 interface PlatformLink {
   name: string;
   url?: string;
@@ -26,137 +27,100 @@ interface FeaturedClubProps {
   bgColor: string;
   sections?: ClubSection[];
 }
-const FeaturedClubCard = ({
-  club
-}: {
-  club: FeaturedClubProps;
-}) => {
+
+const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
   if (!club.sections) {
-    // Render simple card for clubs without sections
-    return <div className={`${club.bgColor} p-6 rounded-xl backdrop-blur-md overflow-hidden relative group hover:transform hover:scale-[1.02] transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-alien-space-dark/60 to-alien-space-dark/90 z-0"></div>
-
-        <div className="relative z-10">
-          <div className="flex justify-between items-start mb-6">
-            <div className="p-4 bg-alien-space-dark/80 rounded-xl backdrop-blur-md border border-alien-gold/30 group-hover:border-alien-gold/50 transition-all duration-300">
-              {club.icon}
-            </div>
-            <span className={`px-3 py-1 text-xs ${club.categoryColor} rounded-full font-medium backdrop-blur-sm`}>
-              {club.category}
-            </span>
-          </div>
-
-          <h3 className="text-xl font-bold text-alien-gold mb-3 font-nasalization group-hover:text-alien-gold-light transition-colors">
-            {club.name}
-          </h3>
-          <p className="text-gray-200 mb-6 text-sm font-[Exo] leading-relaxed">
-            {club.description}
-          </p>
-
-          <div className="flex justify-between items-center">
-            <div className="flex items-center bg-alien-space-dark/60 px-3 py-2 rounded-full backdrop-blur-sm">
-              <Users className="h-4 w-4 text-alien-green mr-2" />
-              <span className="text-sm text-alien-green font-medium">
-                {club.members.toLocaleString()} members
-              </span>
-            </div>
-            <Button variant="outline" className="border-alien-gold/50 text-alien-gold hover:bg-alien-gold/20 hover:border-alien-gold text-sm px-4 py-2 h-auto font-[Exo] font-medium backdrop-blur-sm">
-              Join Club
-            </Button>
-          </div>
+    return (
+      <div className="border border-af-border bg-af-surface/20 hover:bg-af-surface/40 transition-colors p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div className="p-3 border border-af-border">{club.icon}</div>
+          <AlienTag color="muted">{club.category}</AlienTag>
         </div>
-      </div>;
-  }
-
-  // Render advanced card with sections - all horizontal layout
-  return <div className={`${club.bgColor} p-6 lg:p-8 rounded-xl backdrop-blur-md overflow-hidden relative group transition-all duration-300 border border-alien-gold/20 hover:border-alien-gold/40`}>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-alien-space-dark/60 to-alien-space-dark/90 z-0"></div>
-      
-      <div className="relative z-10">
-        {/* Header section - horizontal layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8 pb-6 border-b border-alien-gold/20">
-          {/* Left: Icon, Name, Description */}
-          <div className="flex-1 flex flex-col sm:flex-row gap-6">
-            <div className="flex items-start gap-4">
-              <div className="p-4 bg-alien-space-dark/80 rounded-xl backdrop-blur-md border border-alien-gold/30 group-hover:border-alien-gold/50 transition-all duration-300 flex-shrink-0">
-                {club.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3 mb-3">
-                  <h3 className="text-xl lg:text-2xl font-bold font-nasalization group-hover:text-alien-gold-light transition-colors text-alien-green">
-                    {club.name}
-                  </h3>
-                  <span className={`px-3 py-1 text-xs ${club.categoryColor} rounded-full font-medium backdrop-blur-sm flex-shrink-0`}>
-                    {club.category}
-                  </span>
-                </div>
-                <p className="text-gray-200 text-sm lg:text-base font-[Exo] leading-relaxed">
-                  {club.description}
-                </p>
-              </div>
-            </div>
+        <h3 className="text-xl font-bold text-alien-gold mb-3 font-nasalization">{club.name}</h3>
+        <p className="text-gray-300 mb-4 text-sm leading-relaxed">{club.description}</p>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Users className="h-4 w-4 text-alien-green" />
+            <span className="text-sm text-alien-green font-nasalization">{club.members.toLocaleString()} members</span>
           </div>
-          
-          {/* Right: Members and Join button */}
-          <div className="flex flex-row lg:flex-col gap-3 lg:items-end flex-shrink-0">
-            <div className="flex items-center bg-alien-space-dark/60 px-4 py-2 rounded-full backdrop-blur-sm border border-alien-gold/20">
-              <Users className="h-4 w-4 text-alien-green mr-2" />
-              <span className="text-sm text-alien-green font-medium whitespace-nowrap">
-                {club.members.toLocaleString()} members
-              </span>
-            </div>
-            <Button variant="outline" className="border-alien-gold/50 text-alien-gold hover:bg-alien-gold/20 hover:border-alien-gold text-sm px-6 py-2 h-auto font-[Exo] font-medium backdrop-blur-sm whitespace-nowrap">
-              Join Club
-            </Button>
-          </div>
-        </div>
-
-        {/* Sections - vertical stack with horizontal layout */}
-        <div className="space-y-6">
-          {club.sections.map((section, index) => <div key={index} className="bg-alien-space-dark/60 border border-alien-gold/20 backdrop-blur-sm rounded-lg p-5 hover:border-alien-gold/40 transition-all duration-300">
-              <div className="flex items-center text-alien-gold text-sm font-nasalization mb-3">
-                {section.icon}
-                <span className="ml-2">{section.title}</span>
-              </div>
-              <p className="text-sm text-gray-300 font-[Exo] mb-4">{section.description}</p>
-
-              {/* Special handling for EcoFlow product carousel */}
-              {club.name === 'Δ EcoFlow' && section.title === 'Eco Products Catalog' ? <div className="mt-4">
-                  <EcoProductCarousel />
-                </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-                  {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => <div key={pIndex} onClick={() => platform.url && window.open(platform.url, '_blank')} className={`${section.color} rounded-lg p-4 hover:bg-white/20 transition-all duration-300 cursor-pointer border border-white/10 hover:border-white/30 hover:scale-105 ${!platform.url && 'opacity-50 cursor-not-allowed'}`}>
-                      {/* Icon container - fixed size */}
-                      <div className="w-12 h-12 mb-3 flex items-center justify-center bg-white/10 rounded-lg overflow-hidden">
-                        {platform.icon ? (
-                          <img
-                            src={platform.icon}
-                            alt={platform.name}
-                            className="w-8 h-8 object-contain"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                              const fallback = target.nextElementSibling as HTMLElement;
-                              if (fallback) fallback.classList.remove('hidden');
-                            }}
-                          />
-                        ) : null}
-                        <ExternalLink className={`h-6 w-6 text-white/70 ${platform.icon ? 'hidden' : ''}`} />
-                      </div>
-
-                      {/* Line 1: Name */}
-                      <h4 className="text-white font-semibold text-sm font-[Exo] mb-1 line-clamp-1">
-                        {platform.name}
-                      </h4>
-
-                      {/* Line 2: Brief description */}
-                      <p className="text-white/70 text-xs font-[Exo] line-clamp-2 leading-relaxed min-h-[2.5rem]">
-                        {platform.description || 'Crypto platform partner'}
-                      </p>
-                    </div>)}
-                </div>}
-            </div>)}
+          <AlienButton variant="outline" className="!text-xs">Join Club</AlienButton>
         </div>
       </div>
-    </div>;
+    );
+  }
+
+  return (
+    <div className="border border-af-border bg-af-surface/20 hover:bg-af-surface/30 transition-colors p-6 lg:p-8">
+      {/* Header */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6 pb-6 border-b border-af-border-hairline">
+        <div className="flex-1 flex flex-col sm:flex-row gap-4">
+          <div className="p-3 border border-af-border flex-shrink-0">{club.icon}</div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 mb-2">
+              <h3 className="text-xl lg:text-2xl font-bold font-nasalization text-alien-green">{club.name}</h3>
+              <AlienTag color="muted">{club.category}</AlienTag>
+            </div>
+            <p className="text-gray-300 text-sm lg:text-base leading-relaxed">{club.description}</p>
+          </div>
+        </div>
+        <div className="flex flex-row lg:flex-col gap-3 lg:items-end flex-shrink-0">
+          <div className="flex items-center gap-2 border border-af-border-hairline px-3 py-1.5">
+            <Users className="h-4 w-4 text-alien-green" />
+            <span className="text-sm text-alien-green font-nasalization whitespace-nowrap">{club.members.toLocaleString()}</span>
+          </div>
+          <AlienButton variant="outline" className="!text-xs whitespace-nowrap">Join Club</AlienButton>
+        </div>
+      </div>
+
+      {/* Sections */}
+      <div className="space-y-4">
+        {club.sections.map((section, index) => (
+          <div key={index} className="border border-af-border-hairline bg-af-surface/10 p-5 hover:border-af-border transition-colors">
+            <div className="flex items-center text-alien-gold text-sm font-nasalization mb-2">
+              {section.icon}
+              <span className="ml-2">{section.title}</span>
+            </div>
+            <p className="text-sm text-gray-400 mb-4">{section.description}</p>
+
+            {club.name === 'Δ EcoFlow' && section.title === 'Eco Products Catalog' ? (
+              <div className="mt-4"><EcoProductCarousel /></div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 border-l border-t border-af-border-hairline">
+                {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
+                  <div
+                    key={pIndex}
+                    onClick={() => platform.url && window.open(platform.url, '_blank')}
+                    className={`border-r border-b border-af-border-hairline p-4 hover:bg-alien-green/5 transition-colors cursor-pointer ${!platform.url && 'opacity-40 cursor-not-allowed'}`}
+                  >
+                    <div className="w-10 h-10 mb-3 flex items-center justify-center border border-af-border-hairline overflow-hidden">
+                      {platform.icon ? (
+                        <img
+                          src={platform.icon}
+                          alt={platform.name}
+                          className="w-7 h-7 object-contain"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = target.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.classList.remove('hidden');
+                          }}
+                        />
+                      ) : null}
+                      <ExternalLink className={`h-5 w-5 text-alien-gold/50 ${platform.icon ? 'hidden' : ''}`} />
+                    </div>
+                    <h4 className="text-alien-gold font-semibold text-sm mb-1 line-clamp-1">{platform.name}</h4>
+                    <p className="text-gray-400 text-xs line-clamp-2 leading-relaxed min-h-[2.5rem]">
+                      {platform.description || 'Crypto platform partner'}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
+
 export default FeaturedClubCard;

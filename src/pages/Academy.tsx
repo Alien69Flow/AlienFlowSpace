@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Coins, Leaf, Brain, GraduationCap, Zap, ExternalLink, ChevronDown, Award, CircleCheck as CheckCircle2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Coins, Brain, Leaf, ExternalLink, ChevronDown, Award, CircleCheck as CheckCircle2, Zap } from 'lucide-react';
+import AlienTag from '@/components/alien/AlienTag';
+import AlienButton from '@/components/alien/AlienButton';
 
-
-
-// --- DATA DEFINITIVA: 3 MÓDULOS CON 4 BLOQUES CADA UNO ---
 const academyModules = [
   {
     id: 1,
@@ -48,17 +46,16 @@ const academyModules = [
   }
 ];
 
-// --- PARTNERS POR CATEGORÍAS (ALFABÉTICO) - 7 CATEGORÍAS ---
 const partnerCategories = [
-  { 
-    label: 'ACADEMY PARTNERS', 
+  {
+    label: 'ACADEMY PARTNERS',
     partners: [
-      { name: "Academia", url: "https://www.academia.edu/", logo: "/lovable-uploads/Academy/Academia.svg" }, 
+      { name: "Academia", url: "https://www.academia.edu/", logo: "/lovable-uploads/Academy/Academia.svg" },
       { name: "AulaFacil", url: "https://www.aulafacil.com/", logo: "/lovable-uploads/Academy/AulaFacil.png" },
       { name: "Codecademy", url: "https://www.codecademy.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Codecademy.svg" },
-      { name: "Coursera", url: "https://www.coursera.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" }, 
+      { name: "Coursera", url: "https://www.coursera.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" },
       { name: "Cursa", url: "https://cursa.app/", logo: "/lovable-uploads/Academy/Cursa.webp" },
-      { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png" }, 
+      { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png" },
       { name: "FreeCodeCamp", url: "https://www.freecodecamp.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.svg" },
       { name: "GrowGoogle", url: "https://grow.google/", logo: "/lovable-uploads/Academy/GrowGoogle.png" },
       { name: "Harvard Online", url: "https://www.harvardonline.harvard.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Harvard_University_coat_of_arms.svg" },
@@ -72,10 +69,10 @@ const partnerCategories = [
       { name: "Stanford Online", url: "https://online.stanford.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg" },
       { name: "Udacity", url: "https://www.udacity.com/", logo: "/lovable-uploads/Academy/Udacity.svg" },
       { name: "UNED", url: "https://www.uned.es/", logo: "/lovable-uploads/Academy/UNED.png" }
-    ] 
+    ]
   },
-  { 
-    label: 'AI FLOW', 
+  {
+    label: 'AI FLOW',
     partners: [
       { name: "Bolt", url: "https://bolt.cello.so/3ULpYIYBm4L", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png" },
       { name: "ChatGPT", url: "https://chatgpt.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg" },
@@ -85,10 +82,10 @@ const partnerCategories = [
       { name: "Grok", url: "https://grok.x.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg" },
       { name: "Lovable", url: "https://lovable.dev", logo: "https://lovable.dev/favicon.ico" },
       { name: "Suno", url: "https://suno.com", logo: "https://suno.com/favicon.ico" }
-    ] 
+    ]
   },
-  { 
-    label: 'ADS FLOW', 
+  {
+    label: 'ADS FLOW',
     partners: [
       { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://aads.com/favicon.ico" },
       { name: "Google Ads", url: "https://ads.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg" },
@@ -97,10 +94,10 @@ const partnerCategories = [
       { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg" },
       { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg" },
       { name: "X Ads", url: "https://ads.x.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg" }
-    ] 
+    ]
   },
-  { 
-    label: 'CASHFLOW', 
+  {
+    label: 'CASHFLOW',
     partners: [
       { name: "Azrael Codex", url: "https://www.bitget.com/", logo: "/lovable-uploads/Clubs/Bitget.png" },
       { name: "Binance Academy", url: "https://academy.binance.com/", logo: "/lovable-uploads/Clubs/Binance.svg" },
@@ -109,32 +106,32 @@ const partnerCategories = [
       { name: "CoinMarketCap", url: "https://coinmarketcap.com/", logo: "/lovable-uploads/CoinMarketCapLogo.jpeg" },
       { name: "DefiLlama", url: "https://defillama.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/DefiLlama_logo.svg" },
       { name: "Predik", url: "https://predik.io/", logo: "https://predik.io/assets/images/logo-predik.svg" }
-    ] 
+    ]
   },
-  { 
-    label: 'DATAFLOW', 
+  {
+    label: 'DATAFLOW',
     partners: [
-      { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png" }, 
+      { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png" },
       { name: "DappRadar", url: "https://dappradar.com/", logo: "/lovable-uploads/DappRadarLogo.jpeg" },
       { name: "GitBook", url: "https://www.gitbook.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Gitbook.svg" },
       { name: "GitHub", url: "https://github.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" },
       { name: "HackMD", url: "https://hackmd.io/", logo: "/lovable-uploads/Academy/HackMD.svg" },
       { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg" },
       { name: "Kaggle", url: "https://www.kaggle.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Kaggle_logo.png" }
-    ] 
+    ]
   },
-  { 
-    label: 'ECOFLOW', 
+  {
+    label: 'ECOFLOW',
     partners: [
       { name: "ClimateReanalyzer", url: "https://climatereanalyzer.org/", logo: "/lovable-uploads/Academy/ClimateReanalyzer.svg" },
       { name: "Explore", url: "https://explore.org/", logo: "/lovable-uploads/Academy/Explore.png" },
       { name: "OEGlobal", url: "https://www.oeglobal.org/", logo: "/lovable-uploads/Academy/OEGlobal.jpeg" },
       { name: "OpenUpEd", url: "https://www.openuped.eu/", logo: "/lovable-uploads/Academy/OpenUpEd.jpeg" },
       { name: "WWF", url: "https://www.worldwildlife.org/", logo: "https://upload.wikimedia.org/wikipedia/en/2/24/WWF_logo.svg" }
-    ] 
+    ]
   },
-  { 
-    label: 'GAMEFLOW', 
+  {
+    label: 'GAMEFLOW',
     partners: [
       { name: "ArenaGG", url: "https://arenagg.com/", logo: "/lovable-uploads/Clubs/ArenaGG.png" },
       { name: "Battlefy", url: "https://battlefy.com/", logo: "/lovable-uploads/Clubs/Battlefy.svg" },
@@ -142,10 +139,10 @@ const partnerCategories = [
       { name: "ESL", url: "https://www.eslgaming.com/", logo: "/lovable-uploads/Clubs/ESL.svg" },
       { name: "LVP", url: "https://lvp.global/", logo: "/lovable-uploads/Clubs/LVP.PNG" },
       { name: "Unity Learn", url: "https://learn.unity.com/", logo: "/lovable-uploads/Academy/UnityLearn.svg" }
-    ] 
+    ]
   },
-  { 
-    label: 'HEALTHFLOW', 
+  {
+    label: 'HEALTHFLOW',
     partners: [
       { name: "Headspace", url: "https://www.headspace.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Headspace_logo.svg" },
       { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://meslo.com/logo.svg" },
@@ -154,13 +151,13 @@ const partnerCategories = [
       { name: "Proton", url: "https://proton.me/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Proton_Technologies_AG_logo.svg" },
       { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" },
       { name: "Yazio", url: "https://www.yazio.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Yazio-app-logo.svg" }
-    ] 
+    ]
   },
-  { 
-    label: 'SPACEFLOW', 
+  {
+    label: 'SPACEFLOW',
     partners: [
       { name: "CERN", url: "https://home.cern/", logo: "https://upload.wikimedia.org/wikipedia/en/a/ae/CERN_logo.svg" },
-      { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg" }, 
+      { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg" },
       { name: "JAXA", url: "https://www.jaxa.jp/", logo: "https://upload.wikimedia.org/wikipedia/commons/8/85/Jaxa_logo.svg" },
       { name: "KAGRA", url: "https://gwcenter.icrr.u-tokyo.ac.jp/en/", logo: "/lovable-uploads/Academy/KAGRA.svg" },
       { name: "LIGO", url: "https://www.ligo.org/", logo: "/lovable-uploads/Academy/LIGO.png" },
@@ -170,7 +167,7 @@ const partnerCategories = [
       { name: "UNESCO", url: "https://www.unesco.org/", logo: "/lovable-uploads/Academy/Unesco.svg" },
       { name: "UNSSC", url: "https://www.unssc.org/", logo: "/lovable-uploads/Academy/UNSSC.png" },
       { name: "Virgo", url: "https://www.virgo-gw.eu/", logo: "/lovable-uploads/Academy/Virgo.svg" }
-    ] 
+    ]
   }
 ];
 
@@ -178,126 +175,112 @@ const Academy = () => {
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-transparent text-white font-exo pb-32">
-      
-      {/* ═══════════════════════════════════════════════════════════════════
-          1. HERO HEADER - 23rd Jan Restoration (Quantum Glow)
-      ═══════════════════════════════════════════════════════════════════ */}
-      <header className="pt-16 pb-20 text-center px-4 relative">
-        {/* Multi-layer quantum glow background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-alien-gold/15 via-alien-gold/5 to-transparent rounded-full blur-[80px] animate-pulse" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-radial from-alien-green/12 via-alien-green/3 to-transparent rounded-full blur-[60px] animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
-
-        {/* Double-ring circular frame with Quantum Glow */}
-        <motion.div 
-          initial={{ scale: 0, rotate: -180 }} 
-          animate={{ scale: 1, rotate: 0 }} 
+    <div className="min-h-screen pb-20">
+      {/* Hero Header */}
+      <header className="pt-12 pb-12 text-center px-4 af-grid-overlay">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 120, damping: 15 }}
-          className="w-28 h-28 md:w-32 md:h-32 mx-auto mb-10 relative"
+          className="w-24 h-24 mx-auto mb-8 relative"
         >
-          {/* Outer pulsating ring */}
-          <div className="absolute inset-0 rounded-full border-2 border-alien-gold/40 animate-pulse shadow-[0_0_40px_rgba(212,175,55,0.3)]" />
-          {/* Inner ring with depth */}
-          <div className="absolute inset-2 rounded-full border border-alien-green/30 bg-black/60 backdrop-blur-md shadow-[inset_0_0_20px_rgba(57,255,20,0.1)]" />
-          {/* Logo */}
-          <img 
-            src="/lovable-uploads/AcademyLogo.png" 
-            alt="Academy Logo" 
-            className="w-full h-full object-contain relative z-10 p-4 drop-shadow-[0_0_25px_rgba(212,175,55,0.6)]" 
+          <div className="absolute inset-0 border border-alien-gold/40" />
+          <div className="absolute inset-1 border border-alien-green/30 bg-af-surface/40" />
+          <img
+            src="/lovable-uploads/AcademyLogo.png"
+            alt="Academy Logo"
+            className="w-full h-full object-contain relative z-10 p-3"
           />
         </motion.div>
-        
-        {/* Title with Nasalization + green/gold gradient */}
-        <motion.h1 
+
+        <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
+          <AlienTag color="gold">LEARN</AlienTag>
+          <AlienTag color="muted">30+ PARTNERS</AlienTag>
+        </div>
+
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-nasalization mb-8 tracking-widest uppercase"
+          className="text-5xl md:text-7xl font-nasalization mb-6 tracking-widest uppercase text-alien-green af-heading-underline inline-block"
         >
-          <span className="bg-gradient-to-r from-alien-green via-alien-gold to-alien-green bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(57,255,20,0.5)] animate-pulse">
-            Academy
-          </span>
+          Academy
         </motion.h1>
-        
-        {/* Subtitle/Quote - italicized, wide-spaced */}
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="max-w-3xl mx-auto text-alien-gold/80 italic text-base md:text-lg mb-10 leading-relaxed tracking-wide font-light"
+          className="max-w-3xl mx-auto text-alien-gold/80 text-base md:text-lg mb-8 leading-relaxed italic"
         >
           "Acquire complete attention capabilities to connect, discover and expand knowledge and skills. Evolve towards an optimal experience with fullness of flow."
         </motion.p>
-        
-        {/* CTA Badge */}
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.5 }}
-          className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-alien-green/30 bg-alien-green/5 text-alien-green text-[11px] font-mono tracking-[0.3em] uppercase animate-pulse shadow-[0_0_20px_rgba(57,255,20,0.1)]"
         >
-          <Zap className="w-4 h-4" /> Ready to evolve? Join the decentralized learning revolution
+          <AlienTag color="green">
+            <Zap className="w-3 h-3" /> Ready to evolve? Join the decentralized learning revolution
+          </AlienTag>
         </motion.div>
       </header>
 
-      {/* Separator: gradient line */}
-      <div className="max-w-4xl mx-auto mb-16 px-8">
-        <div className="h-px bg-gradient-to-r from-transparent via-alien-gold/40 to-transparent" />
-      </div>
+      <div className="max-w-4xl mx-auto mb-12 px-8"><div className="h-px bg-af-border-hairline" /></div>
 
-      {/* 2. MÓDULOS (GRID HORIZONTAL CON EXPANSIÓN) */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-28 items-start">
+      {/* Modules Grid */}
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 mb-20 border-l border-t border-af-border-hairline items-start">
         {academyModules.map((module) => (
-          <motion.div 
+          <motion.div
             key={module.id}
             layout
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: module.id * 0.1 }}
-            className="flex flex-col bg-black/50 backdrop-blur-md rounded-[2.5rem] border border-white/10 hover:border-alien-gold/50 transition-all duration-300 shadow-2xl relative overflow-hidden group hover:scale-[1.01]"
+            className="border-r border-b border-af-border-hairline bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
           >
-            <div 
+            <div
               onClick={() => setExpandedModule(expandedModule === module.id ? null : module.id)}
-              className="p-10 cursor-pointer"
+              className="p-6 cursor-pointer"
             >
-              <div className="flex justify-between items-start mb-6">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-alien-gold/10 group-hover:border-alien-gold/30 transition-all duration-300">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-3 border border-af-border">
                   {module.icon}
                 </div>
-                <ChevronDown className={`w-6 h-6 text-alien-gold transition-transform duration-300 ${expandedModule === module.id ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-alien-gold transition-transform duration-300 ${expandedModule === module.id ? 'rotate-180' : ''}`} />
               </div>
-              
-              <h3 className="text-3xl font-nasalization mb-4 text-white tracking-tight">{module.title}</h3>
-              <p className="text-gray-400 text-sm italic leading-relaxed mb-2 opacity-80">{module.description}</p>
-              
+
+              <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{module.tag}</span>
+              <h3 className="text-2xl font-nasalization mb-3 text-alien-gold tracking-tight">{module.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-2">{module.description}</p>
+
               <AnimatePresence>
                 {expandedModule === module.id && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }} 
-                    animate={{ height: 'auto', opacity: 1 }} 
-                    exit={{ height: 0, opacity: 0 }} 
-                    className="pt-8 space-y-8 border-t border-white/10 mt-6"
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="pt-6 space-y-6 border-t border-af-border-hairline mt-4"
                   >
                     {module.modules.map((sub, i) => (
-                      <div key={i} className="space-y-3">
-                        <h4 className="text-alien-green text-[11px] font-bold tracking-[0.2em] uppercase flex items-center gap-3">
+                      <div key={i} className="space-y-2">
+                        <h4 className="text-alien-green text-[11px] font-bold tracking-[0.2em] uppercase flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-alien-gold" /> {sub.name}
                         </h4>
-                        <ul className="grid grid-cols-1 gap-2 pl-7">
+                        <ul className="grid grid-cols-1 gap-1.5 pl-7">
                           {sub.topics.map((topic, j) => (
-                            <li key={j} className="text-[11px] text-gray-500 hover:text-alien-gold transition-colors duration-300 leading-relaxed">
+                            <li key={j} className="text-[11px] text-gray-500 hover:text-alien-gold transition-colors leading-relaxed">
                               • {topic}
                             </li>
                           ))}
                         </ul>
                       </div>
                     ))}
-                    <Button className="w-full mt-4 bg-transparent border border-alien-gold/30 text-alien-gold hover:bg-alien-gold hover:text-black font-bold tracking-widest text-[10px] h-12 rounded-xl transition-all duration-300">
-                      ENTER MODULE
-                    </Button>
+                    <AlienButton variant="outline" className="w-full !justify-center !text-xs mt-4">
+                      Enter Module
+                    </AlienButton>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -306,68 +289,62 @@ const Academy = () => {
         ))}
       </div>
 
-      {/* 3. MASTER CERTIFICATION */}
-      <section className="max-w-6xl mx-auto px-6 mb-32">
-        <div className="relative p-[1px] bg-gradient-to-r from-transparent via-alien-gold/40 to-transparent rounded-[3rem]">
-          <div className="bg-black/80 backdrop-blur-xl rounded-[2.95rem] p-12 flex flex-col md:flex-row items-center justify-between gap-10 border border-white/5 shadow-2xl">
-            <div className="flex items-center gap-8">
-              <div className="w-20 h-20 rounded-3xl bg-alien-gold/5 flex items-center justify-center border border-alien-gold/20 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
-                <Award className="w-10 h-10 text-alien-gold" />
-              </div>
-              <div className="text-center md:text-left">
-                <h2 className="text-4xl font-nasalization text-white uppercase tracking-tighter">Master Certification</h2>
-                <p className="text-alien-gold/70 text-sm italic mt-2 font-medium tracking-wide">On-chain validation of your evolutionary journey through the flow.</p>
-              </div>
+      {/* Master Certification */}
+      <section className="max-w-6xl mx-auto px-6 mb-20">
+        <div className="border border-af-border bg-af-surface/30 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 border border-alien-gold/30 flex items-center justify-center">
+              <Award className="w-8 h-8 text-alien-gold" />
             </div>
-            <Button className="bg-alien-gold text-black font-black px-12 h-14 rounded-full hover:bg-alien-green transition-all duration-300 uppercase text-[11px] tracking-[0.2em] shadow-xl shadow-alien-gold/20">
-              MINT CREDENTIAL
-            </Button>
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl font-nasalization text-alien-gold uppercase tracking-tight">Master Certification</h2>
+              <p className="text-alien-gold/70 text-sm italic mt-2">On-chain validation of your evolutionary journey through the flow.</p>
+            </div>
           </div>
+          <AlienButton variant="primary" className="!px-10 !py-3 !text-sm">
+            Mint Credential
+          </AlienButton>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          4. PARTNERS - 7 Categories (Alphabetical Order)
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* Partners */}
       <footer className="max-w-7xl mx-auto px-8">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-nasalization text-alien-gold/80 tracking-widest uppercase mb-4">
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-4">
+            <AlienTag color="gold">PARTNER ECOSYSTEM</AlienTag>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-nasalization text-alien-gold tracking-widest uppercase af-heading-underline inline-block">
             Partner Ecosystem
           </h2>
-          <div className="h-px w-32 mx-auto bg-gradient-to-r from-transparent via-alien-green/50 to-transparent" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-10 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 border-l border-t border-af-border-hairline">
           {partnerCategories.map((cat, i) => (
-            <div key={i} className="space-y-5">
-              <h5 className="text-[10px] md:text-[11px] font-nasalization text-alien-gold tracking-[0.25em] border-b border-white/10 pb-3 uppercase opacity-80">
+            <div key={i} className="border-r border-b border-af-border-hairline p-4 bg-af-surface/10">
+              <h5 className="text-[10px] font-nasalization text-alien-gold tracking-[0.25em] border-b border-af-border-hairline pb-3 mb-3 uppercase">
                 {cat.label}
               </h5>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 {cat.partners.sort((a, b) => a.name.localeCompare(b.name)).map((p, j) => (
-                  <a 
-                    key={j} 
-                    href={p.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-3 group hover:scale-[1.01] transition-all duration-300"
+                  <a
+                    key={j}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 group hover:scale-[1.01] transition-all duration-300"
                   >
-                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 p-1.5 border border-white/10 group-hover:border-alien-green/50 group-hover:bg-alien-green/10 transition-all duration-300 flex items-center justify-center overflow-hidden">
-                      <img 
-                        src={p.logo} 
-                        alt={p.name} 
-                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 scale-90 group-hover:scale-100"
-                        onError={(e) => { 
-                          e.currentTarget.style.opacity = '0.3'; 
-                          e.currentTarget.style.filter = 'none';
-                        }} 
+                    <div className="w-9 h-9 border border-af-border-hairline p-1.5 group-hover:border-alien-green/50 group-hover:bg-alien-green/5 transition-all flex items-center justify-center overflow-hidden flex-shrink-0">
+                      <img
+                        src={p.logo}
+                        alt={p.name}
+                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                        onError={(e) => { e.currentTarget.style.opacity = '0.3'; e.currentTarget.style.filter = 'none'; }}
                       />
                     </div>
-                    <span className="text-[11px] md:text-[12px] text-gray-500 group-hover:text-white transition-colors duration-300 tracking-tight font-medium truncate max-w-[100px]">
+                    <span className="text-[11px] text-gray-400 group-hover:text-alien-gold transition-colors duration-300 truncate">
                       {p.name}
                     </span>
-                    <ExternalLink className="w-2.5 h-2.5 text-transparent group-hover:text-alien-green transition-all duration-300 flex-shrink-0" />
+                    <ExternalLink className="w-2.5 h-2.5 text-transparent group-hover:text-alien-green transition-all flex-shrink-0" />
                   </a>
                 ))}
               </div>
