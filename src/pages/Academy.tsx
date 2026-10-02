@@ -74,7 +74,7 @@ const partnerCategories = [
   {
     label: 'AI FLOW',
     partners: [
-      { name: "Bolt", url: "https://bolt.cello.so/3ULpYIYBm4L", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png" },
+      { name: "Bolt", url: "https://lovable.dev/invite/VPTZ5JI", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png" },
       { name: "ChatGPT", url: "https://chatgpt.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg" },
       { name: "Claude", url: "https://claude.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg" },
       { name: "GitHub Copilot", url: "https://github.com/features/copilot", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg" },

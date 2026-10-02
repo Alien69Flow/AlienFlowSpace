@@ -48,7 +48,7 @@ const Clubs: React.FC = () => {
       name: 'Δ AIFlow', description: 'Advancing artificial intelligence through decentralized computing, neural networks, and collaborative AI model development with the most powerful AI tools and assistants.',
       members: 11234, icon: <Zap className="h-6 w-6 text-alien-gold" />, category: 'AI', categoryColor: '', bgColor: '',
       sections: [{ title: 'AI Tools & Assistants', description: 'AI-powered platforms for app building, coding, chat, music generation, and creative workflows', icon: <Zap className="h-4 w-4" />, color: '', platforms: [
-        { name: 'Bolt', url: 'https://bolt.cello.so/3ULpYIYBm4L', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png', description: 'AI-powered app & website builder' },
+        { name: 'Bolt', url: 'https://lovable.dev/invite/VPTZ5JI', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png', description: 'AI-powered app & website builder' },
         { name: 'ChatGPT', url: 'https://chatgpt.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg', description: 'AI chatbot by OpenAI' },
         { name: 'Claude', url: 'https://claude.ai', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg', description: 'AI assistant by Anthropic' },
         { name: 'GitHub Copilot', url: 'https://github.com/features/copilot', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg', description: 'AI code completion tool' },
