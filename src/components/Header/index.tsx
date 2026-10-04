@@ -8,7 +8,6 @@ import Logo from "@/components/Header/Logo";
 import DesktopNav from "@/components/Header/DesktopNav";
 import MobileNav from "@/components/Header/MobileNav";
 import ConnectButton from "@/components/Header/ConnectButton";
-import PriceTicker from "@/components/PriceTicker";
 
 const Header = () => {
   const isScrolled = useScroll();
@@ -67,10 +66,6 @@ const Header = () => {
           <MobileNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         )}
       </AnimatePresence>
-      
-      <div className="w-full border-b border-af-border-hairline bg-transparent">
-        <PriceTicker />
-      </div>
     </header>
   );
 };

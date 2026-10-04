@@ -61,13 +61,15 @@ const Footer = () => {
   ].sort((a, b) => a.label.localeCompare(b.label));
 
   const poweredBy = [
-    { name: 'Polygon', logo: 'https://cryptologos.cc/logos/polygon-matic-logo.svg', url: 'https://polygon.technology/' },
     { name: 'Aragon', logo: '/lovable-uploads/AragonDAOLogo.svg', url: 'https://aragon.org/' },
+    { name: 'Bitcoin', logo: 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg', url: 'https://bitcoin.org/' },
     { name: 'Ethereum', logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg', url: 'https://ethereum.org/' },
-    { name: 'IPFS', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Ipfs-logo-1024-ice-text.png', url: 'https://ipfs.tech/' },
-    { name: 'GitBook', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Gitbook.svg', url: 'https://www.gitbook.com/' },
     { name: 'GitHub', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg', url: 'https://github.com/' },
-  ];
+    { name: 'GitBook', logo: 'https://www.gitbook.com/cdn-cgi/image/format=auto/https://files.gitbook.io/v0/b/gitbook-legacy-files/o/assets%2F-MO2MMibDwLwqlwQD4Wc%2F-MsCvRrjF8Lsr0gJy7ZS%2F-MsCvXjJl0ZJZjJ0rJZK%2Fgitbook-logo.svg', url: 'https://www.gitbook.com/' },
+    { name: 'IPFS', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Ipfs-logo-1024-ice-text.png', url: 'https://ipfs.tech/' },
+    { name: 'OpenSea', logo: 'https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.svg', url: 'https://opensea.io/' },
+    { name: 'Polygon', logo: 'https://cryptologos.cc/logos/polygon-matic-logo.svg', url: 'https://polygon.technology/' },
+  ].sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <footer className="relative bg-af-bg/95 py-8 mt-auto z-30 border-t border-af-border-hairline">
@@ -168,12 +170,13 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Hindu calendar (Vikram Samvat) */}
+            {/* Hindu calendar (Vikram Samvat, Kali Yuga, Shaka Samvat) */}
             <div className="flex items-center gap-3 border border-af-border px-4 py-2">
               <span className="text-xl" style={{ filter: 'drop-shadow(0 0 6px #FF9933)' }}>ॐ</span>
-              <div className="text-left leading-none">
-                <p className="text-alien-gold font-bold text-xs font-nasalization">{hinduYear.year} VS</p>
-                <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: '#FF9933' }}>Hindu Vikram</p>
+              <div className="text-left leading-none space-y-0.5">
+                <p className="text-alien-gold font-bold text-[10px] font-nasalization">VS {hinduYear.vikramSamvat}–{hinduYear.vikramSamvat + 1}</p>
+                <p className="text-[8px] font-nasalization" style={{ color: '#FF9933' }}>KY {hinduYear.kaliYuga}</p>
+                <p className="text-[8px] font-nasalization" style={{ color: '#FF9933' }}>Shaka {hinduYear.shakaSamvat}</p>
               </div>
             </div>
 
@@ -181,8 +184,8 @@ const Footer = () => {
             <div className="flex items-center gap-3 border border-af-border px-4 py-2">
               <span className="text-xl" style={{ filter: 'drop-shadow(0 0 6px #4A90D9)' }}>✡</span>
               <div className="text-left leading-none">
-                <p className="text-alien-gold font-bold text-xs font-nasalization">{hebrewYear.year} AM</p>
-                <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: '#4A90D9' }}>Hebrew {hebrewYear.month}</p>
+                <p className="text-alien-gold font-bold text-[10px] font-nasalization">{hebrewYear.yearRange} AM</p>
+                <p className="text-[8px] font-nasalization" style={{ color: '#4A90D9' }}>{hebrewYear.month}</p>
               </div>
             </div>
           </div>

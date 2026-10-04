@@ -3,6 +3,7 @@ import { Rocket, Star, Clock, ScrollText, BookOpen, PieChart } from 'lucide-reac
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
 import LoadingScreen from '@/components/LoadingScreen';
+import PriceTicker from '@/components/PriceTicker';
 
 const NFTGallery = lazy(() => import('@/components/NFTGallery'));
 
@@ -27,6 +28,9 @@ const AlienTrip: React.FC = () => {
 
   return (
     <div className="relative flex flex-col flex-1 pb-16">
+      <div className="w-full border-b border-af-border-hairline">
+        <PriceTicker />
+      </div>
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-12">
         <div className="max-w-4xl mx-auto">
           {/* Hero */}

@@ -5,6 +5,7 @@ import EcoProductCarousel from '@/components/EcoProductCarousel';
 import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical, Search, TrendingUp } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
+import PriceTicker from '@/components/PriceTicker';
 
 type ClubProps = {
   name: string;
@@ -217,6 +218,9 @@ const Clubs: React.FC = () => {
 
   return (
     <div className="relative flex flex-col flex-1 pb-20">
+      <div className="w-full border-b border-af-border-hairline">
+        <PriceTicker />
+      </div>
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-8 pb-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

@@ -1,9 +1,6 @@
 
 import React, { useEffect } from 'react';
 
-// Use official CoinGecko marquee widget
-// Ensures the script is loaded once and renders the custom element
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -32,7 +29,7 @@ const PriceTicker: React.FC = () => {
         locale="es"
         dark-mode="true"
         outlined="true"
-        coin-ids="bitcoin,ethereum,tether-gold,binancecoin,zcash,bittensor,solana,litecoin,chainlink,uniswap,story-2,polkadot,aptos,cosmos,near,filecoin,pancakeswap-token,the-open-network,mantle,axie-infinity,tron,pi-network,polygon-ecosystem-token,crypto-com-chain,cardano,ronin,osmosis,bitcoin-cash"
+        coin-ids="bitcoin,pax-gold,tether-gold,ethereum,zcash,binancecoin,monero,bitcoin-cash,bittensor,solana,litecoin,chainlink,uniswap,near,cosmos,the-open-network,tron,cardano,stellar,crypto-com-chain,polygon-ecosystem-token,axie-infinity,nexo,aptos"
         initial-currency="usd"
       />
     </div>

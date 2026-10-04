@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import DAODashboard from '@/components/DAODashboard';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
+import PriceTicker from '@/components/PriceTicker';
 
 type ServiceProps = { title: string; description: string; icon: React.ReactNode };
 type Partner = { name: string; url: string; logo: string; description: string };
@@ -251,6 +252,9 @@ const CoNetWorKing: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-16">
+      <div className="w-full border-b border-af-border-hairline">
+        <PriceTicker />
+      </div>
       <main className="container mx-auto px-4 pt-12 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Hero */}
