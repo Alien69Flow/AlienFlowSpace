@@ -9,6 +9,7 @@ import Clubs from './pages/Clubs';
 import CoNetWorKing from './pages/CoNetWorKing';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import NotFound from './pages/NotFound';
 import './index.css';
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="conetworking" element={<CoNetWorKing />} />
             <Route path="contact" element={<Contact />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="terms-of-service" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

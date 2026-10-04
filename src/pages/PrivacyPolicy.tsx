@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Shield, Lock, Database, Users, Mail, FileText } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 
@@ -22,7 +23,7 @@ const PrivacyPolicy = () => {
                 Privacy & Cookie Policy
               </h1>
             </div>
-            <p className="text-alien-green font-nasalization text-lg mt-4">Last Updated: January 2025</p>
+            <p className="text-alien-green font-nasalization text-lg mt-4">Last Updated: October 2026</p>
           </div>
 
           {/* Content */}
@@ -158,6 +159,9 @@ const PrivacyPolicy = () => {
               <p className="text-gray-300 text-sm leading-relaxed">
                 We may update this Privacy Policy from time to time. We will notify you of any changes
                 by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+              </p>
+              <p className="text-alien-gold/70 text-sm">
+                See also: <Link to="/terms-of-service" className="text-alien-gold hover:underline">Terms of Service</Link>
               </p>
             </section>
           </div>

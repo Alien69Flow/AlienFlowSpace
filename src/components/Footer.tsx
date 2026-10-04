@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Facebook, Instagram, Mail, Disc, Send, Github, Linkedin, MessageSquare, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCurrentChineseYear } from '@/lib/chineseCalendar';
+import { getHinduYear, getHebrewYear } from '@/lib/multiCalendar';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 
 const cnyDates: Record<number, string> = {
@@ -12,6 +13,8 @@ const cnyDates: Record<number, string> = {
 const Footer = () => {
   const [chineseYear, setChineseYear] = useState(getCurrentChineseYear());
   const currentYear = new Date().getFullYear();
+  const hinduYear = getHinduYear();
+  const hebrewYear = getHebrewYear();
 
   useEffect(() => {
     const now = new Date();
@@ -62,6 +65,8 @@ const Footer = () => {
     { name: 'Aragon', logo: '/lovable-uploads/AragonDAOLogo.svg', url: 'https://aragon.org/' },
     { name: 'Ethereum', logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg', url: 'https://ethereum.org/' },
     { name: 'IPFS', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Ipfs-logo-1024-ice-text.png', url: 'https://ipfs.tech/' },
+    { name: 'GitBook', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Gitbook.svg', url: 'https://www.gitbook.com/' },
+    { name: 'GitHub', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg', url: 'https://github.com/' },
   ];
 
   return (
@@ -123,7 +128,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="https://alienflowspace.gitbook.io/DAO" className="text-sm text-alien-green/70 hover:text-alien-gold transition-colors">Documentation</a></li>
               <li><Link to="/privacy-policy" className="text-sm text-alien-green/70 hover:text-alien-gold transition-colors">Privacy Policy</Link></li>
-              <li><a href="https://alienflowspace.gitbook.io/DAO" className="text-sm text-alien-green/70 hover:text-alien-gold transition-colors">Terms of Service</a></li>
+              <li><Link to="/terms-of-service" className="text-sm text-alien-green/70 hover:text-alien-gold transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
@@ -153,11 +158,32 @@ const Footer = () => {
             © {currentYear} AlienFlowSpace DAO • Cosmic Governance Enabled
           </p>
 
-          <div className="flex items-center gap-3 border border-af-border px-4 py-2">
-            <span className="text-2xl animate-pulse" style={{ filter: `drop-shadow(0 0 8px ${chineseYear.color})` }}>{chineseYear.icon}</span>
-            <div className="text-left leading-none">
-              <p className="text-alien-gold font-bold text-xs font-nasalization">{currentYear} / {chineseYear.year}</p>
-              <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: chineseYear.color }}>{chineseYear.element} {chineseYear.animal}</p>
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            {/* Chinese calendar */}
+            <div className="flex items-center gap-3 border border-af-border px-4 py-2">
+              <span className="text-2xl animate-pulse" style={{ filter: `drop-shadow(0 0 8px ${chineseYear.color})` }}>{chineseYear.icon}</span>
+              <div className="text-left leading-none">
+                <p className="text-alien-gold font-bold text-xs font-nasalization">{currentYear} / {chineseYear.year}</p>
+                <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: chineseYear.color }}>{chineseYear.element} {chineseYear.animal}</p>
+              </div>
+            </div>
+
+            {/* Hindu calendar (Vikram Samvat) */}
+            <div className="flex items-center gap-3 border border-af-border px-4 py-2">
+              <span className="text-xl" style={{ filter: 'drop-shadow(0 0 6px #FF9933)' }}>ॐ</span>
+              <div className="text-left leading-none">
+                <p className="text-alien-gold font-bold text-xs font-nasalization">{hinduYear.year} VS</p>
+                <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: '#FF9933' }}>Hindu Vikram</p>
+              </div>
+            </div>
+
+            {/* Hebrew calendar (Luach) */}
+            <div className="flex items-center gap-3 border border-af-border px-4 py-2">
+              <span className="text-xl" style={{ filter: 'drop-shadow(0 0 6px #4A90D9)' }}>✡</span>
+              <div className="text-left leading-none">
+                <p className="text-alien-gold font-bold text-xs font-nasalization">{hebrewYear.year} AM</p>
+                <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: '#4A90D9' }}>Hebrew {hebrewYear.month}</p>
+              </div>
             </div>
           </div>
         </div>

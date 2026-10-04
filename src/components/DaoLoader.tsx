@@ -5,7 +5,7 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const minMs = 2600;
+    const minMs = 2800;
     const start = performance.now();
 
     const finish = () => {
@@ -21,7 +21,7 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
       finish();
     } else {
       window.addEventListener('load', finish, { once: true });
-      const fallback = window.setTimeout(finish, 4500);
+      const fallback = window.setTimeout(finish, 5000);
       return () => {
         window.removeEventListener('load', finish);
         window.clearTimeout(fallback);
@@ -36,13 +36,36 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
           key="dao-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-alien-space-darker overflow-hidden"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050510] overflow-hidden"
           aria-live="polite"
           aria-busy="true"
           role="status"
         >
-          {/* Ambient glow */}
-          <div className="absolute inset-0 bg-glow-radial opacity-70" />
+          {/* HUD wireframe grid overlay — GT Planar inspired */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-30"
+            style={{
+              backgroundImage: [
+                'linear-gradient(rgba(240,216,130,0.06) 1px, transparent 1px)',
+                'linear-gradient(90deg, rgba(240,216,130,0.06) 1px, transparent 1px)',
+              ].join(', '),
+              backgroundSize: '48px 48px',
+            }}
+          />
+
+          {/* Corner HUD brackets — 1px wireframe aesthetic */}
+          <div className="absolute top-8 left-8 w-12 h-12 border-l border-t border-alien-gold/40" />
+          <div className="absolute top-8 right-8 w-12 h-12 border-r border-t border-alien-gold/40" />
+          <div className="absolute bottom-8 left-8 w-12 h-12 border-l border-b border-alien-gold/40" />
+          <div className="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-alien-gold/40" />
+
+          {/* HUD status text top bar — 1px border, instrument readout */}
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-1 border border-af-border-hairline">
+            <span className="w-1.5 h-1.5 rounded-full bg-alien-green animate-pulse" />
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-af-text-muted">
+              SYS_BOOT // DAO_SYNC
+            </span>
+          </div>
 
           {/* Twinkling stars */}
           <div className="absolute inset-0 pointer-events-none">
@@ -61,21 +84,21 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
             ))}
           </div>
 
-          {/* Planet stage — immersive "from inside" rotating planet */}
+          {/* Planet stage */}
           <div className="relative" style={{ width: 280, height: 280 }}>
-            {/* Expanding pulse rings */}
+            {/* Expanding pulse rings — GT Planar wireframe style */}
             <motion.div
-              className="absolute inset-0 rounded-full border border-alien-gold/25"
-              animate={{ scale: [1, 1.25, 1], opacity: [0.4, 0, 0.4] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeOut' }}
+              className="absolute inset-0 rounded-full border border-alien-gold/30"
+              animate={{ scale: [1, 1.25, 1], opacity: [0.5, 0, 0.5] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeOut' }}
             />
             <motion.div
-              className="absolute inset-0 rounded-full border border-alien-green/15"
-              animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeOut', delay: 1 }}
+              className="absolute inset-0 rounded-full border border-alien-green/20"
+              animate={{ scale: [1, 1.4, 1], opacity: [0.35, 0, 0.35] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeOut', delay: 1 }}
             />
 
-            {/* Planet sphere with 3D-like inner rotation */}
+            {/* Rotating planet — ET.png with continents visible, scrolling horizontally */}
             <div
               className="absolute rounded-full overflow-hidden"
               style={{
@@ -83,66 +106,23 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
                 height: 220,
                 left: 30,
                 top: 30,
-                background: 'radial-gradient(circle at 35% 35%, #1a3a2e 0%, #0a1a14 40%, #050510 80%)',
+                backgroundImage: 'url("/lovable-uploads/ET.png")',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'repeat-x',
+                animation: 'dao-earth-rotate 24s linear infinite',
                 boxShadow: [
-                  '0 0 30px rgba(240,216,130,0.15)',
-                  'inset -12px 0 30px rgba(0,0,0,0.7)',
-                  'inset 8px 0 20px rgba(34,197,94,0.15)',
+                  '0 0 24px rgba(240,216,130,0.15)',
+                  '-5px 0 10px rgba(34,197,94,0.3) inset',
+                  '15px 2px 25px rgba(0,0,0,0.7) inset',
+                  '-20px -2px 30px rgba(34,197,94,0.2) inset',
+                  '250px 0 44px rgba(0,0,0,0.4) inset',
                 ].join(', '),
               }}
-            >
-              {/* Rotating surface texture — moves horizontally to simulate planet rotation from inside */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: [
-                    'radial-gradient(ellipse 60px 30px at 20% 40%, rgba(34,197,94,0.12), transparent)',
-                    'radial-gradient(ellipse 50px 25px at 60% 60%, rgba(240,216,130,0.08), transparent)',
-                    'radial-gradient(ellipse 70px 35px at 85% 35%, rgba(34,197,94,0.1), transparent)',
-                    'radial-gradient(ellipse 40px 20px at 40% 80%, rgba(240,216,130,0.06), transparent)',
-                    'radial-gradient(ellipse 55px 28px at 10% 55%, rgba(34,197,94,0.08), transparent)',
-                  ].join(', '),
-                  backgroundSize: '440px 220px',
-                  backgroundRepeat: 'repeat-x',
-                  animation: 'dao-planet-spin 18s linear infinite',
-                }}
-              />
+            />
 
-              {/* Cloud / atmosphere layer — slower counter-rotation for depth */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: [
-                    'radial-gradient(ellipse 80px 15px at 30% 30%, rgba(255,255,255,0.04), transparent)',
-                    'radial-gradient(ellipse 60px 12px at 70% 50%, rgba(255,255,255,0.03), transparent)',
-                    'radial-gradient(ellipse 50px 10px at 15% 70%, rgba(255,255,255,0.03), transparent)',
-                  ].join(', '),
-                  backgroundSize: '440px 220px',
-                  backgroundRepeat: 'repeat-x',
-                  animation: 'dao-planet-spin 26s linear infinite reverse',
-                }}
-              />
-
-              {/* Terminator / day-night shadow gradient — stays fixed, gives 3D sphere illusion */}
-              <div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: 'linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 35%, transparent 50%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.55) 100%)',
-                }}
-              />
-
-              {/* Inner glow highlight — top-left specular for 3D feel */}
-              <div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: 'radial-gradient(circle at 30% 28%, rgba(240,216,130,0.12) 0%, transparent 35%)',
-                }}
-              />
-            </div>
-
-            {/* Orbit ring */}
+            {/* Orbit ring — dashed wireframe */}
             <div
-              className="absolute rounded-full border border-dashed border-alien-gold/20"
+              className="absolute rounded-full border border-dashed border-alien-gold/25"
               style={{ width: 280, height: 280, left: 0, top: 0 }}
             />
 
@@ -162,7 +142,7 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
             </motion.div>
           </div>
 
-          {/* Brand wordmark */}
+          {/* Brand wordmark — GT Planar style: tight tracking, 1px underline */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,6 +155,7 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
               <span className="text-alien-green"> $pac€</span>
               <span className="text-alien-gold"> DAO</span>
             </p>
+            <div className="mx-auto mt-2 w-48 h-px bg-alien-gold/30" />
             <motion.p
               animate={{ opacity: [0.3, 1, 0.3] }}
               transition={{ duration: 1.8, repeat: Infinity }}
@@ -184,9 +165,32 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
             </motion.p>
           </motion.div>
 
+          {/* HUD progress bar — GT Planar wireframe instrument */}
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-64">
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-af-text-muted">LOADING</span>
+              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-alien-gold/60">
+                <motion.span
+                  animate={{ opacity: [0.3, 1, 0.3] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  INITIALIZING
+                </motion.span>
+              </span>
+            </div>
+            <div className="h-px bg-af-border-hairline w-full relative overflow-hidden">
+              <motion.div
+                className="absolute left-0 top-0 h-full bg-alien-gold/60"
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 2.5, ease: 'easeInOut' }}
+              />
+            </div>
+          </div>
+
           {/* Scoped keyframes */}
           <style>{`
-            @keyframes dao-planet-spin {
+            @keyframes dao-earth-rotate {
               0% { background-position: 0 0; }
               100% { background-position: 440px 0; }
             }
