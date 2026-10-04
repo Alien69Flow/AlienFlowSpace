@@ -202,7 +202,7 @@ const Academy = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-5xl md:text-7xl font-nasalization mb-6 tracking-widest uppercase text-alien-green af-heading-underline inline-block"
+          className="text-5xl md:text-7xl font-nasalization mb-6 tracking-widest uppercase text-alien-green af-heading-underline inline-block glow-pulse-entry"
         >
           Academy
         </motion.h1>
@@ -234,10 +234,8 @@ const Academy = () => {
         {academyModules.map((module) => (
           <motion.div
             key={module.id}
-            layout
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: module.id * 0.1 }}
             className="border-r border-b border-af-border-hairline bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
           >

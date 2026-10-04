@@ -11,7 +11,7 @@ type ServiceProps = { title: string; description: string; icon: React.ReactNode 
 type Partner = { name: string; url: string; logo: string; description: string };
 
 const ServiceCard = ({ service, index }: { service: ServiceProps; index: number }) => (
-  <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: index * 0.05 }}
+  <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }}
     className="border-r border-b border-af-border-hairline p-5 bg-af-surface/20 hover:bg-af-surface/40 transition-colors">
     <div className="p-3 border border-af-border mb-4 inline-flex">{service.icon}</div>
     <h3 className="text-alien-gold font-nasalization text-base mb-2">{service.title}</h3>
@@ -20,7 +20,7 @@ const ServiceCard = ({ service, index }: { service: ServiceProps; index: number 
 );
 
 const PartnerSection: React.FC<{ title: string; partners: Partner[]; icon?: React.ReactNode; delay?: number }> = ({ title, partners, icon, delay = 0 }) => (
-  <motion.div className="mb-10" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay }}>
+  <motion.div className="mb-10" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay }}>
     <div className="flex items-center gap-3 mb-4">
       {icon}
       <h3 className="text-lg font-bold text-alien-gold font-nasalization">{title}</h3>
@@ -262,7 +262,7 @@ const CoNetWorKing: React.FC = () => {
               <AlienTag color="green">CONNECT</AlienTag>
               <AlienTag color="muted">DAO | DAPP | DEX</AlienTag>
             </div>
-            <h1 className="md:text-6xl font-bold text-alien-green mb-6 font-nasalization af-heading-underline inline-block text-4xl">CoNetWorKing</h1>
+            <h1 className="md:text-6xl font-bold text-alien-green mb-6 font-nasalization af-heading-underline inline-block text-4xl glow-pulse-entry">CoNetWorKing</h1>
             <p className="text-xl text-alien-gold max-w-3xl mx-auto leading-relaxed">Connect with the future of decentralized finance through our comprehensive suite of blockchain services</p>
           </div>
 
@@ -410,7 +410,7 @@ const CoNetWorKing: React.FC = () => {
           </div>
 
           {/* Global Community */}
-          <motion.div className="mb-12" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <motion.div className="mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             <div className="flex items-center gap-3 mb-4">
               <AlienTag color="green">COMMUNITY</AlienTag>
             </div>

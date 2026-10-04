@@ -228,7 +228,7 @@ const Clubs: React.FC = () => {
               <AlienTag color="gold">BELONG</AlienTag>
               <AlienTag color="muted">19+ CLUBS</AlienTag>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-nasalization text-alien-green af-heading-underline inline-block">
+            <h1 className="text-4xl md:text-5xl font-bold font-nasalization text-alien-green af-heading-underline inline-block glow-pulse-entry">
               Clubs
             </h1>
           </div>
