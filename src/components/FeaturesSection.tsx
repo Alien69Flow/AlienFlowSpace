@@ -19,7 +19,7 @@ const FeaturesSection = () => {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="mb-8 md:mb-12"
@@ -42,7 +42,7 @@ const FeaturesSection = () => {
             <motion.div
               key={index}
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true, margin: "-50px" }}
               className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200 group"

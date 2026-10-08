@@ -19,7 +19,7 @@ const ParticipationSection = () => {
           {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="mb-8"
@@ -42,7 +42,7 @@ const ParticipationSection = () => {
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
                 className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors flex items-start gap-4"
@@ -62,7 +62,7 @@ const ParticipationSection = () => {
           {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
           >

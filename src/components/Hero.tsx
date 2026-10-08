@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Orbit, ScrollText, Globe, ArrowRight, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AlienButton from '@/components/alien/AlienButton';
@@ -7,6 +7,14 @@ import AlienTag from '@/components/alien/AlienTag';
 
 const Hero: React.FC = () => {
   const [mounted, setMounted] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const logoY = useTransform(scrollYProgress, [0, 0.15], [0, -80]);
+  const logoScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.85]);
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.15], [0, -40]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0.3]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.4]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.15], [0.7, 0]);
 
   useEffect(() => {
     setMounted(true);
@@ -26,16 +34,48 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12 sm:py-16 overflow-hidden af-grid-overlay">
-      {/* Subtle radial glow — single, restrained */}
-      <div className="absolute inset-0 pointer-events-none bg-glow-radial" />
+      {/* Parallax radial glow — scales and fades as you scroll */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none bg-glow-radial"
+        style={{ scale: glowScale, opacity: glowOpacity }}
+      />
 
-      <div className="container relative z-10 px-4 mx-auto max-w-6xl">
-        {/* Logo */}
+      {/* Floating orbit ring — far background depth layer */}
+      <motion.div
+        className="absolute pointer-events-none"
+        style={{ top: '15%', left: '50%', x: '-50%' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.15 }}
+        transition={{ delay: 0.5, duration: 2 }}
+      >
+        <div
+          className="w-[500px] h-[500px] rounded-full border border-dashed border-alien-gold/20"
+          style={{ animation: 'hero-orbit-spin 40s linear infinite' }}
+        />
+      </motion.div>
+
+      {/* Second orbit ring — counter-rotating */}
+      <motion.div
+        className="absolute pointer-events-none"
+        style={{ top: '10%', left: '50%', x: '-50%' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.1 }}
+        transition={{ delay: 0.8, duration: 2 }}
+      >
+        <div
+          className="w-[700px] h-[700px] rounded-full border border-dashed border-alien-green/15"
+          style={{ animation: 'hero-orbit-spin 60s linear infinite reverse' }}
+        />
+      </motion.div>
+
+      <motion.div
+        className="container relative z-10 px-4 mx-auto max-w-6xl"
+        style={{ y: contentY, opacity: contentOpacity }}
+      >
+        {/* Logo — parallax floats up and shrinks */}
         <motion.div
           className="flex justify-center mb-6"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          style={{ y: logoY, scale: logoScale, opacity: logoOpacity }}
         >
           <motion.img
             src="/lovable-uploads/ALogo.png"
@@ -74,7 +114,7 @@ const Hero: React.FC = () => {
           </h1>
         </motion.div>
 
-        {/* Value proposition — left-aligned instrument readout style */}
+        {/* Value proposition */}
         <motion.div
           className="max-w-2xl mx-auto mb-10 px-2"
           initial={{ opacity: 0 }}
@@ -91,25 +131,22 @@ const Hero: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* CTA hierarchy: primary, secondary, tertiary text link */}
+        {/* CTA hierarchy */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          {/* Primary: ENTER ALIENFLOW */}
-          <AlienButton variant="primary" to="/about" className="!px-8 !py-3 !text-sm">
+          <AlienButton variant="primary" to="/about" className="!px-8 !py-3 !text-sm" data-cursor="hover">
             <Orbit className="h-4 w-4" /> ENTER ALIENFLOW
           </AlienButton>
-
-          {/* Secondary: EXPLORE ECOSYSTEM */}
-          <AlienButton variant="outline" onClick={scrollToEcosystem} className="!px-8 !py-3 !text-sm">
+          <AlienButton variant="outline" onClick={scrollToEcosystem} className="!px-8 !py-3 !text-sm" data-cursor="hover">
             <Globe className="h-4 w-4" /> EXPLORE ECOSYSTEM
           </AlienButton>
         </motion.div>
 
-        {/* Tertiary: Alien Manifesto / GitBook — text link */}
+        {/* Tertiary text links */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6"
           initial={{ opacity: 0 }}
@@ -132,7 +169,7 @@ const Hero: React.FC = () => {
             <BookOpen className="h-3.5 w-3.5" /> GitBook Docs
           </a>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
@@ -140,12 +177,20 @@ const Hero: React.FC = () => {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         onClick={scrollToSpaces}
+        data-cursor="hover"
       >
         <span className="text-xs font-nasalization text-alien-gold/60 tracking-widest uppercase">Scroll</span>
         <svg width="20" height="12" viewBox="0 0 20 12" className="text-alien-green/50">
           <path d="M2 2L10 10L18 2" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
         </svg>
       </motion.div>
+
+      <style>{`
+        @keyframes hero-orbit-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </section>
   );
 };

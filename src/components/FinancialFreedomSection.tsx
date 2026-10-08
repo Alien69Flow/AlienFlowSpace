@@ -17,7 +17,7 @@ const FinancialFreedomSection = () => {
           {/* Section header — centered */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="mb-10 text-center"
@@ -37,7 +37,7 @@ const FinancialFreedomSection = () => {
           {/* Progression bar: centered */}
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
             className="flex items-center justify-center gap-1 md:gap-2 mb-12 flex-wrap"
@@ -55,7 +55,7 @@ const FinancialFreedomSection = () => {
           {/* A.BTC Token Highlight — flat module */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
             className="mb-10"
@@ -91,7 +91,7 @@ const FinancialFreedomSection = () => {
             {/* Impartial Money */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
               className="border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
@@ -123,7 +123,7 @@ const FinancialFreedomSection = () => {
             {/* Decentralized Currencies */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
               className="border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
@@ -156,7 +156,7 @@ const FinancialFreedomSection = () => {
           {/* Wealth Security Statement — full width flat module */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
             className="mb-10"
@@ -174,7 +174,7 @@ const FinancialFreedomSection = () => {
           {/* Instant Access: Experiences / Products / Services — three flat routes */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
           >

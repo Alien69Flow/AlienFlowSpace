@@ -52,7 +52,7 @@ const StatsSection = () => {
         {/* Unified Financial/Asset Block — 420 ETH + 8 BTC */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="mb-8"
@@ -91,7 +91,7 @@ const StatsSection = () => {
             <motion.div
               key={stat.label}
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"

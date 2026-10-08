@@ -32,7 +32,7 @@ const EcosystemSection = () => {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="mb-8 md:mb-12"
@@ -55,7 +55,7 @@ const EcosystemSection = () => {
             <motion.div
               key={eco.id}
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true }}
             >
