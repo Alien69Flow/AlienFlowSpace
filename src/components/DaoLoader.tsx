@@ -62,7 +62,7 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
           {/* HUD status text top bar — 1px border, instrument readout */}
           <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-1 border border-af-border-hairline">
             <span className="w-1.5 h-1.5 rounded-full bg-alien-green animate-pulse" />
-            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-af-text-muted">
+            <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-af-text-muted">
               SYS_BOOT // DAO_SYNC
             </span>
           </div>
@@ -98,7 +98,12 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
               transition={{ duration: 3, repeat: Infinity, ease: 'easeOut', delay: 1 }}
             />
 
-            {/* Rotating planet — ET.png with continents visible, scrolling horizontally */}
+            {/* Rotating planet.
+                The texture MUST be an equirectangular 2:1 map (earth-map.jpg). On a square
+                box, `cover` renders a 2:1 image twice as wide as the box, so shifting the
+                position by 440px below is exactly one full tile and the loop is seamless —
+                that is what makes the surface look like a rotating sphere. A square photo
+                here slides sideways instead of spinning. */}
             <div
               className="absolute rounded-full overflow-hidden"
               style={{
@@ -106,10 +111,10 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
                 height: 220,
                 left: 30,
                 top: 30,
-                backgroundImage: 'url("/lovable-uploads/ET.png")',
+                backgroundImage: 'url("/lovable-uploads/earth-map.jpg")',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'repeat-x',
-                animation: 'dao-earth-rotate 24s linear infinite',
+                animation: 'dao-earth-rotate 26s linear infinite',
                 boxShadow: [
                   '0 0 24px rgba(240,216,130,0.15)',
                   '-5px 0 10px rgba(34,197,94,0.3) inset',
@@ -118,7 +123,18 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
                   '250px 0 44px rgba(0,0,0,0.4) inset',
                 ].join(', '),
               }}
-            />
+            >
+              {/* Daylight highlight — breathes slowly so the surface reads as a lit sphere */}
+              <motion.span
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(circle at 32% 28%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 58%)',
+                }}
+                animate={{ opacity: [0.55, 0.9, 0.55] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
 
             {/* Orbit ring — dashed wireframe */}
             <div
@@ -159,7 +175,7 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
             <motion.p
               animate={{ opacity: [0.3, 1, 0.3] }}
               transition={{ duration: 1.8, repeat: Infinity }}
-              className="mt-3 text-alien-gold/50 text-[10px] font-mono tracking-[0.3em] uppercase"
+              className="mt-3 text-alien-gold/50 text-[11px] font-mono tracking-[0.3em] uppercase"
             >
               Entering the multiverse…
             </motion.p>
@@ -168,8 +184,8 @@ const DaoLoader: React.FC<{ onFinish?: () => void }> = ({ onFinish }) => {
           {/* HUD progress bar — GT Planar wireframe instrument */}
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-64">
             <div className="flex justify-between items-center mb-2">
-              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-af-text-muted">LOADING</span>
-              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-alien-gold/60">
+              <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-af-text-muted">LOADING</span>
+              <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-alien-gold/60">
                 <motion.span
                   animate={{ opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 1.5, repeat: Infinity }}

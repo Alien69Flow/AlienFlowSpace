@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Shield, Users, Box, BarChart4, Zap, ArrowRight } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
+import { spotlightMove } from '@/lib/spotlight';
 
 const features = [
   { icon: <Box className="h-6 w-6" />, title: "Cross-Chain Integration", description: "Seamlessly operate across multiple blockchains with our advanced bridging technology." },
@@ -19,9 +20,9 @@ const FeaturesSection = () => {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '-80px' }}
           className="mb-8 md:mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -31,7 +32,7 @@ const FeaturesSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green tracking-tight af-heading-underline inline-block">
             Advanced Features
           </h2>
-          <p className="max-w-2xl mt-4 text-sm text-af-text-muted font-nasalization">
+          <p className="af-prose af-prose-dim max-w-2xl mt-4 text-sm">
             ΔlieπFlΦw $pac€ offers cutting-edge technologies to support our interstellar ecosystem
           </p>
         </motion.div>
@@ -42,13 +43,14 @@ const FeaturesSection = () => {
             <motion.div
               key={index}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200 group"
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              onMouseMove={spotlightMove}
+              className="af-spotlight border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200 group"
             >
               {/* Number label */}
-              <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/40 mb-3 block">
+              <span className="font-nasalization text-[11px] tracking-[0.2em] text-af-text-muted/40 mb-3 block">
                 {String(index + 1).padStart(2, '0')}
               </span>
 

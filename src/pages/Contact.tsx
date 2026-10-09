@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
     <div className="min-h-screen pb-20 overflow-x-hidden">
       <main className="max-w-7xl mx-auto px-4 pt-12">
         {/* Hero */}
-        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center mb-12 py-8">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="text-center mb-12 py-8">
           <div className="flex items-center justify-center gap-3 mb-4 flex-wrap">
             <AlienTag color="green">CONTACT</AlienTag>
             <AlienTag color="muted">CONNECT</AlienTag>
@@ -158,10 +158,10 @@ const Contact: React.FC = () => {
                     <div className="mb-2"><item.icon /></div>
                     <span className="text-xs font-nasalization text-alien-gold mb-2">{item.name}</span>
                     <div className="flex gap-1.5 w-full">
-                      <a href={item.link} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 border border-af-border-hairline hover:border-[#0A66C2]/40 transition-colors text-[9px] text-gray-300 hover:text-white">
+                      <a href={item.link} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 border border-af-border-hairline hover:border-[#0A66C2]/40 transition-colors text-[11px] text-gray-300 hover:text-white">
                         <Building2 className="w-3 h-3" /> Company
                       </a>
-                      <a href={item.secondaryLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 border border-af-border-hairline hover:border-alien-gold/40 transition-colors text-[9px] text-gray-300 hover:text-white">
+                      <a href={item.secondaryLink} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 border border-af-border-hairline hover:border-alien-gold/40 transition-colors text-[11px] text-gray-300 hover:text-white">
                         <User className="w-3 h-3" /> Founder
                       </a>
                     </div>
@@ -170,10 +170,10 @@ const Contact: React.FC = () => {
               }
               return (
                 <a key={item.name} href={isComingSoon ? undefined : item.link} target={isComingSoon ? undefined : '_blank'} rel="noreferrer" className={`border-r border-b border-af-border-hairline p-4 bg-af-surface/10 transition-colors flex flex-col items-center text-center ${isComingSoon ? 'opacity-40 cursor-not-allowed' : 'hover:bg-af-surface/30'}`}>
-                  {isComingSoon && <span className="self-end text-[7px] font-nasalization bg-af-surface-2/40 px-1.5 py-0.5 uppercase tracking-wider text-af-text-muted mb-1">Soon</span>}
+                  {isComingSoon && <span className="self-end text-[11px] font-nasalization bg-af-surface-2/40 px-1.5 py-0.5 uppercase tracking-wider text-af-text-muted mb-1">Soon</span>}
                   <div className="mb-2"><item.icon /></div>
                   <span className="text-xs font-nasalization text-alien-gold mb-0.5">{item.name}</span>
-                  <span className="text-[9px] text-af-text-muted">{item.handle}</span>
+                  <span className="text-[11px] text-af-text-muted">{item.handle}</span>
                 </a>
               );
             })}
@@ -226,7 +226,7 @@ const Contact: React.FC = () => {
                     <div className="w-2 h-2 bg-yellow-500/60" />
                     <div className="w-2 h-2 bg-green-500/60" />
                   </div>
-                  <span className="text-[9px] font-mono uppercase text-alien-gold/70 ml-3">AiTor_Neural_Core_v6.9</span>
+                  <span className="text-[11px] font-mono uppercase text-alien-gold/70 ml-3">AiTor_Neural_Core_v6.9</span>
                 </div>
                 <Terminal className="w-3.5 h-3.5 text-alien-gold/50" />
               </div>

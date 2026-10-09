@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { CircleDollarSign, Calendar, MessagesSquare } from 'lucide-react';
 import AlienButton from '@/components/alien/AlienButton';
 import AlienTag from '@/components/alien/AlienTag';
+import { spotlightMove } from '@/lib/spotlight';
 
 const features = [
   { icon: <CircleDollarSign className="h-5 w-5 text-alien-gold" />, title: "Token Governance", description: "Hold A₿TC cryptokens to participate in voting and proposal creation across all ecosystem domains.", dotColor: 'bg-alien-gold' },
@@ -19,9 +20,9 @@ const ParticipationSection = () => {
           {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
             className="mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -31,7 +32,7 @@ const ParticipationSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green tracking-tight af-heading-underline inline-block">
               Join the Cosmic Governance
             </h2>
-            <p className="max-w-2xl mt-4 text-sm text-af-text-muted font-nasalization leading-relaxed">
+            <p className="af-prose af-prose-dim max-w-2xl mt-4 text-sm leading-relaxed">
               ΔlieπFlΦw $pac€ DAO operates on a principle of transparent, decentralized governance where all participants have the opportunity to shape the present of our interplanetary ecosystem.
             </p>
           </motion.div>
@@ -42,10 +43,11 @@ const ParticipationSection = () => {
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors flex items-start gap-4"
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: '-80px' }}
+                onMouseMove={spotlightMove}
+                className="af-spotlight border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors flex items-start gap-4"
               >
                 <span className={`af-status-dot ${feature.dotColor} mt-2 flex-shrink-0`} />
                 <div className="flex-1">
@@ -62,9 +64,9 @@ const ParticipationSection = () => {
           {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
           >
             <AlienButton variant="primary" className="!px-8 !py-3 !text-sm">
               Connect & Participate

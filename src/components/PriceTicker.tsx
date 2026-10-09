@@ -1,13 +1,17 @@
 
 import React, { useEffect } from 'react';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'gecko-coin-price-marquee-widget': any;
-    }
-  }
-}
+type GeckoMarqueeProps = React.HTMLAttributes<HTMLElement> & {
+  locale?: string;
+  'dark-mode'?: string;
+  outlined?: string;
+  'coin-ids'?: string;
+  'initial-currency'?: string;
+};
+
+// Web component de CoinGecko. Se tipa como componente de React para no declarar
+// un namespace JSX global ni recurrir a `any`.
+const GeckoCoinPriceMarquee = 'gecko-coin-price-marquee-widget' as unknown as React.FC<GeckoMarqueeProps>;
 
 const WIDGET_SRC = 'https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js';
 
@@ -25,7 +29,7 @@ const PriceTicker: React.FC = () => {
 
   return (
     <div className="w-full overflow-visible min-h-[48px]">
-      <gecko-coin-price-marquee-widget
+      <GeckoCoinPriceMarquee
         locale="es"
         dark-mode="true"
         outlined="true"

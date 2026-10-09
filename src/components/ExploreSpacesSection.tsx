@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import AlienTag from '@/components/alien/AlienTag';
+import { spotlightMove } from '@/lib/spotlight';
 
 const spaces = [
   {
@@ -43,9 +44,9 @@ const ExploreSpacesSection = () => {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '-80px' }}
           className="mb-8 md:mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -55,7 +56,7 @@ const ExploreSpacesSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green tracking-tight af-heading-underline inline-block">
             Explore Spaces
           </h2>
-          <p className="max-w-2xl mt-4 text-sm text-af-text-muted font-nasalization">
+          <p className="af-prose af-prose-dim max-w-2xl mt-4 text-sm">
             Discover specialized environments designed to enhance your journey through the cosmos
           </p>
         </motion.div>
@@ -66,10 +67,11 @@ const ExploreSpacesSection = () => {
             <motion.div
               key={space.id}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200 flex flex-col"
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              onMouseMove={spotlightMove}
+              className="af-spotlight border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200 flex flex-col"
             >
               {/* Top row: logo + partner tag */}
               <div className="flex items-center justify-between mb-5">

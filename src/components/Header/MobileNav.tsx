@@ -95,7 +95,7 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <h4 className="text-alien-gold font-nasalization text-sm">{link.label}</h4>
-                      <p className="text-[10px] text-af-text-muted mt-1">{link.desc}</p>
+                      <p className="text-[11px] text-af-text-muted mt-1">{link.desc}</p>
                     </Link>
                   ))}
                 </motion.div>
@@ -124,7 +124,7 @@ const MobileNav = ({ isMenuOpen, setIsMenuOpen }: MobileNavProps) => {
                     className="flex items-center gap-3 border border-af-border-hairline p-2 hover:border-alien-green/30 hover:bg-alien-green/5 transition-colors"
                   >
                     <img src={`https://flagcdn.com/w20/${lang.code}.png`} className="w-4 h-auto rounded-sm" alt={lang.name} />
-                    <span className="text-[10px] text-alien-gold uppercase">{lang.name}</span>
+                    <span className="text-[11px] text-alien-gold uppercase">{lang.name}</span>
                   </button>
                 ))}
               </div>

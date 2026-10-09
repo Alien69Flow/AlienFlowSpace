@@ -2,6 +2,7 @@ import React from 'react';
 import CinematicParticles from '@/components/CinematicParticles';
 import CinematicCursor from '@/components/CinematicCursor';
 import Hero from '@/components/Hero';
+import GetStartedSection from '@/components/GetStartedSection';
 import FinancialFreedomSection from '@/components/FinancialFreedomSection';
 import ExploreSpacesSection from '@/components/ExploreSpacesSection';
 import StatsSection from '@/components/StatsSection';
@@ -24,6 +25,9 @@ const Index: React.FC = () => {
       <div className="relative pt-10">
         <Hero />
       </div>
+
+      <SceneDivider label="GET STARTED" />
+      <GetStartedSection />
 
       <SceneDivider label="ACCESS" />
       <FinancialFreedomSection />

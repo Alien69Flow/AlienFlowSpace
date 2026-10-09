@@ -62,7 +62,7 @@ const AIChatbot = () => {
           >
             <div className="flex items-center gap-2 mb-1">
               <currentRole.icon size={12} style={{ color: currentRole.color }} />
-              <span className="text-[10px] font-nasalization text-alien-gold tracking-widest uppercase">{currentRole.role}</span>
+              <span className="text-[11px] font-nasalization text-alien-gold tracking-widest uppercase">{currentRole.role}</span>
             </div>
             <p className="text-white text-xs font-exo leading-tight">{currentRole.messages[0]}</p>
           </motion.div>
@@ -86,8 +86,8 @@ const AIChatbot = () => {
                   <img src={aiTorAvatar} alt="AI" className="w-full h-full rounded-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-alien-gold font-nasalization text-[10px] tracking-widest leading-none">AI TOR INTERFACE</h3>
-                  <span className="text-alien-green text-[8px] font-exo uppercase animate-pulse">Online • Quantum Link</span>
+                  <h3 className="text-alien-gold font-nasalization text-[11px] tracking-widest leading-none">AI TOR INTERFACE</h3>
+                  <span className="text-alien-green text-[11px] font-exo uppercase animate-pulse">Online • Quantum Link</span>
                 </div>
               </div>
               <div className="flex items-center gap-1">
@@ -116,7 +116,7 @@ const AIChatbot = () => {
                     className="w-24 h-24 rounded-full border border-alien-green absolute"
                   />
                   <Loader2 className="w-10 h-10 text-alien-green animate-spin mb-4" />
-                  <p className="text-alien-green font-nasalization text-[8px] tracking-[0.4em]">SYNCHRONIZING...</p>
+                  <p className="font-nasalization text-alien-green text-[11px] tracking-[0.35em]">SYNCHRONIZING...</p>
                 </div>
               )}
               <iframe src="https://aitor.lovable.app/" sandbox="allow-scripts allow-same-origin allow-forms" className="w-full h-full border-none" onLoad={() => setIsLoading(false)} title="AI Tor" />

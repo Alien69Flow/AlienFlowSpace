@@ -16,7 +16,7 @@ const AlienStatus: React.FC<AlienStatusProps> = ({ label, color = 'green' }) => 
   return (
     <span className="inline-flex items-center gap-2">
       <span className={`af-status-dot ${colorMap[color]}`} />
-      <span className="font-nasalization text-[10px] tracking-[0.15em] uppercase text-af-text-muted">
+      <span className="font-nasalization text-[11px] tracking-[0.15em] uppercase text-af-text-muted">
         {label}
       </span>
     </span>

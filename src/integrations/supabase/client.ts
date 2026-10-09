@@ -2,16 +2,26 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
+// Copia .env.example a .env y rellena estos valores (o configúralos en el panel
+// de Vercel: Settings → Environment Variables).
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  // Sin este guard, createClient(undefined, undefined) lanza al importar el módulo
+  // y deja la aplicación en pantalla blanca.
+  throw new Error(
+    '[supabase] Faltan VITE_SUPABASE_URL y/o VITE_SUPABASE_PUBLISHABLE_KEY. ' +
+      'Copia .env.example a .env y define ambas variables.'
+  );
+}
+
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
-
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
     storage: localStorage,
     persistSession: true,
     autoRefreshToken: true,
-  }
+  },
 });

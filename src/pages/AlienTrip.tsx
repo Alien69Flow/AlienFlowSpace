@@ -49,7 +49,7 @@ const AlienTrip: React.FC = () => {
             <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-4">
               Explore our cosmic journey through the knowledge skills multiverse as we build the next generation of decentralized collaboration together.
             </p>
-            <p className="text-alien-green font-nasalization text-base mb-6">
+            <p className="af-prose text-alien-green text-base mb-6">
               Join us to enjoy the advantages, benefits and profits of the ecosystem.
             </p>
             <AlienButton variant="primary" className="!px-8 !py-3 !text-sm">

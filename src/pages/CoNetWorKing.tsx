@@ -12,7 +12,7 @@ type ServiceProps = { title: string; description: string; icon: React.ReactNode 
 type Partner = { name: string; url: string; logo: string; description: string };
 
 const ServiceCard = ({ service, index }: { service: ServiceProps; index: number }) => (
-  <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }}
+  <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.4, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
     className="border-r border-b border-af-border-hairline p-5 bg-af-surface/20 hover:bg-af-surface/40 transition-colors">
     <div className="p-3 border border-af-border mb-4 inline-flex">{service.icon}</div>
     <h3 className="text-alien-gold font-nasalization text-base mb-2">{service.title}</h3>
@@ -21,7 +21,7 @@ const ServiceCard = ({ service, index }: { service: ServiceProps; index: number 
 );
 
 const PartnerSection: React.FC<{ title: string; partners: Partner[]; icon?: React.ReactNode; delay?: number }> = ({ title, partners, icon, delay = 0 }) => (
-  <motion.div className="mb-10" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay }}>
+  <motion.div className="mb-10" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}>
     <div className="flex items-center gap-3 mb-4">
       {icon}
       <h3 className="text-lg font-bold text-alien-gold font-nasalization">{title}</h3>
@@ -398,23 +398,23 @@ const CoNetWorKing: React.FC = () => {
             <p className="text-gray-300 mb-8 max-w-3xl">Discover our network of partners across Academy and specialized Clubs</p>
 
             <PartnerSection title="Academy" partners={academyPartners} delay={0} />
-            <PartnerSection title="AIFlow" partners={clubsPartners.aiFlow} color="" icon={<Zap className="h-5 w-5 text-alien-gold" />} delay={0.05} />
-            <PartnerSection title="AdsFlow" partners={clubsPartners.adsFlow} color="" icon={<TrendingUp className="h-5 w-5 text-alien-gold" />} delay={0.07} />
-            <PartnerSection title="ArtFlow" partners={clubsPartners.artFlow} color="" icon={<Palette className="h-5 w-5 text-alien-gold" />} delay={0.1} />
-            <PartnerSection title="CashFlow" partners={clubsPartners.cashFlow} color="" delay={0.2} />
-            <PartnerSection title="DataFlow" partners={clubsPartners.dataFlow} color="" delay={0.3} />
-            <PartnerSection title="EcoFlow" partners={clubsPartners.ecoFlow} color="" icon={<Leaf className="h-5 w-5 text-alien-gold" />} delay={0.4} />
-            <PartnerSection title="GameFlow" partners={clubsPartners.gameFlow} color="" delay={0.5} />
-            <PartnerSection title="HealthFlow" partners={clubsPartners.healthFlow} color="" icon={<Heart className="h-5 w-5 text-alien-gold" />} delay={0.6} />
-            <PartnerSection title="MetaFlow" partners={clubsPartners.metaFlow} color="" delay={0.7} />
-            <PartnerSection title="QuantumFlow" partners={clubsPartners.quantumFlow} color="" delay={0.8} />
-            <PartnerSection title="SpaceFlow" partners={clubsPartners.spaceFlow} color="" icon={<Rocket className="h-5 w-5 text-alien-gold" />} delay={0.9} />
-            <PartnerSection title="WeedFlow" partners={clubsPartners.weedFlow} color="" icon={<Leaf className="h-5 w-5 text-alien-gold" />} delay={1.0} />
-            <PartnerSection title="XFlow" partners={clubsPartners.xFlow} color="" delay={1.1} />
+            <PartnerSection title="AIFlow" partners={clubsPartners.aiFlow} icon={<Zap className="h-5 w-5 text-alien-gold" />} delay={0.05} />
+            <PartnerSection title="AdsFlow" partners={clubsPartners.adsFlow} icon={<TrendingUp className="h-5 w-5 text-alien-gold" />} delay={0.07} />
+            <PartnerSection title="ArtFlow" partners={clubsPartners.artFlow} icon={<Palette className="h-5 w-5 text-alien-gold" />} delay={0.1} />
+            <PartnerSection title="CashFlow" partners={clubsPartners.cashFlow} delay={0.2} />
+            <PartnerSection title="DataFlow" partners={clubsPartners.dataFlow} delay={0.3} />
+            <PartnerSection title="EcoFlow" partners={clubsPartners.ecoFlow} icon={<Leaf className="h-5 w-5 text-alien-gold" />} delay={0.4} />
+            <PartnerSection title="GameFlow" partners={clubsPartners.gameFlow} delay={0.5} />
+            <PartnerSection title="HealthFlow" partners={clubsPartners.healthFlow} icon={<Heart className="h-5 w-5 text-alien-gold" />} delay={0.6} />
+            <PartnerSection title="MetaFlow" partners={clubsPartners.metaFlow} delay={0.7} />
+            <PartnerSection title="QuantumFlow" partners={clubsPartners.quantumFlow} delay={0.8} />
+            <PartnerSection title="SpaceFlow" partners={clubsPartners.spaceFlow} icon={<Rocket className="h-5 w-5 text-alien-gold" />} delay={0.9} />
+            <PartnerSection title="WeedFlow" partners={clubsPartners.weedFlow} icon={<Leaf className="h-5 w-5 text-alien-gold" />} delay={1.0} />
+            <PartnerSection title="XFlow" partners={clubsPartners.xFlow} delay={1.1} />
           </div>
 
           {/* Global Community */}
-          <motion.div className="mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+          <motion.div className="mb-12" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
             <div className="flex items-center gap-3 mb-4">
               <AlienTag color="green">COMMUNITY</AlienTag>
             </div>

@@ -82,7 +82,7 @@ const Footer = () => {
               <img src="/lovable-uploads/ALogo.png" alt="Logo" className="h-10 w-auto object-contain" />
               <span className="text-xl font-bold font-nasalization text-alien-green">AlienFlowSpace DAO</span>
             </div>
-            <p className="text-alien-green/80 text-sm font-nasalization leading-relaxed max-w-md">
+            <p className="af-prose text-alien-green/80 text-sm leading-relaxed max-w-md">
               Uniting diverse blockchain domains under a cosmic governance structure.
               Building the future of decentralized finance across the multiverse.
             </p>
@@ -137,7 +137,7 @@ const Footer = () => {
 
         {/* Powered By */}
         <div className="mt-8 pt-6 border-t border-af-border-hairline">
-          <p className="text-center text-xs text-af-text-muted font-nasalization mb-4 uppercase tracking-widest">Powered By</p>
+          <p className="font-nasalization text-center text-xs mb-4 uppercase tracking-widest text-af-text-muted">Powered By</p>
           <div className="flex justify-center items-center gap-6 flex-wrap">
             {poweredBy.map((tech) => (
               <a
@@ -156,7 +156,7 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="border-t border-af-border-hairline mt-6 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
-          <p className="text-[10px] font-nasalization text-alien-green/50 uppercase tracking-widest">
+          <p className="af-prose af-prose-dim text-xs">
             © {currentYear} AlienFlowSpace DAO • Cosmic Governance Enabled
           </p>
 
@@ -165,8 +165,8 @@ const Footer = () => {
             <div className="flex items-center gap-3 border border-af-border px-4 py-2">
               <span className="text-2xl animate-pulse" style={{ filter: `drop-shadow(0 0 8px ${chineseYear.color})` }}>{chineseYear.icon}</span>
               <div className="text-left leading-none">
-                <p className="text-alien-gold font-bold text-xs font-nasalization">{currentYear} / {chineseYear.year}</p>
-                <p className="text-[9px] uppercase tracking-tighter font-nasalization" style={{ color: chineseYear.color }}>{chineseYear.element} {chineseYear.animal}</p>
+                <p className="af-prose text-alien-gold font-bold text-xs">{currentYear} / {chineseYear.year}</p>
+                <p className="font-nasalization text-[11px] uppercase tracking-tighter" style={{ color: chineseYear.color }}>{chineseYear.element} {chineseYear.animal}</p>
               </div>
             </div>
 
@@ -174,9 +174,9 @@ const Footer = () => {
             <div className="flex items-center gap-3 border border-af-border px-4 py-2">
               <span className="text-xl" style={{ filter: 'drop-shadow(0 0 6px #FF9933)' }}>ॐ</span>
               <div className="text-left leading-none space-y-0.5">
-                <p className="text-alien-gold font-bold text-[10px] font-nasalization">VS {hinduYear.vikramSamvat}–{hinduYear.vikramSamvat + 1}</p>
-                <p className="text-[8px] font-nasalization" style={{ color: '#FF9933' }}>KY {hinduYear.kaliYuga}</p>
-                <p className="text-[8px] font-nasalization" style={{ color: '#FF9933' }}>Shaka {hinduYear.shakaSamvat}</p>
+                <p className="af-prose text-alien-gold font-bold text-[11px]">VS {hinduYear.vikramSamvat}–{hinduYear.vikramSamvat + 1}</p>
+                <p className="font-nasalization text-[11px]" style={{ color: '#FF9933' }}>KY {hinduYear.kaliYuga}</p>
+                <p className="font-nasalization text-[11px]" style={{ color: '#FF9933' }}>Shaka {hinduYear.shakaSamvat}</p>
               </div>
             </div>
 
@@ -184,8 +184,8 @@ const Footer = () => {
             <div className="flex items-center gap-3 border border-af-border px-4 py-2">
               <span className="text-xl" style={{ filter: 'drop-shadow(0 0 6px #4A90D9)' }}>✡</span>
               <div className="text-left leading-none">
-                <p className="text-alien-gold font-bold text-[10px] font-nasalization">{hebrewYear.yearRange} AM</p>
-                <p className="text-[8px] font-nasalization" style={{ color: '#4A90D9' }}>{hebrewYear.month}</p>
+                <p className="af-prose text-alien-gold font-bold text-[11px]">{hebrewYear.yearRange} AM</p>
+                <p className="font-nasalization text-[11px]" style={{ color: '#4A90D9' }}>{hebrewYear.month}</p>
               </div>
             </div>
           </div>

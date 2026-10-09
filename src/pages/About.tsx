@@ -35,7 +35,7 @@ const About: React.FC = () => {
       <main className="relative z-10 flex-grow container mx-auto px-4 pt-8">
         <div className="max-w-6xl mx-auto">
           {/* Hero */}
-          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
             <div className="inline-flex items-center justify-center w-20 h-20 border border-alien-gold/40 mb-6">
               <img src="/lovable-uploads/ALogo.png" alt="About Logo" className="h-12 w-12 object-contain" />
             </div>
@@ -71,9 +71,9 @@ const About: React.FC = () => {
                   className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
                 >
-                  <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{`0${i + 1}`}</span>
+                  <span className="font-nasalization text-[11px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{`0${i + 1}`}</span>
                   <h3 className={`text-2xl font-semibold mb-1 font-nasalization ${item.color}`}>{item.label}</h3>
-                  <p className="text-sm text-alien-green/70 font-nasalization mb-3">{item.subtitle}</p>
+                  <p className="af-prose text-sm text-alien-green/70 mb-3">{item.subtitle}</p>
                   <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
                 </motion.div>
               ))}
@@ -91,7 +91,7 @@ const About: React.FC = () => {
                 className="border-r border-b border-af-border-hairline p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50 mb-3 block">{`0${i + 1}`}</span>
+                <span className="font-nasalization text-[11px] tracking-[0.2em] text-af-text-muted/50 mb-3 block">{`0${i + 1}`}</span>
                 <div className="flex items-center gap-3 mb-3">
                   {p.icon}
                   <h3 className="text-xl font-semibold font-nasalization text-alien-green">{p.title}</h3>
@@ -156,7 +156,7 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-af-border-hairline mb-8">
               {benefits.map((b, i) => (
                 <div key={i} className="border-r border-b border-af-border-hairline p-5 bg-af-surface/10 hover:bg-af-surface/30 transition-colors">
-                  <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{`0${i + 1}`}</span>
+                  <span className="font-nasalization text-[11px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{`0${i + 1}`}</span>
                   <h4 className="font-semibold mb-2 text-lg font-nasalization text-alien-gold">{b.title}</h4>
                   <p className="text-gray-300 leading-relaxed text-sm">{b.text}</p>
                 </div>

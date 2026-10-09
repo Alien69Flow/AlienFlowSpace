@@ -8,26 +8,12 @@ import Logo from "@/components/Header/Logo";
 import DesktopNav from "@/components/Header/DesktopNav";
 import MobileNav from "@/components/Header/MobileNav";
 import ConnectButton from "@/components/Header/ConnectButton";
+import SoundToggle from "@/components/SoundToggle";
 
 const Header = () => {
   const isScrolled = useScroll();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const isMobile = useIsMobile();
-
-  if (isMobile === undefined) {
-    return (
-      <div className="bg-af-bg h-14 w-full flex items-center justify-center font-nasalization border-b border-af-border-hairline">
-        <div className="flex items-center gap-3">
-          <img src="/lovable-uploads/ALogo.png" alt="AlienFlowSpace" className="h-8 w-8 animate-pulse" />
-          <div className="flex gap-1">
-            <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{animationDelay:'0s'}}></span>
-            <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{animationDelay:'0.15s'}}></span>
-            <span className="w-1.5 h-1.5 bg-alien-gold rounded-full animate-bounce" style={{animationDelay:'0.3s'}}></span>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <header
@@ -41,6 +27,7 @@ const Header = () => {
         <Logo />
         <DesktopNav />
         <div className="flex items-center gap-2">
+          <SoundToggle />
           {!isMobile && <ConnectButton />}
           {isMobile && (
             <button

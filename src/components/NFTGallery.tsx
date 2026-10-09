@@ -130,7 +130,7 @@ const NFTGallery: React.FC = () => {
                   </div>
                   <div className="p-3">
                     <p className="text-sm font-exo text-foreground truncate">{item.name}</p>
-                    <p className="text-xs text-alien-gold font-nasalization">{item.price}</p>
+                    <p className="af-prose text-xs text-alien-gold">{item.price}</p>
                   </div>
                 </div>
               </motion.div>

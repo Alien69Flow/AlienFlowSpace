@@ -30,7 +30,7 @@ const SceneDivider: React.FC<SceneDividerProps> = ({ label, align = 'center' }) 
       {/* Optional label centered on the line */}
       {label && (
         <div className={`absolute inset-0 flex items-center ${justifyClass}`}>
-          <span className="bg-af-bg px-4 font-nasalization text-[10px] tracking-[0.3em] uppercase text-af-text-muted">
+          <span className="bg-af-bg px-4 font-nasalization text-[11px] tracking-[0.3em] uppercase text-af-text-muted">
             {label}
           </span>
         </div>

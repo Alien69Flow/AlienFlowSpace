@@ -200,8 +200,8 @@ const Academy = () => {
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }} transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-5xl md:text-7xl font-nasalization mb-6 tracking-widest uppercase text-alien-green af-heading-underline inline-block glow-pulse-entry"
         >
           Academy
@@ -209,8 +209,8 @@ const Academy = () => {
 
         <motion.p
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-60px' }} transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl mx-auto text-alien-gold/80 text-base md:text-lg mb-8 leading-relaxed italic"
         >
           "Acquire complete attention capabilities to connect, discover and expand knowledge and skills. Evolve towards an optimal experience with fullness of flow."
@@ -235,8 +235,8 @@ const Academy = () => {
           <motion.div
             key={module.id}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: module.id * 0.1 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.5, delay: module.id * 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="border-r border-b border-af-border-hairline bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
           >
             <div
@@ -250,7 +250,7 @@ const Academy = () => {
                 <ChevronDown className={`w-5 h-5 text-alien-gold transition-transform duration-300 ${expandedModule === module.id ? 'rotate-180' : ''}`} />
               </div>
 
-              <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{module.tag}</span>
+              <span className="font-nasalization text-[11px] tracking-[0.2em] text-af-text-muted/50 mb-2 block">{module.tag}</span>
               <h3 className="text-2xl font-nasalization mb-3 text-alien-gold tracking-tight">{module.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-2">{module.description}</p>
 
@@ -319,7 +319,7 @@ const Academy = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 border-l border-t border-af-border-hairline">
           {partnerCategories.map((cat, i) => (
             <div key={i} className="border-r border-b border-af-border-hairline p-4 bg-af-surface/10">
-              <h5 className="text-[10px] font-nasalization text-alien-gold tracking-[0.25em] border-b border-af-border-hairline pb-3 mb-3 uppercase">
+              <h5 className="text-[11px] font-nasalization text-alien-gold tracking-[0.25em] border-b border-af-border-hairline pb-3 mb-3 uppercase">
                 {cat.label}
               </h5>
               <div className="flex flex-col gap-2">

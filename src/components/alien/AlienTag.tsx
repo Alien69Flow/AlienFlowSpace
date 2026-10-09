@@ -15,7 +15,7 @@ const AlienTag: React.FC<AlienTagProps> = ({ children, color = 'muted', classNam
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-nasalization text-[10px] tracking-[0.15em] uppercase ${colorMap[color]} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-nasalization text-[11px] tracking-[0.15em] uppercase ${colorMap[color]} ${className}`}
     >
       {children}
     </span>

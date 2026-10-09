@@ -25,8 +25,10 @@ export const networks: [AppKitNetwork, ...AppKitNetwork[]] = [
   bitcoin,
 ];
 
+const evmNetworks: AppKitNetwork[] = [polygon, mainnet, arbitrum, base, bsc];
+
 export const wagmiAdapter = new WagmiAdapter({
-  networks: [polygon, mainnet, arbitrum, base, bsc] as any,
+  networks: evmNetworks,
   projectId,
   ssr: false,
 });
@@ -40,8 +42,8 @@ const origin =
   typeof window !== 'undefined' ? window.location.origin : 'https://alienflow.space';
 
 createAppKit({
-  adapters: [wagmiAdapter, solanaAdapter, bitcoinAdapter] as any,
-  networks: networks as any,
+  adapters: [wagmiAdapter, solanaAdapter, bitcoinAdapter],
+  networks,
   defaultNetwork: polygon,
   projectId,
   metadata: {

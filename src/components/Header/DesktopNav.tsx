@@ -59,7 +59,7 @@ const DesktopNav = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
-            className="af-pill af-pill-outline text-alien-green !text-[10px] !tracking-[0.2em] !py-1.5 !px-4"
+            className="af-pill af-pill-outline text-alien-green !text-[11px] !tracking-[0.2em] !py-1.5 !px-4"
           >
             <Sparkles className="w-3 h-3 text-alien-gold" />
             EXPLORE SPACES
@@ -79,7 +79,7 @@ const DesktopNav = () => {
                 <h3 className="text-alien-gold group-hover:text-alien-green font-nasalization text-sm transition-colors">
                   {link.label}
                 </h3>
-                <p className="text-[10px] text-af-text-muted leading-relaxed mt-1">
+                <p className="text-[11px] text-af-text-muted leading-relaxed mt-1">
                   {link.desc}
                 </p>
               </Link>

@@ -1,9 +1,22 @@
 /* Simple in-page translation using Google Website Translator */
 
+interface GoogleTranslateElementOptions {
+  pageLanguage?: string;
+  autoDisplay?: boolean;
+  layout?: number;
+}
+
 declare global {
   interface Window {
     googleTranslateElementInit?: () => void;
-    google?: any;
+    google?: {
+      translate: {
+        TranslateElement: new (
+          options: GoogleTranslateElementOptions,
+          elementId: string
+        ) => unknown;
+      };
+    };
   }
 }
 
@@ -12,7 +25,7 @@ export function initGoogleTranslate() {
   // Define init callback
   window.googleTranslateElementInit = function () {
     try {
-      // @ts-ignore - global google object injected by script
+      // global `google` inyectado por el script de Google
       new window.google.translate.TranslateElement({
         pageLanguage: 'auto',
         autoDisplay: false,

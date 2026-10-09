@@ -8,7 +8,7 @@ const TermsOfService = () => {
   return (
     <div className="min-h-screen py-16">
       <div className="container mx-auto px-4 max-w-4xl">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
           {/* Header */}
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-4">
@@ -23,7 +23,7 @@ const TermsOfService = () => {
                 Terms of Service
               </h1>
             </div>
-            <p className="text-alien-green font-nasalization text-lg mt-4">Last Updated: October 2026</p>
+            <p className="af-prose text-alien-green text-lg mt-4">Last Updated: October 2026</p>
           </div>
 
           {/* Content */}
@@ -164,7 +164,7 @@ const TermsOfService = () => {
                 For questions about these Terms of Service, please contact us at:
               </p>
               <div className="mt-4 p-4 border border-af-border bg-af-surface/30">
-                <p className="text-alien-gold font-semibold font-nasalization">Email: info@alienflow.space</p>
+                <p className="af-prose text-alien-gold font-semibold">Email: info@alienflow.space</p>
                 <p className="text-gray-300 text-sm mt-1">Discord: discord.gg/alienflowspace</p>
               </div>
             </section>

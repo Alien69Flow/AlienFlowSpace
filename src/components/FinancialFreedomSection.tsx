@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import AlienModule from '@/components/alien/AlienModule';
 import AlienTag from '@/components/alien/AlienTag';
+import { spotlightMove } from '@/lib/spotlight';
 
 const progressionSteps = ['DISCOVER', 'UNDERSTAND', 'EXPLORE', 'PARTICIPATE', 'ACCESS'];
 
@@ -17,9 +18,9 @@ const FinancialFreedomSection = () => {
           {/* Section header — centered */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
             className="mb-10 text-center"
           >
             <div className="flex items-center justify-center gap-3 mb-4 flex-wrap">
@@ -29,7 +30,7 @@ const FinancialFreedomSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-alien-gold font-nasalization tracking-tight af-heading-underline inline-block">
               ₿£€$
             </h2>
-            <p className="text-lg font-nasalization text-alien-green mt-4">
+            <p className="af-prose text-lg text-alien-green mt-4">
               Bless Financial Freedom for the Free Earth
             </p>
           </motion.div>
@@ -37,14 +38,14 @@ const FinancialFreedomSection = () => {
           {/* Progression bar: centered */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
             className="flex items-center justify-center gap-1 md:gap-2 mb-12 flex-wrap"
           >
             {progressionSteps.map((step, i) => (
               <React.Fragment key={step}>
-                <span className="af-tag !text-[9px] !py-1 !px-2.5">{step}</span>
+                <span className="af-tag !text-[11px] !py-1 !px-2.5">{step}</span>
                 {i < progressionSteps.length - 1 && (
                   <span className="text-af-text-muted/30 text-xs">→</span>
                 )}
@@ -55,9 +56,9 @@ const FinancialFreedomSection = () => {
           {/* A.BTC Token Highlight — flat module */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
             className="mb-10"
           >
             <AlienModule hoverColor="gold" className="!p-6 md:!p-8">
@@ -65,7 +66,7 @@ const FinancialFreedomSection = () => {
                 <h3 className="text-2xl md:text-3xl font-bold text-alien-gold font-nasalization mb-1">
                   A₿tc
                 </h3>
-                <p className="text-xs text-alien-green mb-4 font-nasalization">
+                <p className="af-prose text-xs text-alien-green mb-4">
                   (Aurum nostrum non est aurum vulgi)
                 </p>
                 <p className="text-sm text-gray-300 mb-5 max-w-3xl leading-relaxed">
@@ -91,10 +92,11 @@ const FinancialFreedomSection = () => {
             {/* Impartial Money */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              onMouseMove={spotlightMove}
+              className="af-spotlight border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
             >
               <div className="flex items-center gap-3 mb-4">
                 <Shield className="h-6 w-6 text-alien-gold" />
@@ -123,10 +125,11 @@ const FinancialFreedomSection = () => {
             {/* Decentralized Currencies */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              onMouseMove={spotlightMove}
+              className="af-spotlight border-r border-b border-af-border-hairline p-6 md:p-8 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
             >
               <div className="flex items-center gap-3 mb-4">
                 <TrendingUp className="h-6 w-6 text-alien-green" />
@@ -156,9 +159,9 @@ const FinancialFreedomSection = () => {
           {/* Wealth Security Statement — full width flat module */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
             className="mb-10"
           >
             <div className="border border-af-border p-6 md:p-8 bg-af-surface/30">
@@ -174,9 +177,9 @@ const FinancialFreedomSection = () => {
           {/* Instant Access: Experiences / Products / Services — three flat routes */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
           >
             <div className="border border-af-border bg-af-surface/20 p-6 md:p-8">
               <div className="flex items-center gap-3 mb-6">

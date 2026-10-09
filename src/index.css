@@ -62,6 +62,10 @@
     --af-border-hairline: rgba(255, 255, 255, 0.08);
     --af-radius-pill: 9999px;
     --af-radius-sharp: 0px;
+
+    /* Body-copy tokens — long text needs its own colour and size, not the display face */
+    --af-text-body: #E7E7F0;
+    --af-text-dim: #A9A9BE;
   }
 
   /* REGLAS CORREGIDAS CON MAYOR ESPECIFICIDAD */
@@ -146,17 +150,6 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)) drop-shadow(0 0 12px hsl(var(--primary) / 0.2));
 }
 
-/* Background & Stars */
-.bg-stars {
-  background: black url('/lovable-uploads/stars-bg.png') repeat;
-  animation: moveStars 200s linear infinite;
-}
-
-@keyframes moveStars {
-  from { background-position: 0 0; }
-  to { background-position: -10000px 5000px; }
-}
-
 .bg-glow-radial {
   background: radial-gradient(circle at center, rgba(34, 197, 94, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
 }
@@ -229,6 +222,32 @@
 .af-module:hover {
   border-color: var(--af-border-strong);
 }
+
+/* Spotlight — a cursor-following glow for cards and modules. `spotlightMove`
+   only writes the --af-mx/--af-my custom properties; the visual is pure CSS, so
+   it costs nothing until the pointer is actually over the card. */
+.af-spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.af-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    240px circle at var(--af-mx, 50%) var(--af-my, 50%),
+    rgba(240, 216, 130, 0.13),
+    rgba(34, 197, 94, 0.07) 45%,
+    transparent 70%
+  );
+  transition: opacity 0.25s ease;
+}
+.af-spotlight:hover::after {
+  opacity: 1;
+}
 .af-hairline {
   border-top: 1px solid var(--af-border-hairline);
   border-bottom: 1px solid var(--af-border-hairline);
@@ -277,8 +296,8 @@
   background: transparent;
   padding: 0.25rem 0.75rem;
   font-family: 'Nasalization', sans-serif;
-  font-size: 0.625rem;
-  letter-spacing: 0.15em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--af-text-muted);
 }
@@ -300,6 +319,28 @@
   background-size: 40px 40px;
 }
 
+/* Prose — long-form copy. The global rule below forces the display face (Nasalization)
+   onto headings, buttons and links; paragraphs must stay on the text face to be easy to read. */
+.af-prose,
+.af-prose * {
+  font-family: 'Exo', system-ui, sans-serif !important;
+}
+.af-prose {
+  line-height: 1.7;
+}
+.af-prose-lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+@media (min-width: 640px) {
+  .af-prose-lead {
+    font-size: 1.25rem;
+  }
+}
+.af-prose-dim {
+  color: var(--af-text-dim);
+}
+
 /* Estilos de la versión anterior que se han mantenido */
 html, body {
   margin: 0;
@@ -307,7 +348,8 @@ html, body {
   min-height: 100vh;
   width: 100%;
   background-color: transparent;
-  color: #F0D882;
+  /* Body copy is light, not gold: gold is reserved for headings, labels and data. */
+  color: var(--af-text-body);
   overflow-x: hidden;
   font-family: 'Exo', sans-serif;
   scroll-behavior: smooth;

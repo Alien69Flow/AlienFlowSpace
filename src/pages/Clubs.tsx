@@ -20,8 +20,8 @@ type ClubProps = {
 const ClubCard = ({ club, index }: { club: ClubProps; index: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.4, delay: index * 0.08 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.4, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     className="border border-af-border bg-af-surface/20 hover:bg-af-surface/40 transition-colors p-6"
   >
     <div className="flex justify-between items-start mb-4">
@@ -197,12 +197,9 @@ const Clubs: React.FC = () => {
     { name: 'Δ SpaceFlow', description: 'Advancing space exploration, satellite technology, and cosmic research through decentralized funding and collaboration.', members: 5678, icon: <Rocket className="h-6 w-6 text-alien-gold" />, category: 'Space', categoryColor: '', bgColor: '' }
   ];
 
-  const allCategories = React.useMemo(() => {
-    const cats = new Set<string>();
-    featuredClubs.forEach(c => cats.add(c.category));
-    otherClubs.forEach(c => cats.add(c.category));
-    return Array.from(cats).sort();
-  }, []);
+  const allCategories = Array.from(
+    new Set([...featuredClubs, ...otherClubs].map(c => c.category))
+  ).sort();
 
   const filteredFeatured = featuredClubs.filter(c => {
     const matchesSearch = !searchQuery || c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -238,7 +235,7 @@ const Clubs: React.FC = () => {
           </div>
 
           {/* Search & Filter */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-12 space-y-4">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="mb-12 space-y-4">
             <div className="relative max-w-md mx-auto">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-alien-gold/50" />
               <input
@@ -253,7 +250,7 @@ const Clubs: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-2">
               <button
                 onClick={() => setActiveCategory(null)}
-                className={`af-pill !text-[10px] !py-1.5 !px-3 transition-all ${!activeCategory ? 'af-pill-primary' : 'af-pill-outline'}`}
+                className={`af-pill !text-[11px] !py-1.5 !px-3 transition-all ${!activeCategory ? 'af-pill-primary' : 'af-pill-outline'}`}
               >
                 All
               </button>
@@ -261,7 +258,7 @@ const Clubs: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-                  className={`af-pill !text-[10px] !py-1.5 !px-3 transition-all ${activeCategory === cat ? 'af-pill-primary' : 'af-pill-outline'}`}
+                  className={`af-pill !text-[11px] !py-1.5 !px-3 transition-all ${activeCategory === cat ? 'af-pill-primary' : 'af-pill-outline'}`}
                 >
                   {cat}
                 </button>
@@ -299,7 +296,7 @@ const Clubs: React.FC = () => {
 
           {filteredFeatured.length === 0 && filteredOther.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-alien-gold/60 font-nasalization text-lg">No clubs match your search</p>
+              <p className="af-prose text-alien-gold/60 text-lg">No clubs match your search</p>
             </div>
           )}
 

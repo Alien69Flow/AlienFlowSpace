@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import AlienModule from '@/components/alien/AlienModule';
 import AlienTag from '@/components/alien/AlienTag';
+import { spotlightMove } from '@/lib/spotlight';
 
 const ecosystems = [
   { id: 'biofi', num: '01', title: 'BioFi', description: 'Decentralized biology financing and research initiatives.', icon: <Dna className="h-5 w-5 text-alien-green" /> },
@@ -32,9 +33,9 @@ const EcosystemSection = () => {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '-80px' }}
           className="mb-8 md:mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -44,7 +45,7 @@ const EcosystemSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green tracking-tight af-heading-underline inline-block">
             DAO Ecosystem
           </h2>
-          <p className="max-w-2xl mt-4 text-sm text-af-text-muted font-nasalization">
+          <p className="af-prose af-prose-dim max-w-2xl mt-4 text-sm">
             ΔlieπFlΦw $pac€ bridges diverse decentralized domains into a coherent, interoperable ecosystem.
           </p>
         </motion.div>
@@ -55,17 +56,18 @@ const EcosystemSection = () => {
             <motion.div
               key={eco.id}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              viewport={{ once: true }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
             >
               <a
                 href={`#${eco.id}`}
-                className="group block border-r border-b border-af-border-hairline p-4 md:p-5 h-full bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200"
+                onMouseMove={spotlightMove}
+                className="af-spotlight group block border-r border-b border-af-border-hairline p-4 md:p-5 h-full bg-af-surface/20 hover:bg-af-surface/40 transition-colors duration-200"
               >
                 {/* Number + icon row */}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="font-nasalization text-[10px] tracking-[0.2em] text-af-text-muted/50">
+                  <span className="font-nasalization text-[11px] tracking-[0.2em] text-af-text-muted/50">
                     {eco.num}
                   </span>
                   <span className="opacity-60 group-hover:opacity-100 transition-opacity">
@@ -84,7 +86,7 @@ const EcosystemSection = () => {
                 </p>
 
                 {/* Hover arrow */}
-                <div className="flex items-center gap-1 text-[10px] font-nasalization uppercase tracking-wider text-af-text-muted/50 group-hover:text-alien-green transition-colors">
+                <div className="flex items-center gap-1 text-[11px] font-nasalization uppercase tracking-wider text-af-text-muted/50 group-hover:text-alien-green transition-colors">
                   Explore <ArrowRight className="h-3 w-3" />
                 </div>
               </a>

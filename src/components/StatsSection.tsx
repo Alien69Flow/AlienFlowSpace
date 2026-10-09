@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Globe, Vote } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
+import { spotlightMove } from '@/lib/spotlight';
 
 const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; suffix?: string; prefix?: string }) => {
   const [displayValue, setDisplayValue] = useState(0);
@@ -52,9 +53,9 @@ const StatsSection = () => {
         {/* Unified Financial/Asset Block — 420 ETH + 8 BTC */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '-80px' }}
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -66,7 +67,7 @@ const StatsSection = () => {
               <div className="border-r border-b border-af-border-hairline p-5 md:p-6 text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <span className="af-status-dot bg-alien-green" />
-                  <span className="font-nasalization text-[10px] tracking-[0.2em] uppercase text-af-text-muted">Ethereum</span>
+                  <span className="font-nasalization text-[11px] tracking-[0.2em] uppercase text-af-text-muted">Ethereum</span>
                 </div>
                 <div className="text-3xl md:text-4xl font-bold font-nasalization text-alien-green mb-1">
                   420 <span className="text-lg">ETH</span>
@@ -75,7 +76,7 @@ const StatsSection = () => {
               <div className="border-r border-b border-af-border-hairline p-5 md:p-6 text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <span className="af-status-dot bg-alien-gold" />
-                  <span className="font-nasalization text-[10px] tracking-[0.2em] uppercase text-af-text-muted">Bitcoin</span>
+                  <span className="font-nasalization text-[11px] tracking-[0.2em] uppercase text-af-text-muted">Bitcoin</span>
                 </div>
                 <div className="text-3xl md:text-4xl font-bold font-nasalization text-alien-gold mb-1">
                   8 <span className="text-lg">BTC</span>
@@ -91,10 +92,11 @@ const StatsSection = () => {
             <motion.div
               key={stat.label}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              onMouseMove={spotlightMove}
+              className="af-spotlight border-r border-b border-af-border-hairline p-5 md:p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors"
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className={`af-status-dot ${stat.dotColor}`} />
@@ -103,7 +105,7 @@ const StatsSection = () => {
               <div className={`text-2xl md:text-3xl font-bold font-nasalization ${stat.color} mb-1`}>
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-xs font-nasalization tracking-wider uppercase text-af-text-muted">
+              <p className="font-nasalization text-xs tracking-wider uppercase text-af-text-muted">
                 {stat.label}
               </p>
             </motion.div>

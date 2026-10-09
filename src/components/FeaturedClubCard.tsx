@@ -3,6 +3,7 @@ import { ExternalLink, Users } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
+import { spotlightMove } from '@/lib/spotlight';
 
 interface PlatformLink {
   name: string;
@@ -31,7 +32,8 @@ interface FeaturedClubProps {
 const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
   if (!club.sections) {
     return (
-      <div className="border border-af-border bg-af-surface/20 hover:bg-af-surface/40 transition-colors p-6">
+      <div onMouseMove={spotlightMove}
+              className="af-spotlight border border-af-border bg-af-surface/20 hover:bg-af-surface/40 transition-colors p-6">
         <div className="flex justify-between items-start mb-4">
           <div className="p-3 border border-af-border">{club.icon}</div>
           <AlienTag color="muted">{club.category}</AlienTag>

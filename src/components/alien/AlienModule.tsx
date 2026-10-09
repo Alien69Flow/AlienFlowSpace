@@ -1,4 +1,5 @@
 import React from 'react';
+import { spotlightMove } from '@/lib/spotlight';
 
 interface AlienModuleProps {
   children: React.ReactNode;
@@ -16,7 +17,10 @@ const AlienModule: React.FC<AlienModuleProps> = ({
   const hoverBorder = hoverColor === 'green' ? 'hover:border-alien-green/50' : 'hover:border-alien-gold/50';
 
   return (
-    <div className={`af-module relative p-5 md:p-6 ${hoverBorder} ${className}`}>
+    <div
+      onMouseMove={spotlightMove}
+      className={`af-module af-spotlight relative p-5 md:p-6 ${hoverBorder} ${className}`}
+    >
       {number && (
         <span className="absolute top-3 right-4 font-nasalization text-xs tracking-widest text-af-text-muted/40 select-none">
           {number}
