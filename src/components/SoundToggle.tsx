@@ -2,12 +2,27 @@ import React, { useSyncExternalStore } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { isSoundEnabled, setSoundEnabled, sfx, subscribeSound } from '@/lib/sound';
 
+interface SoundToggleProps {
+  /**
+   * Styling hook. Pass the nav-strip cell class on desktop, or a full-width row
+   * class inside the mobile sheet. Defaults to a standalone bordered control.
+   */
+  className?: string;
+  /** Renders the readable label next to the icon (used inside the mobile sheet). */
+  showLabel?: boolean;
+}
+
+const DEFAULT_CLASS =
+  'inline-flex items-center gap-2 px-2 py-1.5 border border-af-border-hairline ' +
+  'text-af-text-dim hover:text-alien-gold hover:border-af-border-strong hover:bg-alien-gold/10';
+
 /**
- * Interface-sound switch. Lives in the header so nobody has to hunt for it, and
- * the choice survives reloads. `data-sfx="off"` tells the global cue listener to
- * stay quiet on this control (otherwise the click cue fires while toggling).
+ * Interface-sound switch. It lives inside the navigation (desktop strip and
+ * mobile sheet) so nobody has to hunt for it, and the choice survives reloads.
+ * `data-sfx="off"` tells the global cue listener to stay quiet on this control,
+ * otherwise the click cue would fire in the same tick it toggles audio.
  */
-const SoundToggle: React.FC = () => {
+const SoundToggle: React.FC<SoundToggleProps> = ({ className, showLabel = false }) => {
   const enabled = useSyncExternalStore(subscribeSound, isSoundEnabled, () => false);
 
   const label = enabled ? 'Turn interface sound off' : 'Turn interface sound on';
@@ -25,13 +40,12 @@ const SoundToggle: React.FC = () => {
         // This click is the user gesture that unlocks audio, so confirm right away.
         if (next) sfx.open();
       }}
-      className={`p-2 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-alien-gold/50 ${
-        enabled
-          ? 'text-alien-gold hover:text-alien-green hover:bg-af-surface-2/30'
-          : 'text-af-text-muted/60 hover:text-af-text-muted hover:bg-af-surface-2/20'
-      }`}
+      className={className ?? DEFAULT_CLASS}
     >
-      {enabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
+      {enabled ? <Volume2 size={showLabel ? 16 : 18} /> : <VolumeX size={showLabel ? 16 : 18} />}
+      {showLabel && (
+        <span className="text-[10px] tracking-[0.2em] uppercase">Interface sound</span>
+      )}
     </button>
   );
 };

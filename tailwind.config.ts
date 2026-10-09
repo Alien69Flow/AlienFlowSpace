@@ -79,21 +79,30 @@ export default {
           'space-dark': '#050510',
           'space-darker': '#030308',
         },
+        // Opaque AF tokens use `rgb(var(--x-rgb) / <alpha-value>)` on purpose.
+        // A bare `var(--af-bg)` cannot carry a Tailwind opacity modifier, so
+        // `bg-af-bg/95` used to compile to NOTHING (no rule at all) — which is
+        // why translucent panels, including the header bar, rendered fully
+        // transparent. Channel triplets keep `/95`, `/40`, … working.
         af: {
-          'bg': 'var(--af-bg)',
-          'surface': 'var(--af-surface)',
-          'surface-2': 'var(--af-surface-2)',
-          'primary': 'var(--af-primary)',
-          'secondary': 'var(--af-secondary)',
-          'accent': 'var(--af-accent)',
-          'success': 'var(--af-success)',
-          'warning': 'var(--af-warning)',
-          'danger': 'var(--af-danger)',
-          'text': 'var(--af-text)',
-          'text-muted': 'var(--af-text-muted)',
+          'bg': 'rgb(var(--af-bg-rgb) / <alpha-value>)',
+          'surface': 'rgb(var(--af-surface-rgb) / <alpha-value>)',
+          'surface-2': 'rgb(var(--af-surface-2-rgb) / <alpha-value>)',
+          'primary': 'rgb(var(--af-primary-rgb) / <alpha-value>)',
+          'secondary': 'rgb(var(--af-secondary-rgb) / <alpha-value>)',
+          'accent': 'rgb(var(--af-accent-rgb) / <alpha-value>)',
+          'success': 'rgb(var(--af-success-rgb) / <alpha-value>)',
+          'warning': 'rgb(var(--af-warning-rgb) / <alpha-value>)',
+          'danger': 'rgb(var(--af-danger-rgb) / <alpha-value>)',
+          'text': 'rgb(var(--af-text-rgb) / <alpha-value>)',
+          'text-muted': 'rgb(var(--af-text-muted-rgb) / <alpha-value>)',
+          // Border tokens already hold their own alpha, so they stay verbatim.
           'border': 'var(--af-border)',
           'border-strong': 'var(--af-border-strong)',
           'border-hairline': 'var(--af-border-hairline)',
+          'text-body': 'var(--af-text-body)',
+          'text-dim': 'var(--af-text-dim)',
+          'chrome': 'var(--af-chrome)',
         },
         overlay: 'rgba(3, 3, 10, 0.8)'
       },

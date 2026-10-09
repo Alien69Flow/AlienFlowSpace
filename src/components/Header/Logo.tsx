@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom';
 const Logo = () => {
   return (
     <div className="flex items-center gap-3 group">
-      <Link to="/" className="flex items-center gap-2 transition-transform duration-500 hover:scale-105">
+      {/* Boxed wordmark with a hard hairline edge — the reference boxes its
+          wordmark the same way, and it reads as a fixed instrument, not text
+          floating over the page. */}
+      <Link
+        to="/"
+        className="flex items-center gap-2 lg:border lg:border-af-border-hairline lg:bg-white/[0.02] lg:px-3 lg:py-1.5 transition-colors duration-300 hover:border-alien-green/40"
+      >
         <img 
           src="/lovable-uploads/ALogo.png" 
           alt="AlienFlow Logo" 
-          className="h-9 w-auto" 
+          className="h-8 lg:h-9 w-auto" 
         />
         <span className="font-nasalization text-base sm:text-xl tracking-tighter">
           <span className="text-alien-green">Δlieπ</span>
@@ -18,11 +24,12 @@ const Logo = () => {
         </span>
       </Link>
       
-      <Link to="/" className="hidden sm:block">
+      {/* Decorative twin: only once there is room for it on a wide bar. */}
+      <Link to="/" className="hidden xl:block" aria-hidden="true" tabIndex={-1}>
         <img 
           src="/lovable-uploads/ET.png" 
-          alt="Earth" 
-          className="h-8 w-8 rounded-full hover:rotate-[360deg] transition-all duration-1000 border border-alien-green/20"
+          alt="" 
+          className="h-8 w-8 rounded-full hover:rotate-[360deg] transition-all duration-1000 border border-alien-green/25"
         />
       </Link>
     </div>

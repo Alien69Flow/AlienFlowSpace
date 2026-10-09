@@ -66,6 +66,29 @@
     /* Body-copy tokens — long text needs its own colour and size, not the display face */
     --af-text-body: #E7E7F0;
     --af-text-dim: #A9A9BE;
+
+    /* Channel triplets for the opaque AF tokens. Tailwind's `/<alpha>` modifier
+       needs them: a colour defined as a bare `var(--af-bg)` produces no rule at
+       all for `bg-af-bg/95`. Values mirror the hex tokens above. */
+    --af-bg-rgb: 5 5 16;
+    --af-surface-rgb: 12 12 29;
+    --af-surface-2-rgb: 26 26 58;
+    --af-primary-rgb: 240 216 130;
+    --af-secondary-rgb: 34 197 94;
+    --af-accent-rgb: 240 216 130;
+    --af-success-rgb: 34 197 94;
+    --af-warning-rgb: 240 216 130;
+    --af-danger-rgb: 239 68 68;
+    --af-text-rgb: 240 216 130;
+    --af-text-muted-rgb: 148 148 148;
+
+    /* Header chrome — an opaque instrument surface. The bar must never let the
+       page bleed through it, so this is a solid colour, not a translucent one. */
+    --af-chrome: #04040C;
+    --af-chrome-raised: #0A0A18;
+    --af-chrome-line: rgba(240, 216, 130, 0.22);
+    --af-chrome-grid: rgba(240, 216, 130, 0.09);
+    --af-header-h: 3.5rem;
   }
 
   /* REGLAS CORREGIDAS CON MAYOR ESPECIFICIDAD */
@@ -514,4 +537,251 @@ section[id], div[id] {
     rgba(5, 5, 16, 0.6) 100%
   );
   pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   HEADER CHROME — an opaque HUD instrument bar.
+
+   Reference, taken from the markup of https://gt-planar.com/ : its nav is a
+   solid `bg-black` bar whose controls are individual boxes with hard borders
+   (`bg-black p-4 border-2 border-gray hover:text-green hover:border-green`),
+   a boxed wordmark with a 2px accent border, caps labels, and a stack of four
+   `<hr>` hairlines ruled underneath the bar. Borders carry the structure and
+   nothing is translucent — which is exactly the opposite of the old header,
+   where `bg-af-bg/95` compiled to no rule at all and the page bled through.
+
+   Same language here, in AlienFlow's palette: opaque surface, 1px hard edges,
+   sharp corners, caps labels, an accent that switches per state.
+   --------------------------------------------------------------------------- */
+
+.af-header {
+  /* Opaque on purpose. Never a translucent bar. */
+  background-color: var(--af-chrome);
+  background-image:
+    linear-gradient(180deg, rgba(240, 216, 130, 0.055) 0%, rgba(240, 216, 130, 0) 70%),
+    linear-gradient(90deg, var(--af-chrome-grid) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 100%;
+  border-bottom: 1px solid var(--af-chrome-line);
+}
+
+.af-header--scrolled {
+  border-bottom-color: var(--af-border-strong);
+}
+
+.af-header__bar {
+  display: flex;
+  align-items: stretch;
+  height: 3.5rem;
+  transition: height 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (min-width: 1024px) {
+  .af-header__bar {
+    height: 4rem;
+  }
+}
+.af-header--scrolled .af-header__bar {
+  height: 3.25rem;
+}
+@media (min-width: 1024px) {
+  .af-header--scrolled .af-header__bar {
+    height: 3.5rem;
+  }
+}
+
+/* The hairline ruler under the bar — GT Planar rules four <hr> lines there.
+   Only shown once the page is scrolled, so the top of the hero stays clean. */
+.af-header__ruler {
+  height: 7px;
+  opacity: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--af-chrome-line) 0,
+    var(--af-chrome-line) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  transition: opacity 0.3s ease;
+}
+.af-header--scrolled .af-header__ruler {
+  opacity: 0.5;
+}
+
+/* Nav: one joined strip of bordered cells, like the reference's boxed controls. */
+.af-nav {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--af-border-hairline);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.af-nav-cell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.7rem;
+  border-right: 1px solid var(--af-border-hairline);
+  font-family: 'Nasalization', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--af-text-dim);
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* Denser at lg, where the logo, the strip and the wallet cluster share the bar. */
+@media (min-width: 1280px) {
+  .af-nav-cell {
+    padding: 0 0.95rem;
+  }
+}
+.af-nav-cell:last-child {
+  border-right: 0;
+}
+.af-nav-cell:hover {
+  color: var(--af-primary);
+  background: rgba(240, 216, 130, 0.07);
+}
+.af-nav-cell[aria-current='page'] {
+  color: var(--af-secondary);
+  background: rgba(34, 197, 94, 0.09);
+}
+/* 2px accent rule marks the current section, the way the reference marks state. */
+.af-nav-cell[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--af-secondary);
+}
+.af-nav-cell[data-state='open'] {
+  color: var(--af-primary);
+  background: rgba(240, 216, 130, 0.09);
+}
+
+/* Square cell variant, for icon-only controls inside the nav strip.
+   Later in source than `.af-nav-cell`, so it wins on padding/width. */
+.af-nav-cell--icon {
+  width: 2.75rem;
+  padding: 0;
+  justify-content: center;
+}
+.af-nav-cell[aria-pressed='true'] {
+  color: var(--af-secondary);
+}
+.af-nav-cell[aria-pressed='false'] {
+  color: var(--af-text-muted);
+}
+
+/* Square bordered icon control (sound, language, hamburger). */
+.af-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border: 1px solid var(--af-border-hairline);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--af-text-dim);
+  cursor: pointer;
+}
+.af-icon-btn:hover {
+  color: var(--af-primary);
+  border-color: var(--af-border-strong);
+  background: rgba(240, 216, 130, 0.08);
+}
+.af-icon-btn[aria-pressed='true'] {
+  color: var(--af-secondary);
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(34, 197, 94, 0.09);
+}
+.af-icon-btn[data-state='open'] {
+  color: var(--af-secondary);
+  border-color: rgba(34, 197, 94, 0.45);
+}
+
+/* Floating panel: solid surface, hard edge. The dark outer shadow is a legibility
+   scrim so the panel still reads over a bright background photo. */
+.af-panel {
+  background: var(--af-chrome-raised);
+  border: 1px solid var(--af-chrome-line);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.62);
+}
+
+.af-panel__row {
+  display: block;
+  border-bottom: 1px solid var(--af-border-hairline);
+  cursor: pointer;
+}
+.af-panel__row:last-child {
+  border-bottom: 0;
+}
+.af-panel__row:hover {
+  background: rgba(240, 216, 130, 0.06);
+}
+
+.af-menu-label {
+  font-family: 'Nasalization', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--af-text-muted);
+}
+
+/* Mobile sheet: opaque, full-height, scroll-locked. */
+.af-sheet {
+  background: var(--af-chrome);
+  border-top: 1px solid var(--af-border-hairline);
+}
+.af-sheet-scrim {
+  background: rgba(3, 3, 10, 0.74);
+}
+.af-sheet-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.95rem 0.25rem;
+  border-bottom: 1px solid var(--af-border-hairline);
+  text-align: left;
+}
+/* Full-width sound row inside the sheet: icon + label, colour carries state. */
+.af-sheet-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.95rem 0.25rem;
+  border-bottom: 1px solid var(--af-border-hairline);
+  color: var(--af-text-dim);
+  text-align: left;
+}
+.af-sheet-toggle-row:hover {
+  color: var(--af-primary);
+  background: rgba(240, 216, 130, 0.05);
+}
+.af-sheet-toggle-row[aria-pressed='true'] {
+  color: var(--af-secondary);
+}
+
+.af-sheet-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 0.25rem;
+  border-bottom: 1px solid var(--af-border-hairline);
+  color: var(--af-text-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.af-sheet-link:hover,
+.af-sheet-link:focus-visible {
+  color: var(--af-primary);
+  background: rgba(240, 216, 130, 0.05);
+}
+.af-sheet-link[aria-current='page'] {
+  color: var(--af-secondary);
+  box-shadow: inset 2px 0 0 var(--af-secondary);
 }

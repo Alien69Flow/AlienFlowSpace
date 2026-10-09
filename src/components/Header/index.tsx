@@ -1,57 +1,84 @@
-
 import React from 'react';
-import { AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useScroll } from "@/hooks/use-scroll";
-import Logo from "@/components/Header/Logo";
-import DesktopNav from "@/components/Header/DesktopNav";
-import MobileNav from "@/components/Header/MobileNav";
-import ConnectButton from "@/components/Header/ConnectButton";
-import SoundToggle from "@/components/SoundToggle";
+import { AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { useScroll } from '@/hooks/use-scroll';
+import Logo from '@/components/Header/Logo';
+import DesktopNav from '@/components/Header/DesktopNav';
+import MobileNav from '@/components/Header/MobileNav';
+import ConnectButton from '@/components/Header/ConnectButton';
+
+/**
+ * The hamburger switches at the same breakpoint as the desktop nav (`lg`), and
+ * only in CSS. Previously the button was driven by `useIsMobile` (< 768px) while
+ * the desktop nav starts at 1024px, so between 768px and 1023px there was no
+ * navigation at all.
+ */
+const DESKTOP_QUERY = '(min-width: 1024px)';
 
 const Header = () => {
   const isScrolled = useScroll();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const isMobile = useIsMobile();
+  const location = useLocation();
+
+  // A sheet left open would hide the page after navigating.
+  React.useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  // Resizing up to desktop closes the sheet instead of leaving it behind the bar.
+  React.useEffect(() => {
+    const mql = window.matchMedia(DESKTOP_QUERY);
+    const onChange = () => {
+      if (mql.matches) setIsMenuOpen(false);
+    };
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, []);
+
+  // Lock the page while the sheet is open, and restore whatever was there before.
+  React.useEffect(() => {
+    if (!isMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMenuOpen]);
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "py-0 bg-af-bg/98" 
-          : "py-0 bg-af-bg/95"
+      className={`fixed top-0 left-0 w-full z-50 af-header ${
+        isScrolled ? 'af-header--scrolled' : ''
       }`}
     >
-      <div className="container mx-auto px-4 lg:px-6 flex justify-between items-center relative py-2 border-b border-af-border-hairline">
+      {/* `relative z-[60]` keeps the bar itself above the sheet scrim. */}
+      <div className="container relative z-[60] mx-auto px-4 lg:px-6 af-header__bar justify-between gap-3">
         <Logo />
+
         <DesktopNav />
+
         <div className="flex items-center gap-2">
-          <SoundToggle />
-          {!isMobile && <ConnectButton />}
-          {isMobile && (
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 text-alien-gold hover:text-alien-green transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-alien-gold/50 rounded-lg ${
-                isMenuOpen ? 'bg-af-surface-2/40' : 'hover:bg-af-surface-2/20'
-              }`}
-              aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-              data-state={isMenuOpen ? "open" : "closed"}
-            >
-              <div className={`transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`}>
-                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </div>
-            </button>
-          )}
+          <div className="hidden md:flex items-center">
+            <ConnectButton />
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="af-icon-btn lg:hidden"
+            aria-label={isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </div>
-      
+
+      <div className="af-header__ruler" aria-hidden="true" />
+
       <AnimatePresence>
-        {isMobile && isMenuOpen && (
-          <MobileNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        )}
+        {isMenuOpen && <MobileNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />}
       </AnimatePresence>
     </header>
   );
