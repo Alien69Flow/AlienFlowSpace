@@ -9,7 +9,7 @@ const Logo = () => {
           floating over the page. */}
       <Link
         to="/"
-        className="flex items-center gap-2 lg:border lg:border-af-border-hairline lg:bg-white/[0.02] lg:px-3 lg:py-1.5 transition-colors duration-300 hover:border-alien-green/40"
+        className="flex items-center gap-2 transition-colors duration-300 hover:opacity-80"
       >
         <img 
           src="/lovable-uploads/ALogo.png" 
@@ -29,7 +29,7 @@ const Logo = () => {
         <img 
           src="/lovable-uploads/ET.png" 
           alt="" 
-          className="h-8 w-8 rounded-full hover:rotate-[360deg] transition-all duration-1000 border border-alien-green/25"
+          className="h-8 w-8 rounded-full hover:rotate-[360deg] transition-all duration-1000"
         />
       </Link>
     </div>

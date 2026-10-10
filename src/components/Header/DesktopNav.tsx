@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Globe, ChevronDown, Sparkles } from 'lucide-react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -86,7 +86,7 @@ const DesktopNav = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button type="button" className="af-nav-cell af-nav-cell--icon" aria-label="Select language" title="Select language">
-            <Globe className="h-4 w-4" aria-hidden="true" />
+            <img src="/lovable-uploads/ET.png" alt="" className="h-5 w-5 rounded-full object-cover" />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" sideOffset={6} className="af-panel rounded-none p-0 w-52">

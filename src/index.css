@@ -557,10 +557,7 @@ section[id], div[id] {
 .af-header {
   /* Opaque on purpose. Never a translucent bar. */
   background-color: var(--af-chrome);
-  background-image:
-    linear-gradient(180deg, rgba(240, 216, 130, 0.055) 0%, rgba(240, 216, 130, 0) 70%),
-    linear-gradient(90deg, var(--af-chrome-grid) 1px, transparent 1px);
-  background-size: 100% 100%, 48px 100%;
+  background-image: linear-gradient(180deg, rgba(240, 216, 130, 0.04) 0%, rgba(240, 216, 130, 0) 70%);
   border-bottom: 1px solid var(--af-chrome-line);
 }
 
@@ -606,12 +603,12 @@ section[id], div[id] {
   opacity: 0.5;
 }
 
-/* Nav: one joined strip of bordered cells, like the reference's boxed controls. */
+/* Nav: a clean, borderless strip. No boxes — just spaced labels with subtle hover. */
 .af-nav {
   display: flex;
   align-items: stretch;
-  border: 1px solid var(--af-border-hairline);
-  background: rgba(255, 255, 255, 0.02);
+  border: none;
+  background: transparent;
 }
 
 .af-nav-cell {
@@ -619,8 +616,8 @@ section[id], div[id] {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0 0.7rem;
-  border-right: 1px solid var(--af-border-hairline);
+  padding: 0 0.85rem;
+  border: none;
   font-family: 'Nasalization', sans-serif;
   font-size: 11px;
   letter-spacing: 0.14em;
@@ -628,25 +625,27 @@ section[id], div[id] {
   color: var(--af-text-dim);
   white-space: nowrap;
   cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+  border-radius: 2px;
 }
 /* Denser at lg, where the logo, the strip and the wallet cluster share the bar. */
 @media (min-width: 1280px) {
   .af-nav-cell {
-    padding: 0 0.95rem;
+    padding: 0 1.1rem;
   }
 }
 .af-nav-cell:last-child {
-  border-right: 0;
+  border: none;
 }
 .af-nav-cell:hover {
   color: var(--af-primary);
-  background: rgba(240, 216, 130, 0.07);
+  background: transparent;
 }
 .af-nav-cell[aria-current='page'] {
   color: var(--af-secondary);
-  background: rgba(34, 197, 94, 0.09);
+  background: transparent;
 }
-/* 2px accent rule marks the current section, the way the reference marks state. */
+/* 2px accent rule marks the current section */
 .af-nav-cell[aria-current='page']::before {
   content: '';
   position: absolute;
@@ -656,7 +655,7 @@ section[id], div[id] {
 }
 .af-nav-cell[data-state='open'] {
   color: var(--af-primary);
-  background: rgba(240, 216, 130, 0.09);
+  background: transparent;
 }
 
 /* Square cell variant, for icon-only controls inside the nav strip.
@@ -665,6 +664,7 @@ section[id], div[id] {
   width: 2.75rem;
   padding: 0;
   justify-content: center;
+  border: none;
 }
 .af-nav-cell[aria-pressed='true'] {
   color: var(--af-secondary);
@@ -673,7 +673,7 @@ section[id], div[id] {
   color: var(--af-text-muted);
 }
 
-/* Square bordered icon control (sound, language, hamburger). */
+/* Borderless icon control (sound, language, hamburger) — no box. */
 .af-icon-btn {
   display: inline-flex;
   align-items: center;
@@ -681,24 +681,26 @@ section[id], div[id] {
   width: 2.25rem;
   height: 2.25rem;
   flex-shrink: 0;
-  border: 1px solid var(--af-border-hairline);
-  background: rgba(255, 255, 255, 0.02);
+  border: none;
+  background: transparent;
   color: var(--af-text-dim);
   cursor: pointer;
+  transition: color 0.25s ease;
 }
 .af-icon-btn:hover {
   color: var(--af-primary);
-  border-color: var(--af-border-strong);
-  background: rgba(240, 216, 130, 0.08);
+  border: none;
+  background: transparent;
 }
 .af-icon-btn[aria-pressed='true'] {
   color: var(--af-secondary);
-  border-color: rgba(34, 197, 94, 0.45);
-  background: rgba(34, 197, 94, 0.09);
+  border: none;
+  background: transparent;
 }
 .af-icon-btn[data-state='open'] {
   color: var(--af-secondary);
-  border-color: rgba(34, 197, 94, 0.45);
+  border: none;
+  background: transparent;
 }
 
 /* Floating panel: solid surface, hard edge. The dark outer shadow is a legibility

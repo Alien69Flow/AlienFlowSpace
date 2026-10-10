@@ -20,38 +20,26 @@ const Hero: React.FC = () => {
   const glowOpacity = useTransform(scrollYProgress, [0, 0.15], [0.7, 0]);
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12 sm:py-16 overflow-hidden af-grid-overlay">
+    <section className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12 sm:py-16 overflow-hidden">
       {/* Parallax radial glow — scales and fades as you scroll */}
       <motion.div
         className="absolute inset-0 pointer-events-none bg-glow-radial"
         style={{ scale: glowScale, opacity: glowOpacity }}
       />
 
-      {/* Floating orbit ring — far background depth layer */}
+      {/* Soft radial glow accents — no hard edges */}
       <motion.div
         className="absolute pointer-events-none"
-        style={{ top: '15%', left: '50%', x: '-50%' }}
+        style={{ top: '20%', left: '50%', x: '-50%' }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ delay: 0.5, duration: 2 }}
+        animate={{ opacity: 0.06 }}
+        transition={{ delay: 0.5, duration: 3 }}
       >
         <div
-          className="w-[500px] h-[500px] rounded-full border border-dashed border-alien-gold/20"
-          style={{ animation: 'hero-orbit-spin 40s linear infinite' }}
-        />
-      </motion.div>
-
-      {/* Second orbit ring — counter-rotating */}
-      <motion.div
-        className="absolute pointer-events-none"
-        style={{ top: '10%', left: '50%', x: '-50%' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
-        transition={{ delay: 0.8, duration: 2 }}
-      >
-        <div
-          className="w-[700px] h-[700px] rounded-full border border-dashed border-alien-green/15"
-          style={{ animation: 'hero-orbit-spin 60s linear infinite reverse' }}
+          className="w-[600px] h-[600px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(240, 216, 130, 0.08) 0%, transparent 70%)',
+          }}
         />
       </motion.div>
 
@@ -242,12 +230,7 @@ const Hero: React.FC = () => {
         </svg>
       </motion.div>
 
-      <style>{`
-        @keyframes hero-orbit-spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+
     </section>
   );
 };
