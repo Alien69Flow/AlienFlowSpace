@@ -4,31 +4,159 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ΔlieπFlΦw $pac€ DAO | Web 3/4/5</title>
-    <meta name="description" content="AlienFlowSpace DAO unites BioFi, DeFi, DePin, DeSci, IPFS, QFS, ReFi, RWA, SocialFi, and TradFi under one cosmic ecosystem.">
+    <meta name="description" content="AlienFlowSpace DAO unites BioFi, DeFi, DePin, DeSci, IPFS, QFS, ReFi, RWA, SocialFi, and TradFi under one cosmic ecosystem." />
     <meta name="author" content="AlienFlowSpace" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#04040C" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/lovable-uploads/ALogo.png">
+    <meta property="og:site_name" content="AlienFlowSpace DAO" />
     <meta property="og:url" content="https://alienflow.space/" />
-    <meta property="og:title" content="ΔlieπFlΦw $pac€ DAO | Web 3/4/5">
-    <meta property="og:description" content="AlienFlowSpace DAO unites BioFi, DeFi, DePin, DeSci, IPFS, QFS, ReFi, RWA, SocialFi, and TradFi under one cosmic ecosystem.">
+    <meta property="og:title" content="ΔlieπFlΦw $pac€ DAO | Web 3/4/5" />
+    <meta property="og:description" content="AlienFlowSpace DAO unites BioFi, DeFi, DePin, DeSci, IPFS, QFS, ReFi, RWA, SocialFi, and TradFi under one cosmic ecosystem." />
+    <!-- Absolute URL: relative og:image paths are ignored by most link previews. -->
+    <meta property="og:image" content="https://alienflow.space/lovable-uploads/ALogo.png" />
+    <meta property="og:image:alt" content="AlienFlowSpace DAO logo" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@alien69flow" />
-    <meta name="twitter:image" content="/lovable-uploads/ALogo.png">
-    <meta name="twitter:title" content="ΔlieπFlΦw $pac€ DAO | Web 3/4/5">
-    <meta name="twitter:description" content="AlienFlowSpace DAO unites BioFi, DeFi, DePin, DeSci, IPFS, QFS, ReFi, RWA, SocialFi, and TradFi under one cosmic ecosystem.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="twitter:title" content="ΔlieπFlΦw $pac€ DAO | Web 3/4/5" />
+    <meta name="twitter:description" content="AlienFlowSpace DAO unites BioFi, DeFi, DePin, DeSci, IPFS, QFS, ReFi, RWA, SocialFi, and TradFi under one cosmic ecosystem." />
+    <meta name="twitter:image" content="https://alienflow.space/lovable-uploads/ALogo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="preload" href="/fonts/Nasalization.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/lovable-uploads/ALogo.png" as="image">
+    <link rel="preload" href="/fonts/Nasalization.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/lovable-uploads/ALogo.png" as="image" />
+    <!-- Only the languages that actually resolve. The old `es` alternate pointed at
+         /es/, which is not a route — an hreflang that 404s is an SEO defect. -->
     <link rel="alternate" hreflang="en" href="https://alienflow.space/" />
-    <link rel="alternate" hreflang="es" href="https://alienflow.space/es/" />
     <link rel="alternate" hreflang="x-default" href="https://alienflow.space/" />
-    <link rel="icon" type="image/png" href="/lovable-uploads/ALogo.png">
+    <link rel="icon" type="image/png" href="/lovable-uploads/ALogo.png" />
+    <!--
+      Fallback shell for visitors and crawlers that do not run JavaScript.
+      It lives inside #root and main.tsx removes it before React mounts, so it
+      never coexists with the app: exactly one <h1> either way. Styled inline and
+      self-contained, so it reads correctly even before the app CSS loads.
+    -->
+    <style>
+      #root { min-height: 100vh; }
+      .af-fallback {
+        min-height: 100vh;
+        background: #04040c;
+        color: #e7e7f0;
+        font-family: 'Exo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        line-height: 1.65;
+      }
+      .af-fallback a { color: #22c55e; text-decoration: none; }
+      .af-fallback a:hover { color: #f0d882; text-decoration: underline; }
+      .af-fallback__bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem 1.25rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(240, 216, 130, 0.22);
+      }
+      .af-fallback__brand {
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        color: #f0d882;
+      }
+      .af-fallback__nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 1.25rem;
+        font-size: 0.8125rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .af-fallback__main {
+        max-width: 46rem;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 2rem;
+      }
+      .af-fallback__main h1 {
+        font-size: clamp(1.75rem, 4vw, 2.75rem);
+        line-height: 1.2;
+        color: #f0d882;
+        margin: 0 0 1.25rem;
+      }
+      .af-fallback__main p { margin: 0 0 1rem; font-size: 1.0625rem; }
+      .af-fallback__facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        margin: 1.5rem 0 2rem;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9375rem;
+        color: #a9a9be;
+      }
+      .af-fallback__facts li::before { content: '• '; color: #22c55e; }
+      .af-fallback__foot {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 0.8125rem;
+        color: #a9a9be;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="af-fallback">
+        <header class="af-fallback__bar">
+          <a class="af-fallback__brand" href="/">ΔlieπFlΦw $pac€ DAO</a>
+          <nav class="af-fallback__nav" aria-label="Primary">
+            <a href="/about">About</a>
+            <a href="/academy">Academy</a>
+            <a href="/clubs">Clubs</a>
+            <a href="/conetworking">CoNetWorKing</a>
+            <a href="/alien-trip">AlienTrip</a>
+            <a href="/contact">Contact</a>
+          </nav>
+        </header>
+
+        <main class="af-fallback__main">
+          <h1>AlienFlowSpace DAO — a community-owned Web 3/4/5 organisation</h1>
+
+          <p>
+            Advantages boosting the benefits of connecting you and raising your quality of life —
+            with mutual profits.
+          </p>
+
+          <p>
+            A DAO is a community-owned organisation: the people who take part decide together what
+            gets built and funded — no single owner.
+          </p>
+
+          <p>
+            AlienFlowSpace funds sustainable technology: clean energy, regenerative finance and open
+            digital tools. Join in from any country, with no crypto experience needed.
+          </p>
+
+          <ul class="af-fallback__facts">
+            <li>11 ecosystem domains</li>
+            <li>Academy, Clubs &amp; CoNetWorKing</li>
+            <li>Governance open to members</li>
+          </ul>
+
+          <p>
+            <a href="/about">About the DAO</a> ·
+            <a href="/conetworking">CoNetWorKing</a> ·
+            <a href="https://alienflowspace.gitbook.io/DAO" rel="noopener noreferrer">GitBook Docs</a>
+          </p>
+        </main>
+
+        <footer class="af-fallback__foot">
+          <p>© AlienFlowSpace DAO · Web 3/4/5</p>
+          <p>
+            JavaScript is needed for wallet connection, live governance data and the interactive
+            interface.
+          </p>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
