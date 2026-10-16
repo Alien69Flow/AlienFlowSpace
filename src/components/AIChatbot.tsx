@@ -3,6 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Sparkles, Rocket, Zap, ExternalLink } from 'lucide-react';
 import aiTorAvatar from '@/assets/ai-tor-avatar.jpg';
 
+/* AI Tor is our own app (Alien69Flow/AiTor), served from our own domain. The link and the
+   embedded chat used to disagree — the link pointed here while the iframe still loaded the
+   Lovable-hosted build — so both read from this single constant now. */
+const AI_TOR_URL = 'https://aitor.alienflow.space/';
+
 const AI_DAPP_ROLES = [
   { id: 'welcome', role: 'Sistemas Tor', icon: Rocket, color: '#39FF14', messages: ["👽 ¡Conexión establecida! Soy AI Tor. ¿Exploramos el ecosistema?"] },
   { id: 'promo', role: 'Oportunidad', icon: Sparkles, color: '#EC4899', messages: ["🚀 ¡Misión Especial! Únete a la DAO y desbloquea NFTs."] },
@@ -92,7 +97,7 @@ const AIChatbot = () => {
               </div>
               <div className="flex items-center gap-1">
                 <a
-                  href="https://aitor.alienflow.space/"
+                  href={AI_TOR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 hover:bg-white/10 rounded-full text-white/50 hover:text-alien-green transition-all"
@@ -119,7 +124,7 @@ const AIChatbot = () => {
                   <p className="font-nasalization text-alien-green text-[11px] tracking-[0.35em]">SYNCHRONIZING...</p>
                 </div>
               )}
-              <iframe src="https://aitor.lovable.app/" sandbox="allow-scripts allow-same-origin allow-forms" className="w-full h-full border-none" onLoad={() => setIsLoading(false)} title="AI Tor" />
+              <iframe src={AI_TOR_URL} sandbox="allow-scripts allow-same-origin allow-forms" className="w-full h-full border-none" onLoad={() => setIsLoading(false)} title="AI Tor" />
             </div>
           </motion.div>
         )}
