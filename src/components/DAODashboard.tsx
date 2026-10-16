@@ -52,11 +52,14 @@ const DAODashboard: React.FC = () => {
     { name: 'USDC', value: 25000, change: 0, color: '#2775CA' }
   ]);
 
+  // Deadlines are kept ahead of "today" so open proposals never show a date that has
+  // already passed. The ones already decided are backdated, which is what a real log looks
+  // like. Replace the whole set once these read from Aragon instead of from this array.
   const [proposals] = useState<Proposal[]>([
-    { id: 1, title: 'Expand Academy Programs', status: 'active', votesFor: 8450, votesAgainst: 1200, deadline: '2026-03-15' },
-    { id: 2, title: 'Partner with ESL Gaming', status: 'active', votesFor: 6800, votesAgainst: 3400, deadline: '2026-03-10' },
-    { id: 3, title: 'Launch ReFi Initiative', status: 'passed', votesFor: 9200, votesAgainst: 890, deadline: '2026-02-28' },
-    { id: 4, title: 'Increase Treasury APY', status: 'rejected', votesFor: 4100, votesAgainst: 7800, deadline: '2026-02-25' }
+    { id: 1, title: 'Expand Academy Programs', status: 'active', votesFor: 8450, votesAgainst: 1200, deadline: '2026-10-27' },
+    { id: 2, title: 'Partner with ESL Gaming', status: 'active', votesFor: 6800, votesAgainst: 3400, deadline: '2026-10-30' },
+    { id: 3, title: 'Launch ReFi Initiative', status: 'passed', votesFor: 9200, votesAgainst: 890, deadline: '2026-10-12' },
+    { id: 4, title: 'Increase Treasury APY', status: 'rejected', votesFor: 4100, votesAgainst: 7800, deadline: '2026-10-05' }
   ]);
 
   const [votingData] = useState([
