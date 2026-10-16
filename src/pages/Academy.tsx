@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Coins, Brain, Leaf, ExternalLink, ChevronDown, Award, CircleCheck as CheckCircle2, Zap } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
+import { trackEvent } from '@/lib/analytics';
+import { isAffiliateUrl, hostLabel } from '@/lib/affiliate';
 
 const academyModules = [
   {
@@ -328,7 +330,13 @@ const Academy = () => {
                     key={j}
                     href={p.url}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel={isAffiliateUrl(p.url) ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
+                    onClick={() =>
+                      trackEvent(
+                        isAffiliateUrl(p.url) ? 'affiliate_click' : 'outbound_click',
+                        { partner: p.name, host: hostLabel(p.url), page: 'academy' },
+                      )
+                    }
                     className="flex items-center gap-2.5 group hover:scale-[1.01] transition-all duration-300"
                   >
                     <div className="w-9 h-9 border border-af-border-hairline p-1.5 group-hover:border-alien-green/50 group-hover:bg-alien-green/5 transition-all flex items-center justify-center overflow-hidden flex-shrink-0">

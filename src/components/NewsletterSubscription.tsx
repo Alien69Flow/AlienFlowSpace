@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Send, CheckCircle, AlertTriangle, ExternalLink } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import { sfx } from '@/lib/sound';
+import { trackEvent } from '@/lib/analytics';
 import {
   submitNewsletter,
   buildMailtoUrl,
@@ -28,21 +29,27 @@ const NewsletterSubscription: React.FC = () => {
     setStatus('submitting');
     setMessage('');
 
+    trackEvent('newsletter_submit', { endpoint_configured: Boolean(newsletterEndpoint) });
     const result = await submitNewsletter(email, { endpoint: newsletterEndpoint });
 
     if (result.status === 'ok') {
       // A cue only ever marks a real outcome, same rule as the success message.
       sfx.success();
+      trackEvent('newsletter_success');
       setStatus('subscribed');
       return;
     }
     if (result.status === 'fallback') {
       sfx.open();
+      // Counted separately on purpose: a fallback means the lead was NOT captured,
+      // and that number is the one that shows the form is not wired to anything.
+      trackEvent('newsletter_fallback');
       window.location.href = result.mailto;
       setStatus('confirmEmail');
       return;
     }
     sfx.error();
+    trackEvent('newsletter_error');
     setStatus('error');
     setMessage(result.message);
   };

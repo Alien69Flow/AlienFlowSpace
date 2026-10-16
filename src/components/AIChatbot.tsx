@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Sparkles, Rocket, Zap, ExternalLink } from 'lucide-react';
 import aiTorAvatar from '@/assets/ai-tor-avatar.jpg';
+import { trackEvent } from '@/lib/analytics';
 
 /* AI Tor is our own app (Alien69Flow/AiTor), served from our own domain. The link and the
    embedded chat used to disagree — the link pointed here while the iframe still loaded the
@@ -61,7 +62,10 @@ const AIChatbot = () => {
             initial={{ opacity: 0, x: 50, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 50, scale: 0.8 }}
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              trackEvent('chat_open', { app: 'aitor' });
+              setIsOpen(true);
+            }}
             className="fixed bottom-24 right-6 z-[121] max-w-[260px] p-4 rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 shadow-2xl cursor-pointer"
             style={{ borderLeft: `4px solid ${currentRole.color}` }}
           >

@@ -4,6 +4,7 @@ import { Compass, Globe, ScrollText, BookOpen, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AlienButton from '@/components/alien/AlienButton';
 import AlienTag from '@/components/alien/AlienTag';
+import { trackEvent } from '@/lib/analytics';
 
 const scrollTo = (selector: string) => {
   document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' });
@@ -160,7 +161,10 @@ const Hero: React.FC = () => {
         >
           <AlienButton
             variant="primary"
-            onClick={() => scrollTo('[data-section="get-started"]')}
+            onClick={() => {
+              trackEvent('cta_click', { cta: 'get_started' });
+              scrollTo('[data-section="get-started"]');
+            }}
             className="!px-8 !py-3 !text-sm"
             data-cursor="hover"
           >
@@ -168,7 +172,10 @@ const Hero: React.FC = () => {
           </AlienButton>
           <AlienButton
             variant="outline"
-            onClick={() => scrollTo('[data-section="ecosystem"]')}
+            onClick={() => {
+              trackEvent('cta_click', { cta: 'explore_ecosystem' });
+              scrollTo('[data-section="ecosystem"]');
+            }}
             className="!px-8 !py-3 !text-sm"
             data-cursor="hover"
           >

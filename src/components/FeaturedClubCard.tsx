@@ -4,6 +4,8 @@ import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
 import { spotlightMove } from '@/lib/spotlight';
+import { trackEvent } from '@/lib/analytics';
+import { isAffiliateUrl, hostLabel } from '@/lib/affiliate';
 
 interface PlatformLink {
   name: string;
@@ -88,11 +90,25 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
               <div className="mt-4"><EcoProductCarousel /></div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 border-l border-t border-af-border-hairline">
+                {/* A real anchor, not a clickable div: it opens in a new tab, is reachable by
+                    keyboard and, when the link pays, it can be disclosed as sponsored.
+                    window.open was also leaking window.opener. */}
                 {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
-                  <div
+                  <a
                     key={pIndex}
-                    onClick={() => platform.url && window.open(platform.url, '_blank')}
-                    className={`border-r border-b border-af-border-hairline p-4 hover:bg-alien-green/5 transition-colors cursor-pointer ${!platform.url && 'opacity-40 cursor-not-allowed'}`}
+                    href={platform.url || undefined}
+                    target={platform.url ? '_blank' : undefined}
+                    rel={platform.url ? (isAffiliateUrl(platform.url) ? 'noopener noreferrer sponsored' : 'noopener noreferrer') : undefined}
+                    onClick={
+                      platform.url
+                        ? () =>
+                            trackEvent(
+                              isAffiliateUrl(platform.url) ? 'affiliate_click' : 'outbound_click',
+                              { partner: platform.name, host: hostLabel(platform.url), page: 'clubs' },
+                            )
+                        : undefined
+                    }
+                    className={`block border-r border-b border-af-border-hairline p-4 hover:bg-alien-green/5 transition-colors ${platform.url ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed'}`}
                   >
                     <div className="w-10 h-10 mb-3 flex items-center justify-center border border-af-border-hairline overflow-hidden">
                       {platform.icon ? (
@@ -114,7 +130,7 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
                     <p className="text-gray-400 text-xs line-clamp-2 leading-relaxed min-h-[2.5rem]">
                       {platform.description || 'Crypto platform partner'}
                     </p>
-                  </div>
+                  </a>
                 ))}
               </div>
             )}

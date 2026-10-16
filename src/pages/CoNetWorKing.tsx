@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import DAODashboard from '@/components/DAODashboard';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
+import { trackEvent } from '@/lib/analytics';
+import { isAffiliateUrl, hostLabel } from '@/lib/affiliate';
 import PriceTicker from '@/components/PriceTicker';
 
 type ServiceProps = { title: string; description: string; icon: React.ReactNode };
@@ -30,11 +32,26 @@ const PartnerSection: React.FC<{ title: string; partners: Partner[]; icon?: Reac
       {partners.map((partner, index) => (
         <div key={index} className="border-r border-b border-af-border-hairline p-4 bg-af-surface/10 hover:bg-af-surface/30 transition-colors flex flex-col items-center text-center">
           <div className="w-16 h-16 mb-3 border border-af-border-hairline overflow-hidden flex items-center justify-center">
-            <a href={partner.url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={partner.url}
+              target="_blank"
+              rel={isAffiliateUrl(partner.url) ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
+            >
               <img src={partner.logo} alt={partner.name} className="w-full h-full object-contain p-1" />
             </a>
           </div>
-          <a href={partner.url} target="_blank" rel="noopener noreferrer" className="text-alien-gold font-nasalization text-sm hover:opacity-70 transition-opacity">
+          <a
+            href={partner.url}
+            target="_blank"
+            rel={isAffiliateUrl(partner.url) ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
+            onClick={() =>
+              trackEvent(
+                isAffiliateUrl(partner.url) ? 'affiliate_click' : 'outbound_click',
+                { partner: partner.name, host: hostLabel(partner.url), page: 'conetworking' },
+              )
+            }
+            className="text-alien-gold font-nasalization text-sm hover:opacity-70 transition-opacity"
+          >
             {partner.name}
           </a>
           <p className="text-gray-400 text-xs mt-1">{partner.description}</p>

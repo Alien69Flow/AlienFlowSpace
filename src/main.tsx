@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import App from './App';
 import './index.css';
 import DaoLoader from './components/DaoLoader';
@@ -16,6 +18,9 @@ if (container) {
     <React.StrictMode>
       <DaoLoader />
       <App />
+      {/* Both were dependencies and neither was mounted, so the site counted nothing. */}
+      <Analytics />
+      <SpeedInsights />
     </React.StrictMode>
   );
 }

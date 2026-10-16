@@ -4,7 +4,10 @@
   "permissions": {
     "network": {
       "allowed_domains": [
-        "api.alienflow.space",
+        "alienflow.space",
+        "www.alienflow.space",
+        "aitor.alienflow.space",
+        "ace.alienflow.space",
         "adex.alienflow.space",
         "atrip.alienflow.space"
       ]
