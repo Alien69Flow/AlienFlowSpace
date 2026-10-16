@@ -1,0 +1,98 @@
+# Quality gate. No secrets, no third-party actions beyond checkout/setup-node/upload-artifact,
+# so it can run on every PR including those opened from forks.
+#
+# This is the check an agent (or a person) should have to pass before anything is merged.
+# Dissent and agentic-pr-reviewer add opinions on top of it; this is the part that is
+# deterministic.
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, lint and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Same major Vercel builds this site with.
+          node-version: "22"
+          cache: "npm"
+
+      # npm ci, not npm install: it installs exactly the locked tree and fails if
+      # package.json and the lockfile have drifted apart.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload the built site
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Gate on critical only. The tree currently carries known moderate/high advisories
+      # in the wallet and Tailwind toolchains that cannot be patched without a major
+      # upgrade (see the overrides in package.json); failing on those would block every
+      # PR for a reason nobody can act on. A critical one does stop the build.
+      - name: Fail on critical advisories
+        run: npm audit --audit-level=critical
+
+      # The full picture, never failing the job, so the count is visible in the run.
+      - name: Report every advisory
+        if: always()
+        run: |
+          npm audit > audit.txt 2>&1 || true
+          {
+            echo "### npm audit"
+            echo ""
+            grep -E "vulnerabilities|^[a-z@]" audit.txt | head -40 || true
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit
+          path: audit.txt
+          retention-days: 30

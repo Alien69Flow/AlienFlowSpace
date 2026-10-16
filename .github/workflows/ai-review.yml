@@ -1,0 +1,109 @@
+# AI review: two independent opinions on the diff, on top of the deterministic CI gate.
+#
+# OFF BY DEFAULT. Nothing here runs until you turn it on, so merging this file costs
+# nothing and cannot fail your PRs:
+#
+#   1. GitHub -> Settings -> Secrets and variables -> Actions -> Variables
+#      New repository variable:  AI_REVIEW_ENABLED = true
+#   2. Secrets -> New repository secret:  OPENAI_API_KEY = sk-...   (never commit it)
+#   3. Settings -> Actions -> General -> Workflow permissions: leave it on
+#      "Read repository contents", the per-workflow permissions below are enough.
+#
+# Want to spend nothing on an API? Both tools can talk to Ollama on a machine you own,
+# but GitHub-hosted runners cannot reach a local Ollama: that needs a self-hosted runner.
+# For Dissent, point `base-url` to it (see the commented block); agentic-pr-reviewer
+# takes OpenAI / Anthropic / Google / Groq / Mistral keys only.
+#
+# Neither job merges anything. Auto-merge is a repository-policy decision, not an agent
+# decision: mark "CI / Typecheck, lint and build" as a required status check in branch
+# protection and GitHub will refuse the merge until it is green.
+name: AI review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write # only to post review comments
+
+concurrency:
+  group: ai-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dissent:
+    name: Dissent (multi-agent debate)
+    # Skipped on fork PRs: GitHub withholds secrets from them, so the job would fail
+    # for everyone outside the organisation rather than say something useful.
+    if: |
+      vars.AI_REVIEW_ENABLED == 'true' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Pinned to the commit behind the v1 tag on purpose: a mutable tag can be moved to
+      # a different commit later, and this action gets the repository token.
+      - name: Dissent review
+        uses: itsarbit/dissent@8be20dd8e3baf0e882cfffd1a7fb27a4c12a223c # v1
+        with:
+          api-key: ${{ secrets.OPENAI_API_KEY }}
+          rounds: "2"
+          personas: "security,performance,readability,architecture,testing,correctness"
+          # Local models, on a self-hosted runner:
+          # base-url: "http://localhost:11434/v1"
+          # model: "llama3.1"
+
+  verifier:
+    name: agentic-pr-reviewer (reviewer -> verifier)
+    if: |
+      vars.AI_REVIEW_ENABLED == 'true' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the diff needs the base branch in history
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the reviewer
+        # Pinned version: it is an alpha package that reads the diff and your API key.
+        run: pip install "agentic-pr-reviewer==0.3.0"
+
+      # The tool's --diff takes a file, not a diff string.
+      - name: Write the PR diff
+        run: git diff "origin/${{ github.base_ref }}...HEAD" > pr.diff
+
+      - name: Review
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        # Exit codes: 0 = reviewed, 1 = model failure (incomplete, reported as such),
+        # 2 = bad input. Only 0 should let the step pass.
+        run: |
+          set +e
+          agentic-pr-reviewer --diff pr.diff --output review.md
+          code=$?
+          set -e
+          {
+            echo "### agentic-pr-reviewer"
+            echo ""
+            echo "exit code: $code (0 reviewed, 1 incomplete, 2 bad input)"
+            echo ""
+            cat review.md 2>/dev/null || echo "(no report written)"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $code
+
+      - name: Upload the review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-review
+          path: review.md
+          retention-days: 30

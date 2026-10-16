@@ -148,4 +148,28 @@ npm i
 
 # 4. Iniciar el reactor de desarrollo
 npm run dev
+```
+
+---
+
+## 🤖 Automatización y puertas de calidad | CI
+
+Cada push y cada PR contra `main` pasa por estos checks (`.github/workflows/`):
+
+| Check | Qué hace | Bloquea el merge |
+|---|---|---|
+| **CI / Typecheck, lint and build** | `npm ci` · `npm run typecheck` · `npm run lint` · `npm run build` | ✅ si lo marcas como *required* en branch protection |
+| **CI / Dependency audit** | `npm audit`: falla solo con advisories **críticos** y publica el informe completo | solo si aparece un crítico |
+| **CodeQL Advanced** | análisis estático de seguridad | — |
+| **AI review / Dissent** | enjambre de agentes que debaten el diff y comentan el PR | ❌ opinión, apagado por defecto |
+| **AI review / agentic-pr-reviewer** | reviewer → verifier: si el verificador no confirma un hallazgo, lo marca como incompleto | ❌ opinión, apagado por defecto |
+
+Los dos de IA están **apagados**: no consumen API ni fallan nada hasta que definas la variable `AI_REVIEW_ENABLED=true` y el secreto `OPENAI_API_KEY` en *Settings → Secrets and variables → Actions*. Para usar modelos locales (Ollama) hace falta un runner autoalojado, porque un runner de GitHub no alcanza tu máquina.
+
+Ningún agente mergea por su cuenta: el merge automático se consigue marcando el check de CI como *required* en las reglas de protección de rama, no dándole permisos de escritura a un bot. Para reproducir la puerta en local:
+
+```sh
+npm ci && npm run typecheck && npm run lint && npm run build
+```
+
 ---
