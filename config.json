@@ -1,0 +1,26 @@
+{
+  "name": "Aitor",
+  "version": "1.0.0",
+  "permissions": {
+    "network": {
+      "allowed_domains": [
+        "api.alienflow.space",
+        "adex.alienflow.space",
+        "atrip.alienflow.space"
+      ]
+    },
+    "filesystem": {
+      "read": ["./data", "./config"],
+      "write": ["./output", "./logs"]
+    },
+    "tools": {
+      "allowed": ["web_search", "http_request", "file_read", "file_write"],
+      "blocked": ["shell_exec", "system_call"]
+    }
+  },
+  "governance": {
+    "owner": "alien69flow",
+    "dao_voting_required": true,
+    "confirmation_method": "proposal_signature"
+  }
+}
