@@ -42,12 +42,27 @@ Añade al `vercel.json` de cada repositorio (`aitor`, `ace`, `adex`, `atrip`) es
 }
 ```
 
-Notas que importan para no romper cada app:
+### ATENCIÓN: `aitor` necesita una variante distinta
 
-- **`X-Frame-Options: SAMEORIGIN`** bloquea el *clickjacking* sin impedir que el propio ecosistema
-  incruste la app. Si algún día quieres que `alienflow.space` incruste `ace` dentro de un iframe, usa
-  `frame-ancestors 'self' https://alienflow.space https://www.alienflow.space` en la CSP en lugar de
-  `SAMEORIGIN`, porque `X-Frame-Options` no admite lista de orígenes.
+`alienflow.space` **incrusta `aitor` en el panel de chat**. Ese bloque de arriba, con
+`X-Frame-Options: SAMEORIGIN`, **rompería ese panel**: la cabecera no admite lista de orígenes y
+bloquearía también a `alienflow.space`. Para `aitor` usa esta variante: **sin** `X-Frame-Options` y con
+`frame-ancestors` nombrando a los dos orígenes que sí deben poder incrustarla:
+
+```json
+{
+  "key": "Content-Security-Policy",
+  "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self' https://alienflow.space https://www.alienflow.space; form-action 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; worker-src 'self' blob:; connect-src 'self' https: wss:; frame-src 'self'; upgrade-insecure-requests"
+}
+```
+
+Y quita `X-Frame-Options` del listado de `aitor`. En `ace`, `adex` y `atrip` no hay nada que los
+incruste, así que ahí `SAMEORIGIN` es lo correcto y lo más simple.
+
+Notas que importan para no romper cada app:
+- **`frame-ancestors` en lugar de `X-Frame-Options`**: `frame-ancestors` sí acepta una lista de
+  orígenes, `X-Frame-Options` no. Por eso `aitor` usa la CSP y no la cabecera clásica: así bloquea el
+  *clickjacking* de cualquier web ajena y sigue dejando entrar a la nuestra.
 - **`script-src` con `'unsafe-inline'`/`'unsafe-eval'` y `connect-src https: wss:`** están ahí a
   propósito: Vite inyecta estilos y el stack de cartera abre WebSockets a dominios que cambian. Endurecer
   eso exige probar en navegador (cartera, login, mapas). Mejor pasar de 0 cabeceras a 7 hoy que dejar la
