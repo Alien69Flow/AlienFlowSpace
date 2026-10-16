@@ -346,22 +346,6 @@ const DAODashboard: React.FC = () => {
                       />
                     </div>
                   </div>
-                  {proposal.status === 'active' && (
-                    <div className="flex gap-2">
-                      <Button 
-                        size="sm"
-                        className="bg-green-500/20 hover:bg-green-500/30 text-green-400 border border-green-500/50"
-                      >
-                        Vote For
-                      </Button>
-                      <Button 
-                        size="sm"
-                        className="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/50"
-                      >
-                        Vote Against
-                      </Button>
-                    </div>
-                  )}
                 </div>
               </div>
             ))}

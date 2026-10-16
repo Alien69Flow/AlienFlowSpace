@@ -60,7 +60,6 @@ const StatsSection = () => {
         >
           <div className="flex items-center gap-3 mb-4">
             <AlienTag color="gold">TREASURY RESERVE</AlienTag>
-            <AlienTag color="muted">ON-CHAIN</AlienTag>
           </div>
           <div className="border border-af-border bg-af-surface/30 p-6 md:p-8">
             <div className="grid grid-cols-2 gap-0 border-l border-t border-af-border-hairline">
