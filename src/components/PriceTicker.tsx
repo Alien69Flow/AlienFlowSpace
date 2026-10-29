@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 
 type GeckoMarqueeProps = React.HTMLAttributes<HTMLElement> & {

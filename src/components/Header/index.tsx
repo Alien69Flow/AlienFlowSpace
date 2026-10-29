@@ -82,9 +82,9 @@ const Header = () => {
       <div className="af-header__ruler" aria-hidden="true" />
 
       {/* El ticker vive en la barra fija, pero solo en Clubs y CoNetWorKing: al
-          entrar en Academy o Settings se pliega y la lectura queda limpia. Su
-          altura (2.75rem / 3rem en PriceTicker) está replicada en el padding de
-          <main> en Layout.tsx: si cambia aquí, hay que cambiarla allí. */}
+          entrar en Academy o Settings se pliega y la lectura queda limpia. No
+          lleva borde propio porque la barra ya cierra con el suyo, y su altura
+          la mide PriceTicker (--af-ticker-h) para que <main> reserve el hueco. */}
       <AnimatePresence initial={false}>
         {showPriceTicker && (
           <motion.div
@@ -99,7 +99,7 @@ const Header = () => {
                 ? { duration: 0 }
                 : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
             }
-            className="overflow-hidden border-b border-af-border-hairline bg-af-chrome"
+            className="overflow-hidden bg-af-chrome"
           >
             <PriceTicker />
           </motion.div>

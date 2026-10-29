@@ -57,8 +57,8 @@ const Layout: React.FC = () => {
 
   const bgImage = bgMap[location.pathname] || "/lovable-uploads/EMWBack.png";
 
-  // En Clubs y CoNetWorKing el header fijo crece con el ticker de precios: la
-  // barra (3.5rem / 4rem) + la regla de 7px + el ticker (2.75rem / 3rem).
+  // En Clubs y CoNetWorKing el header fijo crece con la franja del ticker. La
+  // clase reserva barra + regla + la altura medida del widget (--af-ticker-h).
   const hasPriceTicker = showsPriceTicker(location.pathname);
 
   return (
@@ -76,9 +76,7 @@ const Layout: React.FC = () => {
       <Header />
 
       <main
-        className={`flex-1 relative z-10 ${
-          hasPriceTicker ? 'pt-[7.75rem] lg:pt-[9rem]' : 'pt-20 lg:pt-24'
-        }`}
+        className={`flex-1 relative z-10 ${hasPriceTicker ? 'af-main--ticker' : 'pt-20 lg:pt-24'}`}
       >
         {/* Page transition. mode="wait" lets the outgoing scene finish before the
             next one arrives, so navigating reads as travelling rather than a cut.
