@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { useScroll } from '@/hooks/use-scroll';
@@ -7,6 +7,8 @@ import Logo from '@/components/Header/Logo';
 import DesktopNav from '@/components/Header/DesktopNav';
 import MobileNav from '@/components/Header/MobileNav';
 import ConnectButton from '@/components/Header/ConnectButton';
+import PriceTicker from '@/components/PriceTicker';
+import { showsPriceTicker } from '@/lib/priceTicker';
 
 /**
  * The hamburger switches at the same breakpoint as the desktop nav (`lg`), and
@@ -18,8 +20,10 @@ const DESKTOP_QUERY = '(min-width: 1024px)';
 
 const Header = () => {
   const isScrolled = useScroll();
+  const prefersReducedMotion = useReducedMotion();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
+  const showPriceTicker = showsPriceTicker(location.pathname);
 
   // A sheet left open would hide the page after navigating.
   React.useEffect(() => {
@@ -76,6 +80,31 @@ const Header = () => {
       </div>
 
       <div className="af-header__ruler" aria-hidden="true" />
+
+      {/* El ticker vive en la barra fija, pero solo en Clubs y CoNetWorKing: al
+          entrar en Academy o Settings se pliega y la lectura queda limpia. Su
+          altura (2.75rem / 3rem en PriceTicker) está replicada en el padding de
+          <main> en Layout.tsx: si cambia aquí, hay que cambiarla allí. */}
+      <AnimatePresence initial={false}>
+        {showPriceTicker && (
+          <motion.div
+            key="price-ticker"
+            role="region"
+            aria-label="Precios de criptomonedas en tiempo real"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+            }
+            className="overflow-hidden border-b border-af-border-hairline bg-af-chrome"
+          >
+            <PriceTicker />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isMenuOpen && <MobileNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />}
