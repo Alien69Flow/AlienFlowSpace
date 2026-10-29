@@ -10,14 +10,17 @@ interface EcoProduct {
 const EcoProductCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Thumbnails are 200px WebP (2.5x the 80px slot) generated from the 1000px
+  // originals: the seven photos went from 9.4 MB to 30 KB, which is the
+  // difference between this section loading and not.
   const products: EcoProduct[] = [
-    { name: "Cannabis Leaf Earrings", image: "/lovable-uploads/eco-earrings.jpg", description: "Sterling silver hexagon earrings with 24k gold cannabis leaf design" },
-    { name: "Orange Eco Trucker Hat", image: "/lovable-uploads/eco-hat-orange.png", description: "Sustainable trucker hat with embroidered alien cannabis logo" },
-    { name: "Navy Alien Hat", image: "/lovable-uploads/eco-hat-navy.png", description: "Premium navy trucker hat with golden alien symbol" },
-    { name: "Organic Bucket Hat", image: "/lovable-uploads/eco-bucket-hat.png", description: "100% organic cotton bucket hat with eco-friendly design" },
-    { name: "Organic Baseball Cap", image: "/lovable-uploads/eco-baseball-cap.png", description: "Sustainable baseball cap with embroidered alien logo" },
-    { name: "Classic Snapback", image: "/lovable-uploads/eco-snapback.png", description: "Black and teal snapback with geometric alien symbol" },
-    { name: "Camo Dad Hat", image: "/lovable-uploads/eco-dad-hat.png", description: "Green camo dad hat with cannabis leaf embroidery" }
+    { name: "Cannabis Leaf Earrings", image: "/lovable-uploads/eco-earrings-thumb.webp", description: "Sterling silver hexagon earrings with 24k gold cannabis leaf design" },
+    { name: "Orange Eco Trucker Hat", image: "/lovable-uploads/eco-hat-orange-thumb.webp", description: "Sustainable trucker hat with embroidered alien cannabis logo" },
+    { name: "Navy Alien Hat", image: "/lovable-uploads/eco-hat-navy-thumb.webp", description: "Premium navy trucker hat with golden alien symbol" },
+    { name: "Organic Bucket Hat", image: "/lovable-uploads/eco-bucket-hat-thumb.webp", description: "100% organic cotton bucket hat with eco-friendly design" },
+    { name: "Organic Baseball Cap", image: "/lovable-uploads/eco-baseball-cap-thumb.webp", description: "Sustainable baseball cap with embroidered alien logo" },
+    { name: "Classic Snapback", image: "/lovable-uploads/eco-snapback-thumb.webp", description: "Black and teal snapback with geometric alien symbol" },
+    { name: "Camo Dad Hat", image: "/lovable-uploads/eco-dad-hat-thumb.webp", description: "Green camo dad hat with cannabis leaf embroidery" }
   ];
 
   useEffect(() => {
@@ -39,7 +42,15 @@ const EcoProductCarousel = () => {
           </button>
           <div className="flex items-center space-x-4">
             <div className="w-20 h-20 overflow-hidden border border-af-border">
-              <img src={products[currentIndex].image} alt={products[currentIndex].name} className="w-full h-full object-cover" />
+              <img
+                src={products[currentIndex].image}
+                alt={products[currentIndex].name}
+                width={80}
+                height={80}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="max-w-48">
               <h4 className="text-sm font-semibold text-alien-gold mb-1">{products[currentIndex].name}</h4>
