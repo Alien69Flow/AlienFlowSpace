@@ -2,26 +2,20 @@
  * Franja del ticker de precios.
  *
  * El widget de CoinGecko no tiene altura fija (`.gecko-marquee` es `padding: 8px
- * 0` más su contenido), así que no se puede fijar a mano sin recortarlo en unos
- * breakpoints y dejar aire en otros. `PriceTicker` mide la altura real y la
- * publica en `--af-ticker-h`; aquí solo se consume, para que la barra fija y el
+ * 0` más su contenido), así que fijarla a mano lo recorta en unos breakpoints y
+ * deja aire en otros. `PriceTicker` mide la altura real del widget y la publica
+ * en `--af-ticker-h`; aquí solo se consume, para que la barra fija y el
  * contenido de la página no mantengan dos números que se desincronicen.
  */
 
-/* Barra (3.5rem) + regla de 7px + franja medida + un respiro antes del título. */
-.af-main--ticker {
-  padding-top: calc(3.5rem + 7px + var(--af-ticker-h, 2.75rem) + 0.75rem);
-}
-
-@media (min-width: 1024px) {
-  .af-main--ticker {
-    padding-top: calc(4rem + 7px + var(--af-ticker-h, 3rem) + 1rem);
-  }
-}
-
-/* Fundido en los bordes: las cifras que entran y salen del marquee se
-   desvanecen en lugar de cortarse contra el borde de la pantalla. */
-.af-ticker-fade {
+/* La franja: mínimo por breakpoint mientras el widget carga (cuando ya está
+   medido manda `--af-ticker-h`), y fundido en los bordes para que las cifras
+   que entran y salen del marquee se desvanezcan en lugar de cortarse. */
+.af-ticker {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.5rem;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0,
@@ -36,4 +30,32 @@
     #000 calc(100% - 20px),
     transparent 100%
   );
+}
+
+.af-ticker > * {
+  display: block;
+  width: 100%;
+}
+
+/* Barra (3.5rem) + regla de 7px + franja medida + un respiro antes del título.
+   El valor de reserva coincide con el mínimo de la franja, así que el primer
+   pintado ya deja el hueco correcto. */
+.af-main--ticker {
+  padding-top: calc(3.5rem + 7px + var(--af-ticker-h, 2.5rem) + 0.75rem);
+}
+
+@media (min-width: 640px) {
+  .af-ticker {
+    min-height: 2.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .af-ticker {
+    min-height: 2.75rem;
+  }
+
+  .af-main--ticker {
+    padding-top: calc(4rem + 7px + var(--af-ticker-h, 2.75rem) + 1rem);
+  }
 }
