@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Coins, Brain, Leaf, ExternalLink, ChevronDown, Award, CircleCheck as CheckCircle2, Zap } from 'lucide-react';
+import { Coins, Brain, Leaf, ChevronDown, Award, CircleCheck as CheckCircle2, Zap } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
-import { trackEvent } from '@/lib/analytics';
-import { isAffiliateUrl, hostLabel } from '@/lib/affiliate';
+import PartnerWall from '@/components/PartnerWall';
 
 const academyModules = [
   {
@@ -58,15 +57,15 @@ const partnerCategories = [
       { name: "Coursera", url: "https://www.coursera.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" },
       { name: "Cursa", url: "https://cursa.app/", logo: "/lovable-uploads/Academy/Cursa.webp" },
       { name: "edX", url: "https://www.edx.org/", logo: "/lovable-uploads/Academy/edX.png" },
-      { name: "FreeCodeCamp", url: "https://www.freecodecamp.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.svg" },
+      { name: "FreeCodeCamp", url: "https://www.freecodecamp.org/", logo: "https://www.google.com/s2/favicons?sz=128&domain=freecodecamp.org" },
       { name: "GrowGoogle", url: "https://grow.google/", logo: "/lovable-uploads/Academy/GrowGoogle.png" },
       { name: "Harvard Online", url: "https://www.harvardonline.harvard.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Harvard_University_coat_of_arms.svg" },
       { name: "Hotmart", url: "https://www.hotmart.com/", logo: "/lovable-uploads/Academy/Hotmart.png" },
-      { name: "Khan Academy", url: "https://www.khanacademy.org/", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/Khan_Academy_Logo_Old_version_2015.svg" },
+      { name: "Khan Academy", url: "https://www.khanacademy.org/", logo: "https://www.google.com/s2/favicons?sz=128&domain=khanacademy.org" },
       { name: "MasterClass", url: "https://www.masterclass.com/", logo: "/lovable-uploads/Academy/MasterClass.jpeg" },
-      { name: "MIT OCW", url: "https://ocw.mit.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/MIT_OpenCourseWare_logo.svg" },
+      { name: "MIT OCW", url: "https://ocw.mit.edu/", logo: "https://www.google.com/s2/favicons?sz=128&domain=ocw.mit.edu" },
       { name: "Mooc", url: "https://www.mooc.org/", logo: "/lovable-uploads/Academy/Mooc.png" },
-      { name: "Pluralsight", url: "https://www.pluralsight.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pluralsight_logo_2021.svg" },
+      { name: "Pluralsight", url: "https://www.pluralsight.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=pluralsight.com" },
       { name: "SkillShare", url: "https://www.skillshare.com/", logo: "/lovable-uploads/Academy/SkillShare.jpeg" },
       { name: "Stanford Online", url: "https://online.stanford.edu/", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg" },
       { name: "Udacity", url: "https://www.udacity.com/", logo: "/lovable-uploads/Academy/Udacity.svg" },
@@ -82,19 +81,19 @@ const partnerCategories = [
       { name: "GitHub Copilot", url: "https://github.com/features/copilot", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg" },
       { name: "Gemini", url: "https://gemini.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg" },
       { name: "Grok", url: "https://grok.x.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg" },
-      { name: "Lovable", url: "https://lovable.dev", logo: "https://lovable.dev/favicon.ico" },
-      { name: "Suno", url: "https://suno.com", logo: "https://suno.com/favicon.ico" }
+      { name: "Lovable", url: "https://lovable.dev", logo: "https://www.google.com/s2/favicons?sz=128&domain=lovable.dev" },
+      { name: "Suno", url: "https://suno.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=suno.com" }
     ]
   },
   {
     label: 'ADS FLOW',
     partners: [
-      { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://aads.com/favicon.ico" },
-      { name: "Google Ads", url: "https://ads.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg" },
+      { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://www.google.com/s2/favicons?sz=128&domain=aads.com" },
+      { name: "Google Ads", url: "https://ads.google.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=ads.google.com" },
       { name: "Meta Ads", url: "https://www.facebook.com/business/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg" },
       { name: "LinkedIn Ads", url: "https://www.linkedin.com/ad-campaign", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg" },
-      { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg" },
-      { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg" },
+      { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=reddit.com" },
+      { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=ads.tiktok.com" },
       { name: "X Ads", url: "https://ads.x.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg" }
     ]
   },
@@ -106,8 +105,8 @@ const partnerCategories = [
       { name: "CoinGecko", url: "https://www.coingecko.com/", logo: "/lovable-uploads/CoinGeckoLogo.svg" },
       { name: "CoinGlass", url: "https://www.coinglass.com/", logo: "/lovable-uploads/CoinGlassLogo.jpeg" },
       { name: "CoinMarketCap", url: "https://coinmarketcap.com/", logo: "/lovable-uploads/CoinMarketCapLogo.jpeg" },
-      { name: "DefiLlama", url: "https://defillama.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/8/81/DefiLlama_logo.svg" },
-      { name: "Predik", url: "https://predik.io/", logo: "https://predik.io/assets/images/logo-predik.svg" }
+      { name: "DefiLlama", url: "https://defillama.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=defillama.com" },
+      { name: "Predik", url: "https://predik.io/", logo: "https://www.google.com/s2/favicons?sz=128&domain=predik.io" }
     ]
   },
   {
@@ -115,7 +114,7 @@ const partnerCategories = [
     partners: [
       { name: "Alchemy", url: "https://www.alchemy.com/", logo: "/lovable-uploads/Academy/Alchemy.png" },
       { name: "DappRadar", url: "https://dappradar.com/", logo: "/lovable-uploads/DappRadarLogo.jpeg" },
-      { name: "GitBook", url: "https://www.gitbook.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Gitbook.svg" },
+      { name: "GitBook", url: "https://www.gitbook.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=gitbook.com" },
       { name: "GitHub", url: "https://github.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" },
       { name: "HackMD", url: "https://hackmd.io/", logo: "/lovable-uploads/Academy/HackMD.svg" },
       { name: "HackerRank", url: "https://www.hackerrank.com/", logo: "/lovable-uploads/Academy/HackerRank.svg" },
@@ -146,19 +145,19 @@ const partnerCategories = [
   {
     label: 'HEALTHFLOW',
     partners: [
-      { name: "Headspace", url: "https://www.headspace.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Headspace_logo.svg" },
-      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://meslo.com/logo.svg" },
-      { name: "Motus DAO", url: "https://motusdao.io/", logo: "https://motusdao.io/logo.svg" },
-      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "https://mydnabank.com/logo.svg" },
-      { name: "Proton", url: "https://proton.me/", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Proton_Technologies_AG_logo.svg" },
+      { name: "Headspace", url: "https://www.headspace.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=headspace.com" },
+      { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=meslo.com" },
+      { name: "Motus DAO", url: "https://motusdao.io/", logo: "" },
+      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "" },
+      { name: "Proton", url: "https://proton.me/", logo: "https://www.google.com/s2/favicons?sz=128&domain=proton.me" },
       { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" },
-      { name: "Yazio", url: "https://www.yazio.com/", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Yazio-app-logo.svg" }
+      { name: "Yazio", url: "https://www.yazio.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=yazio.com" }
     ]
   },
   {
     label: 'SPACEFLOW',
     partners: [
-      { name: "CERN", url: "https://home.cern/", logo: "https://upload.wikimedia.org/wikipedia/en/a/ae/CERN_logo.svg" },
+      { name: "CERN", url: "https://home.cern/", logo: "https://www.google.com/s2/favicons?sz=128&domain=home.cern" },
       { name: "ESA", url: "https://www.esa.int/", logo: "/lovable-uploads/Academy/ESA.svg" },
       { name: "JAXA", url: "https://www.jaxa.jp/", logo: "https://upload.wikimedia.org/wikipedia/commons/8/85/Jaxa_logo.svg" },
       { name: "KAGRA", url: "https://gwcenter.icrr.u-tokyo.ac.jp/en/", logo: "/lovable-uploads/Academy/KAGRA.svg" },
@@ -318,45 +317,7 @@ const Academy = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 border-l border-t border-af-border-hairline">
-          {partnerCategories.map((cat, i) => (
-            <div key={i} className="border-r border-b border-af-border-hairline p-4 bg-af-surface/10">
-              <h5 className="text-[11px] font-nasalization text-alien-gold tracking-[0.25em] border-b border-af-border-hairline pb-3 mb-3 uppercase">
-                {cat.label}
-              </h5>
-              <div className="flex flex-col gap-2">
-                {cat.partners.sort((a, b) => a.name.localeCompare(b.name)).map((p, j) => (
-                  <a
-                    key={j}
-                    href={p.url}
-                    target="_blank"
-                    rel={isAffiliateUrl(p.url) ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
-                    onClick={() =>
-                      trackEvent(
-                        isAffiliateUrl(p.url) ? 'affiliate_click' : 'outbound_click',
-                        { partner: p.name, host: hostLabel(p.url), page: 'academy' },
-                      )
-                    }
-                    className="flex items-center gap-2.5 group hover:scale-[1.01] transition-all duration-300"
-                  >
-                    <div className="w-9 h-9 border border-af-border-hairline p-1.5 group-hover:border-alien-green/50 group-hover:bg-alien-green/5 transition-all flex items-center justify-center overflow-hidden flex-shrink-0">
-                      <img
-                        src={p.logo}
-                        alt={p.name}
-                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                        onError={(e) => { e.currentTarget.style.opacity = '0.3'; e.currentTarget.style.filter = 'none'; }}
-                      />
-                    </div>
-                    <span className="text-[11px] text-gray-400 group-hover:text-alien-gold transition-colors duration-300 truncate">
-                      {p.name}
-                    </span>
-                    <ExternalLink className="w-2.5 h-2.5 text-transparent group-hover:text-alien-green transition-all flex-shrink-0" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <PartnerWall categories={partnerCategories} />
       </footer>
     </div>
   );
