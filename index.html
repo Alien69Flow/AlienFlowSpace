@@ -32,129 +32,206 @@
     <link rel="alternate" hreflang="x-default" href="https://alienflow.space/" />
     <link rel="icon" type="image/png" href="/lovable-uploads/ALogo.png" />
     <!--
-      Fallback shell for visitors and crawlers that do not run JavaScript.
-      It lives inside #root and main.tsx removes it before React mounts, so it
-      never coexists with the app: exactly one <h1> either way. Styled inline and
-      self-contained, so it reads correctly even before the app CSS loads.
+      Boot screen, not a second page.
+
+      This markup is what the browser paints before React exists. It used to be a
+      full text page (header, nav, paragraphs, footer) that then vanished when the
+      app mounted — a jarring flash of a "different website" before the loader.
+
+      Now it is the same HUD screen as src/components/DaoLoader.tsx: identical
+      background (#050510), same 48px grid, same 1px corner brackets, same wordmark
+      and progress line. The swap is invisible because both screens look the same.
+
+      It stays a real document: one top-level heading, a description and the real
+      routes as links, all visible (nothing hidden for crawlers). main.tsx removes
+      it in the same commit that mounts the app, so the two never coexist.
     -->
     <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; background: #050510; }
       #root { min-height: 100vh; }
-      .af-fallback {
-        min-height: 100vh;
-        background: #04040c;
+
+      .af-boot {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        text-align: center;
+        overflow: hidden;
+        background: #050510;
         color: #e7e7f0;
         font-family: 'Exo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-        line-height: 1.65;
       }
-      .af-fallback a { color: #22c55e; text-decoration: none; }
-      .af-fallback a:hover { color: #f0d882; text-decoration: underline; }
-      .af-fallback__bar {
+      /* HUD wireframe grid — same 48px pitch as the React loader. */
+      .af-boot__grid {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.3;
+        background-image:
+          linear-gradient(rgba(240, 216, 130, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(240, 216, 130, 0.06) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+      .af-boot__corner {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border: 0 solid rgba(240, 216, 130, 0.4);
+      }
+      .af-boot__corner--tl { top: 32px; left: 32px; border-left-width: 1px; border-top-width: 1px; }
+      .af-boot__corner--tr { top: 32px; right: 32px; border-right-width: 1px; border-top-width: 1px; }
+      .af-boot__corner--bl { bottom: 32px; left: 32px; border-left-width: 1px; border-bottom-width: 1px; }
+      .af-boot__corner--br { bottom: 32px; right: 32px; border-right-width: 1px; border-bottom-width: 1px; }
+
+      .af-boot__kicker {
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem 1.25rem;
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid rgba(240, 216, 130, 0.22);
+        gap: 10px;
+        max-width: calc(100% - 96px);
+        padding: 4px 14px;
+        border: 1px solid rgba(240, 216, 130, 0.22);
+        font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #949494;
+        white-space: nowrap;
       }
-      .af-fallback__brand {
-        font-size: 1rem;
-        letter-spacing: 0.02em;
-        color: #f0d882;
+      .af-boot__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: #22c55e;
+        animation: af-boot-pulse 1.6s ease-in-out infinite;
       }
-      .af-fallback__nav {
+
+      .af-boot__title {
+        margin: 0;
+        font-size: clamp(1rem, 3.2vw, 1.375rem);
+        font-weight: 400;
+        letter-spacing: 0.38em;
+        text-transform: uppercase;
+        text-indent: 0.38em;
+      }
+      .af-boot__title span { white-space: nowrap; }
+      .af-boot__sub {
+        max-width: 40rem;
+        margin: 18px 0 0;
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: #a9a9be;
+        text-wrap: balance;
+      }
+      .af-boot__status {
+        margin: 16px 0 0;
+        font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(240, 216, 130, 0.5);
+        animation: af-boot-pulse 1.8s ease-in-out infinite;
+      }
+      .af-boot__bar {
+        position: relative;
+        width: min(256px, 70vw);
+        height: 1px;
+        margin-top: 34px;
+        overflow: hidden;
+        background: rgba(240, 216, 130, 0.22);
+      }
+      .af-boot__bar span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background: rgba(240, 216, 130, 0.6);
+        animation: af-boot-load 2.5s ease-in-out infinite;
+      }
+      .af-boot__nav {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.25rem 1.25rem;
-        font-size: 0.8125rem;
+        justify-content: center;
+        gap: 6px 18px;
+        margin-top: 26px;
+        font-size: 11px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
       }
-      .af-fallback__main {
-        max-width: 46rem;
-        margin: 0 auto;
-        padding: 3rem 1.5rem 2rem;
+      .af-boot__nav a { color: #22c55e; text-decoration: none; }
+      .af-boot__nav a:hover { color: #f0d882; text-decoration: underline; }
+      .af-boot__foot {
+        position: absolute;
+        bottom: 18px;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0 16px;
+        font-size: 11px;
+        color: #6b6b80;
       }
-      .af-fallback__main h1 {
-        font-size: clamp(1.75rem, 4vw, 2.75rem);
-        line-height: 1.2;
-        color: #f0d882;
-        margin: 0 0 1.25rem;
+
+      @keyframes af-boot-pulse {
+        0%, 100% { opacity: 0.35; }
+        50% { opacity: 1; }
       }
-      .af-fallback__main p { margin: 0 0 1rem; font-size: 1.0625rem; }
-      .af-fallback__facts {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem 1.5rem;
-        margin: 1.5rem 0 2rem;
-        padding: 0;
-        list-style: none;
-        font-size: 0.9375rem;
-        color: #a9a9be;
+      @keyframes af-boot-load {
+        0% { width: 0; }
+        55% { width: 100%; }
+        100% { width: 100%; opacity: 0; }
       }
-      .af-fallback__facts li::before { content: '• '; color: #22c55e; }
-      .af-fallback__foot {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 1.5rem;
-        text-align: center;
-        font-size: 0.8125rem;
-        color: #a9a9be;
+      @media (prefers-reduced-motion: reduce) {
+        .af-boot__dot, .af-boot__status { animation: none; }
+        .af-boot__bar span { animation: none; width: 100%; }
       }
     </style>
   </head>
   <body>
     <div id="root">
-      <div class="af-fallback">
-        <header class="af-fallback__bar">
-          <a class="af-fallback__brand" href="/">ΔlieπFlΦw $pac€ DAO</a>
-          <nav class="af-fallback__nav" aria-label="Primary">
-            <a href="/about">About</a>
-            <a href="/academy">Academy</a>
-            <a href="/clubs">Clubs</a>
-            <a href="/conetworking">CoNetWorKing</a>
-            <a href="/alien-trip">AlienTrip</a>
-            <a href="/contact">Contact</a>
-          </nav>
-        </header>
+      <div class="af-boot" role="status" aria-live="polite" aria-busy="true">
+        <div class="af-boot__grid" aria-hidden="true"></div>
+        <div class="af-boot__corner af-boot__corner--tl" aria-hidden="true"></div>
+        <div class="af-boot__corner af-boot__corner--tr" aria-hidden="true"></div>
+        <div class="af-boot__corner af-boot__corner--bl" aria-hidden="true"></div>
+        <div class="af-boot__corner af-boot__corner--br" aria-hidden="true"></div>
 
-        <main class="af-fallback__main">
-          <h1>AlienFlowSpace DAO — a community-owned Web 3/4/5 organisation</h1>
+        <div class="af-boot__kicker">
+          <span class="af-boot__dot" aria-hidden="true"></span>
+          <span>SYS_BOOT // DAO_SYNC</span>
+        </div>
 
-          <p>
-            Advantages boosting the benefits of connecting you and raising your quality of life —
-            with mutual profits.
-          </p>
+        <h1 class="af-boot__title">
+          <span style="color:#22c55e">Δlieπ</span><span style="color:#f0d882">FlΦw</span><span style="color:#22c55e"> $pac€</span><span style="color:#f0d882"> DAO</span>
+        </h1>
 
-          <p>
-            A DAO is a community-owned organisation: the people who take part decide together what
-            gets built and funded — no single owner.
-          </p>
+        <p class="af-boot__sub">
+          A community-owned Web 3/4/5 organisation: BioFi, DeFi, DePIN, DeSci, ReFi and RWA in one
+          ecosystem, with governance open to members.
+        </p>
 
-          <p>
-            AlienFlowSpace funds sustainable technology: clean energy, regenerative finance and open
-            digital tools. Join in from any country, with no crypto experience needed.
-          </p>
+        <p class="af-boot__status">Entering the multiverse…</p>
+        <div class="af-boot__bar" aria-hidden="true"><span></span></div>
 
-          <ul class="af-fallback__facts">
-            <li>11 ecosystem domains</li>
-            <li>Academy, Clubs &amp; CoNetWorKing</li>
-            <li>Governance open to members</li>
-          </ul>
+        <nav class="af-boot__nav" aria-label="Primary">
+          <a href="/about">About</a>
+          <a href="/academy">Academy</a>
+          <a href="/clubs">Clubs</a>
+          <a href="/conetworking">CoNetWorKing</a>
+          <a href="/alien-trip">AlienTrip</a>
+          <a href="/contact">Contact</a>
+        </nav>
 
-          <p>
-            <a href="/about">About the DAO</a> ·
-            <a href="/conetworking">CoNetWorKing</a> ·
-            <a href="https://alienflowspace.gitbook.io/DAO" rel="noopener noreferrer">GitBook Docs</a>
-          </p>
-        </main>
-
-        <footer class="af-fallback__foot">
-          <p>© AlienFlowSpace DAO · Web 3/4/5</p>
-          <p>
-            JavaScript is needed for wallet connection, live governance data and the interactive
-            interface.
-          </p>
-        </footer>
+        <p class="af-boot__foot">
+          © AlienFlowSpace DAO · Wallet connection and live governance need JavaScript.
+        </p>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
