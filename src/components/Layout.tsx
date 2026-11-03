@@ -9,6 +9,8 @@ import ScrollProgress from './ScrollProgress';
 import AIChatbot from './AIChatbot';
 import ErrorBoundary from './ErrorBoundary';
 import { showsPriceTicker } from '@/lib/priceTicker';
+import AdBanner from './AdBanner';
+import type { SponsorSlotName } from '@/data/sponsors';
 import { initGoogleTranslate } from '@/lib/translator';
 import { attachGlobalSfx, sfx } from '@/lib/sound';
 
@@ -60,6 +62,15 @@ const Layout: React.FC = () => {
   // En Clubs y CoNetWorKing el header fijo crece con la franja del ticker. La
   // clase reserva barra + regla + la altura medida del widget (--af-ticker-h).
   const hasPriceTicker = showsPriceTicker(location.pathname);
+
+  // Un solo espacio patrocinado, solo en las dos páginas comerciales y después
+  // del contenido: nunca interrumpe la lectura ni aparece en Academy o AlienTrip.
+  const sponsorSlot: SponsorSlotName | null =
+    location.pathname === '/clubs'
+      ? 'clubs'
+      : location.pathname === '/conetworking'
+        ? 'conetworking'
+        : null;
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -125,6 +136,12 @@ const Layout: React.FC = () => {
           </>
         )}
       </main>
+
+      {sponsorSlot && (
+        <div className="container relative z-10 mx-auto px-4 lg:px-6 pb-10">
+          <AdBanner slot={sponsorSlot} />
+        </div>
+      )}
 
       <Footer />
       <CookieConsent />
