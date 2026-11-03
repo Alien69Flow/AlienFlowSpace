@@ -15,6 +15,7 @@ const AFFILIATE_HOSTS = [
   'partner.bitget.com',
   'bitget.com',
   'lovable.dev',
+  'freebuff.com',
   // Shop and marketplace programmes.
   'amzn.to',
   'amazon.com',
