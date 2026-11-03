@@ -17,7 +17,10 @@ export type ConversionEvent =
   | 'newsletter_submit'
   | 'newsletter_success'
   | 'newsletter_fallback'
-  | 'newsletter_error';
+  | 'newsletter_error'
+  | 'ad_impression'
+  | 'ad_click'
+  | 'merch_click';
 
 export const trackEvent = (
   event: ConversionEvent,
