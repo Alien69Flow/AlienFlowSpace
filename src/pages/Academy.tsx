@@ -91,7 +91,7 @@ const partnerCategories = [
       { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://www.google.com/s2/favicons?sz=128&domain=aads.com" },
       { name: "Google Ads", url: "https://ads.google.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=ads.google.com" },
       { name: "Meta Ads", url: "https://www.facebook.com/business/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg" },
-      { name: "LinkedIn Ads", url: "https://www.linkedin.com/ad-campaign", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg" },
+      { name: "LinkedIn Ads", url: "https://business.linkedin.com/advertise/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg" },
       { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=reddit.com" },
       { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://www.google.com/s2/favicons?sz=128&domain=ads.tiktok.com" },
       { name: "X Ads", url: "https://ads.x.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg" }
@@ -147,8 +147,8 @@ const partnerCategories = [
     partners: [
       { name: "Headspace", url: "https://www.headspace.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=headspace.com" },
       { name: "Meslo Ltd", url: "https://meslo.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=meslo.com" },
-      { name: "Motus DAO", url: "https://motusdao.io/", logo: "" },
-      { name: "My DNA Bank", url: "https://mydnabank.com/", logo: "" },
+      { name: "Motus DAO", url: "https://motusdao.org/", logo: "https://www.google.com/s2/favicons?sz=128&domain=motusdao.org" },
+      { name: "My DNA Bank", url: "https://mydnabank.io/", logo: "https://www.google.com/s2/favicons?sz=128&domain=mydnabank.io" },
       { name: "Proton", url: "https://proton.me/", logo: "https://www.google.com/s2/favicons?sz=128&domain=proton.me" },
       { name: "WHO", url: "https://www.who.int/", logo: "https://upload.wikimedia.org/wikipedia/commons/2/26/World_Health_Organization_Logo.svg" },
       { name: "Yazio", url: "https://www.yazio.com/", logo: "https://www.google.com/s2/favicons?sz=128&domain=yazio.com" }
