@@ -42,6 +42,11 @@
       background (#050510), same 48px grid, same 1px corner brackets, same wordmark
       and progress line. The swap is invisible because both screens look the same.
 
+      And if the app never mounts — JavaScript off, bundle blocked, old browser —
+      the watchdog below swaps this splash for a panel with the real links, the
+      contact address and a reload button. A visitor never gets stuck on an
+      infinite "Entering the multiverse…".
+
       It stays a real document: one top-level heading, a description and the real
       routes as links, all visible (nothing hidden for crawlers). main.tsx removes
       it in the same commit that mounts the app, so the two never coexist.
@@ -179,6 +184,56 @@
         color: #6b6b80;
       }
 
+      /* Real help, not a decoration: this is what a visitor sees when the bundle
+         cannot load (blocker, old browser, dead network) or JavaScript is off.
+         Without it the splash spins forever, which is the actual defect. */
+      .af-help { display: none; max-width: 40rem; text-align: left; }
+      .af-help__panel {
+        border: 1px solid rgba(240, 216, 130, 0.22);
+        background: rgba(10, 10, 24, 0.6);
+        padding: 20px 22px;
+      }
+      .af-help h2 {
+        margin: 0 0 10px;
+        font-size: 0.9375rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #f0d882;
+      }
+      .af-help p { margin: 0 0 12px; font-size: 0.9375rem; line-height: 1.6; color: #a9a9be; }
+      .af-help ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin: 0 0 14px;
+        padding: 0;
+        list-style: none;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .af-help a { color: #22c55e; text-decoration: none; }
+      .af-help a:hover { color: #f0d882; text-decoration: underline; }
+      .af-help__retry {
+        display: inline-block;
+        margin-top: 4px;
+        padding: 8px 16px;
+        border: 1px solid rgba(240, 216, 130, 0.45);
+        color: #f0d882 !important;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      /* The boot screen retires and the help panel takes its place. */
+      .af-failed .af-boot__grid,
+      .af-failed .af-boot__corner,
+      .af-failed .af-boot__kicker,
+      .af-failed .af-boot__title,
+      .af-failed .af-boot__sub,
+      .af-failed .af-boot__status,
+      .af-failed .af-boot__bar { display: none; }
+      .af-failed .af-help { display: block; }
+
       @keyframes af-boot-pulse {
         0%, 100% { opacity: 0.35; }
         50% { opacity: 1; }
@@ -193,10 +248,18 @@
         .af-boot__bar span { animation: none; width: 100%; }
       }
     </style>
+    <!-- No JavaScript at all: show the help panel straight away. -->
+    <noscript>
+      <style>
+        .af-boot__grid, .af-boot__corner, .af-boot__kicker, .af-boot__title,
+        .af-boot__sub, .af-boot__status, .af-boot__bar { display: none; }
+        .af-help { display: block; }
+      </style>
+    </noscript>
   </head>
   <body>
     <div id="root">
-      <div class="af-boot" role="status" aria-live="polite" aria-busy="true">
+      <div class="af-boot" id="af-boot" role="status" aria-live="polite" aria-busy="true">
         <div class="af-boot__grid" aria-hidden="true"></div>
         <div class="af-boot__corner af-boot__corner--tl" aria-hidden="true"></div>
         <div class="af-boot__corner af-boot__corner--tr" aria-hidden="true"></div>
@@ -232,8 +295,47 @@
         <p class="af-boot__foot">
           © AlienFlowSpace DAO · Wallet connection and live governance need JavaScript.
         </p>
+
+        <div class="af-help">
+          <div class="af-help__panel">
+            <h2>The interactive app did not start</h2>
+            <p>
+              The wallet, the live governance data and the visual layers are built in your browser.
+              If you can read this, JavaScript is disabled here or the bundle did not load — a
+              blocker, an outdated browser or a connection that dropped.
+            </p>
+            <p>Everything below is a real page you can open directly:</p>
+            <ul>
+              <li><a href="/about">About the DAO</a></li>
+              <li><a href="/academy">Academy</a></li>
+              <li><a href="/clubs">Clubs</a></li>
+              <li><a href="/conetworking">CoNetWorKing</a></li>
+              <li><a href="/alien-trip">AlienTrip</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+            <p>
+              Prefer writing to us?
+              <a href="mailto:info@alienflow.space">info@alienflow.space</a> ·
+              <a href="https://alienflowspace.gitbook.io/DAO" rel="noopener noreferrer">Documentation</a>
+            </p>
+            <a class="af-help__retry" href="/">Reload the site</a>
+          </div>
+        </div>
       </div>
     </div>
+    <script>
+      // If this boot screen is still here after 8s, the app never mounted: the
+      // bundle was blocked, the browser is too old or the network died. Swap the
+      // splash for the help panel instead of spinning forever.
+      (function () {
+        window.setTimeout(function () {
+          var boot = document.getElementById('af-boot');
+          if (!boot || !boot.parentNode || boot.className.indexOf('af-failed') !== -1) return;
+          boot.className += ' af-failed';
+          boot.setAttribute('aria-busy', 'false');
+        }, 8000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
