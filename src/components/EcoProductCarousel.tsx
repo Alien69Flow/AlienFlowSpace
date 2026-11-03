@@ -1,50 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
+import { useReducedMotion } from 'framer-motion';
+import { merchProducts, formatPrice, isPurchasable } from '@/data/merch';
+import { trackEvent } from '@/lib/analytics';
 
-interface EcoProduct {
-  name: string;
-  image: string;
-  description: string;
-}
-
+/**
+ * Carrusel de merch. El catálogo vive en `src/data/merch.ts`: aquí no hay nombres
+ * ni precios escritos a mano.
+ *
+ * Dos reglas:
+ *  - Si el producto no tiene precio y enlace, no se muestra botón de compra
+ *    («precio próximamente»), en vez de un CTA que no lleva a ninguna parte.
+ *  - El avance automático se pausa al pasar el ratón, al enfocar con el teclado y
+ *    se desactiva si el visitante pidió menos movimiento.
+ */
 const EcoProductCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Thumbnails are 200px WebP (2.5x the 80px slot) generated from the 1000px
-  // originals: the seven photos went from 9.4 MB to 30 KB, which is the
-  // difference between this section loading and not.
-  const products: EcoProduct[] = [
-    { name: "Cannabis Leaf Earrings", image: "/lovable-uploads/eco-earrings-thumb.webp", description: "Sterling silver hexagon earrings with 24k gold cannabis leaf design" },
-    { name: "Orange Eco Trucker Hat", image: "/lovable-uploads/eco-hat-orange-thumb.webp", description: "Sustainable trucker hat with embroidered alien cannabis logo" },
-    { name: "Navy Alien Hat", image: "/lovable-uploads/eco-hat-navy-thumb.webp", description: "Premium navy trucker hat with golden alien symbol" },
-    { name: "Organic Bucket Hat", image: "/lovable-uploads/eco-bucket-hat-thumb.webp", description: "100% organic cotton bucket hat with eco-friendly design" },
-    { name: "Organic Baseball Cap", image: "/lovable-uploads/eco-baseball-cap-thumb.webp", description: "Sustainable baseball cap with embroidered alien logo" },
-    { name: "Classic Snapback", image: "/lovable-uploads/eco-snapback-thumb.webp", description: "Black and teal snapback with geometric alien symbol" },
-    { name: "Camo Dad Hat", image: "/lovable-uploads/eco-dad-hat-thumb.webp", description: "Green camo dad hat with cannabis leaf embroidery" }
-  ];
+  const [paused, setPaused] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const product = merchProducts[currentIndex];
+  const price = formatPrice(product.price);
+  const purchasable = isPurchasable(product);
 
   useEffect(() => {
+    if (paused || prefersReducedMotion) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
-    }, 3000);
+      setCurrentIndex((prev) => (prev + 1) % merchProducts.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [products.length]);
+  }, [paused, prefersReducedMotion]);
 
-  const nextProduct = () => setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
-  const prevProduct = () => setCurrentIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length);
+  const go = (delta: number) =>
+    setCurrentIndex((prev) => (prev + delta + merchProducts.length) % merchProducts.length);
 
   return (
-    <div className="relative w-full h-36 border border-af-border bg-af-surface/20 overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex items-center space-x-4">
-          <button onClick={prevProduct} className="p-2 border border-af-border hover:border-alien-gold/50 transition-colors">
+    <section
+      aria-label="Merchandising ecológico"
+      className="relative w-full min-h-[10.5rem] border border-af-border bg-af-surface/20 overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <div className="absolute inset-0 flex items-center justify-center px-3">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            aria-label="Producto anterior"
+            className="p-2 border border-af-border hover:border-alien-gold/50 transition-colors"
+          >
             <ChevronLeft className="h-4 w-4 text-alien-gold" />
           </button>
-          <div className="flex items-center space-x-4">
-            <div className="w-20 h-20 overflow-hidden border border-af-border">
+
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-20 h-20 overflow-hidden border border-af-border flex-shrink-0">
               <img
-                src={products[currentIndex].image}
-                alt={products[currentIndex].name}
+                src={product.image}
+                alt={product.name}
                 width={80}
                 height={80}
                 loading="lazy"
@@ -52,26 +65,66 @@ const EcoProductCarousel = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="max-w-48">
-              <h4 className="text-sm font-semibold text-alien-gold mb-1">{products[currentIndex].name}</h4>
-              <p className="text-xs text-gray-400 leading-relaxed">{products[currentIndex].description}</p>
+            <div className="min-w-0 max-w-[13rem]">
+              <div className="flex items-center gap-2 mb-0.5">
+                <h4 className="text-sm font-semibold text-alien-gold truncate">{product.name}</h4>
+                {product.badge && (
+                  <span className="text-[9px] uppercase tracking-wider border border-alien-green/40 text-alien-green px-1 py-px flex-shrink-0">
+                    {product.badge}
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">{product.description}</p>
+              {product.detail && <p className="text-[11px] text-af-text-muted mt-1">{product.detail}</p>}
+
+              <div className="flex items-center gap-3 mt-2">
+                <span className="text-sm text-foreground font-nasalization">
+                  {price ?? 'Precio próximamente'}
+                </span>
+                {purchasable ? (
+                  <a
+                    href={product.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('merch_click', { product: product.id })}
+                    className="inline-flex items-center gap-1 text-xs text-alien-green hover:text-alien-gold transition-colors"
+                  >
+                    Ver en la tienda
+                    <ArrowUpRight className="h-3 w-3" />
+                  </a>
+                ) : (
+                  <span className="text-[11px] text-af-text-muted">Próximamente</span>
+                )}
+              </div>
             </div>
           </div>
-          <button onClick={nextProduct} className="p-2 border border-af-border hover:border-alien-gold/50 transition-colors">
+
+          <button
+            type="button"
+            onClick={() => go(1)}
+            aria-label="Producto siguiente"
+            className="p-2 border border-af-border hover:border-alien-gold/50 transition-colors"
+          >
             <ChevronRight className="h-4 w-4 text-alien-gold" />
           </button>
         </div>
       </div>
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1">
-        {products.map((_, index) => (
+
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+        {merchProducts.map((item, index) => (
           <button
-            key={index}
+            key={item.id}
+            type="button"
             onClick={() => setCurrentIndex(index)}
-            className={`w-1.5 h-1.5 rounded-full transition-all ${index === currentIndex ? 'bg-alien-gold' : 'bg-alien-gold/20'}`}
+            aria-label={`Ver ${item.name}`}
+            aria-current={index === currentIndex}
+            className={`w-1.5 h-1.5 rounded-full transition-all ${
+              index === currentIndex ? 'bg-alien-gold' : 'bg-alien-gold/20'
+            }`}
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
