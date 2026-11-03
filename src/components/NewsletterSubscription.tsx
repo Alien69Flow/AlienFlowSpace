@@ -23,6 +23,9 @@ const NewsletterSubscription: React.FC = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');
+  // What the server actually did, so the success screen never promises an email
+  // that was not sent (plain list add) or ignores an address already there.
+  const [outcome, setOutcome] = useState({ confirmationSent: true, alreadySubscribed: false });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +38,11 @@ const NewsletterSubscription: React.FC = () => {
     if (result.status === 'ok') {
       // A cue only ever marks a real outcome, same rule as the success message.
       sfx.success();
-      trackEvent('newsletter_success');
+      trackEvent('newsletter_success', { mode: result.alreadySubscribed ? 'already' : 'new' });
+      setOutcome({
+        confirmationSent: result.confirmationSent,
+        alreadySubscribed: result.alreadySubscribed,
+      });
       setStatus('subscribed');
       return;
     }
@@ -66,8 +73,22 @@ const NewsletterSubscription: React.FC = () => {
         <CheckCircle className="w-12 h-12 text-alien-green mx-auto mb-4" />
         <h3 className="text-xl font-nasalization text-alien-green mb-2">You're on the list</h3>
         <p className="text-sm text-af-text-muted">
-          We sent a confirmation to <span className="text-foreground">{email.trim()}</span>. If it is
-          not in your inbox within a few minutes, check the spam folder.
+          {outcome.alreadySubscribed ? (
+            <>
+              <span className="text-foreground">{email.trim()}</span> was already on the list —
+              there is nothing else to do.
+            </>
+          ) : outcome.confirmationSent ? (
+            <>
+              We sent a confirmation to <span className="text-foreground">{email.trim()}</span>. If
+              it is not in your inbox within a few minutes, check the spam folder.
+            </>
+          ) : (
+            <>
+              We saved <span className="text-foreground">{email.trim()}</span>. You will get the
+              next issue as soon as it goes out.
+            </>
+          )}
         </p>
       </motion.div>
     );
