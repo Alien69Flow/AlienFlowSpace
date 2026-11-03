@@ -3,25 +3,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { readConsent, writeConsent } from '@/lib/consent';
 
 const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      // Show banner after a short delay
-      setTimeout(() => setShowBanner(true), 1000);
-    }
+    // Nothing to ask if the visitor already chose (or storage is blocked, in
+    // which case `readConsent` reports 'unset' and we ask again this session).
+    if (readConsent() !== 'unset') return;
+    const timer = setTimeout(() => setShowBanner(true), 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    writeConsent('accepted');
     setShowBanner(false);
   };
 
   const handleDecline = () => {
-    localStorage.setItem('cookie-consent', 'declined');
+    writeConsent('declined');
     setShowBanner(false);
   };
 
