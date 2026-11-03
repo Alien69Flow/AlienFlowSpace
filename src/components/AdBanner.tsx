@@ -30,7 +30,13 @@ interface AdBannerProps {
 
 const AdBanner: React.FC<AdBannerProps> = ({ slot, className = '' }) => {
   const [consent, setConsent] = useState<ConsentState>(() => readConsent());
-  const sponsor = sponsorsFor(slot)[0];
+  // One sponsor per page view, rotating across the slot's inventory so a slot can
+  // sell more than one advertiser without stacking cards on the reader.
+  const [rotation] = useState(() => {
+    const count = sponsorsFor(slot).length;
+    return count > 1 ? Math.floor(Math.random() * count) : 0;
+  });
+  const sponsor = sponsorsFor(slot)[rotation];
   const adsenseReady = Boolean(ADSENSE_CLIENT && ADSENSE_SLOT);
 
   // The banner can be accepted while the page is open, so react to the choice.
