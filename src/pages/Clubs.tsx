@@ -51,6 +51,7 @@ const Clubs: React.FC = () => {
         { name: 'Bolt', url: 'https://lovable.dev/invite/VPTZ5JI', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png', description: 'AI-powered app & website builder' },
         { name: 'ChatGPT', url: 'https://chatgpt.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg', description: 'AI chatbot by OpenAI' },
         { name: 'Claude', url: 'https://claude.ai', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg', description: 'AI assistant by Anthropic' },
+        { name: 'Freebuff', url: 'https://freebuff.com/?ref=ref-60ce24f6-faf8-486e-80ef-618cc51fe963', icon: '/freebuff-logo.svg', description: 'Free AI coding agent' },
         { name: 'GitHub Copilot', url: 'https://github.com/features/copilot', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg', description: 'AI code completion tool' },
         { name: 'Gemini', url: 'https://gemini.google.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg', description: 'AI assistant by Google' },
         { name: 'Grok', url: 'https://grok.x.ai', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg', description: 'AI by xAI' },

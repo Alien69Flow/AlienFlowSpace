@@ -78,6 +78,7 @@ const partnerCategories = [
       { name: "Bolt", url: "https://lovable.dev/invite/VPTZ5JI", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Bolt.new_logo.png" },
       { name: "ChatGPT", url: "https://chatgpt.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/ChatGPT_logo.svg" },
       { name: "Claude", url: "https://claude.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Claude_AI_symbol.svg" },
+      { name: "Freebuff", url: "https://freebuff.com/?ref=ref-60ce24f6-faf8-486e-80ef-618cc51fe963", logo: "/freebuff-logo.svg" },
       { name: "GitHub Copilot", url: "https://github.com/features/copilot", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/GitHub_Copilot_logo.svg" },
       { name: "Gemini", url: "https://gemini.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg" },
       { name: "Grok", url: "https://grok.x.ai", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Grok_logo_without_text.svg" },
@@ -210,7 +211,7 @@ const Academy = () => {
 
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }} transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl mx-auto text-alien-gold/80 text-base md:text-lg mb-8 leading-relaxed italic"
         >
