@@ -1,8 +1,9 @@
 import React from 'react';
-import { ExternalLink, Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import AlienButton from '@/components/alien/AlienButton';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
+import PartnerLogo from '@/components/PartnerLogo';
 import { spotlightMove } from '@/lib/spotlight';
 import { trackEvent } from '@/lib/analytics';
 import { isAffiliateUrl, hostLabel } from '@/lib/affiliate';
@@ -110,22 +111,12 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
                     }
                     className={`block border-r border-b border-af-border-hairline p-4 hover:bg-alien-green/5 transition-colors ${platform.url ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed'}`}
                   >
-                    <div className="w-10 h-10 mb-3 flex items-center justify-center border border-af-border-hairline overflow-hidden">
-                      {platform.icon ? (
-                        <img
-                          src={platform.icon}
-                          alt={platform.name}
-                          className="w-7 h-7 object-contain"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const fallback = target.nextElementSibling as HTMLElement;
-                            if (fallback) fallback.classList.remove('hidden');
-                          }}
-                        />
-                      ) : null}
-                      <ExternalLink className={`h-5 w-5 text-alien-gold/50 ${platform.icon ? 'hidden' : ''}`} />
-                    </div>
+                    <PartnerLogo
+                      name={platform.name}
+                      logo={platform.icon}
+                      url={platform.url}
+                      className="w-11 h-11 mb-3"
+                    />
                     <h4 className="text-alien-gold font-semibold text-sm mb-1 line-clamp-1">{platform.name}</h4>
                     <p className="text-gray-400 text-xs line-clamp-2 leading-relaxed min-h-[2.5rem]">
                       {platform.description || 'Crypto platform partner'}
