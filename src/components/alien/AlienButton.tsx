@@ -8,6 +8,7 @@ interface AlienButtonProps {
   href?: string;
   onClick?: () => void;
   className?: string;
+  title?: string;
   type?: 'button' | 'submit';
   disabled?: boolean;
 }
@@ -19,6 +20,7 @@ const AlienButton: React.FC<AlienButtonProps> = ({
   href,
   onClick,
   className = '',
+  title,
   type = 'button',
   disabled = false,
 }) => {
@@ -26,7 +28,7 @@ const AlienButton: React.FC<AlienButtonProps> = ({
 
   if (to) {
     return (
-      <Link to={to} className={baseClass}>
+      <Link to={to} className={baseClass} title={title}>
         {children}
       </Link>
     );
@@ -34,14 +36,14 @@ const AlienButton: React.FC<AlienButtonProps> = ({
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={baseClass}>
+      <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} className={baseClass} title={title}>
         {children}
       </a>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={baseClass}>
+    <button type={type} onClick={onClick} disabled={disabled} className={baseClass} title={title}>
       {children}
     </button>
   );

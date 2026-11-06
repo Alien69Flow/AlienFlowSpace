@@ -28,7 +28,7 @@ const PartnerSection: React.FC<{ title: string; partners: Partner[]; icon?: Reac
       <h3 className="text-lg font-bold text-alien-gold font-nasalization">{title}</h3>
     </div>
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-0 border-l border-t border-af-border-hairline">
-      {partners.map((partner, index) => (
+      {[...partners].sort((a, b) => a.name.localeCompare(b.name)).map((partner, index) => (
         <div key={index} className="border-r border-b border-af-border-hairline p-4 bg-af-surface/10 hover:bg-af-surface/30 transition-colors flex flex-col items-center text-center">
           <div className="w-16 h-16 mb-3 border border-af-border-hairline overflow-hidden flex items-center justify-center">
             <a
@@ -134,7 +134,7 @@ const CoNetWorKing: React.FC = () => {
       { name: "AADS", url: "https://aads.com/advertise/?partner=2454032", logo: "https://aads.com/favicon.ico", description: "Ad network platform" },
       { name: "Google Ads", url: "https://ads.google.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg", description: "Search & display ads" },
       { name: "Meta Ads", url: "https://www.facebook.com/business/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg", description: "Facebook & Instagram ads" },
-      { name: "LinkedIn Ads", url: "https://www.linkedin.com/ad-campaign", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg", description: "Professional ad network" },
+      { name: "LinkedIn Ads", url: "https://business.linkedin.com/advertise/ads", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg", description: "Professional ad network" },
       { name: "Reddit Ads", url: "https://ads.reddit.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg", description: "Community-based ads" },
       { name: "TikTok Ads", url: "https://ads.tiktok.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg", description: "Short-video ads" },
       { name: "X Ads", url: "https://ads.x.com", logo: "https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg", description: "Social ads on X" }

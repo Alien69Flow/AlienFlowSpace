@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import FeaturedClubCard from '@/components/FeaturedClubCard';
+import FeaturedClubCard, { CLUB_JOIN_URL } from '@/components/FeaturedClubCard';
+import { trackEvent } from '@/lib/analytics';
 import EcoProductCarousel from '@/components/EcoProductCarousel';
 import { Users, Rocket, Calendar, Zap, Shield, DollarSign, Leaf, Gamepad2, Music, Heart, Eye, Dna, Database, FlaskConical, Search, TrendingUp } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
@@ -34,7 +35,14 @@ const ClubCard = ({ club, index }: { club: ClubProps; index: number }) => (
         <Users className="h-4 w-4 text-alien-green" />
         <span className="text-sm text-alien-green font-nasalization">{club.members.toLocaleString()} members</span>
       </div>
-      <AlienButton variant="outline" className="!text-xs">Join Club</AlienButton>
+      <AlienButton
+        variant="outline"
+        className="!text-xs"
+        href={CLUB_JOIN_URL}
+        onClick={() => trackEvent('outbound_click', { partner: 'AlienFlow Community', host: 'discord.gg', page: 'clubs' })}
+      >
+        Join Club
+      </AlienButton>
     </div>
   </motion.div>
 );
@@ -66,7 +74,7 @@ const Clubs: React.FC = () => {
         { name: 'AADS', url: 'https://aads.com/advertise/?partner=2454032', icon: 'https://aads.com/favicon.ico', description: 'Ad network platform' },
         { name: 'Google Ads', url: 'https://ads.google.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Google_Ads_2022.svg', description: 'Search & display advertising' },
         { name: 'Meta Ads', url: 'https://www.facebook.com/business/ads', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg', description: 'Facebook & Instagram ads' },
-        { name: 'LinkedIn Ads', url: 'https://www.linkedin.com/ad-campaign', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg', description: 'Professional ad network' },
+        { name: 'LinkedIn Ads', url: 'https://business.linkedin.com/advertise/ads', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon_circle.svg', description: 'Professional ad network' },
         { name: 'Reddit Ads', url: 'https://ads.reddit.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/Reddit_Logo.svg', description: 'Community-based ads' },
         { name: 'TikTok Ads', url: 'https://ads.tiktok.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/TikTok_logo.svg', description: 'Short-video ads' },
         { name: 'X Ads', url: 'https://ads.x.com', icon: 'https://commons.wikimedia.org/wiki/Special:FilePath/X_logo_2023.svg', description: 'Social ads on X' }

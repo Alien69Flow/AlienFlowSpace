@@ -8,6 +8,12 @@ import { spotlightMove } from '@/lib/spotlight';
 import { trackEvent } from '@/lib/analytics';
 import { isAffiliateUrl, hostLabel } from '@/lib/affiliate';
 
+// Clubs are run inside the community, so the only place where "joining" actually happens
+// today is the Discord invite. The CTA points there instead of doing nothing.
+export const CLUB_JOIN_URL = 'https://discord.gg/alienflowspace';
+
+const joinClub = () => trackEvent('outbound_click', { partner: 'AlienFlow Community', host: 'discord.gg', page: 'clubs' });
+
 interface PlatformLink {
   name: string;
   url?: string;
@@ -48,7 +54,7 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
             <Users className="h-4 w-4 text-alien-green" />
             <span className="text-sm text-alien-green font-nasalization">{club.members.toLocaleString()} members</span>
           </div>
-          <AlienButton variant="outline" className="!text-xs">Join Club</AlienButton>
+          <AlienButton variant="outline" className="!text-xs" href={CLUB_JOIN_URL} onClick={joinClub}>Join Club</AlienButton>
         </div>
       </div>
     );
@@ -73,7 +79,7 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
             <Users className="h-4 w-4 text-alien-green" />
             <span className="text-sm text-alien-green font-nasalization whitespace-nowrap">{club.members.toLocaleString()}</span>
           </div>
-          <AlienButton variant="outline" className="!text-xs whitespace-nowrap">Join Club</AlienButton>
+          <AlienButton variant="outline" className="!text-xs whitespace-nowrap" href={CLUB_JOIN_URL} onClick={joinClub}>Join Club</AlienButton>
         </div>
       </div>
 
@@ -94,7 +100,7 @@ const FeaturedClubCard = ({ club }: { club: FeaturedClubProps }) => {
                 {/* A real anchor, not a clickable div: it opens in a new tab, is reachable by
                     keyboard and, when the link pays, it can be disclosed as sponsored.
                     window.open was also leaking window.opener. */}
-                {section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
+                {[...section.platforms].sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (
                   <a
                     key={pIndex}
                     href={platform.url || undefined}

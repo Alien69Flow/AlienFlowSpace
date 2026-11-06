@@ -278,8 +278,15 @@ const Academy = () => {
                         </ul>
                       </div>
                     ))}
-                    <AlienButton variant="outline" className="w-full !justify-center !text-xs mt-4">
-                      Enter Module
+                    {/* No lesson pages exist yet, so this states that plainly instead of
+                        pretending to open something. */}
+                    <AlienButton
+                      variant="ghost"
+                      disabled
+                      title="Lesson content is being written and will open here."
+                      className="w-full !justify-center !text-xs mt-4 cursor-not-allowed opacity-60"
+                    >
+                      Enter Module · Coming soon
                     </AlienButton>
                   </motion.div>
                 )}
@@ -301,9 +308,14 @@ const Academy = () => {
               <p className="text-alien-gold/70 text-sm italic mt-2">On-chain validation of your evolutionary journey through the flow.</p>
             </div>
           </div>
-          <AlienButton variant="primary" className="!px-10 !py-3 !text-sm">
-            Mint Credential
-          </AlienButton>
+          <AlienButton
+              variant="primary"
+              disabled
+              title="On-chain credentials are not live yet."
+              className="!px-10 !py-3 !text-sm cursor-not-allowed opacity-60"
+            >
+              Mint Credential · Coming soon
+            </AlienButton>
         </div>
       </section>
 
