@@ -1,0 +1,115 @@
+name: AF hotfix
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Apply surgical edits
+        run: |
+          python3 - <<'PY'
+          import os, sys
+
+          def edit(path, old, new):
+              with open(path, encoding="utf-8") as f:
+                  s = f.read()
+              n = s.count(old)
+              if n != 1:
+                  sys.exit("%s: expected 1 match, found %d" % (path, n))
+              with open(path, "w", encoding="utf-8") as f:
+                  f.write(s.replace(old, new))
+
+          AF = "src/components/alien/AlienButton.tsx"
+          FC = "src/components/FeaturedClubCard.tsx"
+          CL = "src/pages/Clubs.tsx"
+          AC = "src/pages/Academy.tsx"
+          CN = "src/pages/CoNetWorKing.tsx"
+
+          edit(AF, """  className?: string;
+            type?: 'button' | 'submit';""", """  className?: string;
+            title?: string;
+            type?: 'button' | 'submit';""")
+
+          edit(AF, """  className = '',
+            type = 'button',""", """  className = '',
+            title,
+            type = 'button',""")
+
+          edit(AF, """<Link to={to} className={baseClass}>""", """<Link to={to} className={baseClass} title={title}>""")
+
+          edit(AF, """<a href={href} target="_blank" rel="noopener noreferrer" className={baseClass}>""", """<a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} className={baseClass} title={title}>""")
+
+          edit(AF, """<button type={type} onClick={onClick} disabled={disabled} className={baseClass}>""", """<button type={type} onClick={onClick} disabled={disabled} className={baseClass} title={title}>""")
+
+          edit(FC, """interface PlatformLink {""", """// Clubs are run inside the community, so the only place where "joining" actually happens
+          // today is the Discord invite. The CTA points there instead of doing nothing.
+          export const CLUB_JOIN_URL = 'https://discord.gg/alienflowspace';
+
+          const joinClub = () => trackEvent('outbound_click', { partner: 'AlienFlow Community', host: 'discord.gg', page: 'clubs' });
+
+          interface PlatformLink {""")
+
+          edit(FC, """<AlienButton variant="outline" className="!text-xs">Join Club</AlienButton>""", """<AlienButton variant="outline" className="!text-xs" href={CLUB_JOIN_URL} onClick={joinClub}>Join Club</AlienButton>""")
+
+          edit(FC, """<AlienButton variant="outline" className="!text-xs whitespace-nowrap">Join Club</AlienButton>""", """<AlienButton variant="outline" className="!text-xs whitespace-nowrap" href={CLUB_JOIN_URL} onClick={joinClub}>Join Club</AlienButton>""")
+
+          edit(FC, """{section.platforms.sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (""", """{[...section.platforms].sort((a, b) => a.name.localeCompare(b.name)).map((platform, pIndex) => (""")
+
+          edit(CL, """import FeaturedClubCard from '@/components/FeaturedClubCard';""", """import FeaturedClubCard, { CLUB_JOIN_URL } from '@/components/FeaturedClubCard';
+          import { trackEvent } from '@/lib/analytics';""")
+
+          edit(CL, """      <AlienButton variant="outline" className="!text-xs">Join Club</AlienButton>""", """      <AlienButton
+                  variant="outline"
+                  className="!text-xs"
+                  href={CLUB_JOIN_URL}
+                  onClick={() => trackEvent('outbound_click', { partner: 'AlienFlow Community', host: 'discord.gg', page: 'clubs' })}
+                >
+                  Join Club
+                </AlienButton>""")
+
+          edit(CL, "https://www.linkedin.com/ad-campaign", "https://business.linkedin.com/advertise/ads")
+
+          edit(AC, """                    <AlienButton variant="outline" className="w-full !justify-center !text-xs mt-4">
+                                Enter Module
+                              </AlienButton>""", """                    {/* No lesson pages exist yet, so this states that plainly instead of
+                                  pretending to open something. */}
+                              <AlienButton
+                                variant="ghost"
+                                disabled
+                                title="Lesson content is being written and will open here."
+                                className="w-full !justify-center !text-xs mt-4 cursor-not-allowed opacity-60"
+                              >
+                                Enter Module · Coming soon
+                              </AlienButton>""")
+
+          edit(AC, """          <AlienButton variant="primary" className="!px-10 !py-3 !text-sm">
+                      Mint Credential
+                    </AlienButton>""", """          <AlienButton
+                        variant="primary"
+                        disabled
+                        title="On-chain credentials are not live yet."
+                        className="!px-10 !py-3 !text-sm cursor-not-allowed opacity-60"
+                      >
+                        Mint Credential · Coming soon
+                      </AlienButton>""")
+
+          edit(CN, "https://www.linkedin.com/ad-campaign", "https://business.linkedin.com/advertise/ads")
+
+          edit(CN, """{partners.map((partner, index) => (""", """{[...partners].sort((a, b) => a.name.localeCompare(b.name)).map((partner, index) => (""")
+
+          os.remove(".github/workflows/af-hotfix.yml")
+          print("edits applied")
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name "alienflow-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git --no-pager diff --cached --stat
+          git commit -q -m "Wire the join buttons to the community and mark the unfinished CTAs"
+          git push origin HEAD:main
