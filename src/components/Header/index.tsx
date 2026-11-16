@@ -7,6 +7,7 @@ import Logo from '@/components/Header/Logo';
 import DesktopNav from '@/components/Header/DesktopNav';
 import MobileNav from '@/components/Header/MobileNav';
 import ConnectButton from '@/components/Header/ConnectButton';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import PriceTicker from '@/components/PriceTicker';
 import { showsPriceTicker } from '@/lib/priceTicker';
 
@@ -63,6 +64,7 @@ const Header = () => {
         <DesktopNav />
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <div className="hidden md:flex items-center">
             <ConnectButton />
           </div>

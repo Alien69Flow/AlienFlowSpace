@@ -1,5 +1,11 @@
 {
   "rewrites": [
+    { "source": "/es", "destination": "/index.html" },
+    { "source": "/es/(.*)", "destination": "/index.html" },
+    { "source": "/pt", "destination": "/index.html" },
+    { "source": "/pt/(.*)", "destination": "/index.html" },
+    { "source": "/fr", "destination": "/index.html" },
+    { "source": "/fr/(.*)", "destination": "/index.html" },
     { "source": "/about", "destination": "/index.html" },
     { "source": "/academy", "destination": "/index.html" },
     { "source": "/alien-trip", "destination": "/index.html" },

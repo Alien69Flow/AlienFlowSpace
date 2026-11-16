@@ -228,7 +228,7 @@ const Clubs: React.FC = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-20 h-20 border border-alien-gold/40 mb-6">
-              <img src="/lovable-uploads/ClubLogo.png" alt="Clubs Logo" className="h-14 w-14 object-contain p-1" />
+              <img src="/lovable-uploads/ClubLogo.png" alt="AlienFlowSpace Clubs logo — DAO community hubs for crypto, gaming and more" className="h-14 w-14 object-contain p-1" />
             </div>
             <div className="flex items-center justify-center gap-3 mb-4 flex-wrap">
               <AlienTag color="gold">BELONG</AlienTag>

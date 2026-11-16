@@ -37,7 +37,7 @@ const About: React.FC = () => {
           {/* Hero */}
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
             <div className="inline-flex items-center justify-center w-20 h-20 border border-alien-gold/40 mb-6">
-              <img src="/lovable-uploads/ALogo.png" alt="About Logo" className="h-12 w-12 object-contain" />
+              <img src="/lovable-uploads/ALogo.png" alt="AlienFlowSpace DAO logo — Web3 decentralized organization" className="h-12 w-12 object-contain" />
             </div>
             <div className="flex items-center justify-center gap-3 mb-4 flex-wrap">
               <AlienTag color="green">ABOUT US</AlienTag>
@@ -123,12 +123,12 @@ const About: React.FC = () => {
           {/* Navigation Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-af-border-hairline mb-12">
             {[
-              { to: '/academy', logo: '/lovable-uploads/AcademyLogo.png', label: 'Academy' },
-              { to: '/clubs', logo: '/lovable-uploads/ClubLogo.png', label: 'Clubs' },
-              { to: '/conetworking', logo: '/lovable-uploads/CoNetWorKingLogo.png', label: 'CoNetWorKing' },
+              { to: '/academy', logo: '/lovable-uploads/AcademyLogo.png', label: 'Academy', alt: 'AlienFlowSpace Academy — decentralized learning platform' },
+              { to: '/clubs', logo: '/lovable-uploads/ClubLogo.png', label: 'Clubs', alt: 'AlienFlowSpace Clubs — DAO community hubs' },
+              { to: '/conetworking', logo: '/lovable-uploads/CoNetWorKingLogo.png', label: 'CoNetWorKing', alt: 'CoNetWorKing — DeFi services and DEX platform' },
             ].map((item, i) => (
               <Link key={i} to={item.to} className="border-r border-b border-af-border-hairline p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors flex flex-col items-center justify-center text-center group">
-                <img src={item.logo} alt={item.label} className="h-12 w-12 mb-3 object-contain" />
+                <img src={item.logo} alt={item.alt || item.label} className="h-12 w-12 mb-3 object-contain" loading="lazy" />
                 <span className="font-semibold text-lg font-nasalization text-alien-gold group-hover:text-alien-green transition-colors">{item.label}</span>
               </Link>
             ))}

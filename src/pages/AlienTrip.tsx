@@ -180,7 +180,7 @@ const AlienTrip: React.FC = () => {
             <div className="relative">
               <div className="absolute left-1/2 -translate-x-1/2 h-full w-px bg-af-border" />
               <div className="absolute left-1/2 -translate-x-1/2 top-0 -mt-8">
-                <img src="/lovable-uploads/VC.png" alt="Alien UFO" className="w-14 h-14 object-contain animate-bounce" />
+                <img src="/lovable-uploads/VC.png" alt="AlienFlowSpace DAO UFO mascot on the cosmic roadmap timeline" className="w-14 h-14 object-contain animate-bounce" />
               </div>
 
               {roadmapEvents.map((event, index) => (

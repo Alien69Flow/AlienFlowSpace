@@ -274,7 +274,7 @@ const CoNetWorKing: React.FC = () => {
           {/* Hero */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 border border-alien-gold/40 mb-6">
-              <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing Logo" className="h-14 w-14 object-contain" />
+              <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing logo — DeFi services, DEX and blockchain finance platform" className="h-14 w-14 object-contain" />
             </div>
             <div className="flex items-center justify-center gap-3 mb-4 flex-wrap">
               <AlienTag color="green">CONNECT</AlienTag>

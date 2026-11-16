@@ -13,10 +13,15 @@ import AdBanner from './AdBanner';
 import type { SponsorSlotName } from '@/data/sponsors';
 import { initGoogleTranslate } from '@/lib/translator';
 import { attachGlobalSfx, sfx } from '@/lib/sound';
+import { useSeo } from '@/hooks/useSeo';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const Layout: React.FC = () => {
   const location = useLocation();
   const prefersReducedMotion = useReducedMotion();
+  const { lang } = useLanguage();
+
+  useSeo({ lang });
   // Capture the outlet element itself. AnimatePresence keeps the previous child
   // element during the exit animation; if that child were a live <Outlet /> it
   // would re-read the router and show the *incoming* page twice.

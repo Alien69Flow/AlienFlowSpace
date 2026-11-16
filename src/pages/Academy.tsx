@@ -190,7 +190,7 @@ const Academy = () => {
           <div className="absolute inset-1 border border-alien-green/30 bg-af-surface/40" />
           <img
             src="/lovable-uploads/AcademyLogo.png"
-            alt="Academy Logo"
+            alt="AlienFlowSpace Academy logo — decentralized learning platform for Web3, blockchain and DeFi"
             className="w-full h-full object-contain relative z-10 p-3"
           />
         </motion.div>

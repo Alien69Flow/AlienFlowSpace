@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Web3Provider from './providers/Web3Provider';
+import { LanguageProvider } from './i18n/LanguageContext';
 import Layout from './components/Layout';
 import Index from './pages/Index';
 import About from './pages/About';
@@ -16,23 +17,51 @@ import './index.css';
 function App() {
   return (
     <Web3Provider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Index />} />
-            <Route path="about" element={<About />} />
-            <Route path="academy" element={<Academy />} />
-            <Route path="alien-trip" element={<AlienTrip />} />
-            <Route path="clubs" element={<Clubs />} />
-            <Route path="conetworking" element={<CoNetWorKing />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="terms-of-service" element={<TermsOfService />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Router>
+      <LanguageProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Index />} />
+              <Route path="about" element={<About />} />
+              <Route path="academy" element={<Academy />} />
+              <Route path="alien-trip" element={<AlienTrip />} />
+              <Route path="clubs" element={<Clubs />} />
+              <Route path="conetworking" element={<CoNetWorKing />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="terms-of-service" element={<TermsOfService />} />
+            </Route>
+            <Route path="/en" element={<Navigate to="/" replace />} />
+            <Route path="/en/*" element={<LangRoutes />} />
+            <Route path="/es/*" element={<LangRoutes />} />
+            <Route path="/pt/*" element={<LangRoutes />} />
+            <Route path="/fr/*" element={<LangRoutes />} />
+            <Route path="*" element={<Layout />}>
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Router>
+      </LanguageProvider>
     </Web3Provider>
+  );
+}
+
+function LangRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Index />} />
+        <Route path="about" element={<About />} />
+        <Route path="academy" element={<Academy />} />
+        <Route path="alien-trip" element={<AlienTrip />} />
+        <Route path="clubs" element={<Clubs />} />
+        <Route path="conetworking" element={<CoNetWorKing />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="terms-of-service" element={<TermsOfService />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
