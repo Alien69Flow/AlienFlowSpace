@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { Globe, ChevronDown, Sparkles } from 'lucide-react';
 import ConnectButton from '@/components/Header/ConnectButton';
 import SoundToggle from '@/components/SoundToggle';
-import { translateTo } from '@/lib/translator';
+import { useLanguage } from '@/i18n/LanguageContext';
+import type { SupportedLang } from '@/lib/seo';
 
 interface MobileNavProps {
   isMenuOpen: boolean;
@@ -32,14 +33,13 @@ const MobileNav = ({ setIsMenuOpen }: MobileNavProps) => {
     { to: "/conetworking", label: "CoNetWorKing", desc: "Professional Bio-Networking" }
   ].sort((a, b) => a.label.localeCompare(b.label));
 
-  const languages = [
+  const { setLang, lang: activeLang } = useLanguage();
+
+  const languages: Array<{ code: string; name: string; lang: SupportedLang }> = [
     { code: 'us', name: 'English', lang: 'en' },
-    { code: 'es', name: 'Español', lang: 'es' },
-    { code: 'fr', name: 'Français', lang: 'fr' },
-    { code: 'cn', name: '汉语 (Hànyǔ)', lang: 'zh' },
-    { code: 'in', name: 'हिन्दी (Hindī)', lang: 'hi' },
-    { code: 'pt', name: 'Português', lang: 'pt' },
-    { code: 'jp', name: '日本語 (Nihongo)', lang: 'ja' }
+    { code: 'es', name: 'Espanol', lang: 'es' },
+    { code: 'fr', name: 'Francais', lang: 'fr' },
+    { code: 'pt', name: 'Portugues', lang: 'pt' }
   ];
 
   return (
@@ -145,10 +145,10 @@ const MobileNav = ({ setIsMenuOpen }: MobileNavProps) => {
                     key={lang.code}
                     type="button"
                     onClick={() => {
-                      translateTo(lang.lang);
+                      setLang(lang.lang);
                       setIsMenuOpen(false);
                     }}
-                    className="flex items-center gap-2.5 border border-af-border-hairline p-2 hover:border-alien-green/40 hover:bg-alien-green/10 transition-colors"
+                    className={`flex items-center gap-2.5 border p-2 transition-colors ${lang.lang === activeLang ? 'border-alien-green/60 bg-alien-green/10' : 'border-af-border-hairline hover:border-alien-green/40 hover:bg-alien-green/10'}`}
                   >
                     <img src={`https://flagcdn.com/w20/${lang.code}.png`} className="w-4 h-auto rounded-sm" alt="" />
                     <span className="text-[11px] text-alien-gold uppercase">{lang.name}</span>

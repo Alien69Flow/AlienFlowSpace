@@ -8,7 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import SoundToggle from '@/components/SoundToggle';
-import { translateTo } from '@/lib/translator';
+import { useLanguage } from '@/i18n/LanguageContext';
+import type { SupportedLang } from '@/lib/seo';
 
 /**
  * Desktop navigation, built as one joined strip of bordered cells: a solid bar,
@@ -31,14 +32,13 @@ const DesktopNav = () => {
     { to: "/conetworking", label: "CoNetWorKing", desc: "Connect with like-minded profits across the multiverse" }
   ].sort((a, b) => a.label.localeCompare(b.label));
 
-  const languages = [
+  const { setLang, lang: activeLang } = useLanguage();
+
+  const languages: Array<{ code: string; name: string; lang: SupportedLang }> = [
     { code: 'us', name: 'English', lang: 'en' },
-    { code: 'es', name: 'Español', lang: 'es' },
-    { code: 'fr', name: 'Français', lang: 'fr' },
-    { code: 'cn', name: '汉语', lang: 'zh' },
-    { code: 'in', name: 'हिन्दी', lang: 'hi' },
-    { code: 'pt', name: 'Português', lang: 'pt' },
-    { code: 'jp', name: '日本語', lang: 'ja' }
+    { code: 'es', name: 'Espanol', lang: 'es' },
+    { code: 'fr', name: 'Francais', lang: 'fr' },
+    { code: 'pt', name: 'Portugues', lang: 'pt' }
   ];
 
   const inSpaces = spaceLinks.some((link) => link.to === location.pathname);
@@ -93,8 +93,8 @@ const DesktopNav = () => {
           {languages.map((lang) => (
             <DropdownMenuItem
               key={lang.code}
-              onClick={() => translateTo(lang.lang)}
-              className="af-panel__row flex items-center gap-3 p-2.5"
+              onClick={() => setLang(lang.lang)}
+              className={`af-panel__row flex items-center gap-3 p-2.5 ${lang.lang === activeLang ? 'bg-af-surface/40' : ''}`}
             >
               <img src={`https://flagcdn.com/w20/${lang.code}.png`} className="w-5 h-auto rounded-sm" alt="" />
               <span className="text-[11px] text-alien-gold">{lang.name}</span>

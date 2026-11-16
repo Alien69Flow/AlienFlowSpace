@@ -11,7 +11,6 @@ import ErrorBoundary from './ErrorBoundary';
 import { showsPriceTicker } from '@/lib/priceTicker';
 import AdBanner from './AdBanner';
 import type { SponsorSlotName } from '@/data/sponsors';
-import { initGoogleTranslate } from '@/lib/translator';
 import { attachGlobalSfx, sfx } from '@/lib/sound';
 import { useSeo } from '@/hooks/useSeo';
 import { useLanguage } from '@/i18n/LanguageContext';
@@ -49,7 +48,7 @@ const Layout: React.FC = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    initGoogleTranslate();
+    // Google Translate removed — replaced by URL-based i18n via useLanguage.
   }, []);
 
   const bgMap: Record<string, string> = {
@@ -88,7 +87,6 @@ const Layout: React.FC = () => {
       <div className="fixed inset-0 -z-20 pointer-events-none bg-alien-space-dark/75" />
       <div className="fixed inset-0 -z-10 pointer-events-none depth-gradient" />
 
-      <div id="google_translate_element" className="hidden" aria-hidden="true"></div>
       <Header />
 
       <main
