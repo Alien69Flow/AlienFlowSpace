@@ -38,7 +38,10 @@ const DesktopNav = () => {
     { code: 'us', name: 'English', lang: 'en' },
     { code: 'es', name: 'Espanol', lang: 'es' },
     { code: 'fr', name: 'Francais', lang: 'fr' },
-    { code: 'pt', name: 'Portugues', lang: 'pt' }
+    { code: 'pt', name: 'Portugues', lang: 'pt' },
+    { code: 'cn', name: '汉语', lang: 'zh' },
+    { code: 'in', name: 'हिन्दी', lang: 'hi' },
+    { code: 'jp', name: '日本語', lang: 'ja' }
   ];
 
   const inSpaces = spaceLinks.some((link) => link.to === location.pathname);

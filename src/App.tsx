@@ -36,6 +36,9 @@ function App() {
             <Route path="/es/*" element={<LangRoutes />} />
             <Route path="/pt/*" element={<LangRoutes />} />
             <Route path="/fr/*" element={<LangRoutes />} />
+            <Route path="/zh/*" element={<LangRoutes />} />
+            <Route path="/hi/*" element={<LangRoutes />} />
+            <Route path="/ja/*" element={<LangRoutes />} />
             <Route path="*" element={<Layout />}>
               <Route path="*" element={<NotFound />} />
             </Route>

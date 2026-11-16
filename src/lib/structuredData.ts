@@ -111,17 +111,17 @@ const productData = (lang: SupportedLang) => ({
 });
 
 const breadcrumbData = (path: string, lang: SupportedLang) => {
-  const clean = path.replace(/^\/(en|es|pt|fr)\//, '/') || '/';
+  const clean = path.replace(/^\/(en|es|pt|fr|zh|hi|ja)\//, '/') || '/';
   const labels: Record<string, Record<SupportedLang, string>> = {
-    '/': { en: 'Home', es: 'Inicio', pt: 'Inicio', fr: 'Accueil' },
-    '/about': { en: 'About', es: 'Sobre Nosotros', pt: 'Sobre Nos', fr: 'A Propos' },
-    '/academy': { en: 'Academy', es: 'Academia', pt: 'Academia', fr: 'Academie' },
-    '/clubs': { en: 'Clubs', es: 'Clubs', pt: 'Clubs', fr: 'Clubs' },
-    '/conetworking': { en: 'CoNetWorKing', es: 'CoNetWorKing', pt: 'CoNetWorKing', fr: 'CoNetWorKing' },
-    '/alien-trip': { en: 'AlienTrip', es: 'AlienTrip', pt: 'AlienTrip', fr: 'AlienTrip' },
-    '/contact': { en: 'Contact', es: 'Contacto', pt: 'Contato', fr: 'Contact' },
-    '/privacy-policy': { en: 'Privacy Policy', es: 'Privacidad', pt: 'Privacidade', fr: 'Confidentialite' },
-    '/terms-of-service': { en: 'Terms of Service', es: 'Terminos', pt: 'Termos', fr: 'Conditions' },
+    '/': { en: 'Home', es: 'Inicio', pt: 'Inicio', fr: 'Accueil', zh: '首页', hi: 'होम', ja: 'ホーム' },
+    '/about': { en: 'About', es: 'Sobre Nosotros', pt: 'Sobre Nos', fr: 'A Propos', zh: '关于我们', hi: 'हमारे बारे में', ja: '私たちについて' },
+    '/academy': { en: 'Academy', es: 'Academia', pt: 'Academia', fr: 'Academie', zh: '学院', hi: 'अकादमी', ja: 'アカデミー' },
+    '/clubs': { en: 'Clubs', es: 'Clubs', pt: 'Clubs', fr: 'Clubs', zh: '俱乐部', hi: 'क्लब्स', ja: 'クラブ' },
+    '/conetworking': { en: 'CoNetWorKing', es: 'CoNetWorKing', pt: 'CoNetWorKing', fr: 'CoNetWorKing', zh: 'CoNetWorKing', hi: 'CoNetWorKing', ja: 'CoNetWorKing' },
+    '/alien-trip': { en: 'AlienTrip', es: 'AlienTrip', pt: 'AlienTrip', fr: 'AlienTrip', zh: 'AlienTrip', hi: 'AlienTrip', ja: 'AlienTrip' },
+    '/contact': { en: 'Contact', es: 'Contacto', pt: 'Contato', fr: 'Contact', zh: '联系我们', hi: 'संपर्क', ja: 'お問い合わせ' },
+    '/privacy-policy': { en: 'Privacy Policy', es: 'Privacidad', pt: 'Privacidade', fr: 'Confidentialite', zh: '隐私政策', hi: 'गोपनीयता नीति', ja: 'プライバシーポリシー' },
+    '/terms-of-service': { en: 'Terms of Service', es: 'Terminos', pt: 'Termos', fr: 'Conditions', zh: '服务条款', hi: 'सेवा की शर्तें', ja: '利用規約' },
   };
 
   const items: Array<{ '@type': string; position: number; name: string; item: string }> = [];

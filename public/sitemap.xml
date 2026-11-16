@@ -18,6 +18,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/" />
   </url>
 
@@ -35,6 +38,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/about" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/about" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/about" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/about" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/about" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/about" />
   </url>
 
@@ -52,6 +58,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/academy" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/academy" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/academy" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/academy" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/academy" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/academy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/academy" />
   </url>
 
@@ -69,6 +78,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/clubs" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/clubs" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/clubs" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/clubs" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/clubs" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/clubs" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/clubs" />
   </url>
 
@@ -86,6 +98,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/conetworking" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/conetworking" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/conetworking" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/conetworking" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/conetworking" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/conetworking" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/conetworking" />
   </url>
 
@@ -99,6 +114,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/alien-trip" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/alien-trip" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/alien-trip" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/alien-trip" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/alien-trip" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/alien-trip" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/alien-trip" />
   </url>
 
@@ -112,6 +130,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/contact" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/contact" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/contact" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/contact" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alienflow.space/contact" />
   </url>
 
@@ -125,6 +146,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://alienflow.space/es/" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://alienflow.space/pt/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://alienflow.space/fr/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alienflow.space/zh/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alienflow.space/hi/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alienflow.space/ja/" />
   </url>
   <url>
     <loc>https://alienflow.space/es/about</loc>
@@ -246,6 +270,138 @@
   </url>
   <url>
     <loc>https://alienflow.space/fr/contact</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Chinese versions -->
+  <url>
+    <loc>https://alienflow.space/zh/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/zh/about</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/zh/academy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/zh/clubs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/zh/conetworking</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/zh/alien-trip</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/zh/contact</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Hindi versions -->
+  <url>
+    <loc>https://alienflow.space/hi/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/hi/about</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/hi/academy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/hi/clubs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/hi/conetworking</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/hi/alien-trip</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/hi/contact</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Japanese versions -->
+  <url>
+    <loc>https://alienflow.space/ja/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/ja/about</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/ja/academy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/ja/clubs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/ja/conetworking</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/ja/alien-trip</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://alienflow.space/ja/contact</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
