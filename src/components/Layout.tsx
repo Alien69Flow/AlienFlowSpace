@@ -47,10 +47,6 @@ const Layout: React.FC = () => {
     sfx.navigate();
   }, [location.pathname]);
 
-  useEffect(() => {
-    // Google Translate removed — replaced by URL-based i18n via useLanguage.
-  }, []);
-
   const bgMap: Record<string, string> = {
     '/': "/lovable-uploads/EMWBack.png",
     '/about': "/lovable-uploads/AboutBG.png",
