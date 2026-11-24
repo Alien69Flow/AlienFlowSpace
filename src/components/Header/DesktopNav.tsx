@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { ChevronDown, Sparkles, ArrowRight } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import SoundToggle from '@/components/SoundToggle';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { spacesByAlpha } from '@/data/spaces';
 import type { SupportedLang } from '@/lib/seo';
 
 /**
@@ -26,11 +27,7 @@ const DesktopNav = () => {
     { to: "/contact", label: "Contact" }
   ];
 
-  const spaceLinks = [
-    { to: "/academy", label: "Academy", desc: "Unlock cosmic knowledge through educational resources" },
-    { to: "/clubs", label: "Clubs", desc: "Join specialized communities focused on interests" },
-    { to: "/conetworking", label: "CoNetWorKing", desc: "Connect with like-minded profits across the multiverse" }
-  ].sort((a, b) => a.label.localeCompare(b.label));
+  const spaceLinks = spacesByAlpha.map((s) => ({ to: s.link, label: s.title, desc: s.short, icon: s.icon }));
 
   const { setLang, lang: activeLang } = useLanguage();
 
@@ -73,13 +70,40 @@ const DesktopNav = () => {
         <DropdownMenuContent
           align="start"
           sideOffset={6}
-          className="af-panel rounded-none p-0 w-[330px] z-[9999]"
+          className="af-panel rounded-none p-0 w-[400px] z-[9999] border border-af-border-hairline shadow-[0_16px_48px_rgba(0,0,0,0.6)]"
         >
+          <p className="px-4 pt-3 pb-2 text-[10px] font-nasalization tracking-[0.24em] uppercase text-af-text-muted border-b border-af-border-hairline">
+            Ecosystem spaces
+          </p>
           {spaceLinks.map((link) => (
             <DropdownMenuItem key={link.to} asChild>
-              <NavLink to={link.to} className="af-panel__row p-3">
-                <h3 className="text-alien-gold text-sm">{link.label}</h3>
-                <p className="text-[11px] text-af-text-muted leading-relaxed mt-1">{link.desc}</p>
+              <NavLink
+                to={link.to}
+                className="group relative flex items-center gap-4 px-4 py-4 border-b border-af-border-hairline last:border-0 outline-none transition-colors duration-200 focus:bg-af-surface/40 data-[highlighted]:bg-af-surface/40"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 h-full w-[2px] bg-alien-green scale-y-0 transition-transform duration-200 group-data-[highlighted]:scale-y-100"
+                />
+                <img
+                  src={link.icon}
+                  alt=""
+                  className="h-10 w-10 object-contain shrink-0 p-1.5 border border-af-border-hairline bg-af-surface/30 transition-colors duration-200 group-data-[highlighted]:border-alien-green/50"
+                />
+                <span className="flex-1 min-w-0">
+                  <span className="flex items-center justify-between gap-3">
+                    <span className="text-alien-gold text-sm font-nasalization tracking-wide transition-colors duration-200 group-data-[highlighted]:text-alien-green">
+                      {link.label}
+                    </span>
+                    <ArrowRight
+                      className="h-3.5 w-3.5 text-alien-green opacity-0 -translate-x-1 transition-all duration-200 group-data-[highlighted]:opacity-100 group-data-[highlighted]:translate-x-0"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span className="block text-[11px] text-af-text-muted leading-relaxed mt-1">
+                    {link.desc}
+                  </span>
+                </span>
               </NavLink>
             </DropdownMenuItem>
           ))}

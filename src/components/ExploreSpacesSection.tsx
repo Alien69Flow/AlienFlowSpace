@@ -3,36 +3,17 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import AlienTag from '@/components/alien/AlienTag';
 import { spotlightMove } from '@/lib/spotlight';
+import { spaces } from '@/data/spaces';
 
-const spaces = [
-  {
-    id: 'academy',
-    title: 'Academy',
-    verb: 'LEARN',
-    description: 'Unlock cosmic knowledge through comprehensive educational resources, courses, and tutorials in blockchain, finance, and sustainability.',
-    icon: <img src="/lovable-uploads/AcademyLogo.png" alt="Academy" className="h-10 w-10 object-contain" />,
-    link: '/academy',
-    partners: 30,
-  },
-  {
-    id: 'clubs',
-    title: 'Clubs',
-    verb: 'BELONG',
-    description: 'Join specialized communities focused on specific interests, technologies, and missions within the AlienFlowSpace ecosystem.',
-    icon: <img src="/lovable-uploads/ClubLogo.png" alt="Clubs" className="h-10 w-10 object-contain" />,
-    link: '/clubs',
-    partners: 18,
-  },
-  {
-    id: 'conetworking',
-    title: 'CoNetWorKing',
-    verb: 'COLLABORATE',
-    description: 'Connect with like-minded individuals, projects, and initiatives across the multiverse to expand your network and opportunities.',
-    icon: <img src="/lovable-uploads/CoNetWorKingLogo.png" alt="CoNetWorKing" className="h-10 w-10 object-contain" />,
-    link: '/conetworking',
-    partners: 80,
-  },
-];
+const spacesData = spaces.map((s) => ({
+  id: s.id,
+  title: s.title,
+  verb: s.verb,
+  description: s.long,
+  icon: <img src={s.icon} alt={s.title} className="h-10 w-10 object-contain" />,
+  link: s.link,
+  partners: s.partners,
+}));
 
 const ExploreSpacesSection = () => {
   return (
@@ -63,7 +44,7 @@ const ExploreSpacesSection = () => {
 
         {/* Three portal cards — flat, unified system */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-af-border-hairline">
-          {spaces.map((space, index) => (
+          {spacesData.map((space, index) => (
             <motion.div
               key={space.id}
               initial={{ opacity: 0 }}

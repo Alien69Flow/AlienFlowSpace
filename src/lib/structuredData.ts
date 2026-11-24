@@ -26,7 +26,7 @@ const orgData = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'info@alienflow.space',
+    email: 'contact@alienflow.space',
   },
 };
 

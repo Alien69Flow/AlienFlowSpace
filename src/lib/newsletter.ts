@@ -29,7 +29,7 @@ export const newsletterEndpoint =
   (import.meta.env.PROD ? '/api/newsletter' : '');
 
 export const contactEmail =
-  (import.meta.env.VITE_CONTACT_EMAIL as string | undefined)?.trim() || 'info@alienflow.space';
+  (import.meta.env.VITE_CONTACT_EMAIL as string | undefined)?.trim() || '69@alienflow.space';
 
 export const isValidEmail = (value: string) => EMAIL_RE.test(value.trim());
 

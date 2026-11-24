@@ -5,6 +5,7 @@ import { Globe, ChevronDown, Sparkles } from 'lucide-react';
 import ConnectButton from '@/components/Header/ConnectButton';
 import SoundToggle from '@/components/SoundToggle';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { spacesByAlpha } from '@/data/spaces';
 import type { SupportedLang } from '@/lib/seo';
 
 interface MobileNavProps {
@@ -27,11 +28,7 @@ const MobileNav = ({ setIsMenuOpen }: MobileNavProps) => {
     { to: "/contact", label: "Contact" }
   ];
 
-  const spaceLinks = [
-    { to: "/academy", label: "Academy", desc: "Cosmic knowledge and Tesla science" },
-    { to: "/clubs", label: "Clubs", desc: "Specialized multiverse communities" },
-    { to: "/conetworking", label: "CoNetWorKing", desc: "Professional Bio-Networking" }
-  ].sort((a, b) => a.label.localeCompare(b.label));
+  const spaceLinks = spacesByAlpha.map((s) => ({ to: s.link, label: s.title, desc: s.short }));
 
   const { setLang, lang: activeLang } = useLanguage();
 

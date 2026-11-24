@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
     if (!validateForm()) return;
     setIsSubmitting(true);
-    const mailtoLink = `mailto:alien69flow@proton.me?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`FROM: ${formData.name}\nEMAIL: ${formData.email}\n\n${formData.message}`)}`;
+    const mailtoLink = `mailto:contact@alienflow.space?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`FROM: ${formData.name}\nEMAIL: ${formData.email}\n\n${formData.message}`)}`;
     window.location.href = mailtoLink;
     toast.success('Transmission initiated!', { description: 'Your message is being processed...' });
     setTimeout(() => setIsSubmitting(false), 2000);
@@ -134,10 +134,10 @@ const Contact: React.FC = () => {
               <h3 className="text-alien-gold font-nasalization text-base mb-1">Privacy Policy</h3>
               <p className="text-af-text-muted text-xs">Data protection & transparency</p>
             </a>
-            <a href="mailto:alien69flow@proton.me?subject=Support%20Request" className="border-r border-b border-af-border-hairline p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors flex flex-col items-center text-center group">
+            <a href="mailto:contact@alienflow.space?subject=Support%20Request" className="border-r border-b border-af-border-hairline p-6 bg-af-surface/20 hover:bg-af-surface/40 transition-colors flex flex-col items-center text-center group">
               <div className="mb-3"><LifeBuoy className="w-5 h-5 text-alien-gold" /></div>
               <h3 className="text-alien-gold font-nasalization text-base mb-1">Support Center</h3>
-              <p className="text-af-text-muted text-xs">alien69flow@proton.me</p>
+              <p className="text-af-text-muted text-xs">contact@alienflow.space</p>
             </a>
           </div>
         </motion.section>

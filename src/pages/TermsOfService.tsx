@@ -164,7 +164,7 @@ const TermsOfService = () => {
                 For questions about these Terms of Service, please contact us at:
               </p>
               <div className="mt-4 p-4 border border-af-border bg-af-surface/30">
-                <p className="af-prose text-alien-gold font-semibold">Email: info@alienflow.space</p>
+                <p className="af-prose text-alien-gold font-semibold">Email: contact@alienflow.space</p>
                 <p className="text-gray-300 text-sm mt-1">Discord: discord.gg/alienflowspace</p>
               </div>
             </section>

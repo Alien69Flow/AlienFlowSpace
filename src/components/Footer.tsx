@@ -39,7 +39,7 @@ const Footer = () => {
 
   const socialLinks = [
     { href: "https://discord.gg/alienflowspace", icon: Disc, label: "Discord", color: "#5865F2" },
-    { href: "mailto:info@alienflow.space", icon: Mail, label: "Email", color: "#F0D882" },
+    { href: "mailto:contact@alienflow.space", icon: Mail, label: "Email", color: "#F0D882" },
     { href: "https://www.facebook.com/Alien69Flow", icon: Facebook, label: "Facebook", color: "#1877F2" },
     { href: "https://alienflowspace.gitbook.io/DAO", icon: BookOpen, label: "GitBook", color: "#22C55E" },
     { href: "https://github.com/Alien69Flow", icon: Github, label: "Github", color: "#22C55E" },
