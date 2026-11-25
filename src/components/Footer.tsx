@@ -65,9 +65,9 @@ const Footer = () => {
     { name: 'Bitcoin', logo: 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg', url: 'https://bitcoin.org/' },
     { name: 'Ethereum', logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg', url: 'https://ethereum.org/' },
     { name: 'GitHub', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg', url: 'https://github.com/' },
-    { name: 'GitBook', logo: 'https://www.gitbook.com/cdn-cgi/image/format=auto/https://files.gitbook.io/v0/b/gitbook-legacy-files/o/assets%2F-MO2MMibDwLwqlwQD4Wc%2F-MsCvRrjF8Lsr0gJy7ZS%2F-MsCvXjJl0ZJZjJ0rJZK%2Fgitbook-logo.svg', url: 'https://www.gitbook.com/' },
+    { name: 'GitBook', logo: '', url: 'https://www.gitbook.com/', svgPath: 'M10.802 17.77a.703.703 0 11-.002 1.406.703.703 0 01.002-1.406m11.024-4.347a.703.703 0 11.001-1.406.703.703 0 01-.001 1.406m0-2.876a2.176 2.176 0 00-2.174 2.174c0 .233.039.465.115.691l-7.181 3.823a2.165 2.165 0 00-1.784-.937c-.829 0-1.584.475-1.95 1.216l-6.451-3.402c-.682-.358-1.192-1.48-1.138-2.502.028-.533.212-.947.493-1.107.178-.1.392-.092.62.027l.042.023c1.71.9 7.304 3.847 7.54 3.956.363.169.565.237 1.185-.057l11.564-6.014c.17-.064.368-.227.368-.474 0-.342-.354-.477-.355-.477-.658-.315-1.669-.788-2.655-1.25-2.108-.987-4.497-2.105-5.546-2.655-.906-.474-1.635-.074-1.765.006l-.252.125C7.78 6.048 1.46 9.178 1.1 9.397.457 9.789.058 10.57.006 11.539c-.08 1.537.703 3.14 1.824 3.727l6.822 3.518a2.175 2.175 0 002.15 1.862 2.177 2.177 0 002.173-2.14l7.514-4.073c.38.298.853.461 1.337.461A2.176 2.176 0 0024 12.72a2.176 2.176 0 00-2.174-2.174' },
     { name: 'IPFS', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Ipfs-logo-1024-ice-text.png', url: 'https://ipfs.tech/' },
-    { name: 'OpenSea', logo: 'https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.svg', url: 'https://opensea.io/' },
+    { name: 'OpenSea', logo: '', url: 'https://opensea.io/', svgPath: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 21.6c-5.302 0-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4s9.6 4.298 9.6 9.6-4.298 9.6-9.6 9.6zm-3.6-12.96v6.72l5.76-3.36-5.76-3.36zm6.72 1.44v3.84l3.36-1.92-3.36-1.92z' },
     { name: 'Polygon', logo: 'https://cryptologos.cc/logos/polygon-matic-logo.svg', url: 'https://polygon.technology/' },
   ].sort((a, b) => a.name.localeCompare(b.name));
 
@@ -147,7 +147,13 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300"
               >
-                <img src={tech.logo} alt={tech.name} className="h-6 w-6 object-contain" />
+                {tech.svgPath ? (
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-af-text-muted">
+                    <path d={tech.svgPath} />
+                  </svg>
+                ) : (
+                  <img src={tech.logo} alt={tech.name} className="h-6 w-6 object-contain" />
+                )}
                 <span className="text-xs text-af-text-muted font-nasalization hidden sm:inline">{tech.name}</span>
               </a>
             ))}

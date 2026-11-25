@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Send, CheckCircle, AlertTriangle, ExternalLink } from 'lucide-react';
+import { Mail, Send, CheckCircle, AlertTriangle } from 'lucide-react';
 import AlienTag from '@/components/alien/AlienTag';
 import { sfx } from '@/lib/sound';
 import { trackEvent } from '@/lib/analytics';
+import { supabase } from '@/integrations/supabase/client';
 import {
-  submitNewsletter,
+  isValidEmail,
   buildMailtoUrl,
-  newsletterEndpoint,
   contactEmail,
 } from '@/lib/newsletter';
-
-/**
- * Newsletter form. All submission rules live in src/lib/newsletter.ts: the form
- * shows success only when the configured endpoint accepted the address, and
- * falls back to a pre-filled email when no endpoint is configured.
- */
 
 type Status = 'idle' | 'submitting' | 'subscribed' | 'confirmEmail' | 'error';
 
@@ -23,42 +17,81 @@ const NewsletterSubscription: React.FC = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');
-  // What the server actually did, so the success screen never promises an email
-  // that was not sent (plain list add) or ignores an address already there.
-  const [outcome, setOutcome] = useState({ confirmationSent: true, alreadySubscribed: false });
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const trimmed = email.trim().toLowerCase();
+
+    if (!isValidEmail(trimmed)) {
+      sfx.error();
+      setStatus('error');
+      setMessage('That address looks incomplete — please check it and try again.');
+      return;
+    }
+
     setStatus('submitting');
     setMessage('');
+    trackEvent('newsletter_submit', { source: 'supabase' });
 
-    trackEvent('newsletter_submit', { endpoint_configured: Boolean(newsletterEndpoint) });
-    const result = await submitNewsletter(email, { endpoint: newsletterEndpoint });
+    try {
+      const { data: existing } = await supabase
+        .from('newsletter_subscribers')
+        .select('id, status')
+        .eq('email', trimmed)
+        .maybeSingle();
 
-    if (result.status === 'ok') {
-      // A cue only ever marks a real outcome, same rule as the success message.
+      if (existing) {
+        if (existing.status === 'active') {
+          sfx.success();
+          trackEvent('newsletter_success', { mode: 'already' });
+          setAlreadySubscribed(true);
+          setStatus('subscribed');
+          return;
+        }
+
+        const { error: updateErr } = await supabase
+          .from('newsletter_subscribers')
+          .update({ status: 'active', subscribed_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+          .eq('id', existing.id);
+
+        if (updateErr) throw updateErr;
+        sfx.success();
+        trackEvent('newsletter_success', { mode: 'reactivated' });
+        setAlreadySubscribed(false);
+        setStatus('subscribed');
+        return;
+      }
+
+      const { error: insertErr } = await supabase
+        .from('newsletter_subscribers')
+        .insert({
+          email: trimmed,
+          source: 'alienflow.space',
+          status: 'active',
+        });
+
+      if (insertErr) {
+        if (insertErr.code === '23505') {
+          sfx.success();
+          trackEvent('newsletter_success', { mode: 'already' });
+          setAlreadySubscribed(true);
+          setStatus('subscribed');
+          return;
+        }
+        throw insertErr;
+      }
+
       sfx.success();
-      trackEvent('newsletter_success', { mode: result.alreadySubscribed ? 'already' : 'new' });
-      setOutcome({
-        confirmationSent: result.confirmationSent,
-        alreadySubscribed: result.alreadySubscribed,
-      });
+      trackEvent('newsletter_success', { mode: 'new' });
+      setAlreadySubscribed(false);
       setStatus('subscribed');
-      return;
+    } catch {
+      sfx.error();
+      trackEvent('newsletter_error');
+      setStatus('error');
+      setMessage('We could not save your address just now. Please try again in a moment.');
     }
-    if (result.status === 'fallback') {
-      sfx.open();
-      // Counted separately on purpose: a fallback means the lead was NOT captured,
-      // and that number is the one that shows the form is not wired to anything.
-      trackEvent('newsletter_fallback');
-      window.location.href = result.mailto;
-      setStatus('confirmEmail');
-      return;
-    }
-    sfx.error();
-    trackEvent('newsletter_error');
-    setStatus('error');
-    setMessage(result.message);
   };
 
   if (status === 'subscribed') {
@@ -73,15 +106,10 @@ const NewsletterSubscription: React.FC = () => {
         <CheckCircle className="w-12 h-12 text-alien-green mx-auto mb-4" />
         <h3 className="text-xl font-nasalization text-alien-green mb-2">You're on the list</h3>
         <p className="text-sm text-af-text-muted">
-          {outcome.alreadySubscribed ? (
+          {alreadySubscribed ? (
             <>
               <span className="text-foreground">{email.trim()}</span> was already on the list —
               there is nothing else to do.
-            </>
-          ) : outcome.confirmationSent ? (
-            <>
-              We sent a confirmation to <span className="text-foreground">{email.trim()}</span>. If
-              it is not in your inbox within a few minutes, check the spam folder.
             </>
           ) : (
             <>
@@ -115,7 +143,7 @@ const NewsletterSubscription: React.FC = () => {
           href={buildMailtoUrl(email)}
           className="af-pill af-pill-primary !py-3 !justify-center w-full"
         >
-          <ExternalLink className="w-4 h-4" /> Open email app again
+          <Send className="w-4 h-4" /> Open email app again
         </a>
         <p className="text-xs text-af-text-muted mt-4 text-center">
           Or write to <span className="text-foreground">{contactEmail}</span>
@@ -138,7 +166,7 @@ const NewsletterSubscription: React.FC = () => {
         <Mail className="w-5 h-5 text-alien-gold" />
         <div>
           <h3 className="text-lg font-nasalization text-alien-gold">Stay Updated</h3>
-          <p className="text-xs text-af-text-muted">Get the latest news, drops &amp; DAO updates</p>
+          <p className="text-xs text-af-text-muted">Get the latest news, drops, bonuses, discounts &amp; DAO updates</p>
         </div>
       </div>
 

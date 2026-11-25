@@ -74,13 +74,25 @@ const Contact: React.FC = () => {
     setTerminalInput('');
     setIsTyping(true);
     setTimeout(() => {
-      let res = ">>> [AiTor]: Command executed successfully. How can I assist you further?";
-      if (input.toLowerCase().includes('help')) res = ">>> [AiTor]: Available commands: help, dao, tokenomics, roadmap, community";
-      if (input.toLowerCase().includes('dao')) res = ">>> [AiTor]: AlienFlowSpace DAO is a decentralized autonomous organization focused on Web3 innovation.";
-      if (input.toLowerCase().includes('tesla') || input.toLowerCase().includes('369')) res = ">>> [AiTor]: Unifying neutrinos at 3-6-9 frequency. Tesla's cosmic code activated.";
+      const lower = input.toLowerCase();
+      let res = ">>> [AiTor]: I can help with that. Try: help, dao, academy, clubs, conetworking, tokenomics, roadmap, newsletter, nft, tesla, contact";
+      if (lower.includes('help')) res = ">>> [AiTor]: Available topics: help, dao, academy, clubs, conetworking, tokenomics, roadmap, newsletter, nft, tesla, 369, contact, wallet, eco";
+      else if (lower.includes('dao')) res = ">>> [AiTor]: AlienFlowSpace DAO — decentralized governance powered by Aragon. Token holders create proposals, vote, and shape the ecosystem. Every voice matters.";
+      else if (lower.includes('academy') || lower.includes('learn') || lower.includes('course')) res = ">>> [AiTor]: Academy has 30+ learning platforms — edX, Hotmart, SkillShare, MasterClass, UNED and more. Blockchain, DeFi, sustainability courses available.";
+      else if (lower.includes('club')) res = ">>> [AiTor]: Clubs are specialized communities — crypto, gaming, music, and more. 18+ partner communities to find your tribe.";
+      else if (lower.includes('conetwork') || lower.includes('network') || lower.includes('collaborate')) res = ">>> [AiTor]: CoNetWorKing connects you with 80+ aligned people and projects. Find co-founders, freelancers, and strategic partners.";
+      else if (lower.includes('tokenomics') || lower.includes('token') || lower.includes('economy')) res = ">>> [AiTor]: Tokenomics designed for sustainability — community rewards, DAO governance rights, ecosystem utility. Full docs on GitBook.";
+      else if (lower.includes('roadmap') || lower.includes('future') || lower.includes('plan')) res = ">>> [AiTor]: Roadmap: expanding Academy, new Club partnerships, CoNetWorKing growth, new NFT drops. DAO votes on major milestones.";
+      else if (lower.includes('newsletter') || lower.includes('subscribe') || lower.includes('updates')) res = ">>> [AiTor]: Subscribe on the Contact page for updates, drops, bonuses and discounts. No spam, ever. Unsubscribe anytime.";
+      else if (lower.includes('nft') || lower.includes('opensea')) res = ">>> [AiTor]: NFT collection on OpenSea — collectibles that unlock exclusive clubs, DAO voting power, and special rewards.";
+      else if (lower.includes('tesla') || lower.includes('369') || lower.includes('frequency')) res = ">>> [AiTor]: Tesla's 3-6-9 frequency principle guides our cosmic philosophy. Unifying science, community, and decentralized tech at universal frequency.";
+      else if (lower.includes('contact') || lower.includes('support') || lower.includes('reach')) res = ">>> [AiTor]: Reach us at contact@alienflow.space or through 14+ social channels. See the Official Channels section above.";
+      else if (lower.includes('wallet') || lower.includes('metamask') || lower.includes('connect')) res = ">>> [AiTor]: Connect your wallet via the header button. Supports MetaMask, WalletConnect, and major Web3 wallets.";
+      else if (lower.includes('eco') || lower.includes('sustain') || lower.includes('merch')) res = ">>> [AiTor]: Eco-friendly merch line — sustainable caps, hats, and accessories with cosmic aesthetics. Check the merch section!";
+      else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) res = ">>> [AiTor]: Greetings, cosmic traveler! How can I assist you today? Type 'help' for available topics.";
       setTerminalHistory(prev => [...prev, { type: 'ai', text: res }]);
       setIsTyping(false);
-    }, 800);
+    }, 600 + Math.random() * 400);
   };
 
   const socialLinks = [
@@ -96,7 +108,7 @@ const Contact: React.FC = () => {
     { name: 'Reddit', icon: BrandLogos.Reddit, link: 'https://reddit.com/user/Alien69Flow', handle: 'u/Alien69Flow' },
     { name: 'Telegram', icon: BrandLogos.Telegram, link: 'https://t.me/AlienFlow', handle: '@AlienFlow' },
     { name: 'Threads', icon: BrandLogos.Threads, link: 'https://threads.net/@alien69flow', handle: '@alien69flow' },
-    { name: 'TikTok', icon: BrandLogos.TikTok, link: '#', handle: '@alien69flow', status: 'Coming Soon' },
+    { name: 'TikTok', icon: BrandLogos.TikTok, link: 'https://www.tiktok.com/@alien69flow', handle: '@alien69flow' },
     { name: 'X', icon: BrandLogos.X, link: 'https://x.com/alien69flow', handle: '@alien69flow' }
   ];
 
