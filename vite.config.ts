@@ -29,21 +29,4 @@ export default defineConfig(({ mode }) => ({
       "@supabase/supabase-js",
     ],
   },
-  build: {
-    minify: "esbuild",
-    rollupOptions: {
-      treeshake: false,
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            if (id.includes("@reown") || id.includes("wagmi") || id.includes("viem") || id.includes("@walletconnect") || id.includes("ox/")) return "wallet";
-            if (id.includes("@supabase")) return "supabase";
-            if (id.includes("react-router")) return "router";
-            if (id.includes("framer-motion")) return "animation";
-            return "vendor";
-          }
-        },
-      },
-    },
-  },
 }));
